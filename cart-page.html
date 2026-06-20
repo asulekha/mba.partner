@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart — MBA Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0F1419;
+      --ink-soft: #1a202c;
+      --paper: #F8F6F3;
+      --paper-card: #FFFFFF;
+      --primary: #6366F1;
+      --primary-dark: #4F46E5;
+      --primary-light: #818CF8;
+      --accent: #EC4899;
+      --success: #10B981;
+      --danger: #EF4444;
+      --surface: #F3F4F6;
+      --rule: #E5E7EB;
+      --ink-faint: #6B7280;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Fraunces', serif;
+      margin: 0;
+      letter-spacing: -0.01em
+    }
+
+    .mono {
+      font-family: 'IBM Plex Mono', monospace
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    img {
+      max-width: 100%
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px
+    }
+
+    /* ---------- NAV ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--ink);
+      color: #FFF;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15
+    }
+
+    .brand-text span {
+      font-weight: 700;
+      font-size: 15px
+    }
+
+    .brand-text small {
+      font-size: 10.5px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #A0AEC0
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      font-weight: 500
+    }
+
+    .nav-links a:not(.nav-cta) {
+      color: #D0D5DD;
+      opacity: .85;
+      transition: opacity .2s
+    }
+
+    .nav-links a:not(.nav-cta):hover {
+      opacity: 1
+    }
+
+    .nav-cart-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .nav-cart-count {
+      background: var(--accent);
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 700;
+      min-width: 17px;
+      height: 17px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
+    }
+
+    @media (max-width:680px) {
+      .nav-links a:not(.nav-cta):not(.nav-cart-link) {
+        display: none
+      }
+    }
+
+    /* ---------- BREADCRUMB ---------- */
+    .breadcrumb {
+      padding: 16px 0;
+      font-size: 13.5px;
+      color: var(--ink-faint)
+    }
+
+    .breadcrumb a {
+      transition: color .2s
+    }
+
+    .breadcrumb a:hover {
+      color: var(--primary)
+    }
+
+    .breadcrumb span.sep {
+      margin: 0 8px;
+      color: #C7CCD4
+    }
+
+    .breadcrumb span.current {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    /* ---------- PAGE HEAD ---------- */
+    .cart-head {
+      padding: 8px 0 28px
+    }
+
+    .cart-head h1 {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 700
+    }
+
+    .cart-head p {
+      margin-top: 8px;
+      color: var(--ink-faint);
+      font-size: 14.5px
+    }
+
+    /* ---------- LAYOUT ---------- */
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 28px;
+      align-items: start;
+      padding-bottom: 60px
+    }
+
+    @media (max-width:860px) {
+      .cart-layout {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ---------- CART ITEMS ---------- */
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .cart-item {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      transition: all .25s
+    }
+
+    .cart-item:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, .08)
+    }
+
+    .cart-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .25)
+    }
+
+    .cart-item-info {
+      flex: 1;
+      min-width: 0
+    }
+
+    .cart-item-info h3 {
+      font-size: 15.5px;
+      font-weight: 700;
+      line-height: 1.3
+    }
+
+    .cart-item-info .cart-item-meta {
+      margin-top: 4px;
+      font-size: 12.5px;
+      color: var(--ink-faint)
+    }
+
+    .cart-item-prices {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 8px
+    }
+
+    .cart-item-prices .now {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink)
+    }
+
+    .cart-item-prices .old {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      text-decoration: line-through
+    }
+
+    .cart-item-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden
+    }
+
+    .qty-control button {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .qty-control button:hover {
+      background: var(--primary-light);
+      color: #fff
+    }
+
+    .qty-control span {
+      width: 32px;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 600
+    }
+
+    .remove-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--danger);
+      cursor: pointer;
+      transition: opacity .2s;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .remove-link:hover {
+      opacity: .7
+    }
+
+    /* ---------- EMPTY STATE ---------- */
+    .cart-empty {
+      background: var(--paper-card);
+      border: 1px dashed var(--rule);
+      border-radius: 16px;
+      padding: 56px 24px;
+      text-align: center
+    }
+
+    .cart-empty .empty-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .cart-empty h2 {
+      font-size: 20px;
+      font-weight: 700
+    }
+
+    .cart-empty p {
+      margin: 8px 0 22px;
+      color: var(--ink-faint);
+      font-size: 14px
+    }
+
+    /* ---------- SUMMARY ---------- */
+    .summary-card {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 24px;
+      position: sticky;
+      top: 90px
+    }
+
+    .summary-card h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: var(--ink-soft);
+      padding: 9px 0
+    }
+
+    .summary-row .val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600
+    }
+
+    .summary-row.savings .val {
+      color: var(--success)
+    }
+
+    .summary-divider {
+      border-top: 1px dashed var(--rule);
+      margin: 10px 0
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6px 0 4px
+    }
+
+    .summary-total .label {
+      font-size: 15.5px;
+      font-weight: 700
+    }
+
+    .summary-total .val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--ink)
+    }
+
+    .promo-row {
+      display: flex;
+      gap: 8px;
+      margin: 16px 0 4px
+    }
+
+    .promo-row input {
+      flex: 1;
+      border: 1.5px solid var(--rule);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--surface);
+      color: var(--ink)
+    }
+
+    .promo-row input:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px
+    }
+
+    .promo-row button {
+      border: 1.5px solid var(--rule);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 12.5px;
+      border-radius: 8px;
+      padding: 0 16px;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .promo-row button:hover {
+      border-color: var(--primary);
+      color: var(--primary)
+    }
+
+    .promo-msg {
+      font-size: 12px;
+      margin-top: 4px;
+      min-height: 16px
+    }
+
+    .promo-msg.ok {
+      color: var(--success)
+    }
+
+    .promo-msg.err {
+      color: var(--danger)
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14.5px;
+      transition: all .3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
+    }
+
+    .btn-primary:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none
+    }
+
+    .btn-ghost {
+      border: 1.5px solid var(--rule);
+      color: var(--ink);
+      background: #fff;
+      margin-top: 10px
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      color: var(--primary)
+    }
+
+    .trust-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--ink-faint)
+    }
+
+    .trust-row .item {
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    /* ---------- CROSS-SELL ---------- */
+    section.crosssell-section {
+      padding: 10px 0 50px
+    }
+
+    .section-head {
+      margin-bottom: 22px
+    }
+
+    .section-head h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--ink-faint);
+      font-size: 14px
+    }
+
+    .crosssell {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 6px
+    }
+
+    .cs-card {
+      flex: 0 0 240px;
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 18px;
+      transition: all .25s
+    }
+
+    .cs-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, .08)
+    }
+
+    .cs-card h4 {
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .cs-card .cs-price {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-dark)
+    }
+
+    .cs-card a.cs-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--primary)
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+      color: #fff;
+      padding: 48px 0 30px;
+      margin-top: 20px
+    }
+
+    .foot-cta {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto
+    }
+
+    .foot-cta h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .foot-cta p {
+      margin: 10px 0 22px;
+      color: #A0AEC0;
+      font-size: 14px
+    }
+
+    .foot-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .foot-buttons a {
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s
+    }
+
+    .foot-buttons a.primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
+    }
+
+    .foot-buttons a.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
+    }
+
+    .foot-buttons a.secondary {
+      border: 1.4px solid rgba(255, 255, 255, .3);
+      color: #F4EFE3
+    }
+
+    .foot-buttons a.secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary)
+    }
+
+    .foot-bottom {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12.5px;
+      color: #8B92A0
+    }
+
+    .foot-socials {
+      display: flex;
+      gap: 12px
+    }
+
+    .foot-socials a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #A0AEC0;
+      font-size: 11.5px;
+      transition: all .3s
+    }
+
+    .foot-socials a:hover {
+      border-color: var(--primary);
+      color: var(--primary)
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="mba-partner-home-redesign.html">
+        <span class="brand-mark">MP</span>
+        <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="mba-partner-home-redesign.html">Home</a>
+        <a href="mba-partner-courses-redesign.html">Courses</a>
+        <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
+        <a class="nav-cart-link" href="cart-page.html">
+          🛒 Cart <span class="nav-cart-count" id="navCartCount">0</span>
+        </a>
+        <a class="nav-cta" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="mba-partner-home-redesign.html">Home</a><span class="sep">/</span><span class="current">Your Cart</span>
+    </div>
+  </div>
+
+  <section class="cart-head">
+    <div class="wrap">
+      <h1>Your Cart</h1>
+      <p id="cartSubline">Review your programs before checkout.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cart-layout" id="cartLayout">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <section class="crosssell-section" id="crosssellSection" style="display:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>You might also like</h2>
+        <p>Popular add-ons students pair with their cart</p>
+      </div>
+      <div class="crosssell" id="crosssellList"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-cta">
+        <h2>Ready to join the Hall of Fame?</h2>
+        <p>Get mentored by alumni from top B-Schools and turn your CV into one recruiters remember.</p>
+        <div class="foot-buttons">
+          <a class="primary" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp Group</a>
+          <a class="secondary" href="https://t.me/+eV1FROkJppFlYmU1">Join Telegram</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>MBA Partner — Initiative by Alumni of Old IIM</span>
+        <div class="foot-socials">
+          <a href="https://www.instagram.com/mba_partner/" aria-label="Instagram">IG</a>
+          <a href="https://www.linkedin.com/in/prodmarkconsulting-mba-partner/" aria-label="LinkedIn">in</a>
+          <a href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" aria-label="WhatsApp">WA</a>
+          <a href="https://t.me/+eV1FROkJppFlYmU1" aria-label="Telegram">TG</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    // ---------- Cross-sell catalogue (edit freely) ----------
+    // Used to populate "You might also like" — pulled from your product file names.
+    const CROSSSELL_CATALOGUE = [
+      { id: 'all-in-one-combo', name: 'All-in-One Combo', price: 14999, originalPrice: 17999, url: 'product-all-in-one-combo.html' },
+      { id: 'any-1-domain', name: 'Any 1 Domain', price: 4999, originalPrice: 5999, url: 'product-any-1-domain.html' },
+      { id: 'any-2-domains', name: 'Any 2 Domains', price: 8499, originalPrice: 9999, url: 'product-any-2-domains.html' },
+      { id: 'bootcamp-case-comp', name: 'Bootcamp + Case Comp', price: 10499, originalPrice: 11500, url: 'product-bootcamp-case-comp.html' },
+      { id: 'bootcamp-live-project', name: 'Bootcamp + Live Project', price: 10999, originalPrice: 12500, url: 'product-bootcamp-live-project.html' },
+      { id: 'case-comp-live-project', name: 'Case Comp + Live Project', price: 9999, originalPrice: 11200, url: 'product-case-comp-live-project.html' },
+      { id: 'case-competition', name: 'Case Competition', price: 6499, originalPrice: 7499, url: 'product-case-competition.html' },
+      { id: 'placements-bootcamp', name: 'Placements Bootcamp + Case Comp', price: 10499, originalPrice: 11500, url: 'product-placements-bootcamp.html' },
+      { id: 'power-bi-certificate', name: 'Power BI Certificate', price: 2999, originalPrice: 3999, url: 'product-power-bi-certificate.html' }
+    ];
+
+    const { getCart, setCart, cartTotals, fmtINR, genOrderId, saveOrder, clearCart } = window.MBACart;
+
+    function initials(name) {
+      const words = name.trim().split(/\s+/).filter(Boolean);
+      if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+      return (words[0][0] + words[1][0]).toUpperCase();
+    }
+
+    function updateNavCount() {
+      const el = document.getElementById('navCartCount');
+      el.textContent = window.MBACart.cartCount();
+    }
+
+    function changeQty(id, delta) {
+      const cart = getCart();
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty = (item.qty || 1) + delta;
+      if (item.qty <= 0) {
+        const filtered = cart.filter(i => i.id !== id);
+        setCart(filtered);
+      } else {
+        setCart(cart);
+      }
+      render();
+    }
+
+    function removeItem(id) {
+      const cart = getCart().filter(i => i.id !== id);
+      setCart(cart);
+      render();
+    }
+
+    function applyPromo() {
+      const input = document.getElementById('promoInput');
+      const msg = document.getElementById('promoMsg');
+      const code = input.value.trim().toUpperCase();
+      if (!code) {
+        msg.textContent = '';
+        return;
+      }
+      // Simple placeholder promo logic — wire to your real codes here.
+      const VALID_CODES = { MBAP500: 500, WELCOME10: 0.10 };
+      if (VALID_CODES.hasOwnProperty(code)) {
+        msg.textContent = 'Promo applied — discount reflected at checkout.';
+        msg.className = 'promo-msg ok';
+        localStorage.setItem('mbaPartnerPromo', code);
+      } else {
+        msg.textContent = "That code isn't valid. Check and try again.";
+        msg.className = 'promo-msg err';
+      }
+    }
+
+    function checkout() {
+      const cart = getCart();
+      if (!cart.length) return;
+      // Cart stays in localStorage — checkout-page.html reads it from there.
+      window.location.href = 'checkout-page.html';
+    }
+
+    function renderCrosssell(cart) {
+      const section = document.getElementById('crosssellSection');
+      const list = document.getElementById('crosssellList');
+      const inCart = new Set(cart.map(i => i.id));
+      const suggestions = CROSSSELL_CATALOGUE.filter(p => !inCart.has(p.id)).slice(0, 6);
+      if (!suggestions.length) {
+        section.style.display = 'none';
+        return;
+      }
+      section.style.display = '';
+      list.innerHTML = suggestions.map(p => `
+        <div class="cs-card">
+          <h4>${p.name}</h4>
+          <div class="cs-price mono">${fmtINR(p.price)}<span style="color:var(--ink-faint);font-weight:600;text-decoration:line-through;margin-left:6px;">${fmtINR(p.originalPrice)}</span></div>
+          <a class="cs-link" href="${p.url}">View program →</a>
+        </div>
+      `).join('');
+    }
+
+    function render() {
+      const cart = getCart();
+      updateNavCount();
+      const layout = document.getElementById('cartLayout');
+      const subline = document.getElementById('cartSubline');
+
+      if (!cart.length) {
+        subline.textContent = 'Your cart is empty right now.';
+        layout.innerHTML = `
+          <div class="cart-empty" style="grid-column:1/-1;">
+            <div class="empty-icon">
+              <svg width="28" height="28" viewBox="0 0 18 18" fill="none">
+                <path d="M2 3h14v9H8l-4 4V12H2V3Z" stroke="#6B7280" stroke-width="1.4" fill="none" />
+              </svg>
+            </div>
+            <h2>No programs added yet</h2>
+            <p>Browse our courses and add a program to get started.</p>
+            <a class="btn btn-primary" style="width:auto;display:inline-flex;" href="mba-partner-courses-redesign.html">Browse Courses</a>
+          </div>
+        `;
+        renderCrosssell([]);
+        return;
+      }
+
+      const count = cart.reduce((s, i) => s + (i.qty || 1), 0);
+      subline.textContent = `${count} ${count === 1 ? 'program' : 'programs'} in your cart.`;
+
+      const itemsHtml = cart.map(item => {
+        const qty = item.qty || 1;
+        const metaHtml = item.meta ? `<div class="cart-item-meta">${item.meta}</div>` : '';
+        const oldHtml = item.originalPrice && item.originalPrice > item.price
+          ? `<span class="old">${fmtINR(item.originalPrice)}</span>` : '';
+        return `
+        <div class="cart-item" data-id="${item.id}">
+          <div class="cart-item-icon">${initials(item.name)}</div>
+          <div class="cart-item-info">
+            <h3>${item.name}</h3>
+            ${metaHtml}
+            <div class="cart-item-prices">
+              <span class="now mono">${fmtINR(item.price)}</span>
+              ${oldHtml}
+            </div>
+          </div>
+          <div class="cart-item-right">
+            <div class="qty-control">
+              <button type="button" aria-label="Decrease quantity" onclick="changeQty('${item.id}', -1)">−</button>
+              <span>${qty}</span>
+              <button type="button" aria-label="Increase quantity" onclick="changeQty('${item.id}', 1)">+</button>
+            </div>
+            <button type="button" class="remove-link" onclick="removeItem('${item.id}')">Remove</button>
+          </div>
+        </div>`;
+      }).join('');
+
+      const totals = cartTotals(cart);
+
+      const summaryHtml = `
+        <div class="summary-card">
+          <h2>Order Summary</h2>
+          <div class="summary-row">
+            <span>Subtotal (${count} ${count === 1 ? 'item' : 'items'})</span>
+            <span class="val mono">${fmtINR(totals.originalSubtotal)}</span>
+          </div>
+          ${totals.savings > 0 ? `
+          <div class="summary-row savings">
+            <span>Discount</span>
+            <span class="val mono">− ${fmtINR(totals.savings)}</span>
+          </div>` : ''}
+          <div class="summary-divider"></div>
+          <div class="summary-total">
+            <span class="label">Total</span>
+            <span class="val">${fmtINR(totals.subtotal)}</span>
+          </div>
+          <div class="promo-row">
+            <input id="promoInput" type="text" placeholder="Promo code" />
+            <button type="button" onclick="applyPromo()">Apply</button>
+          </div>
+          <div class="promo-msg" id="promoMsg"></div>
+          <button type="button" class="btn btn-primary" style="margin-top:14px;" onclick="checkout()">💳 Proceed to Checkout</button>
+          <a class="btn btn-ghost" href="mba-partner-courses-redesign.html">← Continue Browsing</a>
+          <div class="trust-row">
+            <span class="item">✅ Mentored by MBA Partner Alumni</span>
+            <span class="item">🔒 Secure Checkout</span>
+            <span class="item">📩 Instant Confirmation</span>
+          </div>
+        </div>
+      `;
+
+      layout.innerHTML = `<div class="cart-items">${itemsHtml}</div>${summaryHtml}`;
+      renderCrosssell(cart);
+    }
+
+    render();
+  </script>
+</body>
+
+</html>

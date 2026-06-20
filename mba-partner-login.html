@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --success: #10B981;
+            --error: #EF4444;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+        h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; letter-spacing: -0.01em; }
+        .mono { font-family: 'IBM Plex Mono', monospace; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; }
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+        :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+        /* ---------- NAV ---------- */
+        .nav { position: sticky; top: 0; z-index: 50; background: var(--ink); color: #FFF; border-bottom: 1px solid rgba(255,255,255,.1); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand-mark { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; font-family: 'Fraunces', serif; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+        .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+        .brand-text span { font-weight: 700; font-size: 15px; }
+        .brand-text small { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #A0AEC0; }
+        .nav-links { display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 500; }
+        .nav-links a:not(.nav-cta) { color: #D0D5DD; opacity: .85; transition: opacity .2s; }
+        .nav-links a:not(.nav-cta):hover { opacity: 1; }
+        .nav-cta { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 700; font-size: 13.5px; transition: all .3s; box-shadow: 0 4px 12px rgba(99,102,241,.3); }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,.4); }
+        @media (max-width:760px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+        /* ---------- LAYOUT ---------- */
+        .login-shell { min-height: calc(100vh - 65px); display: grid; grid-template-columns: 1fr 1fr; }
+        @media (max-width: 900px) { .login-shell { grid-template-columns: 1fr; } }
+
+        .login-side { background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%); color: #fff; padding: 56px 48px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+        .login-side::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 80% 15%, rgba(99,102,241,.22), transparent 55%); }
+        .login-side > * { position: relative; z-index: 1; }
+        @media (max-width: 900px) { .login-side { padding: 40px 28px; } }
+
+        .side-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--primary-light); margin-bottom: 16px; font-weight: 600; }
+        .login-side h1 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 700; line-height: 1.12; max-width: 16ch; }
+        .login-side p.sub { margin-top: 16px; color: #D0D5DD; font-size: 15px; line-height: 1.6; max-width: 40ch; }
+
+        .side-quote { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 22px; margin-top: 30px; }
+        .side-quote p { font-size: 13.5px; color: #D0D5DD; line-height: 1.6; margin: 0; }
+        .side-quote .who { margin-top: 12px; display: flex; align-items: center; gap: 10px; }
+        .side-quote .avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0; }
+        .side-quote .name { font-size: 12.5px; font-weight: 700; }
+        .side-quote .meta { font-size: 11px; color: #A0AEC0; }
+
+        .side-stats { display: flex; gap: 22px; margin-top: 36px; flex-wrap: wrap; }
+        .side-stats .stat .num { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 700; color: var(--primary-light); }
+        .side-stats .stat .lbl { font-size: 11.5px; color: #A0AEC0; margin-top: 2px; }
+
+        .login-main { display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+        .login-card { width: 100%; max-width: 400px; }
+        .login-card h2 { font-size: 26px; font-weight: 700; }
+        .login-card p.lead { margin: 8px 0 28px; color: var(--ink-faint); font-size: 14px; }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 7px; color: var(--ink); }
+        .input-wrap { position: relative; }
+        .form-group input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--rule); border-radius: 10px; font-size: 14px; font-family: 'Inter', sans-serif; transition: border-color .2s; background: #fff; }
+        .form-group input:focus { outline: none; border-color: var(--primary); }
+        .form-group input.input-error { border-color: var(--error); }
+        .toggle-pw { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 12.5px; font-weight: 700; color: var(--primary); }
+        .field-error { font-size: 12px; color: var(--error); margin-top: 6px; display: none; }
+
+        .row-between { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; font-size: 13px; }
+        .remember { display: flex; align-items: center; gap: 8px; color: var(--ink-soft); cursor: pointer; }
+        .remember input { width: 15px; height: 15px; accent-color: var(--primary); cursor: pointer; }
+        .forgot-link { color: var(--primary); font-weight: 600; }
+        .forgot-link:hover { text-decoration: underline; }
+
+        .btn-login { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; border: none; border-radius: 10px; font-weight: 700; font-size: 14.5px; cursor: pointer; transition: all .3s; box-shadow: 0 4px 12px rgba(99,102,241,.3); }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,.4); }
+        .btn-login:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+        .divider { display: flex; align-items: center; gap: 12px; margin: 24px 0; color: var(--ink-faint); font-size: 12.5px; }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+        .alt-actions { display: flex; flex-direction: column; gap: 10px; }
+        .btn-alt { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border: 1.5px solid var(--rule); border-radius: 10px; font-size: 13.5px; font-weight: 600; background: #fff; transition: all .2s; cursor: pointer; }
+        .btn-alt:hover { border-color: var(--primary); color: var(--primary); }
+
+        .signup-line { text-align: center; margin-top: 26px; font-size: 13.5px; color: var(--ink-faint); }
+        .signup-line a { color: var(--primary); font-weight: 700; }
+        .signup-line a:hover { text-decoration: underline; }
+
+        .alert { padding: 12px 14px; border-radius: 10px; margin-bottom: 18px; font-size: 13px; display: none; align-items: center; gap: 8px; }
+        .alert.show { display: flex; }
+        .alert.success { background: #ECFDF5; border: 1px solid #D1FAE5; color: #065F46; }
+        .alert.error { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; }
+
+        .official-note { font-size: 12px; color: var(--ink-faint); text-align: center; margin-top: 18px; line-height: 1.6; }
+        .official-note a { color: var(--primary); font-weight: 600; }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="mba-partner-home-redesign.html">
+                <span class="brand-mark">MP</span>
+                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+            </a>
+            <div class="nav-links">
+                <a href="mba-partner-home-redesign.html">Home</a>
+                <a href="mba-partner-courses-redesign.html">Courses</a>
+                <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
+                <a class="nav-cta" href="mba-partner-courses-redesign.html">Enroll Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="login-shell">
+        <div class="login-side">
+            <div>
+                <p class="side-eyebrow">Member Login</p>
+                <h1>Welcome back to your prep journey.</h1>
+                <p class="sub">Pick up where you left off — mock interview slots, live project sessions, and your CV reviews all in one place.</p>
+                <div class="side-quote">
+                    <p>"Hands-on project experience turned pre-SIP nerves into one of the smoothest interviews of the process."</p>
+                    <div class="who">
+                        <div class="avatar">MB</div>
+                        <div><div class="name">Megha Bhattacharya</div><div class="meta">IIM Mumbai · Kearney</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="side-stats">
+                <div class="stat"><div class="num">9.6/10</div><div class="lbl">Average rating</div></div>
+                <div class="stat"><div class="num">5,000+</div><div class="lbl">Student network</div></div>
+                <div class="stat"><div class="num">98.7%</div><div class="lbl">Placed on time</div></div>
+            </div>
+        </div>
+
+        <div class="login-main">
+            <div class="login-card">
+                <h2>Log in to your account</h2>
+                <p class="lead">Enter your details to access your dashboard.</p>
+
+                <div class="alert error" id="errorAlert">⚠️ <span id="errorText">Something went wrong.</span></div>
+                <div class="alert success" id="successAlert">✅ <span>Login successful — redirecting…</span></div>
+
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+                        <div class="field-error" id="emailError">Please enter a valid email address.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrap">
+                            <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" style="padding-right:56px;">
+                            <button type="button" class="toggle-pw" id="togglePw">Show</button>
+                        </div>
+                        <div class="field-error" id="passwordError">Please enter your password.</div>
+                    </div>
+
+                    <div class="row-between">
+                        <label class="remember"><input type="checkbox" id="remember"> Remember me</label>
+                        <a class="forgot-link" href="#">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="loginBtn">Log In →</button>
+                </form>
+
+                <div class="divider">or continue with</div>
+                <div class="alt-actions">
+                    <a class="btn-alt" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" target="_blank" rel="noopener">💬 WhatsApp Community</a>
+                </div>
+
+                <p class="signup-line">Don't have an account? <a href="mba-partner-courses-redesign.html">Enroll in a course</a> to get one.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const pwInput = document.getElementById('password');
+        const toggleBtn = document.getElementById('togglePw');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorAlert = document.getElementById('errorAlert');
+        const errorText = document.getElementById('errorText');
+        const successAlert = document.getElementById('successAlert');
+
+        toggleBtn.addEventListener('click', () => {
+            const isPw = pwInput.type === 'password';
+            pwInput.type = isPw ? 'text' : 'password';
+            toggleBtn.textContent = isPw ? 'Hide' : 'Show';
+        });
+
+        function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            errorAlert.classList.remove('show');
+            successAlert.classList.remove('show');
+
+            let valid = true;
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+            emailInput.classList.remove('input-error');
+            pwInput.classList.remove('input-error');
+
+            if (!isValidEmail(emailInput.value.trim())) {
+                document.getElementById('emailError').style.display = 'block';
+                emailInput.classList.add('input-error');
+                valid = false;
+            }
+            if (!pwInput.value) {
+                document.getElementById('passwordError').style.display = 'block';
+                pwInput.classList.add('input-error');
+                valid = false;
+            }
+            if (!valid) return;
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in…';
+
+            // This is a static design concept — there is no live backend connected here.
+            // Simulate the check, then route the user to the dashboard-equivalent (homepage).
+            setTimeout(() => {
+                successAlert.classList.add('show');
+                setTimeout(() => {
+                    window.location.href = 'mba-partner-home-redesign.html';
+                }, 900);
+            }, 900);
+        });
+    </script>
+
+</body>
+</html>

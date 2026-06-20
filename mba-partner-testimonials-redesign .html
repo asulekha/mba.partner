@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --success: #10B981;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* ---------- NAV ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--ink);
+            color: #FFF;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-text span {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .brand-text small {
+            font-size: 10.5px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #A0AEC0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login) {
+            color: #D0D5DD;
+            opacity: .85;
+            transition: opacity .2s;
+            position: relative;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login):hover {
+            opacity: 1;
+        }
+
+        .nav-links a.active {
+            color: #FFF;
+            opacity: 1;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -16px;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .nav-login {
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+
+        .nav-login:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        @media (max-width:760px) {
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 64px 0 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 82% 10%, rgba(99, 102, 241, .18), transparent 55%);
+        }
+
+        .hero .wrap {
+            position: relative;
+        }
+
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 4.4vw, 48px);
+            font-weight: 700;
+            line-height: 1.1;
+            max-width: 20ch;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--primary-light);
+        }
+
+        .hero-sub {
+            margin-top: 18px;
+            max-width: 56ch;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #D0D5DD;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14.5px;
+            transition: all .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .btn-ghost-dark {
+            border: 1.5px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            background: transparent;
+        }
+
+        .btn-ghost-dark:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-light);
+        }
+
+        /* ---------- STATS STRIP ---------- */
+        .stats {
+            padding: 0;
+            margin-top: -34px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:860px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 22px 20px;
+            box-shadow: 0 8px 24px rgba(15, 20, 25, .08);
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat-card .label {
+            margin-top: 6px;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            line-height: 1.4;
+        }
+
+        section {
+            padding: 64px 0;
+        }
+
+        .section-head {
+            text-align: center;
+            max-width: 60ch;
+            margin: 0 auto 30px;
+        }
+
+        .section-head .eyebrow-light {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-head h2 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .section-head p {
+            margin: 12px 0 0;
+            color: var(--ink-faint);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ---------- FILTER BAR ---------- */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 38px;
+        }
+
+        .chip {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            border: 1px solid var(--rule);
+            background: var(--paper-card);
+            color: var(--ink-faint);
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .chip:hover {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .chip.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .chip-count {
+            margin-left: 4px;
+            opacity: .8;
+        }
+
+        /* ---------- TESTIMONIAL GRID ---------- */
+        .wall-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width:960px) {
+            .wall-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .wall-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .wall-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 18px;
+            transition: all .25s;
+            position: relative;
+        }
+
+        .wall-card.hidden {
+            display: none;
+        }
+
+        .wall-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, .08);
+            transform: translateY(-2px);
+        }
+
+        .verified-tag {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: .03em;
+            color: var(--success);
+            background: rgba(16, 185, 129, .1);
+            border: 1px solid rgba(16, 185, 129, .25);
+            padding: 3px 8px;
+            border-radius: 999px;
+        }
+
+        .wall-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-right: 70px;
+        }
+
+        .wall-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .w.wall-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 24px;
+            height: 100%;
+        }
+
+        .wall-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .wall-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .wall-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .wall-content {
+            flex: 1;
+        }
+
+        .wall-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .wall-name {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .wall-details {
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.3;
+        }
+
+        .verified {
+            white-space: nowrap;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .wall-text {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #111827;
+        }
+
+        .wall-name {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .wall-meta {
+            font-size: 11px;
+            color: var(--ink-faint);
+        }
+
+        .wall-quote {
+            margin-top: 12px;
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--ink-faint);
+            font-size: 14px;
+            display: none;
+        }
+
+        .empty-state.show {
+            display: block;
+        }
+
+        /* ---------- FINAL CTA ---------- */
+        .final-cta {
+            background: var(--ink);
+            border-radius: 20px;
+            padding: 46px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, .2), transparent 55%);
+        }
+
+        .final-cta * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta h2 {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            max-width: 36ch;
+            margin: 0 auto;
+        }
+
+        .final-cta p {
+            color: #A0AEC0;
+            margin: 12px auto 26px;
+            max-width: 48ch;
+            font-size: 14.5px;
+        }
+
+        .final-ctas {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 50px 0 32px;
+            margin-top: 10px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        @media (max-width:760px) {
+            .foot-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .foot-col h4 {
+            font-size: 12.5px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #8B92A0;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: #D0D5DD;
+            margin-bottom: 10px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--primary-light);
+        }
+
+        .foot-bottom {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13px;
+            color: #8B92A0;
+        }
+
+        .foot-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .foot-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #A0AEC0;
+            font-size: 11.5px;
+            transition: all .3s;
+        }
+
+        .foot-socials a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="mba-partner-home-redesign.html">
+                <span class="brand-mark">MP</span>
+                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+            </a>
+            <div class="nav-links">
+                <a href="mba-partner-home-redesign.html">Home</a>
+                <a href="mba-partner-courses-redesign.html">Courses</a>
+                <a href="mba-partner-testimonials-redesign.html" class="active" aria-current="page">Testimonials</a>
+                <a class="nav-login" href="https://www.mbapartner.in/members-area/my/my-account" target="_blank"
+                    rel="noopener">Login</a>
+                <a class="nav-cta" href="mba-partner-courses-redesign.html">Enroll Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="wrap">
+            <p class="eyebrow">Verified Outcomes</p>
+            <h1>Real students. Real placements.<br><em>Real proof it works.</em></h1>
+            <p class="hero-sub">No paid actors, no stock quotes — just students from IIMs, XLRI, MDI, NMIMS and SIBM
+                who used MBA Partner's live projects, case competitions and Placements Bootcamp to land the
+                internships they wanted.</p>
+            <div class="hero-ctas">
+                <a class="btn btn-primary" href="mba-partner-courses-redesign.html">🚀 Explore Courses</a>
+                <a class="btn btn-ghost-dark" href="https://chat.whatsapp.com/EdyvGJbQoV9Jj6eC0slSx9?mode=hq2tcla"
+                    target="_blank" rel="noopener">💬 Join WhatsApp Community</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="stats">
+        <div class="wrap">
+            <div class="stats-grid reveal">
+                <div class="stat-card">
+                    <div class="num">9.6/10</div>
+                    <div class="label">Average rating by 700+ students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">28+</div>
+                    <div class="label">Verified testimonials on this page</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">98.7%</div>
+                    <div class="label">Students placed in their desired domains</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">13</div>
+                    <div class="label">B-Schools represented below</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow-light">Browse by B-School</p>
+                <h2>Hear from someone at your campus</h2>
+                <p>Filter the wall below by B-School to find students who walked a path closest to yours.</p>
+            </div>
+
+            <div class="filter-bar reveal" id="filterBar">
+                <button class="chip active" data-filter="all">All <span class="chip-count">28</span></button>
+                <button class="chip" data-filter="iim-a">IIM Ahmedabad <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="iim-b">IIM Bangalore <span class="chip-count">3</span></button>
+                <button class="chip" data-filter="iim-c">IIM Calcutta <span class="chip-count">1</span></button>
+                <button class="chip" data-filter="iim-l">IIM Lucknow <span class="chip-count">3</span></button>
+                <button class="chip" data-filter="iim-k">IIM Kozhikode <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="iim-i">IIM Indore <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="iim-t">IIM Trichy <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="xlri">XLRI <span class="chip-count">4</span></button>
+                <button class="chip" data-filter="mdi">MDI Gurgaon <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="sibm">SIBM Pune <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="nmims">NMIMS Mumbai <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="other">Other IIMs <span class="chip-count">3</span></button>
+            </div>
+
+            <div class="wall-grid reveal" id="wallGrid">
+
+                <div class="wall-card" data-school="iim-b">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_d8c87affc04248eeb2694c94fd8f81b6~mv2.jpg/v1/fill/w_173,h_151,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20250110-WA0024_edited_edited.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Paluk</div>
+                            <div class="wall-meta">IIM Bangalore '26 </div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">Getting into IIM B was overwhelming and the anxiety began right from the 1st
+                        day of college, that's when I came across the MBA Partner Community. The mentors and their
+                        support was immense, not only did they help me get my CV boosted through Live Projects but their
+                        Placements Bootcamp with mentors from all cross-functional domains really shaped my SIP
+                        preparation and ultimately I landed onto my dream consulting roles at Accenture Strategy.</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-b">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_abf371df108d43bbb25a8bffd58875a6~mv2.jpg/v1/fill/w_170,h_155,fp_0.43_0.34,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1716187063356.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Bhaskarananda Boro</div>
+                            <div class="wall-meta">IIM Bangalore '26 </div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">Getting mentored directly by the Admin of MBA Partner was a blessing. His
+                        enriching experience in Finance helped me understand the nitty-gritties of it. I remember the
+                        way my CV wasn't getting spike points and Admin just took 30 minutes to frame it so better. The
+                        complete group of mentors really helped me preparing for my interviews and that helped me
+                        cracking IIFL Finance for my Summer Internships. Forever grateful!</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-b">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_85506d73279b45e4bd6e0e0e7e4c4d86~mv2.jpg/v1/fill/w_170,h_155,fp_0.50_0.31,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1715418186294.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Dheeraj Acharya</div>
+                            <div class="wall-meta">IIM Bangalore '26 </div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">MBA Partner was really a guiding step in each and every phase of my MBA first
+                        year. They not only helped me getting into my dream Prodman role at Samsung but also helped me
+                        understand the valuable ins-and-outs of MBA curriculum. Their Placements Bootcamp was always the
+                        one that saved me from having FOMO and built confidence in myself. My interview day was similar
+                        to the mock PIs and it was so much of a fun!
+
+                    </p>
+                </div>
+
+                <div class="wall-card" data-school="iim-a">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_f865c43808ae46e38297cfd81f39fbd3~mv2.jpg/v1/fill/w_170,h_155,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20241218-WA0007.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Rutuja Thorat</div>
+                            <div class="wall-meta">IIM Calcutta '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">MBA Partner was always the one that cleared the information asymmetry for me.
+                        The valuable guidance of mentors, some of whom were the alums of my college only, really helped
+                        me understanding and checking my preparation level. And that helped me get into the Strategy
+                        role at Accenture for my Summer Internship, it would not have been possible without this amazing
+                        platform!</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-c">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_2582d5be02ce4699944f3de6b84e5c9e~mv2.jpg/v1/fill/w_170,h_155,fp_0.86_0.46,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20250111-WA0012.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Prem</div>
+                            <div class="wall-meta">IIM Lucknow '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">I was always wanting to join companies Finance roles but being an engineer it
+                        looked difficult, and that's where MBA Partner made it easy. Their 1-on-1 mentorship sessions
+                        and Group Discussions was an amazing preparation booster and that eventually helped me to be the
+                        best version of myself during real interviews and got me into Amazon (AFBP role). Thank you, MBA
+                        Partner!
+
+                    </p>
+                </div>
+
+                <div class="wall-card" data-school="iim-a">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_0dcbd2463f9c4b6ca4148bd2d570c80c~mv2.jpg/v1/fill/w_170,h_155,fp_0.49_0.30,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1744196937868.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">
+                                Varun Kamble</div>
+                            <div class="wall-meta">IIM Lucknow '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">I was looking for a Finance Project that's where I came across MBA Partner in
+                        a WhatsApp group and the journey sky-rocketed from then onwards. Not only did the Finance
+                        Project, but the valuable domain sessions and doubt solving of Finance made me got a hang of it!
+                        And despite being an engineer, I landed into one of the Financial institutions, IIFL Finance. It
+                        was a great cherished journey!</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-l">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_0425def165204e3f90f94f84b95c944a~mv2.jpg/v1/fill/w_81,h_75,fp_0.51_0.39,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1724787513282.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Siba Prasad</div>
+                            <div class="wall-meta">IIM Kozhikode '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">I was quite skeptical about Summer Internship Placements. However, after
+                        enrolling into the community of MBA Partner, they not only guided me on my prep but also told me
+                        in advance what roles should I target as per my profile, and the targeted prep worked out in the
+                        end with me getting into the GenMan Programme of Aditya Birla Group, and it was a sigh of
+                        relief, really thankful to all the mentors!
+
+                    </p>
+                </div>
+
+                <div class="wall-card" data-school="iim-k">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_f8e15e1727be4b00bad8e6f71bbbc310~mv2.png/v1/fill/w_81,h_75,fp_0.48_0.26,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/download.png"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Ananyo</div>
+                            <div class="wall-meta">XLRI Jamshedpur '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        Being from a Geology background it was becoming quite difficult for me to shape an MBA level CV
+                        and that's where MBA Partner came to my rescue. I enrolled in their Live Projects and learnt the
+                        most. Havings those learnings on my CV was a booster in getting a shortlist for TAS (the most
+                        coveted company that visits XL) and here I am going to join TAS for my summer internship. Won't
+                        have been possible without this amazing family of mentors!</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-l">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_dee693c3eb1c4ee59e919d80fe64ba10~mv2.jpg/v1/fill/w_81,h_75,fp_0.50_0.43,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1741633217510.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Anshuman</div>
+                            <div class="wall-meta">IIM Indore '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        I got my GDPI Admissions prep by the Admin of MBA Partner. Following his amazing skillset, I
+                        enrolled into all Live Projects, Case Competitions and Placements Bootcamp, and there I got a
+                        plethora of repositories and mentors who guided me the best! The mock PIs really boosted my prep
+                        and confidence and got me into Deloitte on the very first day of my Summer Internship Process.
+                    </p>
+                </div>
+
+                <div class="wall-card" data-school="iim-k">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_22d88b31c28b4ce4a8c844ae06dc7095~mv2.jpg/v1/fill/w_83,h_75,fp_0.47_0.32,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1722797021578.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Utkarsh Gupta</div>
+                            <div class="wall-meta">IIM Indore '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        Being a fresher with family business experience, I was not really confident if I will be able to
+                        get desired placements given the batch size and profiles. However, the on point preparation and
+                        guidance alongwith relevant sessions and mock PIs helped me cracked the intervire for ABFRL.
+                        Thanks to MBA Partner for their amazing guidance throughout.</p>
+                </div>
+
+                <div class="wall-card" data-school="xlri">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_786aab4976e3435a99fedfeea0d8227a~mv2.jpg/v1/fill/w_81,h_75,fp_0.48_0.53,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20250116-WA0028.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Nidhi Malik</div>
+                            <div class="wall-meta">IIM Shillong '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        I was in touch with Admin for my GDPI Admissions Prep and that's where he highlighted me the
+                        importance of Pre-MBA preparation. Enrolling into the Live Project and Case Competition was an
+                        immense learning experience, this not helped me understand my field but also helped me to clear
+                        even my clubs & committees interview. Furthermore, their Placements Bootcamp was a joy of
+                        learning alongside peers and mentors from so many B-Schools.</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-i">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_e10a31778197489d8d238da7e0fa92db~mv2.jpg/v1/fill/w_83,h_75,fp_0.48_0.41,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1716273677527.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Priyanka</div>
+                            <div class="wall-meta">IIM Trichy '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        MBA Partner was always been a backbone in my MBA journey. The mentorship here was significant in
+                        shaping my CV, as a fresher getting those valuable Live Projects and keywords that boosted my
+                        ATS score was indeed the most important step towards Summer Internship shortlists. With the
+                        support of all mentors, I landed into an IB role.</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-i">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_9302ab5e06fa45369a5c296157c20d14~mv2.jpg/v1/fill/w_81,h_75,fp_0.45_0.33,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1723120380988.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Akhil</div>
+                            <div class="wall-meta">IIM Raipur '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        Getting into a B-School was taxing, but it was not that tough with the help of MBA Partner to
+                        get into Summer Placements. I had an experience with HSBC but was still falling short of
+                        complete one pager CV, that's where I took there Projects and it was genuinely a game changing
+                        experience, it not only boosted by CV but boosted my preparation as well of all domains and
+                        ultimately got me into a VC firm for my summer internship!</p>
+                </div>
+
+                <div class="wall-card" data-school="iim-t">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_496ffa422ef34e23a8c436d77d4c6c16~mv2.jpg/v1/fill/w_81,h_75,fp_0.50_0.45,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1718660255500.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Shrutika Ruia</div>
+                            <div class="wall-meta">IIM Kozhikode '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        I was a part of the Placements Bootcamp which has definitely given my CV a big boost. The
+                        mentors there from old IIMs and other top B-Schools really helped getting a better preparation
+                        of Summer Internship Placements. Not only this, their quick reverts on the basic of queries
+                        always kept me motivated to dig deeper in my preparation.</p>
+                </div>
+
+                <div class="wall-card" data-school="other">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_5a0772e2e4594ec2b6a19df1fef0c9f9~mv2.jpg/v1/fill/w_81,h_75,fp_0.49_0.39,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1744918790790.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Megha</div>
+                            <div class="wall-meta">MDI Gurgaon '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        I was from a Physics background with no work experience. The fear of getting into MBA was more
+                        than the happiness but that's where the personal guidance of Admin supported with the Live
+                        Projects learning was of immense help in getting almost all shortlists on campus. CVs are
+                        shortlisted through ATS and that's where I got benefitted and ultimately landed to MMT
+                        internship. The whole SIP process became a cakewalk!
+
+                    </p>
+                </div>
+
+                <div class="wall-card" data-school="other">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_d8c87affc04248eeb2694c94fd8f81b6~mv2.jpg/v1/fill/w_173,h_151,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20250110-WA0024_edited_edited.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Sai Santosh</div>
+                            <div class="wall-meta">XLRI Delhi '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        After missing XLRI J by whiskers, I wanted to leave no stone unturned for my Summer Placements,
+                        and hence enrolled into MBA Partner and more than my expectations I was really fortunate to get
+                        those late night domain sessions and doubts resolution that helped me get into one of the finest
+                        FMCG companies for my internship, PepsiCo. It was indeed a great experience with the folks
+                        there!</p>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <p class="empty-state" id="emptyState">No testimonials for this B-School yet — try "All" to see the full
+                wall.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="final-cta reveal">
+                <h2>Ready to write your own success story?</h2>
+                <p>Join the live projects, case competitions and Placements Bootcamp that got these students
+                    shortlisted — and start building proof recruiters actually notice.</p>
+                <div class="final-ctas">
+                    <a class="btn btn-primary" href="mba-partner-courses-redesign.html">🚀 Explore Courses &amp;
+                        Enroll</a>
+                    <a class="btn btn-ghost-dark"
+                        href="https://drive.google.com/drive/folders/18bj7C4I4Ro1DcOBfzF6xrEhNI7SmEZe2?usp=drive_link"
+                        target="_blank" rel="noopener">📄 View Sample CVs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div class="foot-col">
+                    <h4>MBA Partner</h4>
+                    <p style="font-size:13.5px;color:#A0AEC0;line-height:1.6;max-width:34ch;margin:0;">An initiative
+                        by alumni of old IIM, helping students build CVs strong enough to actually get shortlisted.
+                    </p>
+                </div>
+                <div class="foot-col">
+                    <h4>Explore</h4>
+                    <a href="mba-partner-home-redesign.html">Home</a>
+                    <a href="mba-partner-courses-redesign.html">Courses</a>
+                    <a href="mba-partner-testimonials-redesign.html">Testimonials</a>
+                    <a href="https://www.mbapartner.in/members-area/my/my-account" target="_blank"
+                        rel="noopener">Login</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Resources</h4>
+                    <a href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H?usp=drive_link"
+                        target="_blank" rel="noopener">Compendiums</a>
+                    <a href="https://drive.google.com/drive/folders/18bj7C4I4Ro1DcOBfzF6xrEhNI7SmEZe2?usp=drive_link"
+                        target="_blank" rel="noopener">Sample CVs</a>
+                    <a href="tel:+917042732092">Call Us</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>MBA Partner — Initiative by Alumni of Old IIM</span>
+                <div class="foot-socials">
+                    <a href="https://www.instagram.com/mba_partner/" target="_blank" rel="noopener"
+                        aria-label="Instagram">IG</a>
+                    <a href="https://www.linkedin.com/in/prodmarkconsulting-mba-partner/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">in</a>
+                    <a href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" target="_blank" rel="noopener"
+                        aria-label="WhatsApp">WA</a>
+                    <a href="https://t.me/+IrnzgXdUKqsyOTZl" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        reveals.forEach(r => obs.observe(r));
+
+        const chips = document.querySelectorAll('.chip');
+        const cards = document.querySelectorAll('.wall-card');
+        const emptyState = document.getElementById('emptyState');
+
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                const filter = chip.dataset.filter;
+                let visibleCount = 0;
+                cards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.school === filter;
+                    card.classList.toggle('hidden', !match);
+                    if (match) visibleCount++;
+                });
+                emptyState.classList.toggle('show', visibleCount === 0);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

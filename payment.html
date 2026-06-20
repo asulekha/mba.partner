@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --accent: #EC4899;
+            --success: #10B981;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 20px;
+            padding: 44px 36px;
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06)
+        }
+
+        .check-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700
+        }
+
+        .sub {
+            margin-top: 10px;
+            color: var(--ink-faint);
+            font-size: 14.5px;
+            line-height: 1.6
+        }
+
+        .order-id {
+            margin-top: 20px;
+            background: #F3F4F6;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--ink-faint)
+        }
+
+        .order-id span {
+            color: var(--ink);
+            font-weight: 700
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14.5px;
+            margin-top: 26px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            transition: all .3s
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
+        }
+
+        .btn-ghost {
+            background: none;
+            box-shadow: none;
+            color: var(--ink-faint);
+            border: 1.5px solid var(--rule);
+            margin-top: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="check-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                <path d="M4 12l5 5L20 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+        <h1>Payment Successful</h1>
+        <p class="sub">Your enrollment is confirmed. A confirmation with next steps will be sent to your email and phone
+            shortly.</p>
+        <div class="order-id" id="orderIdBox" style="display:none;">
+            Order ID: <span class="mono" id="orderIdText"></span>
+        </div>
+        <a class="btn" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join the WhatsApp Group →</a>
+        <a class="btn btn-ghost" href="mba-partner-courses-redesign.html">Browse more courses</a>
+    </div>
+
+    <script src="cart.js"></script>
+    <script>
+        const lastOrder = window.MBACart.getLastOrder();
+        if (lastOrder && lastOrder.id) {
+            document.getElementById('orderIdBox').style.display = 'block';
+            document.getElementById('orderIdText').textContent = lastOrder.id;
+        }
+    </script>
+</body>
+
+</html>
