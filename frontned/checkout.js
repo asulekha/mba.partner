@@ -1,5 +1,5 @@
 
-const API_BASE = window.MBA_API_BASE || 'http://localhost:5000';
+const API_BASE = window.MBA_API_BASE || 'https://mba-partner-1-r38n.onrender.com';
 const RAZORPAY_KEY_ID = window.MBA_RAZORPAY_KEY_ID || 'rzp_test_XXXXXXXXXXXX'; // public Key ID only — safe for frontend
 const COMPANY_NAME = 'MBA Partner';
 const COMPANY_THEME_COLOR = '#6366F1';
