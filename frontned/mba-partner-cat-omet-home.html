@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Partner — Crack CAT &amp; OMETs, Convert the Call</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --success: #10B981;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        /* ---------- NAV ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--ink);
+            color: #FFF;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-text span {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .brand-text small {
+            font-size: 10.5px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #A0AEC0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login) {
+            color: #D0D5DD;
+            opacity: .85;
+            transition: opacity .2s;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login):hover {
+            opacity: 1;
+        }
+
+        .nav-login {
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+
+        .nav-login:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #F4EFE3;
+            border-radius: 2px;
+            position: relative;
+            transition: transform .2s ease, opacity .2s ease;
+        }
+
+        .nav-toggle span::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+        }
+
+        .nav-toggle span::after {
+            content: "";
+            position: absolute;
+            top: 6px;
+        }
+
+        .nav.menu-open .nav-toggle span {
+            background: transparent;
+        }
+
+        .nav.menu-open .nav-toggle span::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .nav.menu-open .nav-toggle span::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width:760px) {
+            .nav-inner {
+                flex-wrap: wrap;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-basis: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                max-height: 0;
+                overflow: auto;
+                opacity: 0;
+                transition: max-height .25s ease, opacity .2s ease;
+            }
+
+            .nav.menu-open .nav-links {
+                max-height: 560px;
+                opacity: 1;
+                padding-top: 10px;
+                border-top: 1px solid rgba(255, 255, 255, .1);
+                margin-top: 12px;
+            }
+
+            .nav-links a:not(.nav-cta):not(.nav-login) {
+                padding: 10px 4px;
+                opacity: 1;
+                border-bottom: 1px solid rgba(255, 255, 255, .06);
+            }
+
+            .nav-login,
+            .nav-cta {
+                text-align: center;
+                margin-top: 8px;
+            }
+        }
+
+        /* ---- Mobile audience switcher (shown only in hamburger menu) ---- */
+        .nav-mobile-audience {
+            display: none;
+        }
+
+        @media (max-width: 760px) {
+            .nav-dropdown-desktop {
+                display: none !important;
+            }
+
+            .nav-mobile-audience {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                padding: 10px 0 4px;
+                border-top: 1px solid rgba(255, 255, 255, .1);
+                margin-top: 4px;
+            }
+
+            .nav-mobile-label {
+                font-size: 10.5px;
+                text-transform: uppercase;
+                letter-spacing: .08em;
+                color: #8B92A0;
+                font-weight: 600;
+                padding: 0 4px;
+            }
+
+            .nav-mobile-pill {
+                display: block;
+                padding: 11px 14px;
+                border-radius: 9px;
+                font-size: 14px;
+                font-weight: 700;
+                color: #D0D5DD;
+                border: 1.4px solid rgba(255, 255, 255, .12);
+                text-align: center;
+                transition: all .2s;
+            }
+
+            .nav-mobile-pill:hover {
+                border-color: var(--primary);
+                color: #fff;
+            }
+
+            .nav-mobile-pill--active {
+                background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+                color: #fff;
+                border-color: transparent;
+            }
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 72px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 82% 10%, rgba(99, 102, 241, .18), transparent 55%);
+        }
+
+        .hero .wrap {
+            position: relative;
+        }
+
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .hero-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: #D0D5DD;
+            font-size: 12.5px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 4.6vw, 52px);
+            font-weight: 700;
+            line-height: 1.08;
+            max-width: 20ch;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--primary-light);
+        }
+
+        .hero-sub {
+            margin-top: 18px;
+            max-width: 52ch;
+            font-size: 16.5px;
+            line-height: 1.6;
+            color: #D0D5DD;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14.5px;
+            transition: all .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .btn-ghost-dark {
+            border: 1.5px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            background: transparent;
+        }
+
+        .btn-ghost-dark:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-light);
+        }
+
+        .hero-ticker {
+            margin-top: 42px;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            padding-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            font-size: 13px;
+            color: #A0AEC0;
+        }
+
+        .ticker-track {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .ticker-track span {
+            background: rgba(99, 102, 241, .1);
+            border: 1px solid rgba(99, 102, 241, .3);
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            color: #E8E9F3;
+        }
+
+        /* ---------- STATS STRIP ---------- */
+        .stats {
+            padding: 0;
+            margin-top: -34px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:860px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 22px 20px;
+            box-shadow: 0 8px 24px rgba(15, 20, 25, .08);
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat-card .label {
+            margin-top: 6px;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            line-height: 1.4;
+        }
+
+        section {
+            padding: 64px 0;
+        }
+
+        .section-head {
+            text-align: center;
+            max-width: 56ch;
+            margin: 0 auto 36px;
+        }
+
+        .section-head .eyebrow-light {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-head h2 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .section-head p {
+            margin: 12px 0 0;
+            color: var(--ink-faint);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ---------- HALL OF FAME ---------- */
+        .fame-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        @media (max-width:860px) {
+            .fame-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fame-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 26px;
+            transition: all .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fame-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 26px rgba(99, 102, 241, .1);
+            transform: translateY(-3px);
+        }
+
+        .fame-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fame-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--primary-dark);
+        }
+
+        .fame-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .fame-name {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .fame-school {
+            font-size: 12.5px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .fame-quote {
+            margin-top: 16px;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            flex-grow: 1;
+        }
+
+        .fame-link {
+            margin-top: 16px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ---------- BENEFITS / WHAT'S COVERED ---------- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:860px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .benefit-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 24px 20px;
+            transition: all .3s;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 22px rgba(99, 102, 241, .08);
+        }
+
+        .benefit-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            margin-bottom: 14px;
+        }
+
+        .benefit-card h3 {
+            font-size: 15.5px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            margin: 8px 0 0;
+            font-size: 13px;
+            color: var(--ink-faint);
+            line-height: 1.6;
+        }
+
+        /* ---------- EXAM PILLS ---------- */
+        .exam-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .exam-pill {
+            background: var(--paper-card);
+            border: 1.4px solid var(--rule);
+            color: var(--ink-soft);
+            font-weight: 700;
+            font-size: 13px;
+            padding: 9px 18px;
+            border-radius: 999px;
+            transition: all .25s;
+        }
+
+        .exam-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- TESTIMONIAL WALL ---------- */
+        .wall-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width:960px) {
+            .wall-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .wall-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .wall-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 18px;
+            transition: all .25s;
+        }
+
+        .wall-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, .08);
+        }
+
+        .wall-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wall-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12.5px;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+        }
+
+        .wall-name {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .wall-meta {
+            font-size: 11px;
+            color: var(--ink-faint);
+        }
+
+        .wall-quote {
+            margin-top: 12px;
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
+
+        /* ---------- PROCESS / TIMELINE ---------- */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            counter-reset: step;
+        }
+
+        @media (max-width:860px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .process-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 22px 20px;
+            position: relative;
+        }
+
+        .process-step {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: .06em;
+        }
+
+        .process-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .process-card p {
+            margin: 8px 0 0;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            line-height: 1.6;
+        }
+
+        /* ---------- FINAL CTA ---------- */
+        .final-cta {
+            background: var(--ink);
+            border-radius: 20px;
+            padding: 46px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, .2), transparent 55%);
+        }
+
+        .final-cta * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta h2 {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            max-width: 36ch;
+            margin: 0 auto;
+        }
+
+        .final-cta p {
+            color: #A0AEC0;
+            margin: 12px auto 26px;
+            max-width: 48ch;
+            font-size: 14.5px;
+        }
+
+        .final-ctas {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 50px 0 32px;
+            margin-top: 10px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        @media (max-width:760px) {
+            .foot-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .foot-col h4 {
+            font-size: 12.5px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #8B92A0;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: #D0D5DD;
+            margin-bottom: 10px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--primary-light);
+        }
+
+        .foot-bottom {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13px;
+            color: #8B92A0;
+        }
+
+        .foot-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .foot-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #A0AEC0;
+            font-size: 11.5px;
+            transition: all .3s;
+        }
+
+        .foot-socials a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background: #fff;
+            min-width: 180px;
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 14px;
+            color: #111 !important;
+            background: #fff;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav" id="site-nav">
+        <div class="nav-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">MP</span>
+                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-links">
+                <span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="mba-partner-cat-omet-home.html">Home</a>
+                <a href="mba-partner-cat-omet-courses.html">Courses</a>
+                <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
+                <a href="cart-page.html">Cart</a>
+                <a class="nav-login" href="mba-partner-login.html">Login</a>
+                <div class="dropdown nav-dropdown-desktop">
+                    <a class="nav-cta" href="#">CAT / OMETs Aspirant ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">MBA Student</a>
+                    </div>
+                </div>
+                <div class="nav-mobile-audience">
+                    <span class="nav-mobile-label">I am a —</span>
+                    <a class="nav-mobile-pill" href="index.html">MBA Student</a>
+                    <a class="nav-mobile-pill nav-mobile-pill--active" href="#">CAT / OMETs Aspirant</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="wrap">
+            <span class="hero-flag">
+                <a href="tel:+917042732092" style="display:flex;align-items:center;gap:6px;">
+                    <span>📞</span>
+                    <span>+91 70427 32092</span>
+                </a>
+                <span>— talk to a mentor</span>
+            </span>
+            <p class="eyebrow">Initiative by Alumni of Old IIM</p>
+            <h1>Crack CAT &amp; OMETs. <em>Convert the call.</em></h1>
+            <p class="hero-sub">A good percentile gets you the call — the GDPI round is what actually converts it.
+                Get structured prep, mock GDPIs and mentor feedback from alumni who've sat on both sides of the
+                table.</p>
+            <div class="hero-ticker">
+                <span>Our mentors converted calls from</span>
+                <div class="ticker-track">
+                    <span>IIM Ahmedabad</span><span>IIM Bangalore</span><span>IIM Calcutta</span><span>XLRI
+                        Jamshedpur</span><span>FMS Delhi</span><span>SPJIMR</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="stats">
+        <div class="wrap">
+            <div class="stats-grid reveal">
+                <div class="stat-card">
+                    <div class="num">1,200+</div>
+                    <div class="label">Aspirants mentored for CAT &amp; OMETs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">94%</div>
+                    <div class="label">Reported improved GDPI confidence after mock rounds</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">50+</div>
+                    <div class="label">Mock GDPI panels conducted by IIM/XLRI alumni</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">6 Exams</div>
+                    <div class="label">CAT, XAT, SNAP, NMAT, CMAT, IIFT covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow-light">Hall of Fame</p>
+                <h2>From aspirant to admit</h2>
+                <p>Congratulations to our Hall of Famers for converting their calls into seats at the schools they
+                    aimed for.</p>
+            </div>
+            <div class="fame-grid reveal">
+                <div class="fame-card">
+                    <div class="fame-top">
+                        <div class="fame-avatar">NK</div>
+                        <div>
+                            <div class="fame-name">Nishant Khandelwal</div>
+                            <div class="fame-school">IIM Ahmedabad</div>
+                        </div>
+                    </div>
+                    <p class="fame-quote">CAT was always the dream, but the GDPI stage felt like the real
+                        bottleneck. Mentors who'd been through the same process helped shape a clear, convincing
+                        story — and made the conversion feel within reach.</p>
+                </div>
+                <div class="fame-card">
+                    <div class="fame-top">
+                        <div class="fame-avatar">RT</div>
+                        <div>
+                            <div class="fame-name">Rutuja Thorat</div>
+                            <div class="fame-school">IIM Calcutta</div>
+                        </div>
+                    </div>
+                    <p class="fame-quote">The information gap around the GDPI process always felt the hardest to
+                        navigate alone. Mock panels and honest, mentor-led feedback closed it fast.</p>
+                </div>
+                <div class="fame-card">
+                    <div class="fame-top">
+                        <div class="fame-avatar">SK</div>
+                        <div>
+                            <div class="fame-name">Shaurya Kapoor</div>
+                            <div class="fame-school">XLRI Jamshedpur</div>
+                        </div>
+                    </div>
+                    <p class="fame-quote">XAT's essay round and GDPI format are nothing like CAT prep. Targeted
+                        OMETs-specific sessions made the difference between a decent score and an actual convert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow-light">What's Covered</p>
+                <h2>Everything between your score and your seat.</h2>
+                <p>Structured prep across every stage of the admissions funnel — not just the exam.</p>
+            </div>
+            <div class="benefits-grid reveal">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 2v14M2 9h14" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+                        </svg></div>
+                    <h3>CAT Strategy</h3>
+                    <p>Quant, VARC and DILR sectional strategy, time management, and full-length mock review.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M5 2h8v5a4 4 0 0 1-8 0V2Z" stroke="white" stroke-width="1.3" fill="none" />
+                            <path d="M7 13h4M9 11v2" stroke="white" stroke-width="1.3" />
+                        </svg></div>
+                    <h3>OMETs Prep</h3>
+                    <p>XAT, SNAP, NMAT, CMAT and IIFT-specific prep — each exam has its own pattern and cutoff
+                        logic.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M2 3h14v9H8l-4 4V12H2V3Z" stroke="white" stroke-width="1.4" fill="none" />
+                        </svg></div>
+                    <h3>Mock GDPI Rounds</h3>
+                    <p>Simulated Personal Interviews and Group Discussions, scored and debriefed by mentors.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <circle cx="6" cy="6" r="3" stroke="white" stroke-width="1.4" fill="none" />
+                            <circle cx="13" cy="7" r="2.4" stroke="white" stroke-width="1.4" fill="none" />
+                            <path d="M1 16c0-3 2.5-5 5-5s5 2 5 5" stroke="white" stroke-width="1.4" fill="none" />
+                        </svg></div>
+                    <h3>Profile &amp; WAT</h3>
+                    <p>How to present your profile convincingly, plus structured WAT practice for the essay round.
+                    </p>
+                </div>
+            </div>
+            <div class="exam-pills reveal" style="margin-top:28px;">
+                <span class="exam-pill">CAT</span>
+                <span class="exam-pill">XAT</span>
+                <span class="exam-pill">SNAP</span>
+                <span class="exam-pill">NMAT</span>
+                <span class="exam-pill">CMAT</span>
+                <span class="exam-pill">IIFT</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow-light">How It Works</p>
+                <h2>Score to seat, in four stages</h2>
+            </div>
+            <div class="process-grid reveal">
+                <div class="process-card">
+                    <div class="process-step">STEP 01</div>
+                    <h3>Diagnose</h3>
+                    <p>A diagnostic mock pinpoints sectional gaps across Quant, VARC and DILR — or your chosen
+                        OMET.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">STEP 02</div>
+                    <h3>Strategize</h3>
+                    <p>A mentor-built study plan targets your weakest sections first, with weekly milestones.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">STEP 03</div>
+                    <h3>Simulate</h3>
+                    <p>Mock GDPI panels with alumni who've actually sat on the other side of the table.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">STEP 04</div>
+                    <h3>Convert</h3>
+                    <p>Profile polishing, WAT practice and final debriefs right up to your interview date.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow-light">Aspirant Voices</p>
+                <h2>What the community is saying</h2>
+                <p>A snapshot from aspirants across the network on what made the difference.</p>
+            </div>
+            <div class="wall-grid reveal">
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">PV</div>
+                        <div>
+                            <div class="wall-name">Priyanka Verma</div>
+                            <div class="wall-meta">CAT 99.1%ile · IIM Calls</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">The mock GDPI panels exposed exactly where my answers fell apart — fixed
+                        well before the real interview.</p>
+                </div>
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">RM</div>
+                        <div>
+                            <div class="wall-name">Rohan Mehta</div>
+                            <div class="wall-meta">XAT 97.8%ile · XLRI Call</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">XAT's essay and GK sections needed a completely different approach — the
+                        OMETs-specific sessions covered exactly that.</p>
+                </div>
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">AK</div>
+                        <div>
+                            <div class="wall-name">Ananya Kulkarni</div>
+                            <div class="wall-meta">SNAP 98.6%ile · SCMHRD Call</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">Sectional strategy sessions for DILR turned my weakest area into my
+                        highest-scoring one.</p>
+                </div>
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">VS</div>
+                        <div>
+                            <div class="wall-name">Vikram Singh</div>
+                            <div class="wall-meta">CAT 96.4%ile · IIM Kozhikode Call</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">Mentor feedback after every mock GD was blunt and specific — exactly what
+                        I needed instead of generic tips.</p>
+                </div>
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">SD</div>
+                        <div>
+                            <div class="wall-name">Sneha Desai</div>
+                            <div class="wall-meta">NMAT 97.2%ile · NMIMS Call</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">Going from engineering to a management story for my PI felt impossible
+                        until the profile-building sessions.</p>
+                </div>
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">KT</div>
+                        <div>
+                            <div class="wall-name">Karan Thakur</div>
+                            <div class="wall-meta">CMAT 99.3%ile · JBIMS Call</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">The WAT practice sessions made writing under time pressure feel routine by
+                        exam day.</p>
+                </div>
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">IS</div>
+                        <div>
+                            <div class="wall-name">Ishita Sharma</div>
+                            <div class="wall-meta">IIFT Entrance · IIFT Delhi Call</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">IIFT's pattern is unlike CAT — having mentors who'd actually cracked it
+                        made all the difference in prep direction.</p>
+                </div>
+                <div class="wall-card">
+                    <div class="wall-top">
+                        <div class="wall-avatar">AB</div>
+                        <div>
+                            <div class="wall-name">Aditya Bose</div>
+                            <div class="wall-meta">CAT 98.9%ile · FMS Delhi Call</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">Three back-to-back mock PIs the week before my interview turned nerves
+                        into confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="final-cta reveal">
+                <h2>A good score gets you the call. Preparation gets you the convert.</h2>
+                <p>Structured CAT/OMETs prep and mock GDPI rounds, guided by mentors who've already converted their
+                    own calls.</p>
+                <div class="final-ctas">
+                    <a class="btn btn-primary" href="mba-partner-cat-omet-courses.html">🚀 Explore CAT/OMETs
+                        Prep</a>
+                    <a class="btn btn-ghost-dark" href="tel:+917042732092">📞 Talk to a Mentor</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div class="foot-col">
+                    <h4>MBA Partner</h4>
+                    <p style="font-size:13.5px;color:#A0AEC0;line-height:1.6;max-width:34ch;margin:0;">An initiative
+                        by alumni of old IIM, helping CAT &amp; OMETs aspirants convert calls into seats.</p>
+                </div>
+                <div class="foot-col">
+                    <h4>Explore</h4>
+                    <a href="mba-partner-cat-omet-home.html">Home</a>
+                    <a href="mba-partner-cat-omet-courses.html">Courses</a>
+                    <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
+                    <a href="mba-partner-login.html">Login</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Resources</h4>
+                    <a href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H?usp=drive_link"
+                        target="_blank" rel="noopener">Compendiums</a>
+                    <a href="https://drive.google.com/drive/folders/18bj7C4I4Ro1DcOBfzF6xrEhNI7SmEZe2?usp=drive_link"
+                        target="_blank" rel="noopener">Sample CVs</a>
+                    <a href="tel:+917042732092">Call Us</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>MBA Partner — Initiative by Alumni of Old IIM</span>
+                <div class="foot-socials">
+                    <a href="https://www.instagram.com/mba_partner/" target="_blank" rel="noopener"
+                        aria-label="Instagram">IG</a>
+                    <a href="https://www.linkedin.com/in/prodmarkconsulting-mba-partner/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">in</a>
+                    <a href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" target="_blank" rel="noopener"
+                        aria-label="WhatsApp">WA</a>
+                    <a href="https://t.me/+eV1FROkJppFlYmU1" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        reveals.forEach(r => obs.observe(r));
+
+        // --- Mobile hamburger menu ---
+        const siteNav = document.getElementById('site-nav');
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = siteNav.classList.toggle('menu-open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                siteNav.classList.remove('menu-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Open menu');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

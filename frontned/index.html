@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Partner — Get Mentored by the Top 1%</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --success: #10B981;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        /* ---------- NAV ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--ink);
+            color: #FFF;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-text span {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .brand-text small {
+            font-size: 10.5px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #A0AEC0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login) {
+            color: #D0D5DD;
+            opacity: .85;
+            transition: opacity .2s;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login):hover {
+            opacity: 1;
+        }
+
+        .nav-login {
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+
+        .nav-login:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-user-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #F4EFE3;
+            max-width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .nav-logout {
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            background: transparent;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .nav-logout:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .nav-cart {
+            position: relative;
+        }
+
+        .cart-badge {
+            display: none;
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2px 6px;
+            border-radius: 999px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #F4EFE3;
+            border-radius: 2px;
+            position: relative;
+            transition: transform .2s ease, opacity .2s ease;
+        }
+
+        .nav-toggle span::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+        }
+
+        .nav-toggle span::after {
+            content: "";
+            position: absolute;
+            top: 6px;
+        }
+
+        .nav.menu-open .nav-toggle span {
+            background: transparent;
+        }
+
+        .nav.menu-open .nav-toggle span::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .nav.menu-open .nav-toggle span::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width:760px) {
+            .nav-inner {
+                flex-wrap: wrap;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-basis: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                max-height: 0;
+                overflow: auto;
+                opacity: 0;
+                transition: max-height .25s ease, opacity .2s ease;
+            }
+
+            .nav.menu-open .nav-links {
+                max-height: 560px;
+                opacity: 1;
+                padding-top: 10px;
+                border-top: 1px solid rgba(255, 255, 255, .1);
+                margin-top: 12px;
+            }
+
+            .nav-links a:not(.nav-cta):not(.nav-login) {
+                padding: 10px 4px;
+                opacity: 1;
+                border-bottom: 1px solid rgba(255, 255, 255, .06);
+            }
+
+            .nav-login,
+            .nav-cta {
+                text-align: center;
+                margin-top: 8px;
+            }
+
+            .nav-user {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px;
+                margin-top: 8px;
+            }
+
+            .nav-user-name {
+                max-width: none;
+                text-align: center;
+            }
+
+            .nav-logout {
+                width: 100%;
+            }
+        }
+
+
+        /* ---- Mobile audience switcher (shown only in hamburger menu) ---- */
+        .nav-mobile-audience {
+            display: none;
+        }
+
+        @media (max-width: 760px) {
+            .nav-dropdown-desktop {
+                display: none !important;
+            }
+
+            .nav-mobile-audience {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                padding: 10px 0 4px;
+                border-top: 1px solid rgba(255, 255, 255, .1);
+                margin-top: 4px;
+            }
+
+            .nav-mobile-label {
+                font-size: 10.5px;
+                text-transform: uppercase;
+                letter-spacing: .08em;
+                color: #8B92A0;
+                font-weight: 600;
+                padding: 0 4px;
+            }
+
+            .nav-mobile-pill {
+                display: block;
+                padding: 11px 14px;
+                border-radius: 9px;
+                font-size: 14px;
+                font-weight: 700;
+                color: #D0D5DD;
+                border: 1.4px solid rgba(255, 255, 255, .12);
+                text-align: center;
+                transition: all .2s;
+            }
+
+            .nav-mobile-pill:hover {
+                border-color: var(--primary);
+                color: #fff;
+            }
+
+            .nav-mobile-pill--active {
+                background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+                color: #fff;
+                border-color: transparent;
+            }
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 72px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 82% 10%, rgba(99, 102, 241, .18), transparent 55%);
+        }
+
+        .hero .wrap {
+            position: relative;
+        }
+
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .hero-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: #D0D5DD;
+            font-size: 12.5px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 4.6vw, 52px);
+            font-weight: 700;
+            line-height: 1.08;
+            max-width: 18ch;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--primary-light);
+        }
+
+        .hero-sub {
+            margin-top: 18px;
+            max-width: 52ch;
+            font-size: 16.5px;
+            line-height: 1.6;
+            color: #D0D5DD;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14.5px;
+            transition: all .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .btn-ghost-dark {
+            border: 1.5px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            background: transparent;
+        }
+
+        .btn-ghost-dark:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-light);
+        }
+
+        .hero-ticker {
+            margin-top: 42px;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            padding-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            font-size: 13px;
+            color: #A0AEC0;
+        }
+
+        .ticker-track {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .ticker-track span {
+            background: rgba(99, 102, 241, .1);
+            border: 1px solid rgba(99, 102, 241, .3);
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            color: #E8E9F3;
+        }
+
+        /* ---------- STATS STRIP ---------- */
+        .stats {
+            padding: 0;
+            margin-top: -34px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:860px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 22px 20px;
+            box-shadow: 0 8px 24px rgba(15, 20, 25, .08);
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat-card .label {
+            margin-top: 6px;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            line-height: 1.4;
+        }
+
+        section {
+            padding: 64px 0;
+        }
+
+        .section-head {
+            text-align: center;
+            max-width: 56ch;
+            margin: 0 auto 36px;
+        }
+
+        .section-head .eyebrow-light {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-head h2 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .section-head p {
+            margin: 12px 0 0;
+            color: var(--ink-faint);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ---------- HALL OF FAME ---------- */
+        .fame-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        @media (max-width:860px) {
+            .fame-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fame-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 26px;
+            transition: all .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fame-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 26px rgba(99, 102, 241, .1);
+            transform: translateY(-3px);
+        }
+
+        .fame-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fame-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .fame-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .fame-name {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .fame-school {
+            font-size: 12.5px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .fame-quote {
+            margin-top: 16px;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            flex-grow: 1;
+        }
+
+        .fame-link {
+            margin-top: 16px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ---------- BENEFITS ---------- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:860px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .benefit-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 24px 20px;
+            transition: all .3s;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 22px rgba(99, 102, 241, .08);
+        }
+
+        .benefit-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            margin-bottom: 14px;
+        }
+
+        .benefit-card h3 {
+            font-size: 15.5px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            margin: 8px 0 0;
+            font-size: 13px;
+            color: var(--ink-faint);
+            line-height: 1.6;
+        }
+
+        /* ---------- TESTIMONIAL WALL ---------- */
+        .wall-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width:960px) {
+            .wall-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .wall-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .wall-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 18px;
+            transition: all .25s;
+        }
+
+        .wall-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, .08);
+        }
+
+        .wall-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wall-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12.5px;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+        }
+
+        .wall-name {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .wall-meta {
+            font-size: 11px;
+            color: var(--ink-faint);
+        }
+
+        .wall-quote {
+            margin-top: 12px;
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
+
+        /* ---------- FINAL CTA ---------- */
+        .final-cta {
+            background: var(--ink);
+            border-radius: 20px;
+            padding: 46px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, .2), transparent 55%);
+        }
+
+        .final-cta * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta h2 {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            max-width: 36ch;
+            margin: 0 auto;
+        }
+
+        .final-cta p {
+            color: #A0AEC0;
+            margin: 12px auto 26px;
+            max-width: 48ch;
+            font-size: 14.5px;
+        }
+
+        .final-ctas {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 50px 0 32px;
+            margin-top: 10px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        @media (max-width:760px) {
+            .foot-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .foot-col h4 {
+            font-size: 12.5px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #8B92A0;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: #D0D5DD;
+            margin-bottom: 10px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--primary-light);
+        }
+
+        .foot-bottom {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13px;
+            color: #8B92A0;
+        }
+
+        .foot-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .foot-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #A0AEC0;
+            font-size: 11.5px;
+            transition: all .3s;
+        }
+
+        .foot-socials a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+
+
+        .hero-switch-link {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            z-index: 2;
+            background: none;
+            border: none;
+            color: rgba(248, 246, 243, .6);
+            font-size: 12px;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 4px;
+            font-family: inherit;
+        }
+
+        .hero-switch-link:hover {
+            color: var(--primary-light);
+        }
+
+        @media (max-width: 640px) {
+            .hero-switch-link {
+                top: 14px;
+                right: 16px;
+                font-size: 11px;
+            }
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background: #fff;
+            min-width: 180px;
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+            overflow: hidden;
+            z-index: 1000
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 14px;
+            color: #111 !important;
+            background: #fff
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav" id="site-nav">
+        <div class="nav-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">MP</span>
+                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-links">
+                <span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="mba-partner-courses-redesign.html">Courses</a>
+                <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
+                <a href="cart-page.html" id="navCartLink" class="nav-cart">Cart<span class="cart-badge"
+                        id="cartBadge">0</span></a>
+
+                <a class="nav-login" href="mba-partner-login.html" id="navLogin">Login</a>
+
+                <div class="nav-user" id="navUserBox" style="display:none;">
+                    <span class="nav-user-name" id="navUserName">Account</span>
+                    <button class="nav-logout" id="logoutBtn" type="button">Logout</button>
+                </div>
+
+                <div class="dropdown nav-dropdown-desktop">
+                    <a class="nav-cta" href="#">MBA Student ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="mba-partner-cat-omet-home.html">CAT / OMETs Student</a>
+                    </div>
+                </div>
+                <div class="nav-mobile-audience">
+                    <span class="nav-mobile-label">I am a —</span>
+                    <a class="nav-mobile-pill nav-mobile-pill--active" href="#">MBA Student</a>
+                    <a class="nav-mobile-pill" href="mba-partner-cat-omet-home.html">CAT / OMETs
+                        Aspirant</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mba-student-view">
+
+        <header class="hero">
+            <div class="wrap">
+                <span class="hero-flag">
+                    <a href="tel:+917042732092" style="display:flex;align-items:center;gap:6px;">
+                        <span>📞</span>
+                        <span>+91 70427 32092</span>
+                    </a>
+                    <span>— talk to a mentor</span>
+                </span>
+                <p class="eyebrow">Initiative by Alumni of Old IIM</p>
+                <h1>Get mentored by the <em>top 1%.</em><br>Land your dream placement.</h1>
+                <p class="hero-sub">Committee PORs and a graduation internship aren't enough to get a CV shortlisted
+                    anymore. Build real proof with live projects, case competitions and placement bootcamps — guided by
+                    mentors from IIMs, XLRI, FMS and other top B-Schools.</p>
+                <div class="hero-ticker">
+                    <span>Alumni recently placed at</span>
+                    <div class="ticker-track">
+                        <span>Accenture Strategy</span><span>Amazon (AFBP)</span><span>JM Financials</span><span>Pine
+                            Labs</span><span>Reliance Group</span><span>Times of India</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="stats">
+            <div class="wrap">
+                <div class="stats-grid reveal">
+                    <div class="stat-card">
+                        <div class="num">9.6/10</div>
+                        <div class="label">Average rating by 700+ students</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="num">5,000+</div>
+                        <div class="label">Student network &amp; counting</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="num">98.7%</div>
+                        <div class="label">Students placed in their desired domains</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="num">IIM, XLRI, FMS</div>
+                        <div class="label">Mentors from Top
+                            B-Schools</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow-light">Hall of Fame</p>
+                    <h2>From classroom to corporate</h2>
+                    <p>Congratulations to our Hall of Famers for turning ambition into top-tier offers with guidance
+                        from
+                        MBA Partner.</p>
+                </div>
+                <div class="fame-grid reveal">
+                    <div class="fame-card">
+                        <div class="fame-top">
+                            <div class="fame-avatar">
+                                <img src="https://media.licdn.com/dms/image/v2/D5603AQF0X7PY5zXpLA/profile-displayphoto-shrink_800_800/B56ZXviQpsHQAk-/0/1743480492229?e=1783555200&v=beta&t=YA3E88lrdF-I47JdwzS7dV3GxeJBVvIruOi-G6k-jZo"
+                                    alt="Profile Photo">
+                            </div>
+                            <div>
+                                <div class="fame-name">Nishant Khandelwal</div>
+                                <div class="fame-school">IIM Ahmedabad</div>
+                            </div>
+                        </div>
+                        <p class="fame-quote">CAT was always the dream, but the GDPI stage felt like the real
+                            bottleneck.
+                            Mentors who'd been through the same Holy Trinity process helped shape his profile into a
+                            clear,
+                            convincing story — and made the conversion feel within reach.</p>
+                        <a class="fame-link" href="https://www.linkedin.com/in/nishantkhandelwal1/" target="_blank"
+                            rel="noopener">View LinkedIn →</a>
+                    </div>
+                    <div class="fame-card">
+                        <div class="fame-top">
+                            <div class="fame-avatar">
+                                <img src="https://media.licdn.com/dms/image/v2/D5603AQEoDUFTkB8GvA/profile-displayphoto-shrink_800_800/B56ZWkQ22gHEAc-/0/1742217638011?e=1783555200&v=beta&t=yUkxec7WosJ5pfSL-6D7X5DyyQJaRuVNnpjb_C59DjY"
+                                    alt="Profile Photo">
+                            </div>
+                            <div>
+                                <div class="fame-name">Shen Shaji</div>
+                                <div class="fame-school">IIM Bangalore</div>
+                            </div>
+                        </div>
+                        <p class="fame-quote">The first days at IIM-B came with real anxiety — live projects gave the CV
+                            substance, and cross-functional Placements Bootcamp mentors shaped the SIP prep. It all led
+                            to a
+                            Product Management offer at Media.net.</p>
+                        <a class="fame-link" href="https://www.linkedin.com/in/shenshaji/" target="_blank"
+                            rel="noopener">View LinkedIn →</a>
+                    </div>
+                    <div class="fame-card">
+                        <div class="fame-top">
+                            <div class="fame-avatar">
+                                <img src="https://static.wixstatic.com/media/67e5e0_cd37e4ff87d54ce2bef947d27e341bbd~mv2.jpg/v1/crop/x_0,y_507,w_1571,h_938/fill/w_534,h_319,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20241218-WA0007_edited.jpg"
+                                    alt="Profile Photo">
+                            </div>
+                            <div>
+                                <div class="fame-name">Rutuja Thorat</div>
+                                <div class="fame-school">IIM Calcutta</div>
+                            </div>
+                        </div>
+                        <p class="fame-quote">MBA Partner closed the information gap that always felt hardest to
+                            navigate
+                            alone. Mentors — some from her own college — gave an honest read on prep level, which fed
+                            directly into a Strategy SIP offer at Accenture.</p>
+                        <a class="fame-link" href="https://www.linkedin.com/in/rutuja-thorat-8207a516a/" target="_blank"
+                            rel="noopener">View LinkedIn →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow-light">Why MBA Partner</p>
+                    <h2>Benefits of choosing MBA Partner</h2>
+                    <p>High-impact live projects and case competitions build a high-performance CV, while the Placements
+                        Bootcamp preps you end-to-end — turning students into boardroom-ready candidates.</p>
+                </div>
+                <div class="benefits-grid reveal">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 2v14M2 9h14" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+                            </svg></div>
+                        <h3>Live Projects</h3>
+                        <p>Real, mentor-led deliverables that give recruiters something concrete to ask about.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M5 2h8v5a4 4 0 0 1-8 0V2Z" stroke="white" stroke-width="1.3" fill="none" />
+                                <path d="M7 13h4M9 11v2" stroke="white" stroke-width="1.3" />
+                            </svg></div>
+                        <h3>Case Competitions</h3>
+                        <p>Learn frameworks from past winners and a library of 30+ winning decks.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M2 3h14v9H8l-4 4V12H2V3Z" stroke="white" stroke-width="1.4" fill="none" />
+                            </svg></div>
+                        <h3>Placements Bootcamp</h3>
+                        <p>Mock PIs, GDs and CV reviews that prepare you end-to-end for D-day.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <circle cx="6" cy="6" r="3" stroke="white" stroke-width="1.4" fill="none" />
+                                <circle cx="13" cy="7" r="2.4" stroke="white" stroke-width="1.4" fill="none" />
+                                <path d="M1 16c0-3 2.5-5 5-5s5 2 5 5" stroke="white" stroke-width="1.4" fill="none" />
+                            </svg></div>
+                        <h3>Top B-School Mentors</h3>
+                        <p>Specialized coaching from mentors at IIMs, XLRI, FMS and other top B-Schools.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow-light">Student Voices</p>
+                    <h2>What the community is saying</h2>
+                    <p>A snapshot from students across the network on what made the difference.</p>
+                </div>
+                <div class="wall-grid reveal">
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">AG</div>
+                            <div>
+                                <div class="wall-name">Aayushi Gupta</div>
+                                <div class="wall-meta">FMS Delhi · Amazon</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">A thin fresher CV felt daunting until the live projects and placement prep
+                            gave it real substance.</p>
+                    </div>
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">SS</div>
+                            <div>
+                                <div class="wall-name">Shruti Satdeve</div>
+                                <div class="wall-meta">IIM Udaipur · Accenture Strategy</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">The live project became the centerpiece of her SIP interview, with
+                            bootcamp
+                            prep making it feel effortless.</p>
+                    </div>
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">MB</div>
+                            <div>
+                                <div class="wall-name">Megha Bhattacharya</div>
+                                <div class="wall-meta">IIM Mumbai · Kearney</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">Hands-on project experience turned pre-SIP nerves into one of the
+                            smoothest
+                            interviews of the process.</p>
+                    </div>
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">HA</div>
+                            <div>
+                                <div class="wall-name">Hemang Agarwal</div>
+                                <div class="wall-meta">MDI Gurgaon · Reliance Group</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">Case Comp sessions kicked things off, and the live project that followed
+                            elevated the whole CV.</p>
+                    </div>
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">AV</div>
+                            <div>
+                                <div class="wall-name">Akula Vamsi</div>
+                                <div class="wall-meta">SPJIMR · JM Financials</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">Finance-focused bootcamp classes paired with a project made a
+                            finance-domain
+                            SIP possible despite an engineering background.</p>
+                    </div>
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">SK</div>
+                            <div>
+                                <div class="wall-name">Shikhar Kapoor</div>
+                                <div class="wall-meta">IIM Kozhikode · Pine Labs</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">The high-stakes live project experience plugged a CV gap, and ATS-friendly
+                            keywords helped land the right shortlists.</p>
+                    </div>
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">TS</div>
+                            <div>
+                                <div class="wall-name">Tanisha Sen</div>
+                                <div class="wall-meta">IIM Ranchi · Times of India</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">What started as a GDPI course turned into admissions help, live projects,
+                            and
+                            placement prep that led to a TOI offer.</p>
+                    </div>
+                    <div class="wall-card">
+                        <div class="wall-top">
+                            <div class="wall-avatar">UJ</div>
+                            <div>
+                                <div class="wall-name">Utsav Jain</div>
+                                <div class="wall-meta">NMIMS Mumbai · Big 4</div>
+                            </div>
+                        </div>
+                        <p class="wall-quote">Even with prior KPMG work experience, the finance-oriented projects were
+                            what
+                            finally rounded out the CV in a tough market.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="final-cta reveal">
+                    <h2>Committee PORs and internships alone won't get your CV shortlisted.</h2>
+                    <p>Build real, recruiter-ready proof with live projects, case competitions and placement bootcamps —
+                        guided by mentors who've been through it.</p>
+                    <div class="final-ctas">
+                        <a class="btn btn-primary" href="mba-partner-courses-redesign.html">🚀 Explore Courses &amp;
+                            Enroll</a>
+                        <a class="btn btn-ghost-dark"
+                            href="https://drive.google.com/drive/folders/18bj7C4I4Ro1DcOBfzF6xrEhNI7SmEZe2?usp=drive_link"
+                            target="_blank" rel="noopener">📄 View Sample CVs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- /#mba-student-view -->
+
+    <div id="cat-omets-view" style="display:none;">
+
+        <header class="hero">
+            <button class="hero-switch-link" id="footer-switch-link-cat" type="button">Switch to
+                <span id="footer-switch-target-cat">MBA Student view</span>
+            </button>
+            <div class="wrap">
+                <span class="hero-flag">
+                    <a href="tel:+917042732092" style="display:flex;align-items:center;gap:6px;">
+                        <span>📞</span>
+                        <span>+91 70427 32092</span>
+                    </a>
+                    <span>— talk to a mentor</span>
+                </span>
+                <p class="eyebrow">Initiative by Alumni of Old IIM</p>
+                <h1>Crack CAT &amp; OMETs. <em>Convert the call.</em></h1>
+                <p class="hero-sub">A good CAT percentile gets you the call — the GDPI round is what actually
+                    converts it. Get structured prep, mock GDPIs and mentor feedback from alumni who've sat on both
+                    sides of the table.</p>
+            </div>
+        </header>
+
+        <section class="stats">
+            <div class="wrap">
+                <div class="stats-grid reveal">
+                    <div class="stat-card">
+                        <div class="num">1,200+</div>
+                        <div class="label">Aspirants mentored for CAT &amp; OMETs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="num">94%</div>
+                        <div class="label">Reported improved GDPI confidence after mock rounds</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="num">50+</div>
+                        <div class="label">Mock GDPI panels conducted by IIM/XLRI alumni</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="num">6 Exams</div>
+                        <div class="label">CAT, XAT, SNAP, NMAT, CMAT, IIFT covered</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow-light">What's Covered</p>
+                    <h2>Everything between your score and your seat.</h2>
+                </div>
+                <div class="stats-grid reveal" style="grid-template-columns:repeat(2,1fr);">
+                    <div class="stat-card" style="text-align:left;">
+                        <div class="label" style="font-weight:600;color:#1A202C;margin-bottom:6px;">CAT Strategy</div>
+                        <div class="label">Quant, VARC and DILR sectional strategy, time management, and full-length
+                            mock review.</div>
+                    </div>
+                    <div class="stat-card" style="text-align:left;">
+                        <div class="label" style="font-weight:600;color:#1A202C;margin-bottom:6px;">OMETs Prep</div>
+                        <div class="label">XAT, SNAP, NMAT, CMAT and IIFT-specific prep — each exam has its own
+                            pattern and cutoff logic.</div>
+                    </div>
+                    <div class="stat-card" style="text-align:left;">
+                        <div class="label" style="font-weight:600;color:#1A202C;margin-bottom:6px;">Mock GDPI Rounds
+                        </div>
+                        <div class="label">Simulated Personal Interviews and Group Discussions, scored and debriefed
+                            by mentors.</div>
+                    </div>
+                    <div class="stat-card" style="text-align:left;">
+                        <div class="label" style="font-weight:600;color:#1A202C;margin-bottom:6px;">Profile &amp; WAT
+                        </div>
+                        <div class="label">How to present your profile convincingly, plus structured WAT practice
+                            for the essay round.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <div class="final-cta reveal">
+                    <h2>A good score gets you the call. Preparation gets you the convert.</h2>
+                    <p>Structured CAT/OMETs prep and mock GDPI rounds, guided by mentors who've already converted
+                        their own calls.</p>
+                    <div class="final-ctas">
+                        <a class="btn btn-primary" href="mba-partner-courses-redesign.html">🚀 Explore CAT/OMETs
+                            Prep</a>
+                        <a class="btn btn-ghost-dark" href="tel:+917042732092">📞 Talk to a Mentor</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- /#cat-omets-view -->
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div class="foot-col">
+                    <h4>MBA Partner</h4>
+                    <p style="font-size:13.5px;color:#A0AEC0;line-height:1.6;max-width:34ch;margin:0;">An initiative by
+                        alumni of old IIM, helping students build CVs strong enough to actually get shortlisted.</p>
+                </div>
+                <div class="foot-col">
+                    <h4>Explore</h4>
+                    <a href="index.html">Home</a>
+                    <a href="mba-partner-courses-redesign.html">Courses</a>
+                    <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
+                    <a href="mba-partner-login.html" id="footLogin">Login</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Resources</h4>
+                    <a href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H?usp=drive_link"
+                        target="_blank" rel="noopener">Compendiums</a>
+                    <a href="https://drive.google.com/drive/folders/18bj7C4I4Ro1DcOBfzF6xrEhNI7SmEZe2?usp=drive_link"
+                        target="_blank" rel="noopener">Sample CVs</a>
+                    <a href="tel:+917042732092">Call Us</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>MBA Partner — Initiative by Alumni of Old IIM</span>
+                <div class="foot-socials">
+                    <a href="https://www.instagram.com/mba_partner/" target="_blank" rel="noopener"
+                        aria-label="Instagram">IG</a>
+                    <a href="https://www.linkedin.com/in/prodmarkconsulting-mba-partner/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">in</a>
+                    <a href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" target="_blank" rel="noopener"
+                        aria-label="WhatsApp">WA</a>
+                    <a href="https://t.me/+eV1FROkJppFlYmU1" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        reveals.forEach(r => obs.observe(r));
+
+        // Gate removed — always show MBA Student view by default.
+        // CAT view is accessible via the separate courses-cat.html page.
+        const mbaStudentView = document.getElementById('mba-student-view');
+        const catOmetsView = document.getElementById('cat-omets-view');
+        if (mbaStudentView) mbaStudentView.style.display = '';
+        if (catOmetsView) catOmetsView.style.display = 'none';
+        document.documentElement.style.overflow = '';
+
+        // --- Mobile hamburger menu ---
+        const siteNav = document.getElementById('site-nav');
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = siteNav.classList.toggle('menu-open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
+
+        // Close the menu after tapping a link, so it doesn't stay open
+        // when the next page loads / view switches
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                siteNav.classList.remove('menu-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Open menu');
+            });
+        });
+
+        // ---------- Auth-aware nav + cart ----------
+        // Point this at your running backend (see the auth backend README).
+        const API_BASE = 'http://localhost:5000/api/auth';
+
+        const navLogin = document.getElementById('navLogin');
+        const navUserBox = document.getElementById('navUserBox');
+        const navUserName = document.getElementById('navUserName');
+        const footLogin = document.getElementById('footLogin');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const navCartLink = document.getElementById('navCartLink');
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            if (!badge || !window.MBACart) return;
+            const loggedIn = MBACart.isLoggedIn();
+            const count = loggedIn ? MBACart.cartCount() : 0;
+            if (count > 0) {
+                badge.textContent = count > 99 ? '99+' : count;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function showLoggedOut() {
+            navLogin.style.display = '';
+            navUserBox.style.display = 'none';
+            if (footLogin) footLogin.style.display = '';
+            updateCartBadge();
+        }
+
+        function showLoggedIn(user) {
+            navLogin.style.display = 'none';
+            navUserBox.style.display = 'flex';
+            navUserName.textContent = (user && (user.name || user.email)) || 'My Account';
+            if (footLogin) footLogin.style.display = 'none';
+            updateCartBadge();
+        }
+
+        async function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                showLoggedOut();
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE}/me`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                    credentials: 'include',
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showLoggedIn(data.user);
+                } else {
+                    // token expired/invalid
+                    localStorage.removeItem('token');
+                    showLoggedOut();
+                }
+            } catch (err) {
+                // Backend unreachable — keep the user logged in visually based on the
+                // stored token rather than booting them out on a network hiccup.
+                showLoggedIn(null);
+            }
+        }
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                try {
+                    await fetch(`${API_BASE}/logout`, { method: 'POST', credentials: 'include' });
+                } catch (err) {
+                    // ignore — we clear local state regardless
+                }
+                localStorage.removeItem('token');
+                showLoggedOut();
+                siteNav.classList.remove('menu-open');
+            });
+        }
+
+        if (navCartLink) {
+            navCartLink.addEventListener('click', (e) => {
+                if (window.MBACart && !MBACart.isLoggedIn()) {
+                    e.preventDefault();
+                    MBACart.goToLogin('cart-page.html');
+                }
+                // else: let the link navigate to cart-page.html normally
+            });
+        }
+
+        checkAuth();
+    </script>
+
+</body>
+
+</html>

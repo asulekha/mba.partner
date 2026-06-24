@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT / OMET Prep Courses — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --accent-soft: #F472B6;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        /* ---------- NAV ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--ink);
+            color: #FFFFFF;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-text span {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .brand-text small {
+            font-size: 10.5px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #A0AEC0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:not(.nav-cta) {
+            color: #D0D5DD;
+            opacity: .85;
+            transition: opacity .2s;
+        }
+
+        .nav-links a:not(.nav-cta):hover {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 9px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        @media (max-width:680px) {
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFFFFF;
+            padding: 64px 0 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 82% 12%, rgba(99, 102, 241, 0.15), transparent 55%);
+        }
+
+        .hero .wrap {
+            position: relative;
+        }
+
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.04;
+            max-width: 15ch;
+        }
+
+        .hero-sub {
+            margin-top: 18px;
+            max-width: 46ch;
+            font-size: 17px;
+            line-height: 1.55;
+            color: #D0D5DD;
+        }
+
+        .hero-ticker {
+            margin-top: 38px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            font-size: 13px;
+            color: #A0AEC0;
+        }
+
+        .ticker-track {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .ticker-track span {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            color: #E8E9F3;
+        }
+
+        /* ---------- FILTER CHIPS ---------- */
+        .filters {
+            position: sticky;
+            top: 65px;
+            z-index: 40;
+            background: var(--paper);
+            padding: 18px 0;
+            margin-top: 30px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .filters .wrap {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .filters .wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            flex-shrink: 0;
+            padding: 9px 18px;
+            border-radius: 999px;
+            border: 1.4px solid var(--rule);
+            background: var(--paper-card);
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap;
+            color: var(--ink);
+        }
+
+        .chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--surface);
+        }
+
+        .chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* ---------- TICKET (featured combo) ---------- */
+        .ticket {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+        }
+
+        .ticket-left {
+            padding: 32px;
+            position: relative;
+        }
+
+        .ticket-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+            color: white;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 7px 13px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        .ticket-left h3 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .ticket-modules {
+            margin: 18px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .module-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: var(--ink-soft);
+        }
+
+        .module-row .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .ticket-right {
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-left: 1px dashed var(--rule);
+        }
+
+        .notch {
+            position: absolute;
+            left: -13px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--paper);
+        }
+
+        .notch.top {
+            top: -13px;
+        }
+
+        .notch.bottom {
+            bottom: -13px;
+        }
+
+        .price-regular {
+            font-size: 13px;
+            color: var(--ink-faint);
+            text-decoration: line-through;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .price-sale {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'IBM Plex Mono', monospace;
+            margin-top: 2px;
+            color: var(--ink);
+        }
+
+        .stamp {
+            margin-top: 14px;
+            display: inline-flex;
+            border: 1.5px dashed var(--success);
+            color: var(--success);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .03em;
+        }
+
+        .ticket-right a.cta {
+            margin-top: 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            text-align: center;
+            padding: 13px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .ticket-right a.cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        @media (max-width:680px) {
+            .ticket {
+                grid-template-columns: 1fr;
+            }
+
+            .ticket-right {
+                border-left: none;
+                border-top: 1px dashed var(--rule);
+            }
+
+            .notch {
+                display: none;
+            }
+        }
+
+        /* ---------- COMPARISON TABLE ---------- */
+        .compare {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:780px) {
+            .compare {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tier {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all .3s;
+        }
+
+        .tier:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+        }
+
+        .tier.featured {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+        }
+
+        .tier-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .tier h3 {
+            font-size: 19px;
+            font-weight: 700;
+            min-height: 48px;
+            color: var(--ink);
+        }
+
+        .tier-features {
+            list-style: none;
+            margin: 16px 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 13.5px;
+            flex-grow: 1;
+        }
+
+        .tier-features li {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            color: var(--ink-soft);
+            line-height: 1.5;
+        }
+
+        .tier-features li.muted {
+            color: #B0B9C6;
+        }
+
+        .tier-features svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .tier-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tier-price-row .price-regular {
+            font-size: 12.5px;
+        }
+
+        .tier-price-row .price-sale {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .tier-foot {
+            font-size: 12px;
+            color: var(--ink-faint);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .tier a.cta {
+            margin-top: 16px;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13.5px;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            transition: all .3s;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .tier.featured a.cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .tier a.cta:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .tier.featured a.cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        section {
+            padding: 46px 0;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 26px;
+            flex-wrap: wrap;
+        }
+
+        .section-head h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--ink-faint);
+            font-size: 14px;
+        }
+
+        /* ---------- PRODUCT GRID ---------- */
+        .pgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        @media (max-width:680px) {
+            .pgrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pcard {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all .3s;
+        }
+
+        .pcard:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+        }
+
+        .pcard-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .pcard h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--ink);
+            flex: 1;
+        }
+
+        .pcard-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .pcard p.desc {
+            font-size: 13.5px;
+            color: var(--ink-faint);
+            margin: 12px 0 0;
+            line-height: 1.6;
+        }
+
+        .pcard .pfeat {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+
+        .pcard .pfeat li {
+            display: flex;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .pcard .pfeat li::before {
+            content: "→";
+            color: var(--primary);
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .pcard-bottom {
+            margin-top: auto;
+            padding-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .pcard a.cta {
+            padding: 11px 18px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .pcard a.cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .new-badge {
+            background: var(--primary);
+            color: white;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* ---------- EXAM TARGET STRIP ---------- */
+        .exam-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exam-pill {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 999px;
+            padding: 9px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+
+        /* ---------- STAT STRIP ---------- */
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:780px) {
+            .stat-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-box {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-box .num {
+            font-family: 'Fraunces', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat-box .lbl {
+            margin-top: 4px;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            font-weight: 600;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFFFFF;
+            padding: 56px 0 36px;
+            margin-top: 30px;
+        }
+
+        .foot-cta {
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .foot-cta h2 {
+            font-size: 30px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .foot-cta p {
+            margin: 12px 0 26px;
+            color: #A0AEC0;
+            font-size: 15px;
+        }
+
+        .foot-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .foot-buttons a {
+            padding: 13px 26px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        .foot-buttons a.primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .foot-buttons a.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .foot-buttons a.secondary {
+            border: 1.4px solid rgba(255, 255, 255, 0.3);
+            color: #F4EFE3;
+        }
+
+        .foot-buttons a.secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .foot-bottom {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13px;
+            color: #8B92A0;
+        }
+
+        .foot-socials {
+            display: flex;
+            gap: 14px;
+        }
+
+        .foot-socials a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+            font-weight: 700;
+            color: #A0AEC0;
+        }
+
+        .foot-socials a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="mba-partner-cat-omet-courses.html">
+                <span class="brand-mark">MP</span>
+                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+            </a>
+            <div class="nav-links">
+                <a href="mba-partner-cat-omet-courses.html">Home</a>
+                <a href="mba-partner-cat-omet-courses.html">Placement Courses</a>
+                <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
+                <a class="nav-cta" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="top">
+        <div class="wrap">
+            <p class="eyebrow">CAT • XAT • SNAP • NMAT • CMAT • IIFT</p>
+            <h1>Your CAT/OMET prep, mentored by people who cracked it.</h1>
+            <p class="hero-sub">Sectional mocks, full-length CATs and GD-PI-WAT prep — built by alumni from Old IIM
+                who've sat where you're sitting. Build the prep stack that closes your gaps below.</p>
+            <div class="hero-ticker">
+                <span>Mentors converted calls from</span>
+                <div class="ticker-track">
+                    <span>IIM Ahmedabad</span><span>IIM Bangalore</span><span>IIM Calcutta</span><span>FMS
+                        Delhi</span><span>XLRI Jamshedpur</span><span>MDI Gurgaon</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="filters" id="filters">
+        <div class="wrap">
+            <div class="chip active" data-filter="all">All</div>
+            <div class="chip" data-filter="combo">Combos</div>
+            <div class="chip" data-filter="course">Full Course</div>
+            <div class="chip" data-filter="mocks">Mock Tests</div>
+            <div class="chip" data-filter="gdpi">GD-PI-WAT</div>
+            <div class="chip" data-filter="mentor">Mentoring</div>
+        </div>
+    </nav>
+
+    <section data-cat="combo course">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>All-in-one combo</h2>
+                <p>Course, mocks and interview prep — one checkout</p>
+            </div>
+            <div class="ticket reveal">
+                <div class="ticket-left">
+                    <span class="ticket-badge">Most complete</span>
+                    <h3>Full Course + Mock Series + GD-PI-WAT</h3>
+                    <div class="ticket-modules">
+                        <div class="module-row"><span class="dot"></span> CAT/OMET Full Course — QA, VARC, DILR
+                            concept-to-mastery</div>
+                        <div class="module-row"><span class="dot"></span> 20 full-length mocks with percentile
+                            analysis</div>
+                        <div class="module-row"><span class="dot"></span> GD-PI-WAT prep — mock panels by alumni
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket-right">
+                    <span class="notch top"></span><span class="notch bottom"></span>
+                    <span class="price-regular">₹16,497.00</span>
+                    <span class="price-sale mono">₹14,999</span>
+                    <span class="stamp">SAVES ₹1,498 vs buying separately</span>
+                    <a class="cta" href="product-cat-omet-all-in-one-combo.html">💳 Enroll now →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-cat="course combo">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>Full Course &amp; combos</h2>
+                <p>Compare the three tiers side by side</p>
+            </div>
+            <div class="compare reveal">
+                <div class="tier">
+                    <h3>CAT/OMET Full Course</h3>
+                    <ul class="tier-features">
+                        <li><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+                                <path d="M1 7l4 4 8-8" stroke="#1F4D3D" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> 300+ concept videos across QA, VARC, DILR</li>
+                        <li><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+                                <path d="M1 7l4 4 8-8" stroke="#1F4D3D" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> Topic-wise practice sets &amp; PYQs</li>
+                        <li class="muted">No full-length mocks</li>
+                        <li class="muted">No GD-PI-WAT prep</li>
+                    </ul>
+                    <div class="tier-price-row"><span class="price-regular mono">₹10,999</span><span
+                            class="price-sale mono">₹9,999</span></div>
+                    <p class="tier-foot">Best if you already mock-test elsewhere and just need the concept depth.</p>
+                    <a class="cta" href="product-cat-omet-full-course.html">💳 Enroll →</a>
+                </div>
+                <div class="tier featured">
+                    <span class="tier-tag">Most chosen</span>
+                    <h3>Full Course + Mock Series</h3>
+                    <ul class="tier-features">
+                        <li><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+                                <path d="M1 7l4 4 8-8" stroke="#1F4D3D" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> 300+ concept videos + topic-wise sets</li>
+                        <li><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+                                <path d="M1 7l4 4 8-8" stroke="#1F4D3D" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> 20 full-length CATs + sectional tests</li>
+                        <li><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+                                <path d="M1 7l4 4 8-8" stroke="#1F4D3D" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> Percentile tracker &amp; All-India rank</li>
+                        <li class="muted">No GD-PI-WAT prep</li>
+                    </ul>
+                    <div class="tier-price-row"><span class="price-regular mono">₹12,998</span><span
+                            class="price-sale mono">₹12,499</span></div>
+                    <p class="tier-foot">₹499 cheaper than buying both separately.</p>
+                    <a class="cta" href="product-cat-omet-course-mocks.html">💳 Enroll →</a>
+                </div>
+                <div class="tier">
+                    <h3>Full Course + GD-PI-WAT</h3>
+                    <ul class="tier-features">
+                        <li><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+                                <path d="M1 7l4 4 8-8" stroke="#1F4D3D" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> 300+ concept videos + topic-wise sets</li>
+                        <li><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+                                <path d="M1 7l4 4 8-8" stroke="#1F4D3D" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> Mock GD-PI-WAT panels by alumni</li>
+                        <li class="muted">No full-length mocks</li>
+                    </ul>
+                    <div class="tier-price-row"><span class="price-regular mono">₹13,498</span><span
+                            class="price-sale mono">₹12,999</span></div>
+                    <p class="tier-foot">Same total as buying both apart — bundled for one checkout.</p>
+                    <a class="cta" href="product-cat-omet-course-gdpiwat.html">💳 Enroll →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-cat="mocks">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>Mock Test Series</h2>
+                <p>Sectional + full-length, with All-India percentile</p>
+            </div>
+            <div class="pgrid reveal">
+                <div class="pcard">
+                    <div class="pcard-top">
+                        <h3>Sectional Test Pack</h3>
+                        <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <rect x="2" y="2" width="14" height="14" rx="3" stroke="#FF8B02" stroke-width="1.6" />
+                            </svg></div>
+                    </div>
+                    <p class="desc">30 sectional tests across QA, VARC and DILR to fix weak areas before
+                        full-lengths.</p>
+                    <div class="pcard-bottom">
+                        <span><span class="price-regular mono">₹1,999</span> <span class="price-sale mono"
+                                style="font-size:18px;">₹1,499</span></span>
+                        <a class="cta" href="product-sectional-test-pack.html">💳 Enroll →</a>
+                    </div>
+                </div>
+                <div class="pcard">
+                    <div class="pcard-top">
+                        <h3>20 Full-Length Mocks</h3>
+                        <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <rect x="2" y="2" width="6" height="14" rx="2" stroke="#FF8B02" stroke-width="1.6" />
+                                <rect x="10" y="2" width="6" height="14" rx="2" stroke="#FF8B02" stroke-width="1.6" />
+                            </svg></div>
+                    </div>
+                    <p class="desc">CAT-pattern mocks with detailed percentile and All-India rank after every
+                        attempt.</p>
+                    <div class="pcard-bottom">
+                        <span><span class="price-regular mono">₹3,499</span> <span class="price-sale mono"
+                                style="font-size:18px;">₹2,999</span></span>
+                        <a class="cta" href="product-full-length-mocks.html">💳 Enroll →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-cat="gdpi combo">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>GD-PI-WAT Prep &amp; combos</h2>
+                <p>Convert your calls, don't just clear the exam</p>
+            </div>
+            <div class="pgrid reveal">
+                <div class="pcard">
+                    <div class="pcard-top">
+                        <h3>GD-PI-WAT Prep</h3>
+                        <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M3 14V8M9 14V4M15 14V10" stroke="#FF8B02" stroke-width="1.8"
+                                    stroke-linecap="round" />
+                            </svg></div>
+                    </div>
+                    <ul class="pfeat">
+                        <li>4 mock personal interviews by B-school alumni</li>
+                        <li>Group discussion practice with live feedback</li>
+                        <li>WAT topic bank + structured-writing review</li>
+                    </ul>
+                    <div class="pcard-bottom">
+                        <span><span class="price-regular mono">₹3,999</span> <span class="price-sale mono"
+                                style="font-size:18px;">₹3,499</span></span>
+                        <a class="cta" href="product-gdpiwat-prep.html">💳 Enroll →</a>
+                    </div>
+                </div>
+                <div class="pcard">
+                    <div class="pcard-top">
+                        <h3>GD-PI-WAT + Mock Series</h3>
+                        <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 2v14M2 9h14" stroke="#FF8B02" stroke-width="1.8" stroke-linecap="round" />
+                            </svg></div>
+                    </div>
+                    <p class="desc">Interview prep plus the full 20-mock series in a single enrollment.</p>
+                    <div class="pcard-bottom">
+                        <span><span class="price-regular mono">₹6,498</span> <span class="price-sale mono"
+                                style="font-size:18px;">₹5,999</span></span>
+                        <a class="cta" href="product-gdpiwat-mocks-combo.html">💳 Enroll →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-cat="mentor">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>Doubt Support &amp; Mentoring</h2>
+                <p>For when self-study alone isn't cutting it</p>
+            </div>
+            <div class="pgrid reveal">
+                <div class="pcard">
+                    <div class="pcard-top">
+                        <h3>1-on-1 Mentoring <span class="new-badge">New</span></h3>
+                        <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <circle cx="9" cy="6" r="3" stroke="#FF8B02" stroke-width="1.6" />
+                                <path d="M3 15c0-3 2.5-5 6-5s6 2 6 5" stroke="#FF8B02" stroke-width="1.6"
+                                    stroke-linecap="round" />
+                            </svg></div>
+                    </div>
+                    <p class="desc">Weekly 1-on-1 calls with an alumni mentor to fix your prep plan and doubts.</p>
+                    <div class="pcard-bottom">
+                        <span><span class="price-sale mono" style="font-size:18px;">₹2,500</span></span>
+                        <a class="cta" href="product-1on1-mentoring.html">💳 Enroll →</a>
+                    </div>
+                </div>
+                <div class="pcard">
+                    <div class="pcard-top">
+                        <h3>Group Cohort Mentoring</h3>
+                        <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <circle cx="6" cy="6" r="2.5" stroke="#FF8B02" stroke-width="1.6" />
+                                <circle cx="12" cy="6" r="2.5" stroke="#FF8B02" stroke-width="1.6" />
+                                <path d="M2 15c0-2.5 1.8-4 4-4s4 1.5 4 4M10 15c0-2.5 1.8-4 4-4s4 1.5 4 4"
+                                    stroke="#FF8B02" stroke-width="1.6" stroke-linecap="round" />
+                            </svg></div>
+                    </div>
+                    <p class="desc">Small-batch live doubt-solving sessions twice a week, peer accountability built
+                        in.</p>
+                    <div class="pcard-bottom">
+                        <span><span class="price-sale mono" style="font-size:18px;">₹4,500</span></span>
+                        <a class="cta" href="product-group-cohort-mentoring.html">💳 Enroll →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>Who this is for</h2>
+                <p>Exams our content and mocks are mapped to</p>
+            </div>
+            <div class="exam-strip reveal">
+                <span class="exam-pill">CAT</span>
+                <span class="exam-pill">XAT</span>
+                <span class="exam-pill">SNAP</span>
+                <span class="exam-pill">NMAT</span>
+                <span class="exam-pill">CMAT</span>
+                <span class="exam-pill">IIFT</span>
+                <span class="exam-pill">MAT</span>
+                <span class="exam-pill">ATMA</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="stat-strip reveal">
+                <div class="stat-box">
+                    <div class="num mono">20+</div>
+                    <div class="lbl">Full-length mocks</div>
+                </div>
+                <div class="stat-box">
+                    <div class="num mono">300+</div>
+                    <div class="lbl">Concept videos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="num mono">4</div>
+                    <div class="lbl">Mock PI panels</div>
+                </div>
+                <div class="stat-box">
+                    <div class="num mono">8</div>
+                    <div class="lbl">Exams covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-cta reveal">
+                <h2>Ready to start your prep?</h2>
+                <p>Get mentored by alumni from top B-Schools and turn your CAT/OMET attempt into a converted call.
+                </p>
+                <div class="foot-buttons">
+                    <a class="primary" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp Group</a>
+                    <a class="secondary" href="https://t.me/+eV1FROkJppFlYmU1">Join Telegram</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>MBA Partner — Initiative by Alumni of Old IIM</span>
+                <div class="foot-socials">
+                    <a href="https://www.instagram.com/mba_partner/" aria-label="Instagram">IG</a>
+                    <a href="https://www.linkedin.com/in/prodmarkconsulting-mba-partner/" aria-label="LinkedIn">in</a>
+                    <a href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" aria-label="WhatsApp">WA</a>
+                    <a href="https://t.me/+eV1FROkJppFlYmU1" aria-label="Telegram">TG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ---- Filter chips ----
+        const chips = document.querySelectorAll('.chip');
+        const catSections = document.querySelectorAll('[data-cat]');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                const f = chip.dataset.filter;
+                catSections.forEach(sec => {
+                    const cats = sec.dataset.cat.split(' ');
+                    sec.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
+                });
+            });
+        });
+
+        // ---- Scroll reveal ----
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        reveals.forEach(r => obs.observe(r));
+
+    </script>
+
+</body>
+
+</html>

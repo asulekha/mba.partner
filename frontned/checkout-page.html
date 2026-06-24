@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Razorpay Checkout.js -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --success: #10B981;
+            --danger: #EF4444;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px
+        }
+
+        /* ---------- NAV ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--ink);
+            color: #FFF;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15
+        }
+
+        .brand-text span {
+            font-weight: 700;
+            font-size: 15px
+        }
+
+        .brand-text small {
+            font-size: 10.5px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #A0AEC0
+        }
+
+        /* ---------- BREADCRUMB ---------- */
+        .breadcrumb {
+            padding: 16px 0;
+            font-size: 13.5px;
+            color: var(--ink-faint)
+        }
+
+        .breadcrumb a {
+            transition: color .2s
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary)
+        }
+
+        .breadcrumb span.sep {
+            margin: 0 8px;
+            color: #C7CCD4
+        }
+
+        .breadcrumb span.current {
+            color: var(--ink);
+            font-weight: 600
+        }
+
+        /* ---------- PAGE HEAD ---------- */
+        .checkout-head {
+            padding: 8px 0 24px
+        }
+
+        .checkout-head h1 {
+            font-size: clamp(24px, 2.8vw, 32px);
+            font-weight: 700
+        }
+
+        .checkout-head p {
+            margin-top: 6px;
+            color: var(--ink-faint);
+            font-size: 14px
+        }
+
+        /* ---------- LAYOUT ---------- */
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 28px;
+            align-items: start;
+            padding-bottom: 60px
+        }
+
+        @media (max-width:860px) {
+            .checkout-layout {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* ---------- PAYMENT CARD ---------- */
+        .pay-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 16px;
+            padding: 28px
+        }
+
+        .pay-tabs {
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px
+        }
+
+        .pay-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink-faint);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all .2s;
+            background: none;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .pay-tab.active {
+            color: var(--primary-dark);
+            border-bottom-color: var(--primary)
+        }
+
+        .pay-tab:hover:not(.active) {
+            color: var(--ink)
+        }
+
+        .field-group {
+            margin-bottom: 18px
+        }
+
+        .field-group label {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ink-soft);
+            margin-bottom: 7px
+        }
+
+        .field-group input {
+            width: 100%;
+            border: 1.5px solid var(--rule);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--surface);
+            color: var(--ink);
+            transition: border-color .2s
+        }
+
+        .field-group input:focus-visible {
+            outline: none;
+            border-color: var(--primary)
+        }
+
+        .field-group .err {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 5px;
+            min-height: 14px
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px
+        }
+
+        .pay-note {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 13px;
+            color: var(--ink-faint);
+            margin-bottom: 20px;
+            line-height: 1.5
+        }
+
+        .pay-method-panel {
+            display: none
+        }
+
+        .pay-method-panel.active {
+            display: block
+        }
+
+        .upi-box,
+        .netbanking-box {
+            text-align: center;
+            padding: 30px 10px;
+            color: var(--ink-faint);
+            font-size: 14px
+        }
+
+        .upi-box svg,
+        .netbanking-box svg {
+            margin-bottom: 12px
+        }
+
+        .btn {
+            padding: 15px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all .3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
+        }
+
+        .btn-primary:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none
+        }
+
+        .trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--ink-faint);
+            flex-wrap: wrap
+        }
+
+        .trust-row .item {
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        /* ---------- SUMMARY ---------- */
+        .summary-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 90px
+        }
+
+        .summary-card h2 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        .summary-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 14px;
+            max-height: 220px;
+            overflow-y: auto
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--ink-soft)
+        }
+
+        .summary-item .qty {
+            color: var(--ink-faint);
+            font-weight: 600
+        }
+
+        .summary-item .price {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            flex-shrink: 0
+        }
+
+        .summary-divider {
+            border-top: 1px dashed var(--rule);
+            margin: 12px 0
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--ink-soft);
+            padding: 6px 0
+        }
+
+        .summary-row .val {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600
+        }
+
+        .summary-row.savings .val {
+            color: var(--success)
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 10px 0 0
+        }
+
+        .summary-total .label {
+            font-size: 15.5px;
+            font-weight: 700
+        }
+
+        .summary-total .val {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--ink)
+        }
+
+        .empty-note {
+            text-align: center;
+            padding: 40px 16px;
+            color: var(--ink-faint);
+            font-size: 14px
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">MP</span>
+                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="wrap">
+        <div class="breadcrumb">
+            <a href="cart-page.html">Cart</a><span class="sep">/</span><span class="current">Checkout</span>
+        </div>
+    </div>
+
+    <section class="checkout-head">
+        <div class="wrap">
+            <h1>Checkout</h1>
+            <p>Enter your details and complete payment securely.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="checkout-layout" id="checkoutLayout">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <script src="cart.js"></script>
+    <script src="checkout.js"></script>
+
+</body>
+
+</html>

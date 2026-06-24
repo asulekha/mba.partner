@@ -758,14 +758,15 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html">
+      <!-- Brand logo bhi context ke hisaab se update hoga -->
+      <a class="brand" id="brandLogoLink" href="#">
         <span class="brand-mark">MP</span>
         <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
       </a>
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="mba-partner-courses-redesign.html">Courses</a>
-        <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
+        <a href="#" id="navHomeLink">Home</a>
+        <a href="#" id="navCoursesLink">Courses</a>
+        <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
         <a class="nav-cart-link" href="cart-page.html">
           🛒 Cart <span class="nav-cart-count" id="navCartCount">0</span>
         </a>
@@ -776,7 +777,7 @@
 
   <div class="wrap">
     <div class="breadcrumb">
-      <a href="index.html">Home</a><span class="sep">/</span><span class="current">Your Cart</span>
+      <a href="#" id="breadcrumbHomeLink">Home</a><span class="sep">/</span><span class="current">Your Cart</span>
     </div>
   </div>
 
@@ -829,22 +830,81 @@
 
   <script src="cart.js"></script>
   <script>
-    // ---------- Cross-sell catalogue (edit freely) ----------
-    // Used to populate "You might also like" — pulled from your product file names.
+    // ---------- Cross-sell catalogue ----------
     const CROSSSELL_CATALOGUE = [
-      { id: 'all-in-one-combo', name: 'All-in-One Combo', price: 14999, originalPrice: 17999, url: 'product-all-in-one-combo.html' },
-      { id: 'any-1-domain', name: 'Any 1 Domain', price: 4999, originalPrice: 5999, url: 'product-any-1-domain.html' },
-      { id: 'any-2-domains', name: 'Any 2 Domains', price: 8499, originalPrice: 9999, url: 'product-any-2-domains.html' },
-      { id: 'bootcamp-case-comp', name: 'Bootcamp + Case Comp', price: 10499, originalPrice: 11500, url: 'product-bootcamp-case-comp.html' },
-      { id: 'bootcamp-live-project', name: 'Bootcamp + Live Project', price: 10999, originalPrice: 12500, url: 'product-bootcamp-live-project.html' },
-      { id: 'case-comp-live-project', name: 'Case Comp + Live Project', price: 9999, originalPrice: 11200, url: 'product-case-comp-live-project.html' },
-      { id: 'case-competition', name: 'Case Competition', price: 6499, originalPrice: 7499, url: 'product-case-competition.html' },
-      { id: 'placements-bootcamp', name: 'Placements Bootcamp + Case Comp', price: 10499, originalPrice: 11500, url: 'product-placements-bootcamp.html' },
-      { id: 'power-bi-certificate', name: 'Power BI Certificate', price: 2999, originalPrice: 3999, url: 'product-power-bi-certificate.html' }
+      { productId: 'Placements Bootcamp + Case Comp + 1 Live Project', name: 'Placements Bootcamp + Case Comp + 1 Live Project', price: 13999, originalPrice: 14500 },
+      { productId: 'All-in-One Combo', name: 'All-in-One Combo', price: 14999, originalPrice: 17999 },
+      { productId: 'Any 1 Domain', name: 'Any 1 Domain', price: 4999, originalPrice: 5999 },
+      { productId: 'Any 2 Domains', name: 'Any 2 Domains', price: 8499, originalPrice: 9999 },
+      { productId: 'Bootcamp + Case Comp', name: 'Bootcamp + Case Comp', price: 10499, originalPrice: 11500 },
+      { productId: 'Bootcamp + Live Project', name: 'Bootcamp + Live Project', price: 10999, originalPrice: 12500 },
+      { productId: 'Case Comp + Live Project', name: 'Case Comp + Live Project', price: 9999, originalPrice: 11200 },
+      { productId: 'Case Competition', name: 'Case Competition', price: 6499, originalPrice: 7499 },
+      { productId: 'Placements Bootcamp + Case Comp', name: 'Placements Bootcamp + Case Comp', price: 10499, originalPrice: 11500 },
+      { productId: 'Power BI Certificate', name: 'Power BI Certificate', price: 2999, originalPrice: 3999 },
     ];
 
     const { getCart, setCart, cartTotals, fmtINR, genOrderId, saveOrder, clearCart } = window.MBACart;
 
+    // ---------- Context Detection ----------
+    // Cart items ke naam se detect karo: CAT/OMET wala hai ya MBA wala
+    function isCatItem(item) {
+      const name = ((item.id || '') + ' ' + (item.name || '')).toLowerCase();
+      return (
+        name.includes('cat') ||
+        name.includes('omet') ||
+        name.includes('gd-pi') ||
+        name.includes('gdpi') ||
+        name.includes('gd pi') ||
+        name.includes('full-length mock') ||
+        name.includes('full length mock') ||
+        name.includes('sectional test') ||
+        name.includes('mock series') ||
+        name.includes('1-on-1 mentor') ||
+        name.includes('1on1 mentor') ||
+        name.includes('cohort mentor') ||
+        name.includes('wat')
+      );
+    }
+
+    function detectContext() {
+      const cart = getCart();
+      if (!cart.length) return 'mba'; // empty cart → MBA default
+
+      const hasCat = cart.some(isCatItem);
+      const hasMba = cart.some(item => !isCatItem(item));
+
+      // Sirf CAT items → cat context
+      // Mixed ya sirf MBA items → mba context
+      return (hasCat && !hasMba) ? 'cat' : 'mba';
+    }
+
+    function updateNavLinks() {
+      const ctx = detectContext();
+
+      const homeUrl = ctx === 'cat' ? 'mba-partner-cat-omet-home.html' : 'index.html';
+      const coursesUrl = ctx === 'cat' ? 'mba-partner-cat-omet-courses.html' : 'mba-partner-courses-redesign.html';
+
+      // Brand logo
+      const brandLink = document.getElementById('brandLogoLink');
+      if (brandLink) brandLink.href = homeUrl;
+
+      // Nav links
+      const navHome = document.getElementById('navHomeLink');
+      const navCourses = document.getElementById('navCoursesLink');
+      if (navHome) navHome.href = homeUrl;
+      if (navCourses) navCourses.href = coursesUrl;
+
+      // Breadcrumb
+      const breadHome = document.getElementById('breadcrumbHomeLink');
+      if (breadHome) breadHome.href = homeUrl;
+
+      // "Continue Browsing" button (rendered inside summary by render())
+      // usse render() mein directly set karenge — neeche dekho
+      return { homeUrl, coursesUrl };
+    }
+
+    // ---------- Helpers ----------
     function initials(name) {
       const words = name.trim().split(/\s+/).filter(Boolean);
       if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
@@ -862,8 +922,7 @@
       if (!item) return;
       item.qty = (item.qty || 1) + delta;
       if (item.qty <= 0) {
-        const filtered = cart.filter(i => i.id !== id);
-        setCart(filtered);
+        setCart(cart.filter(i => i.id !== id));
       } else {
         setCart(cart);
       }
@@ -871,8 +930,7 @@
     }
 
     function removeItem(id) {
-      const cart = getCart().filter(i => i.id !== id);
-      setCart(cart);
+      setCart(getCart().filter(i => i.id !== id));
       render();
     }
 
@@ -880,11 +938,7 @@
       const input = document.getElementById('promoInput');
       const msg = document.getElementById('promoMsg');
       const code = input.value.trim().toUpperCase();
-      if (!code) {
-        msg.textContent = '';
-        return;
-      }
-      // Simple placeholder promo logic — wire to your real codes here.
+      if (!code) { msg.textContent = ''; return; }
       const VALID_CODES = { MBAP500: 500, WELCOME10: 0.10 };
       if (VALID_CODES.hasOwnProperty(code)) {
         msg.textContent = 'Promo applied — discount reflected at checkout.';
@@ -899,7 +953,6 @@
     function checkout() {
       const cart = getCart();
       if (!cart.length) return;
-      // Cart stays in localStorage — checkout-page.html reads it from there.
       window.location.href = 'checkout-page.html';
     }
 
@@ -908,23 +961,23 @@
       const list = document.getElementById('crosssellList');
       const inCart = new Set(cart.map(i => i.id));
       const suggestions = CROSSSELL_CATALOGUE.filter(p => !inCart.has(p.id)).slice(0, 6);
-      if (!suggestions.length) {
-        section.style.display = 'none';
-        return;
-      }
+      if (!suggestions.length) { section.style.display = 'none'; return; }
       section.style.display = '';
       list.innerHTML = suggestions.map(p => `
         <div class="cs-card">
           <h4>${p.name}</h4>
           <div class="cs-price mono">${fmtINR(p.price)}<span style="color:var(--ink-faint);font-weight:600;text-decoration:line-through;margin-left:6px;">${fmtINR(p.originalPrice)}</span></div>
-          <a class="cs-link" href="${p.url}">View program →</a>
+          <a class="cs-link" href="${p.url || '#'}">View program →</a>
         </div>
       `).join('');
     }
 
     function render() {
-      const cart = getCart();
+      // Context-aware nav update sabse pehle
+      const { coursesUrl } = updateNavLinks();
       updateNavCount();
+
+      const cart = getCart();
       const layout = document.getElementById('cartLayout');
       const subline = document.getElementById('cartSubline');
 
@@ -934,12 +987,12 @@
           <div class="cart-empty" style="grid-column:1/-1;">
             <div class="empty-icon">
               <svg width="28" height="28" viewBox="0 0 18 18" fill="none">
-                <path d="M2 3h14v9H8l-4 4V12H2V3Z" stroke="#6B7280" stroke-width="1.4" fill="none" />
+                <path d="M2 3h14v9H8l-4 4V12H2V3Z" stroke="#6B7280" stroke-width="1.4" fill="none"/>
               </svg>
             </div>
             <h2>No programs added yet</h2>
             <p>Browse our courses and add a program to get started.</p>
-            <a class="btn btn-primary" style="width:auto;display:inline-flex;" href="mba-partner-courses-redesign.html">Browse Courses</a>
+            <a class="btn btn-primary" style="width:auto;display:inline-flex;" href="${coursesUrl}">Browse Courses</a>
           </div>
         `;
         renderCrosssell([]);
@@ -955,25 +1008,25 @@
         const oldHtml = item.originalPrice && item.originalPrice > item.price
           ? `<span class="old">${fmtINR(item.originalPrice)}</span>` : '';
         return `
-        <div class="cart-item" data-id="${item.id}">
-          <div class="cart-item-icon">${initials(item.name)}</div>
-          <div class="cart-item-info">
-            <h3>${item.name}</h3>
-            ${metaHtml}
-            <div class="cart-item-prices">
-              <span class="now mono">${fmtINR(item.price)}</span>
-              ${oldHtml}
+          <div class="cart-item" data-id="${item.id}">
+            <div class="cart-item-icon">${initials(item.name)}</div>
+            <div class="cart-item-info">
+              <h3>${item.name}</h3>
+              ${metaHtml}
+              <div class="cart-item-prices">
+                <span class="now mono">${fmtINR(item.price)}</span>
+                ${oldHtml}
+              </div>
             </div>
-          </div>
-          <div class="cart-item-right">
-            <div class="qty-control">
-              <button type="button" aria-label="Decrease quantity" onclick="changeQty('${item.id}', -1)">−</button>
-              <span>${qty}</span>
-              <button type="button" aria-label="Increase quantity" onclick="changeQty('${item.id}', 1)">+</button>
+            <div class="cart-item-right">
+              <div class="qty-control">
+                <button type="button" aria-label="Decrease quantity" onclick="changeQty('${item.id}', -1)">−</button>
+                <span>${qty}</span>
+                <button type="button" aria-label="Increase quantity" onclick="changeQty('${item.id}', 1)">+</button>
+              </div>
+              <button type="button" class="remove-link" onclick="removeItem('${item.id}')">Remove</button>
             </div>
-            <button type="button" class="remove-link" onclick="removeItem('${item.id}')">Remove</button>
-          </div>
-        </div>`;
+          </div>`;
       }).join('');
 
       const totals = cartTotals(cart);
@@ -1001,7 +1054,7 @@
           </div>
           <div class="promo-msg" id="promoMsg"></div>
           <button type="button" class="btn btn-primary" style="margin-top:14px;" onclick="checkout()">💳 Proceed to Checkout</button>
-          <a class="btn btn-ghost" href="mba-partner-courses-redesign.html">← Continue Browsing</a>
+          <a class="btn btn-ghost" href="${coursesUrl}">← Continue Browsing</a>
           <div class="trust-row">
             <span class="item">✅ Mentored by MBA Partner Alumni</span>
             <span class="item">🔒 Secure Checkout</span>

@@ -1,10 +1,35 @@
-
 (function () {
     const CART_KEY = 'mbaPartnerCart';
     const ORDER_KEY = 'mbaPartnerLastOrder';
+    const TOKEN_KEY = 'token';
+    const LOGIN_PAGE = 'mba-partner-login.html';
+
+    // ---------- Per-user namespacing ----------
+    // The JWT payload (the part between the two dots) contains the user's id.
+    // We don't need to verify the signature here — just read the id so each
+    // account gets its own cart/order storage instead of sharing one global key.
+    function getUserId() {
+        const token = localStorage.getItem(TOKEN_KEY);
+        if (!token) return null;
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            return payload && payload.id ? payload.id : null;
+        } catch (e) {
+            return null; // malformed/expired token — treat as guest
+        }
+    }
+    function cartKey() {
+        const uid = getUserId();
+        return uid ? `${CART_KEY}:${uid}` : `${CART_KEY}:guest`;
+    }
+    function orderKey() {
+        const uid = getUserId();
+        return uid ? `${ORDER_KEY}:${uid}` : `${ORDER_KEY}:guest`;
+    }
+
     function getCart() {
         try {
-            const raw = localStorage.getItem(CART_KEY);
+            const raw = localStorage.getItem(cartKey());
             const parsed = raw ? JSON.parse(raw) : [];
             return Array.isArray(parsed) ? parsed : [];
         } catch (e) {
@@ -13,8 +38,15 @@
     }
     function saveCart(cart) {
         try {
-            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            localStorage.setItem(cartKey(), JSON.stringify(cart));
         } catch (e) { /* storage unavailable */ }
+    }
+    function isLoggedIn() {
+        return !!localStorage.getItem(TOKEN_KEY);
+    }
+    function goToLogin(returnTo) {
+        const next = encodeURIComponent(returnTo || window.location.pathname);
+        window.location.href = `${LOGIN_PAGE}?next=${next}`;
     }
     function addToCart(item) {
         const cart = getCart();
@@ -27,7 +59,13 @@
         saveCart(cart);
         return cart;
     }
+    // Gate cart additions behind login. If the visitor isn't signed in, they're sent
+    // to the login page (with a `next` param) instead of the item being added.
     function addToCartAndGo(item, destination) {
+        if (!isLoggedIn()) {
+            goToLogin(destination || 'cart-page.html');
+            return;
+        }
         addToCart(item);
         window.location.href = destination || 'cart-page.html';
     }
@@ -56,12 +94,12 @@
     }
     function saveOrder(order) {
         try {
-            localStorage.setItem(ORDER_KEY, JSON.stringify(order));
+            localStorage.setItem(orderKey(), JSON.stringify(order));
         } catch (e) { /* storage unavailable */ }
     }
     function getLastOrder() {
         try {
-            const raw = localStorage.getItem(ORDER_KEY);
+            const raw = localStorage.getItem(orderKey());
             return raw ? JSON.parse(raw) : null;
         } catch (e) {
             return null;
@@ -77,7 +115,8 @@
     // Expose globally
     window.MBACart = {
         getCart, saveCart, addToCart, addToCartAndGo, setCart, clearCart,
-        cartCount, cartTotals, saveOrder, getLastOrder, fmtINR, genOrderId
+        cartCount, cartTotals, saveOrder, getLastOrder, fmtINR, genOrderId,
+        isLoggedIn, goToLogin
     };
     // Shorthand used directly by inline onclick handlers on product pages
     window.addToCartAndGo = addToCartAndGo;
