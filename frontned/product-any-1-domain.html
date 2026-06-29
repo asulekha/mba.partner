@@ -76,6 +76,7 @@
       outline-offset: 3px
     }
 
+    /* NAV */
     .nav {
       position: sticky;
       top: 0;
@@ -168,8 +169,7 @@
       box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
     }
 
-
-
+    /* BREADCRUMB */
     .breadcrumb {
       padding: 16px 0;
       font-size: 13.5px;
@@ -194,6 +194,7 @@
       font-weight: 600
     }
 
+    /* HERO */
     .product-hero {
       padding: 18px 0 8px
     }
@@ -254,6 +255,7 @@
       z-index: 2
     }
 
+    /* PILLS */
     .badge-row {
       display: flex;
       gap: 8px;
@@ -281,6 +283,7 @@
       border: 1px solid var(--rule)
     }
 
+    /* PRODUCT INFO */
     .product-info h1 {
       font-size: clamp(28px, 3.4vw, 40px);
       font-weight: 700;
@@ -384,6 +387,7 @@
       gap: 6px
     }
 
+    /* SECTIONS */
     section {
       padding: 40px 0
     }
@@ -404,6 +408,81 @@
       font-size: 14px
     }
 
+    /* WHAT YOU GET */
+    .what-you-get {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 26px;
+      max-width: 680px
+    }
+
+    .wyg-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 14px
+    }
+
+    .wyg-item:first-child {
+      margin-top: 0
+    }
+
+    .wyg-ck {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px
+    }
+
+    .wyg-item span {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.55
+    }
+
+    /* STAT STRIP */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 22px 0
+    }
+
+    @media(max-width:780px) {
+      .stat-strip {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    .stat-card {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center
+    }
+
+    .stat-card .num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--primary)
+    }
+
+    .stat-card .lbl {
+      margin-top: 4px;
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      line-height: 1.4
+    }
+
+    /* INCLUDES GRID */
     .includes-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -458,6 +537,121 @@
       line-height: 1.55
     }
 
+    /* COMPARE TABLE */
+    .compare-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 14px;
+      border: 1px solid var(--rule);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .06)
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      background: var(--paper-card)
+    }
+
+    .compare-table thead tr {
+      background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%)
+    }
+
+    .compare-table thead th {
+      padding: 18px 22px;
+      text-align: left;
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap
+    }
+
+    .compare-table thead th:first-child {
+      width: 54%;
+      color: #A0AEC0;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase
+    }
+
+    .compare-table thead th:not(:first-child) {
+      text-align: center
+    }
+
+    .compare-table thead th .plan-badge {
+      display: inline-block;
+      margin-top: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px
+    }
+
+    .badge-master {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff
+    }
+
+    .badge-mini {
+      background: rgba(255, 255, 255, .12);
+      color: #D0D5DD
+    }
+
+    .compare-table tbody tr {
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .compare-table tbody tr:last-child {
+      border-bottom: none
+    }
+
+    .compare-table tbody tr:nth-child(even) {
+      background: #FAFAFA
+    }
+
+    .compare-table tbody tr:hover {
+      background: #F0F1FF
+    }
+
+    .compare-table td {
+      padding: 14px 22px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      vertical-align: top
+    }
+
+    .compare-table td:not(:first-child) {
+      text-align: center;
+      vertical-align: middle
+    }
+
+    .check {
+      color: var(--success);
+      font-size: 16px
+    }
+
+    .dash {
+      color: #C7CCD4;
+      font-size: 18px
+    }
+
+    .compare-note {
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start
+    }
+
+    /* TIMELINE */
     .timeline {
       display: flex;
       flex-direction: column;
@@ -499,77 +693,118 @@
       color: var(--ink-faint)
     }
 
-    .fit-banner {
-      background: var(--ink);
-      color: #fff;
-      border-radius: 16px;
-      padding: 30px 32px;
+    /* NOTE BANNER */
+    .note-banner {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      max-width: 680px;
+      margin-top: 18px
+    }
+
+    .note-banner span.icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    .note-banner p {
+      margin: 0;
+      font-size: 13.5px;
+      color: #92400E;
+      line-height: 1.6
+    }
+
+    /* GROUP OFFER */
+    .group-offer-tiers {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 480px
+    }
+
+    .tier-card {
+      background: var(--paper-card);
+      border: 1.5px dashed var(--success);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .tier-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(16, 185, 129, .08), transparent 60%);
+      pointer-events: none
+    }
+
+    .tier-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap
+      gap: 10px
     }
 
-    .fit-banner h3 {
-      font-size: 19px;
+    .tier-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
       font-weight: 700;
-      max-width: 30ch
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--success)
     }
 
-    .fit-banner p {
-      margin: 6px 0 0;
-      color: #A0AEC0;
-      font-size: 13.5px;
-      max-width: 42ch
-    }
-
-    .fit-banner .btn-primary {
-      flex-shrink: 0
-    }
-
-    .crosssell {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 6px
-    }
-
-    .cs-card {
-      flex: 0 0 240px;
-      background: var(--paper-card);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      padding: 18px;
-      transition: all .25s
-    }
-
-    .cs-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, .08)
-    }
-
-    .cs-card h4 {
-      font-size: 14.5px;
-      font-weight: 700;
-      margin-bottom: 6px
-    }
-
-    .cs-card .cs-price {
+    .tier-stamp {
+      display: inline-flex;
+      align-items: center;
+      background: var(--success);
+      color: #fff;
       font-family: 'IBM Plex Mono', monospace;
       font-size: 13px;
       font-weight: 700;
-      color: var(--primary-dark)
+      padding: 5px 12px;
+      border-radius: 999px
     }
 
-    .cs-card a.cs-link {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 12.5px;
+    .tier-card h3 {
+      font-size: 17px;
       font-weight: 700;
-      color: var(--primary)
+      color: var(--ink)
     }
 
+    .tier-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-faint);
+      line-height: 1.55
+    }
+
+    .tier-card a.cta {
+      margin-top: auto;
+      text-align: center;
+      padding: 12px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s
+    }
+
+    .tier-card a.cta:hover {
+      transform: translateY(-2px)
+    }
+
+    /* FOOTER */
     footer {
       background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
       color: #fff;
@@ -668,6 +903,7 @@
       color: var(--primary)
     }
 
+    /* MOBILE NAV */
     .nav-toggle {
       display: none;
       background: none;
@@ -775,6 +1011,7 @@
     </div>
   </div>
 
+  <!-- HERO -->
   <section class="product-hero">
     <div class="wrap">
       <div class="product-grid">
@@ -799,11 +1036,11 @@
         <div class="product-info">
           <div class="badge-row">
             <span class="pill pill-cat">Live Project</span>
-
+            <span class="pill pill-hot">Best Entry Point</span>
           </div>
           <h1>Any 1 Domain</h1>
-          <p class="product-sub">A one-month, mentor-led live project in the domain of your choice — a real, CV-ready
-            deliverable, not a certificate of attendance.</p>
+          <p class="product-sub">A mentor-led live project in the domain of your choice — a real, CV-ready deliverable
+            under a consulting company, not a certificate of attendance.</p>
           <div class="price-block">
             <span class="price-old mono">₹4,500.00</span>
             <span class="price-now mono">₹4,000</span>
@@ -811,9 +1048,10 @@
           </div>
           <div class="cta-row">
             <a class="btn btn-primary" href="javascript:void(0)"
-              onclick="addToCartAndGo({id:'Any 1 Domain', name:'Any 1 Domain', price:4000, originalPrice:4500})">💳
-              Add to Cart / Buy Now</a> <a class="btn btn-ghost" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD"
-              target="_blank" rel="noopener">💬 Ask a Mentor First</a>
+              onclick="addToCartAndGo({id:'Any 1 Domain', name:'Any 1 Domain', price:4000, originalPrice:4500})">💳 Add
+              to Cart / Buy Now</a>
+            <a class="btn btn-ghost" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" target="_blank"
+              rel="noopener">💬 Ask a Mentor First</a>
           </div>
           <div class="trust-row">
             <span class="item">✅ Mentored by MBA Partner Alumni</span>
@@ -825,46 +1063,85 @@
     </div>
   </section>
 
+  <!-- STAT STRIP -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="num">1</div>
+          <div class="lbl">Domain of your choice — Finance, Marketing, Ops, Strategy & more</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">4–8 hrs</div>
+          <div class="lbl">Mentor-led sessions depending on your chosen track</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">2–5</div>
+          <div class="lbl">ATS-friendly CV points on project completion</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">≤2 hrs/day</div>
+          <div class="lbl">Online commitment — complete in 1 or 2 months</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
   <section>
     <div class="wrap">
       <div class="section-head">
         <h2>What you get</h2>
         <p>Everything included in this program, laid out clearly</p>
       </div>
-      <div
-        style="background:var(--paper-card);border:1px solid var(--rule);border-radius:14px;padding:26px;max-width:680px;">
-        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
-            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
-              width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>1 month
-              track:</strong> 4 hours of sessions and 2 CV points</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
-            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
-              width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>2 month
-              track:</strong> 8 hours of sessions and 5 CV points</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
-            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
-              width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;">Run by Prodmark
-            Consultants Pvt. Ltd.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
-            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
-              width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;">Choose from finance,
-            marketing, operations, strategy and more</span></div>
+      <div class="what-you-get">
+        <div class="wyg-item">
+          <span class="wyg-ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>1-month track:</strong> 4 hours of sessions covering the ins &amp; outs of your domain, followed
+            by a project assigned from the discussion — 2 ATS-friendly CV points on completion</span>
+        </div>
+        <div class="wyg-item">
+          <span class="wyg-ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>2-month track:</strong> 8 hours of sessions and 5 ATS-friendly CV points on completion</span>
+        </div>
+        <div class="wyg-item">
+          <span class="wyg-ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>Certificate of Completion</strong> issued on project sign-off — dates are flexible and the
+            certificate is not withheld even if the project is still in progress, provided submission is done within 3
+            months</span>
+        </div>
+        <div class="wyg-item">
+          <span class="wyg-ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>Run by Prodmark Consultants Pvt. Ltd.</strong> — you work under a real consulting company, not a
+            coaching institute</span>
+        </div>
+        <div class="wyg-item">
+          <span class="wyg-ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>Online &amp; flexible:</strong> max 2 hours/day commitment — designed to fit alongside your
+            existing MBA prep</span>
+        </div>
+        <div class="wyg-item">
+          <span class="wyg-ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></span>
+          <span>Choose from <strong>Finance, Marketing, Operations, Strategy</strong> and more — pick what fills the
+            biggest gap on your CV</span>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- INSIDE THE PROGRAM -->
   <section>
     <div class="wrap">
       <div class="section-head">
@@ -879,7 +1156,7 @@
             </svg></div>
           <div>
             <h3>Pick Your Domain</h3>
-            <p>Choose the function that fills the biggest gap on your current CV.</p>
+            <p>Finance, Marketing, Operations, Strategy and more — choose what fills the biggest gap on your CV.</p>
           </div>
         </div>
         <div class="include-card">
@@ -890,7 +1167,7 @@
             </svg></div>
           <div>
             <h3>Mentor-Led Sessions</h3>
-            <p>Working sessions with a mentor, not a pre-recorded course.</p>
+            <p>Working sessions with a mentor from a top B-School, not a pre-recorded course.</p>
           </div>
         </div>
         <div class="include-card">
@@ -899,7 +1176,7 @@
             </svg></div>
           <div>
             <h3>Real Deliverable</h3>
-            <p>A finished output you can actually show — and talk about — in interviews.</p>
+            <p>A finished output you can actually show — and confidently talk about — in interviews.</p>
           </div>
         </div>
         <div class="include-card">
@@ -908,14 +1185,102 @@
                 stroke-width="1.2" fill="none" />
             </svg></div>
           <div>
-            <h3>CV Points</h3>
-            <p>Clear, quantifiable points to add straight to your CV.</p>
+            <h3>ATS-Friendly CV Points</h3>
+            <p>Clear, quantifiable points to add straight to your CV — 2 on 1-month, 5 on 2-month track.</p>
+          </div>
+        </div>
+        <div class="include-card">
+          <div class="include-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2L3 6v6l6 4 6-4V6L9 2Z" stroke="white" stroke-width="1.3" fill="none" />
+            </svg></div>
+          <div>
+            <h3>Real Consulting Company</h3>
+            <p>Work under Prodmark Consultants Pvt. Ltd. — this is not a coaching institute or a course.</p>
+          </div>
+        </div>
+        <div class="include-card">
+          <div class="include-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <rect x="2" y="2" width="14" height="14" rx="3" stroke="white" stroke-width="1.4" fill="none" />
+              <path d="M6 9l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" />
+            </svg></div>
+          <div>
+            <h3>Flexible Dates</h3>
+            <p>Dates are flexible — certificate not withheld as long as submission is done within 3 months.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- TRACK COMPARISON -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Track Options — 1 Month vs 2 Month</h2>
+        <p>Choose the depth that fits your timeline</p>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>1-Month Track <br><span class="plan-badge badge-mini">Quick Start</span></th>
+              <th>2-Month Track <br><span class="plan-badge badge-master">Recommended</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mentor-led sessions</td>
+              <td><strong>4 hours</strong></td>
+              <td><strong>8 hours</strong></td>
+            </tr>
+            <tr>
+              <td>ATS-friendly CV points</td>
+              <td><strong>2 points</strong></td>
+              <td><strong>5 points</strong></td>
+            </tr>
+            <tr>
+              <td>Certificate of Completion</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Project assigned from domain sessions</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Flexible dates (submission within 3 months)</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Daily time commitment</td>
+              <td>Max 2 hrs/day</td>
+              <td>Max 2 hrs/day</td>
+            </tr>
+            <tr>
+              <td>Run by Prodmark Consultants Pvt. Ltd.</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Best for</td>
+              <td>Fast CV addition before placements</td>
+              <td>Maximum CV impact &amp; depth</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compare-note">
+        <span>💡</span>
+        <span>Not sure which track to pick? <strong>Ask a mentor</strong> on WhatsApp — they'll help match you to the
+          right one based on your placements timeline.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT RUNS -->
   <section>
     <div class="wrap">
       <div class="section-head">
@@ -923,16 +1288,62 @@
         <p>From sign-up to CV-ready deliverable</p>
       </div>
       <div class="timeline">
-        <div class="timeline-step"><strong>Day 1 — Domain Selection</strong><span>Pick your domain and get matched with
-            a mentor.</span></div>
-        <div class="timeline-step"><strong>Week 1–3 — Working Sessions</strong><span>4–8 hours of guided sessions
-            depending on track length.</span></div>
-        <div class="timeline-step"><strong>Final — Deliverable Review</strong><span>Mentor signs off on the finished,
-            CV-ready output.</span></div>
+        <div class="timeline-step">
+          <strong>Day 1 — Domain Selection</strong>
+          <span>Pick your domain from the top 4 and get matched with a dedicated mentor.</span>
+        </div>
+        <div class="timeline-step">
+          <strong>Sessions — Ins &amp; Outs of the Domain</strong>
+          <span>4 hours (1-month track) or 8 hours (2-month track) of guided sessions covering the domain end-to-end.
+            Max 2 hours/day commitment.</span>
+        </div>
+        <div class="timeline-step">
+          <strong>Project Assignment</strong>
+          <span>A project is assigned directly from the session discussions — tailored to what you actually
+            learned.</span>
+        </div>
+        <div class="timeline-step">
+          <strong>Project Build &amp; Submission</strong>
+          <span>Work on the project with mentor support. Dates are flexible — submission window is open up to 3
+            months.</span>
+        </div>
+        <div class="timeline-step">
+          <strong>Sign-off — CV Ready</strong>
+          <span>Mentor reviews and signs off. CV points issued + Certificate of Completion delivered. Certificate not
+            withheld even if you need it before final submission.</span>
+        </div>
+      </div>
+
+      <div class="note-banner">
+        <span class="icon">📌</span>
+        <p><strong>Flexible completion policy:</strong> Dates are flexible and the Certificate of Completion is not
+          withheld in case you need it for your CV before the project wraps up — with the condition that submission is
+          done within 3 months of enrollment.</p>
       </div>
     </div>
   </section>
 
+  <!-- GROUP OFFER -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Group Offer</h2>
+        <p>Enroll with a friend and both of you save — use the separate enrollment link</p>
+      </div>
+      <div class="group-offer-tiers">
+        <div class="tier-card">
+          <div class="tier-top">
+            <span class="tier-tag">Group of 2</span>
+            <span class="tier-stamp">30% off</span>
+          </div>
+          <h3>Enroll with a friend</h3>
+          <p>Join as a group of 2 and get 30% off your combined total — enrollment happens through a separate group
+            link, not this page's cart.</p>
+          <a class="cta" href="product-group-offer.html">👥 Enroll as a Group of 2 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="wrap">
@@ -955,29 +1366,24 @@
       </div>
     </div>
   </footer>
+
   <script src="cart.js"></script>
   <script>
     if (window.MBACart) {
       document.getElementById('navCartCount').textContent = window.MBACart.cartCount();
     }
   </script>
-
   <script>
-    // --- Mobile hamburger menu ---
     (function () {
       var siteNav = document.querySelector('nav.nav');
       var navToggle = document.getElementById('nav-toggle');
       var navLinks = siteNav ? siteNav.querySelector('.nav-links') : null;
       if (!siteNav || !navToggle || !navLinks) return;
-
       navToggle.addEventListener('click', function () {
         var isOpen = siteNav.classList.toggle('menu-open');
         navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
       });
-
-      // Close the menu after tapping a link, so it doesn't stay open
-      // when the next page loads.
       navLinks.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {
           siteNav.classList.remove('menu-open');

@@ -17,7 +17,7 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5500',
+    origin: process.env.CLIENT_ORIGIN || 'https://astaaa.netlify.app',
     credentials: true, // allow the auth_token cookie to be sent/received
   })
 );
