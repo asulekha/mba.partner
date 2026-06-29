@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="Navbar_cat.css">
     <style>
         :root {
             --ink: #0F1419;
@@ -77,15 +78,15 @@
             outline-offset: 3px;
         }
 
-        /* ---------- NAV ---------- */
+        /* NAV */
         .nav {
             position: sticky;
             top: 0;
             z-index: 50;
             background: var(--ink);
-            color: #FFFFFF;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
         }
 
         .nav-inner {
@@ -162,24 +163,111 @@
             font-weight: 700;
             font-size: 13.5px;
             transition: all .3s;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
         }
 
-        @media (max-width:680px) {
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #F4EFE3;
+            border-radius: 2px;
+            position: relative;
+            transition: transform .2s ease, opacity .2s ease;
+        }
+
+        .nav-toggle span::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+        }
+
+        .nav-toggle span::after {
+            content: "";
+            position: absolute;
+            top: 6px;
+        }
+
+        .nav.menu-open .nav-toggle span {
+            background: transparent;
+        }
+
+        .nav.menu-open .nav-toggle span::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .nav.menu-open .nav-toggle span::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width: 760px) {
+            .nav-inner {
+                flex-wrap: wrap;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-basis: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height .25s ease, opacity .2s ease;
+            }
+
+            .nav.menu-open .nav-links {
+                max-height: 560px;
+                opacity: 1;
+                padding-top: 10px;
+                border-top: 1px solid rgba(255, 255, 255, .1);
+                margin-top: 12px;
+            }
+
             .nav-links a:not(.nav-cta) {
-                display: none;
+                display: block;
+                padding: 10px 4px;
+                opacity: 1;
+                border-bottom: 1px solid rgba(255, 255, 255, .06);
+            }
+
+            .nav-cta {
+                display: block;
+                text-align: center;
+                margin-top: 8px;
             }
         }
 
-        /* ---------- HERO ---------- */
+        /* HERO */
         .hero {
             background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
-            color: #FFFFFF;
+            color: #fff;
             padding: 64px 0 56px;
             position: relative;
             overflow: hidden;
@@ -189,7 +277,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 82% 12%, rgba(99, 102, 241, 0.15), transparent 55%);
+            background: radial-gradient(circle at 82% 12%, rgba(99, 102, 241, .15), transparent 55%);
         }
 
         .hero .wrap {
@@ -201,21 +289,21 @@
             font-size: 12px;
             letter-spacing: .12em;
             text-transform: uppercase;
-            color: var(--primary);
+            color: var(--primary-light);
             margin-bottom: 14px;
             font-weight: 600;
         }
 
         .hero h1 {
-            font-size: clamp(34px, 5vw, 56px);
+            font-size: clamp(30px, 4.5vw, 52px);
             font-weight: 700;
-            line-height: 1.04;
-            max-width: 15ch;
+            line-height: 1.07;
+            max-width: 16ch;
         }
 
         .hero-sub {
             margin-top: 18px;
-            max-width: 46ch;
+            max-width: 48ch;
             font-size: 17px;
             line-height: 1.55;
             color: #D0D5DD;
@@ -223,7 +311,7 @@
 
         .hero-ticker {
             margin-top: 38px;
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, .12);
             padding-top: 18px;
             display: flex;
             flex-wrap: wrap;
@@ -240,22 +328,21 @@
         }
 
         .ticker-track span {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            background: rgba(99, 102, 241, .1);
+            border: 1px solid rgba(99, 102, 241, .3);
             padding: 6px 13px;
             border-radius: 999px;
             font-size: 12.5px;
             color: #E8E9F3;
         }
 
-        /* ---------- FILTER CHIPS ---------- */
+        /* FILTER CHIPS */
         .filters {
             position: sticky;
             top: 65px;
             z-index: 40;
             background: var(--paper);
             padding: 18px 0;
-            margin-top: 30px;
             border-bottom: 1px solid var(--rule);
         }
 
@@ -296,7 +383,33 @@
             border-color: var(--primary);
         }
 
-        /* ---------- TICKET (featured combo) ---------- */
+        /* SECTION COMMON */
+        section {
+            padding: 48px 0;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 26px;
+            flex-wrap: wrap;
+        }
+
+        .section-head h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--ink-faint);
+            font-size: 14px;
+        }
+
+        /* TICKET */
         .ticket {
             display: grid;
             grid-template-columns: 1fr 280px;
@@ -305,7 +418,7 @@
             border-radius: 14px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .07);
         }
 
         .ticket-left {
@@ -422,15 +535,15 @@
             font-weight: 700;
             font-size: 14px;
             transition: all .3s;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
         }
 
         .ticket-right a.cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
         }
 
-        @media (max-width:680px) {
+        @media (max-width: 680px) {
             .ticket {
                 grid-template-columns: 1fr;
             }
@@ -445,14 +558,138 @@
             }
         }
 
-        /* ---------- COMPARISON TABLE ---------- */
+        /* PRODUCT GRID */
+        .pgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        @media (max-width: 680px) {
+            .pgrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pcard {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all .3s;
+        }
+
+        .pcard:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, .08);
+        }
+
+        .pcard-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .pcard h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--ink);
+            flex: 1;
+        }
+
+        .pcard-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .pcard p.desc {
+            font-size: 13.5px;
+            color: var(--ink-faint);
+            margin: 12px 0 0;
+            line-height: 1.6;
+        }
+
+        .pcard .pfeat {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+
+        .pcard .pfeat li {
+            display: flex;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .pcard .pfeat li::before {
+            content: "→";
+            color: var(--primary);
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .pcard-bottom {
+            margin-top: auto;
+            padding-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .pcard a.cta {
+            padding: 11px 18px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .pcard a.cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .new-badge {
+            background: var(--primary);
+            color: white;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* COMPARE TIERS (existing) */
         .compare {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
         }
 
-        @media (max-width:780px) {
+        @media (max-width: 780px) {
             .compare {
                 grid-template-columns: 1fr;
             }
@@ -470,12 +707,12 @@
 
         .tier:hover {
             border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, .08);
         }
 
         .tier.featured {
             border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, .15);
         }
 
         .tier-tag {
@@ -537,6 +774,7 @@
             font-size: 24px;
             font-weight: 700;
             color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
         }
 
         .tier-foot {
@@ -548,6 +786,7 @@
 
         .tier a.cta {
             margin-top: 16px;
+            display: block;
             text-align: center;
             padding: 12px;
             border-radius: 10px;
@@ -564,169 +803,20 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
             border: none;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
         }
 
         .tier a.cta:hover {
-            color: var(--primary);
-            border-color: var(--primary);
+            background: var(--surface);
         }
 
         .tier.featured a.cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-        }
-
-        section {
-            padding: 46px 0;
-        }
-
-        .section-head {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 26px;
-            flex-wrap: wrap;
-        }
-
-        .section-head h2 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--ink);
-        }
-
-        .section-head p {
-            margin: 0;
-            color: var(--ink-faint);
-            font-size: 14px;
-        }
-
-        /* ---------- PRODUCT GRID ---------- */
-        .pgrid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-
-        @media (max-width:680px) {
-            .pgrid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .pcard {
-            background: var(--paper-card);
-            border: 1px solid var(--rule);
-            border-radius: 12px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            transition: all .3s;
-        }
-
-        .pcard:hover {
-            border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
-        }
-
-        .pcard-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            align-items: flex-start;
-        }
-
-        .pcard h3 {
-            font-size: 19px;
-            font-weight: 700;
-            color: var(--ink);
-            flex: 1;
-        }
-
-        .pcard-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
-        .pcard p.desc {
-            font-size: 13.5px;
-            color: var(--ink-faint);
-            margin: 12px 0 0;
-            line-height: 1.6;
-        }
-
-        .pcard .pfeat {
-            list-style: none;
-            padding: 0;
-            margin: 14px 0 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--ink-soft);
-        }
-
-        .pcard .pfeat li {
-            display: flex;
-            gap: 8px;
-            line-height: 1.5;
-        }
-
-        .pcard .pfeat li::before {
-            content: "→";
-            color: var(--primary);
-            flex-shrink: 0;
-            font-weight: 700;
-        }
-
-        .pcard-bottom {
-            margin-top: auto;
-            padding-top: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .pcard a.cta {
-            padding: 11px 18px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            font-weight: 700;
-            font-size: 13px;
-            transition: all .3s;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-            cursor: pointer;
-            border: none;
-        }
-
-        .pcard a.cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-        }
-
-        .new-badge {
-            background: var(--primary);
-            color: white;
-            font-size: 10.5px;
-            font-weight: 700;
-            letter-spacing: .05em;
-            padding: 5px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-
-        /* ---------- EXAM TARGET STRIP ---------- */
+        /* EXAM / STAT */
         .exam-strip {
             display: flex;
             flex-wrap: wrap;
@@ -743,14 +833,13 @@
             color: var(--ink-soft);
         }
 
-        /* ---------- STAT STRIP ---------- */
         .stat-strip {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
         }
 
-        @media (max-width:780px) {
+        @media (max-width: 780px) {
             .stat-strip {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -778,10 +867,10 @@
             font-weight: 600;
         }
 
-        /* ---------- FOOTER ---------- */
+        /* FOOTER */
         footer {
             background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
-            color: #FFFFFF;
+            color: #fff;
             padding: 56px 0 36px;
             margin-top: 30px;
         }
@@ -795,7 +884,7 @@
         .foot-cta h2 {
             font-size: 30px;
             font-weight: 700;
-            color: #FFFFFF;
+            color: #fff;
         }
 
         .foot-cta p {
@@ -823,16 +912,16 @@
         .foot-buttons a.primary {
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
         }
 
         .foot-buttons a.primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
         }
 
         .foot-buttons a.secondary {
-            border: 1.4px solid rgba(255, 255, 255, 0.3);
+            border: 1.4px solid rgba(255, 255, 255, .3);
             color: #F4EFE3;
         }
 
@@ -844,7 +933,7 @@
         .foot-bottom {
             margin-top: 48px;
             padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, .1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -863,7 +952,7 @@
             width: 34px;
             height: 34px;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, .2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -877,6 +966,7 @@
             color: var(--primary);
         }
 
+        /* REVEAL */
         .reveal {
             opacity: 0;
             transform: translateY(16px);
@@ -899,25 +989,362 @@
                 scroll-behavior: auto;
             }
         }
+
+        /* ================================================================
+       NEW: DYNAMIC COMPARE TOOL
+    ================================================================ */
+        .compare-tool-section {
+            padding: 56px 0;
+            background: linear-gradient(180deg, var(--paper) 0%, #EEF0FF 100%);
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .compare-tool-head {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .compare-tool-head .eyebrow {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .compare-tool-head h2 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .compare-tool-head p {
+            margin: 10px auto 0;
+            max-width: 50ch;
+            color: var(--ink-faint);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .compare-picker {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: start;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 700px) {
+            .compare-picker {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-vs {
+                display: none;
+            }
+        }
+
+        .picker-side {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .picker-side label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--ink-faint);
+        }
+
+        .course-select {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--rule);
+            border-radius: 10px;
+            background: var(--paper-card);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            transition: border-color .2s;
+        }
+
+        .course-select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, .12);
+        }
+
+        .compare-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+        }
+
+        .vs-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: white;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* COMPARISON RESULT PANEL */
+        .compare-result {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+        }
+
+        @media (max-width: 640px) {
+            .compare-result {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cmp-col {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: background .3s;
+        }
+
+        .cmp-col+.cmp-col {
+            border-left: 1px solid var(--rule);
+        }
+
+        @media (max-width: 640px) {
+            .cmp-col+.cmp-col {
+                border-left: none;
+                border-top: 1px solid var(--rule);
+            }
+        }
+
+        .cmp-col.highlight {
+            background: #F5F3FF;
+        }
+
+        .cmp-name {
+            font-family: 'Fraunces', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .cmp-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .cmp-price-og {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--ink-faint);
+            text-decoration: line-through;
+        }
+
+        .cmp-price-sale {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .cmp-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 11px 0;
+            border-top: 1px solid var(--rule);
+            font-size: 13.5px;
+            line-height: 1.4;
+        }
+
+        .cmp-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .cmp-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .cmp-icon.yes {
+            background: #D1FAE5;
+        }
+
+        .cmp-icon.no {
+            background: #F3F4F6;
+        }
+
+        .cmp-icon.yes svg path {
+            stroke: var(--success);
+        }
+
+        .cmp-icon.no svg path {
+            stroke: #B0B9C6;
+        }
+
+        .cmp-label {
+            color: var(--ink-soft);
+            font-weight: 500;
+        }
+
+        .cmp-label.muted {
+            color: #B0B9C6;
+        }
+
+        .cmp-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .cmp-enroll {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13.5px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            transition: all .3s;
+        }
+
+        .cmp-enroll:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        /* COMBO BENEFIT BANNER (contextual, shown when comparing combos vs singles) */
+        .combo-benefit-bar {
+            margin-top: 16px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #0F1419 0%, #1e2533 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .35s ease, transform .35s ease;
+            pointer-events: none;
+        }
+
+        .combo-benefit-bar.visible {
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+        }
+
+        .combo-benefit-bar .cb-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cb-text {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .cb-text strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .cb-text span {
+            font-size: 13px;
+            color: #A0AEC0;
+            line-height: 1.5;
+        }
+
+        .cb-saving {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--success);
+            white-space: nowrap;
+        }
+
+        .cb-action {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            transition: background .2s;
+            white-space: nowrap;
+        }
+
+        .cb-action:hover {
+            background: var(--primary-dark);
+        }
+
+        /* empty state */
+        .compare-empty {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--ink-faint);
+            font-size: 15px;
+            background: var(--paper-card);
+            border: 1px dashed var(--rule);
+            border-radius: 14px;
+        }
+
+        .compare-empty svg {
+            margin-bottom: 16px;
+            opacity: .4;
+        }
+
+        .compare-empty p {
+            margin: 0;
+        }
     </style>
 </head>
 
 <body>
 
-    <nav class="nav">
-        <div class="nav-inner">
-            <a class="brand" href="mba-partner-cat-omet-courses.html">
-                <span class="brand-mark">MP</span>
-                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
-            </a>
-            <div class="nav-links">
-                <a href="mba-partner-cat-omet-courses.html">Home</a>
-                <a href="mba-partner-cat-omet-courses.html">Placement Courses</a>
-                <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
-                <a class="nav-cta" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp</a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-mount" data-track="cat"></div>
 
     <header class="hero" id="top">
         <div class="wrap">
@@ -943,9 +1370,11 @@
             <div class="chip" data-filter="mocks">Mock Tests</div>
             <div class="chip" data-filter="gdpi">GD-PI-WAT</div>
             <div class="chip" data-filter="mentor">Mentoring</div>
+            <div class="chip" data-filter="compare-tool">⚖ Compare</div>
         </div>
     </nav>
 
+    <!-- ALL-IN-ONE COMBO -->
     <section data-cat="combo course">
         <div class="wrap">
             <div class="section-head reveal">
@@ -959,10 +1388,9 @@
                     <div class="ticket-modules">
                         <div class="module-row"><span class="dot"></span> CAT/OMET Full Course — QA, VARC, DILR
                             concept-to-mastery</div>
-                        <div class="module-row"><span class="dot"></span> 20 full-length mocks with percentile
-                            analysis</div>
-                        <div class="module-row"><span class="dot"></span> GD-PI-WAT prep — mock panels by alumni
+                        <div class="module-row"><span class="dot"></span> 20 full-length mocks with percentile analysis
                         </div>
+                        <div class="module-row"><span class="dot"></span> GD-PI-WAT prep — mock panels by alumni</div>
                     </div>
                 </div>
                 <div class="ticket-right">
@@ -976,6 +1404,7 @@
         </div>
     </section>
 
+    <!-- FULL COURSE TIERS -->
     <section data-cat="course combo">
         <div class="wrap">
             <div class="section-head reveal">
@@ -998,7 +1427,7 @@
                         <li class="muted">No GD-PI-WAT prep</li>
                     </ul>
                     <div class="tier-price-row"><span class="price-regular mono">₹10,999</span><span
-                            class="price-sale mono">₹9,999</span></div>
+                            class="price-sale">₹9,999</span></div>
                     <p class="tier-foot">Best if you already mock-test elsewhere and just need the concept depth.</p>
                     <a class="cta" href="product-cat-omet-full-course.html">💳 Enroll →</a>
                 </div>
@@ -1021,7 +1450,7 @@
                         <li class="muted">No GD-PI-WAT prep</li>
                     </ul>
                     <div class="tier-price-row"><span class="price-regular mono">₹12,998</span><span
-                            class="price-sale mono">₹12,499</span></div>
+                            class="price-sale">₹12,499</span></div>
                     <p class="tier-foot">₹499 cheaper than buying both separately.</p>
                     <a class="cta" href="product-cat-omet-course-mocks.html">💳 Enroll →</a>
                 </div>
@@ -1039,7 +1468,7 @@
                         <li class="muted">No full-length mocks</li>
                     </ul>
                     <div class="tier-price-row"><span class="price-regular mono">₹13,498</span><span
-                            class="price-sale mono">₹12,999</span></div>
+                            class="price-sale">₹12,999</span></div>
                     <p class="tier-foot">Same total as buying both apart — bundled for one checkout.</p>
                     <a class="cta" href="product-cat-omet-course-gdpiwat.html">💳 Enroll →</a>
                 </div>
@@ -1047,6 +1476,7 @@
         </div>
     </section>
 
+    <!-- MOCK TESTS -->
     <section data-cat="mocks">
         <div class="wrap">
             <div class="section-head reveal">
@@ -1058,11 +1488,11 @@
                     <div class="pcard-top">
                         <h3>Sectional Test Pack</h3>
                         <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <rect x="2" y="2" width="14" height="14" rx="3" stroke="#FF8B02" stroke-width="1.6" />
+                                <rect x="2" y="2" width="14" height="14" rx="3" stroke="white" stroke-width="1.6" />
                             </svg></div>
                     </div>
-                    <p class="desc">30 sectional tests across QA, VARC and DILR to fix weak areas before
-                        full-lengths.</p>
+                    <p class="desc">30 sectional tests across QA, VARC and DILR to fix weak areas before full-lengths.
+                    </p>
                     <div class="pcard-bottom">
                         <span><span class="price-regular mono">₹1,999</span> <span class="price-sale mono"
                                 style="font-size:18px;">₹1,499</span></span>
@@ -1073,12 +1503,12 @@
                     <div class="pcard-top">
                         <h3>20 Full-Length Mocks</h3>
                         <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <rect x="2" y="2" width="6" height="14" rx="2" stroke="#FF8B02" stroke-width="1.6" />
-                                <rect x="10" y="2" width="6" height="14" rx="2" stroke="#FF8B02" stroke-width="1.6" />
+                                <rect x="2" y="2" width="6" height="14" rx="2" stroke="white" stroke-width="1.6" />
+                                <rect x="10" y="2" width="6" height="14" rx="2" stroke="white" stroke-width="1.6" />
                             </svg></div>
                     </div>
-                    <p class="desc">CAT-pattern mocks with detailed percentile and All-India rank after every
-                        attempt.</p>
+                    <p class="desc">CAT-pattern mocks with detailed percentile and All-India rank after every attempt.
+                    </p>
                     <div class="pcard-bottom">
                         <span><span class="price-regular mono">₹3,499</span> <span class="price-sale mono"
                                 style="font-size:18px;">₹2,999</span></span>
@@ -1089,6 +1519,7 @@
         </div>
     </section>
 
+    <!-- GD-PI-WAT -->
     <section data-cat="gdpi combo">
         <div class="wrap">
             <div class="section-head reveal">
@@ -1100,7 +1531,7 @@
                     <div class="pcard-top">
                         <h3>GD-PI-WAT Prep</h3>
                         <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <path d="M3 14V8M9 14V4M15 14V10" stroke="#FF8B02" stroke-width="1.8"
+                                <path d="M3 14V8M9 14V4M15 14V10" stroke="white" stroke-width="1.8"
                                     stroke-linecap="round" />
                             </svg></div>
                     </div>
@@ -1119,7 +1550,7 @@
                     <div class="pcard-top">
                         <h3>GD-PI-WAT + Mock Series</h3>
                         <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <path d="M9 2v14M2 9h14" stroke="#FF8B02" stroke-width="1.8" stroke-linecap="round" />
+                                <path d="M9 2v14M2 9h14" stroke="white" stroke-width="1.8" stroke-linecap="round" />
                             </svg></div>
                     </div>
                     <p class="desc">Interview prep plus the full 20-mock series in a single enrollment.</p>
@@ -1133,6 +1564,102 @@
         </div>
     </section>
 
+    <!-- PI / GD / TRANSCRIPTS COMING SOON -->
+    <section data-cat="gdpi">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>Free Interview Resources</h2>
+                <p>Dropping soon — no cost, no catch</p>
+            </div>
+            <div class="reveal"
+                style="background:linear-gradient(120deg,#0f1419 0%,#1e1b4b 100%); border-radius:16px; padding:36px 40px; color:#fff; display:flex; flex-wrap:wrap; gap:32px; align-items:center; position:relative; overflow:hidden;">
+                <!-- bg glow -->
+                <div
+                    style="position:absolute; top:-40px; right:-40px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(99,102,241,.25) 0%, transparent 70%); pointer-events:none;">
+                </div>
+
+                <!-- left: label + headline -->
+                <div style="flex:1; min-width:220px; position:relative;">
+                    <div
+                        style="display:inline-flex; align-items:center; gap:8px; background:rgba(245,158,11,.15); border:1px solid rgba(245,158,11,.35); border-radius:999px; padding:6px 14px; margin-bottom:16px;">
+                        <span
+                            style="width:7px; height:7px; border-radius:50%; background:#f59e0b; animation:pulse 1.6s infinite;"></span>
+                        <span
+                            style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#fde68a;">Coming
+                            Soon</span>
+                    </div>
+                    <h3
+                        style="font-size:clamp(20px,2.5vw,26px); font-weight:700; font-family:'Fraunces',serif; color:#fff; line-height:1.2; margin:0 0 10px;">
+                        Real PI &amp; GD material<br>from real CAT converts.</h3>
+                    <p style="font-size:13.5px; color:#a5b4fc; margin:0; line-height:1.6; max-width:38ch;">We're
+                        compiling everything our alumni actually faced in their interviews and GDs — raw, unfiltered,
+                        and free.</p>
+                </div>
+
+                <!-- right: 3 stat tiles -->
+                <div style="display:flex; flex-wrap:wrap; gap:14px; flex-shrink:0;">
+                    <div
+                        style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:20px 24px; text-align:center; min-width:130px;">
+                        <div
+                            style="font-family:'IBM Plex Mono',monospace; font-size:36px; font-weight:700; color:#818cf8; line-height:1;">
+                            10</div>
+                        <div
+                            style="font-size:12px; font-weight:600; color:#c7d2fe; margin-top:6px; text-transform:uppercase; letter-spacing:.05em;">
+                            Mock PIs</div>
+                        <div style="font-size:11px; color:#6b7280; margin-top:3px;">IIM + XLRI + FMS panels</div>
+                    </div>
+                    <div
+                        style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:20px 24px; text-align:center; min-width:130px;">
+                        <div
+                            style="font-family:'IBM Plex Mono',monospace; font-size:36px; font-weight:700; color:#f9a8d4; line-height:1;">
+                            10</div>
+                        <div
+                            style="font-size:12px; font-weight:600; color:#fbcfe8; margin-top:6px; text-transform:uppercase; letter-spacing:.05em;">
+                            Mock GDs</div>
+                        <div style="font-size:11px; color:#6b7280; margin-top:3px;">Topic + case + abstract</div>
+                    </div>
+                    <div
+                        style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:20px 24px; text-align:center; min-width:130px;">
+                        <div
+                            style="font-family:'IBM Plex Mono',monospace; font-size:36px; font-weight:700; color:#86efac; line-height:1;">
+                            100<span style="font-size:20px;">+</span></div>
+                        <div
+                            style="font-size:12px; font-weight:600; color:#bbf7d0; margin-top:6px; text-transform:uppercase; letter-spacing:.05em;">
+                            Transcripts</div>
+                        <div style="font-size:11px; color:#6b7280; margin-top:3px;">Past year PI experiences</div>
+                    </div>
+                </div>
+
+                <!-- bottom row: notify CTA -->
+                <div
+                    style="width:100%; border-top:1px solid rgba(255,255,255,.08); padding-top:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+                    <p style="margin:0; font-size:13px; color:#94a3b8;">Join the WhatsApp group — we'll drop these the
+                        moment they're live.</p>
+                    <a href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD"
+                        style="background:linear-gradient(135deg,#6366f1,#ec4899); color:#fff; padding:11px 22px; border-radius:10px; font-weight:700; font-size:13px; white-space:nowrap; transition:all .3s; box-shadow:0 4px 12px rgba(99,102,241,.35);">🔔
+                        Notify Me →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .5;
+                transform: scale(1.3);
+            }
+        }
+    </style>
+
+    <!-- MENTORING -->
     <section data-cat="mentor">
         <div class="wrap">
             <div class="section-head reveal">
@@ -1144,8 +1671,8 @@
                     <div class="pcard-top">
                         <h3>1-on-1 Mentoring <span class="new-badge">New</span></h3>
                         <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <circle cx="9" cy="6" r="3" stroke="#FF8B02" stroke-width="1.6" />
-                                <path d="M3 15c0-3 2.5-5 6-5s6 2 6 5" stroke="#FF8B02" stroke-width="1.6"
+                                <circle cx="9" cy="6" r="3" stroke="white" stroke-width="1.6" />
+                                <path d="M3 15c0-3 2.5-5 6-5s6 2 6 5" stroke="white" stroke-width="1.6"
                                     stroke-linecap="round" />
                             </svg></div>
                     </div>
@@ -1159,14 +1686,14 @@
                     <div class="pcard-top">
                         <h3>Group Cohort Mentoring</h3>
                         <div class="pcard-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <circle cx="6" cy="6" r="2.5" stroke="#FF8B02" stroke-width="1.6" />
-                                <circle cx="12" cy="6" r="2.5" stroke="#FF8B02" stroke-width="1.6" />
-                                <path d="M2 15c0-2.5 1.8-4 4-4s4 1.5 4 4M10 15c0-2.5 1.8-4 4-4s4 1.5 4 4"
-                                    stroke="#FF8B02" stroke-width="1.6" stroke-linecap="round" />
+                                <circle cx="6" cy="6" r="2.5" stroke="white" stroke-width="1.6" />
+                                <circle cx="12" cy="6" r="2.5" stroke="white" stroke-width="1.6" />
+                                <path d="M2 15c0-2.5 1.8-4 4-4s4 1.5 4 4M10 15c0-2.5 1.8-4 4-4s4 1.5 4 4" stroke="white"
+                                    stroke-width="1.6" stroke-linecap="round" />
                             </svg></div>
                     </div>
-                    <p class="desc">Small-batch live doubt-solving sessions twice a week, peer accountability built
-                        in.</p>
+                    <p class="desc">Small-batch live doubt-solving sessions twice a week, peer accountability built in.
+                    </p>
                     <div class="pcard-bottom">
                         <span><span class="price-sale mono" style="font-size:18px;">₹4,500</span></span>
                         <a class="cta" href="product-group-cohort-mentoring.html">💳 Enroll →</a>
@@ -1176,6 +1703,109 @@
         </div>
     </section>
 
+    <!-- ================================================================
+       NEW: DYNAMIC COURSE COMPARE TOOL
+  ================================================================ -->
+    <section class="compare-tool-section" data-cat="compare-tool" id="compare-tool">
+        <div class="wrap">
+            <div class="compare-tool-head reveal">
+                <span class="eyebrow">⚖ Side-by-side</span>
+                <h2>Compare any two courses</h2>
+                <p>Not sure which to pick? Choose two courses below and see exactly what you gain — or save — by going
+                    with the combo.</p>
+            </div>
+
+            <div class="compare-picker reveal">
+                <div class="picker-side">
+                    <label for="course-a">Course A</label>
+                    <select class="course-select" id="course-a">
+                        <option value="">— Pick a course —</option>
+                        <optgroup label="Full Courses">
+                            <option value="course">CAT/OMET Full Course — ₹9,999</option>
+                        </optgroup>
+                        <optgroup label="Mock Tests">
+                            <option value="sectional">Sectional Test Pack — ₹1,499</option>
+                            <option value="fulllength">20 Full-Length Mocks — ₹2,999</option>
+                        </optgroup>
+                        <optgroup label="GD-PI-WAT">
+                            <option value="gdpiwat">GD-PI-WAT Prep — ₹3,499</option>
+                        </optgroup>
+                        <optgroup label="Combos">
+                            <option value="course-mocks">Full Course + Mock Series — ₹12,499</option>
+                            <option value="course-gdpiwat">Full Course + GD-PI-WAT — ₹12,999</option>
+                            <option value="gdpiwat-mocks">GD-PI-WAT + Mock Series — ₹5,999</option>
+                            <option value="all-in-one">All-in-One Combo — ₹14,999</option>
+                        </optgroup>
+                        <optgroup label="Mentoring">
+                            <option value="1on1">1-on-1 Mentoring — ₹2,500</option>
+                            <option value="group">Group Cohort Mentoring — ₹4,500</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="compare-vs">
+                    <div class="vs-badge">VS</div>
+                </div>
+
+                <div class="picker-side">
+                    <label for="course-b">Course B</label>
+                    <select class="course-select" id="course-b">
+                        <option value="">— Pick a course —</option>
+                        <optgroup label="Full Courses">
+                            <option value="course">CAT/OMET Full Course — ₹9,999</option>
+                        </optgroup>
+                        <optgroup label="Mock Tests">
+                            <option value="sectional">Sectional Test Pack — ₹1,499</option>
+                            <option value="fulllength">20 Full-Length Mocks — ₹2,999</option>
+                        </optgroup>
+                        <optgroup label="GD-PI-WAT">
+                            <option value="gdpiwat">GD-PI-WAT Prep — ₹3,499</option>
+                        </optgroup>
+                        <optgroup label="Combos">
+                            <option value="course-mocks">Full Course + Mock Series — ₹12,499</option>
+                            <option value="course-gdpiwat">Full Course + GD-PI-WAT — ₹12,999</option>
+                            <option value="gdpiwat-mocks">GD-PI-WAT + Mock Series — ₹5,999</option>
+                            <option value="all-in-one">All-in-One Combo — ₹14,999</option>
+                        </optgroup>
+                        <optgroup label="Mentoring">
+                            <option value="1on1">1-on-1 Mentoring — ₹2,500</option>
+                            <option value="group">Group Cohort Mentoring — ₹4,500</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Combo benefit banner (shows when relevant) -->
+            <div class="combo-benefit-bar" id="combo-bar">
+                <div class="cb-icon">
+                    <svg width="22" height="22" fill="none" viewBox="0 0 22 22">
+                        <path d="M11 2l2.4 6.5H20l-5.4 4 2 6.5L11 15l-5.6 4 2-6.5L2 8.5h6.6L11 2z" fill="white" />
+                    </svg>
+                </div>
+                <div class="cb-text">
+                    <strong id="cb-title">Combo saves you money</strong>
+                    <span id="cb-desc">There's a bundle that covers both — at a lower price.</span>
+                </div>
+                <div class="cb-saving" id="cb-saving"></div>
+                <a class="cb-action" id="cb-link" href="#">See combo →</a>
+            </div>
+
+            <!-- Result panel -->
+            <div id="compare-output">
+                <div class="compare-empty">
+                    <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
+                        <rect x="6" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2" />
+                        <rect x="26" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2" />
+                        <path d="M10 16h8M10 22h8M10 28h5M30 16h8M30 22h8M30 28h5" stroke="#6B7280" stroke-width="1.5"
+                            stroke-linecap="round" />
+                    </svg>
+                    <p>Select two courses above to see a side-by-side breakdown.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXAM TARGET -->
     <section>
         <div class="wrap">
             <div class="section-head reveal">
@@ -1183,18 +1813,15 @@
                 <p>Exams our content and mocks are mapped to</p>
             </div>
             <div class="exam-strip reveal">
-                <span class="exam-pill">CAT</span>
-                <span class="exam-pill">XAT</span>
-                <span class="exam-pill">SNAP</span>
-                <span class="exam-pill">NMAT</span>
-                <span class="exam-pill">CMAT</span>
-                <span class="exam-pill">IIFT</span>
-                <span class="exam-pill">MAT</span>
-                <span class="exam-pill">ATMA</span>
+                <span class="exam-pill">CAT</span><span class="exam-pill">XAT</span><span
+                    class="exam-pill">SNAP</span><span class="exam-pill">NMAT</span><span
+                    class="exam-pill">CMAT</span><span class="exam-pill">IIFT</span><span
+                    class="exam-pill">MAT</span><span class="exam-pill">ATMA</span>
             </div>
         </div>
     </section>
 
+    <!-- STATS -->
     <section>
         <div class="wrap">
             <div class="stat-strip reveal">
@@ -1222,8 +1849,7 @@
         <div class="wrap">
             <div class="foot-cta reveal">
                 <h2>Ready to start your prep?</h2>
-                <p>Get mentored by alumni from top B-Schools and turn your CAT/OMET attempt into a converted call.
-                </p>
+                <p>Get mentored by alumni from top B-Schools and turn your CAT/OMET attempt into a converted call.</p>
                 <div class="foot-buttons">
                     <a class="primary" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp Group</a>
                     <a class="secondary" href="https://t.me/+eV1FROkJppFlYmU1">Join Telegram</a>
@@ -1242,7 +1868,327 @@
     </footer>
 
     <script>
-        // ---- Filter chips ----
+        // ---- COURSE DATA ----
+        const COURSES = {
+            'course': {
+                name: 'CAT/OMET Full Course',
+                price: 9999,
+                og: 10999,
+                url: 'product-cat-omet-full-course.html',
+                features: {
+                    'concept_videos': true,
+                    'topic_sets': true,
+                    'full_mocks': false,
+                    'sectional_mocks': false,
+                    'percentile': false,
+                    'gdpiwat': false,
+                    'mock_pi': false,
+                    'wat_bank': false,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            'sectional': {
+                name: 'Sectional Test Pack',
+                price: 1499,
+                og: 1999,
+                url: 'product-sectional-test-pack.html',
+                features: {
+                    'concept_videos': false,
+                    'topic_sets': false,
+                    'full_mocks': false,
+                    'sectional_mocks': true,
+                    'percentile': true,
+                    'gdpiwat': false,
+                    'mock_pi': false,
+                    'wat_bank': false,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            'fulllength': {
+                name: '20 Full-Length Mocks',
+                price: 2999,
+                og: 3499,
+                url: 'product-full-length-mocks.html',
+                features: {
+                    'concept_videos': false,
+                    'topic_sets': false,
+                    'full_mocks': true,
+                    'sectional_mocks': false,
+                    'percentile': true,
+                    'gdpiwat': false,
+                    'mock_pi': false,
+                    'wat_bank': false,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            'gdpiwat': {
+                name: 'GD-PI-WAT Prep',
+                price: 3499,
+                og: 3999,
+                url: 'product-gdpiwat-prep.html',
+                features: {
+                    'concept_videos': false,
+                    'topic_sets': false,
+                    'full_mocks': false,
+                    'sectional_mocks': false,
+                    'percentile': false,
+                    'gdpiwat': true,
+                    'mock_pi': true,
+                    'wat_bank': true,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            'course-mocks': {
+                name: 'Full Course + Mock Series',
+                price: 12499,
+                og: 12998,
+                url: 'product-cat-omet-course-mocks.html',
+                features: {
+                    'concept_videos': true,
+                    'topic_sets': true,
+                    'full_mocks': true,
+                    'sectional_mocks': false,
+                    'percentile': true,
+                    'gdpiwat': false,
+                    'mock_pi': false,
+                    'wat_bank': false,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            'course-gdpiwat': {
+                name: 'Full Course + GD-PI-WAT',
+                price: 12999,
+                og: 13498,
+                url: 'product-cat-omet-course-gdpiwat.html',
+                features: {
+                    'concept_videos': true,
+                    'topic_sets': true,
+                    'full_mocks': false,
+                    'sectional_mocks': false,
+                    'percentile': false,
+                    'gdpiwat': true,
+                    'mock_pi': true,
+                    'wat_bank': true,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            'gdpiwat-mocks': {
+                name: 'GD-PI-WAT + Mock Series',
+                price: 5999,
+                og: 6498,
+                url: 'product-gdpiwat-mocks-combo.html',
+                features: {
+                    'concept_videos': false,
+                    'topic_sets': false,
+                    'full_mocks': true,
+                    'sectional_mocks': false,
+                    'percentile': true,
+                    'gdpiwat': true,
+                    'mock_pi': true,
+                    'wat_bank': true,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            'all-in-one': {
+                name: 'All-in-One Combo',
+                price: 14999,
+                og: 16497,
+                url: 'product-cat-omet-all-in-one-combo.html',
+                features: {
+                    'concept_videos': true,
+                    'topic_sets': true,
+                    'full_mocks': true,
+                    'sectional_mocks': false,
+                    'percentile': true,
+                    'gdpiwat': true,
+                    'mock_pi': true,
+                    'wat_bank': true,
+                    '1on1': false,
+                    'group_mentor': false,
+                }
+            },
+            '1on1': {
+                name: '1-on-1 Mentoring',
+                price: 2500,
+                og: null,
+                url: 'product-1on1-mentoring.html',
+                features: {
+                    'concept_videos': false,
+                    'topic_sets': false,
+                    'full_mocks': false,
+                    'sectional_mocks': false,
+                    'percentile': false,
+                    'gdpiwat': false,
+                    'mock_pi': false,
+                    'wat_bank': false,
+                    '1on1': true,
+                    'group_mentor': false,
+                }
+            },
+            'group': {
+                name: 'Group Cohort Mentoring',
+                price: 4500,
+                og: null,
+                url: 'product-group-cohort-mentoring.html',
+                features: {
+                    'concept_videos': false,
+                    'topic_sets': false,
+                    'full_mocks': false,
+                    'sectional_mocks': false,
+                    'percentile': false,
+                    'gdpiwat': false,
+                    'mock_pi': false,
+                    'wat_bank': false,
+                    '1on1': false,
+                    'group_mentor': true,
+                }
+            },
+        };
+
+        const FEATURE_LABELS = {
+            'concept_videos': '300+ concept videos (QA, VARC, DILR)',
+            'topic_sets': 'Topic-wise practice sets & PYQs',
+            'full_mocks': '20 full-length CAT-pattern mocks',
+            'sectional_mocks': '30 sectional tests (QA / VARC / DILR)',
+            'percentile': 'All-India percentile & rank tracking',
+            'gdpiwat': 'GD practice with live feedback',
+            'mock_pi': '4 mock personal interview panels',
+            'wat_bank': 'WAT topic bank + writing review',
+            '1on1': 'Weekly 1-on-1 alumni mentor calls',
+            'group_mentor': 'Twice-weekly group doubt sessions',
+        };
+
+        // Combo suggestion map: if user picks two singles that have a bundle, surface it
+        // key: sorted pair of course ids, value: combo id
+        const COMBO_HINTS = {
+            'course+fulllength': { id: 'course-mocks', saving: 499 },
+            'course+gdpiwat': { id: 'course-gdpiwat', saving: 0, msg: 'bundled for one checkout' },
+            'fulllength+gdpiwat': { id: 'gdpiwat-mocks', saving: 499 },
+            'course+gdpiwat-mocks': { id: 'all-in-one', saving: 999 },
+            'course+fulllength+gdpiwat': { id: 'all-in-one', saving: 1498 },
+            'fulllength+sectional': null,
+        };
+
+        function checkIcon(yes) {
+            if (yes) return `<div class="cmp-icon yes"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M1 6l3.5 3.5L11 2" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+            return `<div class="cmp-icon no"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M2 2l8 8M10 2L2 10" stroke="#B0B9C6" stroke-width="1.5" stroke-linecap="round"/></svg></div>`;
+        }
+
+        function renderCmpCol(id, highlight) {
+            const c = COURSES[id];
+            const priceRow = c.og
+                ? `<span class="cmp-price-og">₹${c.og.toLocaleString('en-IN')}</span> <span class="cmp-price-sale">₹${c.price.toLocaleString('en-IN')}</span>`
+                : `<span class="cmp-price-sale">₹${c.price.toLocaleString('en-IN')}</span>`;
+
+            const rows = Object.entries(FEATURE_LABELS).map(([key, label]) => {
+                const has = c.features[key];
+                return `<div class="cmp-row">${checkIcon(has)}<span class="cmp-label${has ? '' : ' muted'}">${label}</span></div>`;
+            }).join('');
+
+            return `
+      <div class="cmp-col${highlight ? ' highlight' : ''}">
+        <div class="cmp-name">${c.name}</div>
+        <div class="cmp-price-row">${priceRow}</div>
+        ${rows}
+        <div class="cmp-footer">
+          <a class="cmp-enroll" href="${c.url}">💳 Enroll in this →</a>
+        </div>
+      </div>`;
+        }
+
+        function updateComboBar(idA, idB) {
+            const bar = document.getElementById('combo-bar');
+            const pairKey = [idA, idB].sort().join('+');
+            const hint = COMBO_HINTS[pairKey];
+            const cA = COURSES[idA], cB = COURSES[idB];
+            const combo = hint && COURSES[hint.id];
+
+            // Is either selection already a combo?
+            const eitherIsCombo = ['course-mocks', 'course-gdpiwat', 'gdpiwat-mocks', 'all-in-one'].includes(idA)
+                || ['course-mocks', 'course-gdpiwat', 'gdpiwat-mocks', 'all-in-one'].includes(idB);
+
+            // Show savings if buying both singles separately vs combo
+            if (hint && combo && !eitherIsCombo) {
+                const separateTotal = cA.price + cB.price;
+                const saved = separateTotal - combo.price;
+                document.getElementById('cb-title').textContent = `${combo.name} covers both`;
+                document.getElementById('cb-desc').textContent =
+                    saved > 0
+                        ? `Buying these separately costs ₹${separateTotal.toLocaleString('en-IN')}. The combo bundles them for less.`
+                        : `There's a bundle that covers both courses in a single checkout — no need for two enrollments.`;
+                document.getElementById('cb-saving').textContent = saved > 0 ? `Save ₹${saved.toLocaleString('en-IN')}` : 'One checkout';
+                document.getElementById('cb-link').href = combo.url;
+                document.getElementById('cb-link').textContent = 'See combo →';
+                bar.classList.add('visible');
+            } else if (eitherIsCombo) {
+                // One of them is already a combo — show what the combo includes
+                const comboId = ['course-mocks', 'course-gdpiwat', 'gdpiwat-mocks', 'all-in-one'].find(c => c === idA || c === idB);
+                const singleId = comboId === idA ? idB : idA;
+                const comboObj = COURSES[comboId];
+                const singleObj = COURSES[singleId];
+                // Check if the combo already includes the single
+                const singleFeatureKeys = Object.entries(singleObj.features).filter(([, v]) => v).map(([k]) => k);
+                const comboAlreadyCovers = singleFeatureKeys.every(k => comboObj.features[k]);
+                if (comboAlreadyCovers) {
+                    document.getElementById('cb-title').textContent = `${comboObj.name} already includes everything in ${singleObj.name}`;
+                    document.getElementById('cb-desc').textContent = `No need to buy both. The combo you picked covers all the features of the standalone course.`;
+                    document.getElementById('cb-saving').textContent = `₹${singleObj.price.toLocaleString('en-IN')} saved`;
+                    document.getElementById('cb-link').href = comboObj.url;
+                    document.getElementById('cb-link').textContent = 'Enroll in combo →';
+                    bar.classList.add('visible');
+                } else {
+                    bar.classList.remove('visible');
+                }
+            } else {
+                bar.classList.remove('visible');
+            }
+        }
+
+        function renderCompare() {
+            const idA = document.getElementById('course-a').value;
+            const idB = document.getElementById('course-b').value;
+            const output = document.getElementById('compare-output');
+
+            if (!idA || !idB) {
+                output.innerHTML = `<div class="compare-empty">
+        <svg width="48" height="48" fill="none" viewBox="0 0 48 48"><rect x="6" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2"/><rect x="26" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2"/><path d="M10 16h8M10 22h8M10 28h5M30 16h8M30 22h8M30 28h5" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <p>Select two courses above to see a side-by-side breakdown.</p>
+      </div>`;
+                document.getElementById('combo-bar').classList.remove('visible');
+                return;
+            }
+
+            if (idA === idB) {
+                output.innerHTML = `<div class="compare-empty">
+        <p>Pick two different courses to compare them.</p>
+      </div>`;
+                document.getElementById('combo-bar').classList.remove('visible');
+                return;
+            }
+
+            // Determine which (if any) is the "better" one by feature count
+            const countA = Object.values(COURSES[idA].features).filter(Boolean).length;
+            const countB = Object.values(COURSES[idB].features).filter(Boolean).length;
+
+            output.innerHTML = `<div class="compare-result">
+      ${renderCmpCol(idA, countA > countB)}
+      ${renderCmpCol(idB, countB > countA)}
+    </div>`;
+
+            updateComboBar(idA, idB);
+        }
+
+        document.getElementById('course-a').addEventListener('change', renderCompare);
+        document.getElementById('course-b').addEventListener('change', renderCompare);
+
+        // ---- Filter chips (original logic + compare-tool support) ----
         const chips = document.querySelectorAll('.chip');
         const catSections = document.querySelectorAll('[data-cat]');
         chips.forEach(chip => {
@@ -1251,9 +2197,13 @@
                 chip.classList.add('active');
                 const f = chip.dataset.filter;
                 catSections.forEach(sec => {
-                    const cats = sec.dataset.cat.split(' ');
+                    const cats = sec.dataset.cat ? sec.dataset.cat.split(' ') : [];
                     sec.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
                 });
+                // Scroll to compare tool if that chip was clicked
+                if (f === 'compare-tool') {
+                    setTimeout(() => document.getElementById('compare-tool').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                }
             });
         });
 
@@ -1261,11 +2211,31 @@
         const reveals = document.querySelectorAll('.reveal');
         const obs = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.08 });
         reveals.forEach(r => obs.observe(r));
 
+        // ---- Mobile hamburger ----
+        (function () {
+            var siteNav = document.querySelector('nav.nav');
+            var navToggle = document.getElementById('nav-toggle');
+            var navLinks = siteNav ? siteNav.querySelector('.nav-links') : null;
+            if (!siteNav || !navToggle || !navLinks) return;
+            navToggle.addEventListener('click', function () {
+                var isOpen = siteNav.classList.toggle('menu-open');
+                navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            });
+            navLinks.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    siteNav.classList.remove('menu-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navToggle.setAttribute('aria-label', 'Open menu');
+                });
+            });
+        })();
     </script>
-
+    <script src="Navbar_cat.js"></script>
+    <script src="chatbot-loader.js" data-track="cat"></script>
 </body>
 
 </html>

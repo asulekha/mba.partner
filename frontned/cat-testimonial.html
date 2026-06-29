@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="cat-testimonial.css">
+    <link rel="stylesheet" href="Navbar_cat.css">
+</head>
+
+<body>
+
+    <div id="navbar-mount" data-track="cat"></div>
+
+    <header class="hero">
+        <div class="wrap">
+            <div class="eyebrow">Verified Outcomes</div>
+            <h1>Hear from someone who took your course</h1>
+            <p class="hero-sub">No paid actors, no stock quotes — just students from IIMs, XLRI, MDI, NMIMS and more who
+                used our CAT/OMET courses, mock series and GD-PI-WAT prep to walk into their dream B-school.</p>
+            <div class="hero-ticker">
+                <span id="tickerStudents">100 verified testimonials</span>
+                <span id="tickerColleges">10 courses represented</span>
+                <span>100% real students</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="filters" id="testimonials">
+        <div class="wrap" id="filters"></div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <h2>The wall</h2>
+                <p>Filter by course above to find someone who took the path you're considering</p>
+            </div>
+            <div class="grid" id="grid"></div>
+            <div class="empty" id="empty">No testimonials yet for this course.</div>
+        </div>
+    </section>
+
+    <section class="video-section" id="videos">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Listen From MBA Partner Students</h2>
+                <p>All of them cracked the GDPI Flagship Course and our free Sectionals on the website.</p>
+            </div>
+            <div class="video-track-wrap">
+                <button class="nav-btn left" onclick="scrollVideos(-1)" aria-label="Scroll left">‹</button>
+                <div class="video-track" id="videoTrack"></div>
+                <button class="nav-btn right" onclick="scrollVideos(1)" aria-label="Scroll right">›</button>
+            </div>
+            <div class="scroll-hint">← Swipe to see more stories →</div>
+            <p class="video-note">Real video clips live on the Drive folder shared in the navbar above — drop each
+                student's video URL into the <code>video</code> field in cat-testimonial.js to wire it up.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-cta">
+                <h2>Ready to write your own success story?</h2>
+                <p>Join the GDPI Flagship Course and get the same mentorship these students did.</p>
+                <div class="foot-buttons">
+                    <a href="#" class="primary">Explore Courses</a>
+                    <a href="#" class="secondary">Join WhatsApp Community</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>© 2026 MBA Partner. All rights reserved.</span>
+                <div class="foot-socials">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="YouTube">YT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Navbar_cat.js"></script>
+    <script src="cat-testimonial.js"></script>
+</body>
+
+</html>

@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="Navbar_cat.css">
   <style>
     :root {
       --ink: #0F1419;
@@ -75,6 +76,7 @@
       outline-offset: 3px
     }
 
+    /* NAV */
     .nav {
       position: sticky;
       top: 0;
@@ -167,12 +169,7 @@
       box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
     }
 
-    @media (max-width:680px) {
-      .nav-links a:not(.nav-cta) {
-        display: none
-      }
-    }
-
+    /* BREADCRUMB */
     .breadcrumb {
       padding: 16px 0;
       font-size: 13.5px;
@@ -197,6 +194,7 @@
       font-weight: 600
     }
 
+    /* HERO */
     .product-hero {
       padding: 18px 0 8px
     }
@@ -257,6 +255,7 @@
       z-index: 2
     }
 
+    /* PILLS */
     .badge-row {
       display: flex;
       gap: 8px;
@@ -284,6 +283,7 @@
       border: 1px solid var(--rule)
     }
 
+    /* PRODUCT INFO */
     .product-info h1 {
       font-size: clamp(28px, 3.4vw, 40px);
       font-weight: 700;
@@ -387,6 +387,7 @@
       gap: 6px
     }
 
+    /* SECTIONS */
     section {
       padding: 40px 0
     }
@@ -407,6 +408,7 @@
       font-size: 14px
     }
 
+    /* INCLUDES GRID */
     .includes-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -461,6 +463,7 @@
       line-height: 1.55
     }
 
+    /* TIMELINE */
     .timeline {
       display: flex;
       flex-direction: column;
@@ -502,6 +505,309 @@
       color: var(--ink-faint)
     }
 
+    /* COMPARE TABLE */
+    .compare-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 14px;
+      border: 1px solid var(--rule);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .06)
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      background: var(--paper-card)
+    }
+
+    .compare-table thead tr {
+      background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%)
+    }
+
+    .compare-table thead th {
+      padding: 18px 22px;
+      text-align: left;
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap
+    }
+
+    .compare-table thead th:first-child {
+      width: 54%;
+      color: #A0AEC0;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase
+    }
+
+    .compare-table thead th:not(:first-child) {
+      text-align: center
+    }
+
+    .compare-table thead th .plan-badge {
+      display: inline-block;
+      margin-top: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px
+    }
+
+    .badge-master {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff
+    }
+
+    .badge-mini {
+      background: rgba(255, 255, 255, .12);
+      color: #D0D5DD
+    }
+
+    .compare-table tbody tr {
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .compare-table tbody tr:last-child {
+      border-bottom: none
+    }
+
+    .compare-table tbody tr:nth-child(even) {
+      background: #FAFAFA
+    }
+
+    .compare-table tbody tr:hover {
+      background: #F0F1FF
+    }
+
+    .compare-table td {
+      padding: 14px 22px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      vertical-align: top
+    }
+
+    .compare-table td:not(:first-child) {
+      text-align: center;
+      vertical-align: middle
+    }
+
+    .check {
+      color: var(--success);
+      font-size: 16px
+    }
+
+    .dash {
+      color: #C7CCD4;
+      font-size: 18px
+    }
+
+    .compare-note {
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start
+    }
+
+    /* STAT STRIP */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 22px 0
+    }
+
+    @media(max-width:780px) {
+      .stat-strip {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    .stat-card {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center
+    }
+
+    .stat-card .num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--primary)
+    }
+
+    .stat-card .lbl {
+      margin-top: 4px;
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      line-height: 1.4
+    }
+
+    /* CASE LIST */
+    .case-list {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 26px;
+      max-width: 680px
+    }
+
+    .case-list-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 14px
+    }
+
+    .case-list-item:first-child {
+      margin-top: 0
+    }
+
+    .case-list-item .ck {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px
+    }
+
+    .case-list-item .ck svg {
+      display: block
+    }
+
+    .case-list-item span {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.55
+    }
+
+    /* GROUP OFFER TIERS */
+    .group-offer-tiers {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px
+    }
+
+    @media(max-width:680px) {
+      .group-offer-tiers {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .tier-card {
+      background: var(--paper-card);
+      border: 1.5px dashed var(--success);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .tier-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(16, 185, 129, .08), transparent 60%);
+      pointer-events: none
+    }
+
+    .tier-card.tier-best {
+      border-color: var(--accent)
+    }
+
+    .tier-card.tier-best::before {
+      background: radial-gradient(circle at 0% 0%, rgba(236, 72, 153, .1), transparent 60%)
+    }
+
+    .tier-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px
+    }
+
+    .tier-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--success)
+    }
+
+    .tier-card.tier-best .tier-tag {
+      color: var(--accent)
+    }
+
+    .tier-stamp {
+      display: inline-flex;
+      align-items: center;
+      background: var(--success);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px
+    }
+
+    .tier-card.tier-best .tier-stamp {
+      background: var(--accent)
+    }
+
+    .tier-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .tier-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-faint);
+      line-height: 1.55
+    }
+
+    .tier-card a.cta {
+      margin-top: auto;
+      text-align: center;
+      padding: 12px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s
+    }
+
+    .tier-card.tier-best a.cta {
+      background: linear-gradient(135deg, var(--accent) 0%, #F472B6 100%)
+    }
+
+    .tier-card a.cta:hover {
+      transform: translateY(-2px)
+    }
+
+    /* FOOTER */
     footer {
       background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
       color: #fff;
@@ -599,26 +905,107 @@
       border-color: var(--primary);
       color: var(--primary)
     }
+
+    /* MOBILE NAV */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1.4px solid rgba(255, 255, 255, .25);
+      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #F4EFE3;
+      border-radius: 2px;
+      position: relative;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .nav-toggle span::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+    }
+
+    .nav.menu-open .nav-toggle span {
+      background: transparent;
+    }
+
+    .nav.menu-open .nav-toggle span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav.menu-open .nav-toggle span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    @media (max-width:760px) {
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        flex-basis: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        max-height: 0;
+        overflow: auto;
+        opacity: 0;
+        transition: max-height .25s ease, opacity .2s ease;
+      }
+
+      .nav.menu-open .nav-links {
+        max-height: 560px;
+        opacity: 1;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        margin-top: 12px;
+      }
+
+      .nav-links a:not(.nav-cta):not(.nav-login) {
+        display: block;
+        padding: 10px 4px;
+        opacity: 1;
+        border-bottom: 1px solid rgba(255, 255, 255, .06);
+      }
+
+      .nav-login,
+      .nav-cta {
+        display: block;
+        text-align: center;
+        margin-top: 8px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">MP</span>
-        <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
-      </a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="mba-partner-courses-redesign.html">Courses</a>
-        <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
-        <a class="nav-cta" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp</a>
-      </div>
-    </div>
-  </nav>
-
+  <div id="navbar-mount" data-track="mba"></div>
   <div class="wrap">
     <div class="breadcrumb">
       <a href="mba-partner-courses-redesign.html">Courses</a><span class="sep">/</span><span class="current">Placements
@@ -626,6 +1013,7 @@
     </div>
   </div>
 
+  <!-- ── HERO ── -->
   <section class="product-hero">
     <div class="wrap">
       <div class="product-grid">
@@ -675,6 +1063,7 @@
     </div>
   </section>
 
+  <!-- ── WHAT YOU GET ── -->
   <section>
     <div class="wrap">
       <div class="section-head">
@@ -688,35 +1077,51 @@
               width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg></span><span
-            style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Placements:</strong> 5 CV slots, 7
-            Mock PIs and 7 GDs, plus 2 complimentary Group Domain Sessions (recorded if already conducted)</span></div>
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Placements
+              (Master):</strong> 5 CV slots, 7 Mock PIs and 7 GDs, plus 2 complimentary Group Domain Sessions (recorded
+            if already conducted)</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+              width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Placements
+              (Mini-track option):</strong> 3 CV slots, 5 Mock PIs, 5 GDs</span></div>
         <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
             style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
               width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Case
-              Competition:</strong> Access to 30+ winning PPTs + mentorship on case-solving approach (recorded if
-            already conducted)</span></div>
+              Competition:</strong> 4 sessions of 2 hours each by an AIR 1 mentor, 30+ winning PPTs, and 1 year of Canva
+            Premium access</span></div>
         <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
             style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
               width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Live
-              Project:</strong> Any 1 Domain for 2 months — 8 weekly sessions, CV-ready deliverable</span></div>
+              Project:</strong> Any 1 Domain for 2 months — 8 weekly sessions, CV-ready deliverable, 5 ATS-friendly CV
+            points, and a Certificate of Completion</span></div>
         <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
             style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
               width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;">Mini-track option also
-            available: 3 CV slots, 5 Mock PIs, 5 GDs</span></div>
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>AI-based
+              platform access</strong> for Profile Assessment, CV Preparation, and Mock PIs</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+              width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Contact of 100+
+              HRs</strong> from Top Companies (Top B-School alumni) — Master track only</span></div>
       </div>
     </div>
   </section>
 
+  <!-- ── INSIDE THE PROGRAM ── -->
   <section>
     <div class="wrap">
       <div class="section-head">
@@ -745,13 +1150,13 @@
         </div>
         <div class="include-card">
           <div class="include-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <circle cx="6" cy="6" r="3" stroke="white" stroke-width="1.4" fill="none" />
-              <circle cx="13" cy="7" r="2.4" stroke="white" stroke-width="1.4" fill="none" />
-              <path d="M1 16c0-3 2.5-5 5-5s5 2 5 5" stroke="white" stroke-width="1.4" fill="none" />
+              <path d="M5 2h8v5a4 4 0 0 1-8 0V2Z" stroke="white" stroke-width="1.3" fill="none" />
+              <path d="M5 4c-2 0-3 2-1 4M13 4c2 0 3 2 1 4" stroke="white" stroke-width="1.3" fill="none" />
+              <path d="M7 13h4M9 11v2" stroke="white" stroke-width="1.3" />
             </svg></div>
           <div>
-            <h3>Case Mentorship</h3>
-            <p>4 structured sessions translating winning frameworks into your own approach.</p>
+            <h3>AIR 1 Case Mentorship</h3>
+            <p>4 two-hour sessions by an All India Rank 1 case-comp winner, with 30+ winning PPTs.</p>
           </div>
         </div>
         <div class="include-card">
@@ -763,10 +1168,191 @@
             <p>A real 2-month project with weekly check-ins and a CV-ready outcome.</p>
           </div>
         </div>
+        <div class="include-card">
+          <div class="include-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 1l2.5 5.2 5.7.8-4.1 4 1 5.7L9 14l-5.1 2.7 1-5.7-4.1-4 5.7-.8Z" stroke="white"
+                stroke-width="1.2" fill="none" />
+            </svg></div>
+          <div>
+            <h3>Canva Premium (1 yr)</h3>
+            <p>Build polished case decks without fighting with formatting.</p>
+          </div>
+        </div>
+        <div class="include-card">
+          <div class="include-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <circle cx="6" cy="6" r="3" stroke="white" stroke-width="1.4" fill="none" />
+              <circle cx="13" cy="7" r="2.4" stroke="white" stroke-width="1.4" fill="none" />
+              <path d="M1 16c0-3 2.5-5 5-5s5 2 5 5" stroke="white" stroke-width="1.4" fill="none" />
+            </svg></div>
+          <div>
+            <h3>100+ HR Contacts</h3>
+            <p>Direct access to HR contacts from Top Companies via Top B-School alumni network.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ── BOOTCAMP: MASTER VS MINI ── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Bootcamp Plans — Master vs Mini</h2>
+        <p>Choose the level of support that fits your placements timeline</p>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Master <br><span class="plan-badge badge-master">Full Support</span></th>
+              <th>Mini <br><span class="plan-badge badge-mini">Essentials</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mentorship by mentors from Top B-Schools</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>1:1 Mentorship Sessions &amp; 24×7 availability</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>CV Building, Mock PIs, Mock GDs <em style="font-size:12px;color:var(--ink-faint)">(Can be Topped Up
+                  later)</em></td>
+              <td><strong>5 CVs · 7 PIs · 7 GDs</strong></td>
+              <td><strong>3 CVs · 5 PIs · 5 GDs</strong></td>
+            </tr>
+            <tr>
+              <td>End-to-End Domain Preparation Sessions</td>
+              <td>20+ Hours</td>
+              <td>20+ Hours</td>
+            </tr>
+            <tr>
+              <td>Latest Company Wise &amp; Profile Wise Interview Transcripts</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Full JD Preparation &amp; Support in Psychometric Assessments</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>AI-Based platform — Profile Assessment, CV Prep &amp; Mock PIs</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="dash">—</span></td>
+            </tr>
+            <tr>
+              <td>Record Breaking results when clubbed with Live Projects</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="dash">—</span></td>
+            </tr>
+            <tr>
+              <td>Contact of 100+ HRs from Top Companies (Top B-School alumni)</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="dash">—</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compare-note">
+        <span>💡</span>
+        <span>Group discounts apply to both plans — enroll as a group of 2 for <strong>20% off</strong>, or 3+ for
+          <strong>30% off</strong> via the separate group enrollment link.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CASE COMPETITION TRACK ── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Inside the Case Competition track</h2>
+        <p>Taught by students who've actually won — AIR 1, 6, 10 &amp; 15 on Unstop</p>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="num">AIR 1, 6, 10, 15</div>
+          <div class="lbl">Unstop ranks held by your session mentors</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">8 hrs</div>
+          <div class="lbl">Detailed sessions: Market Research to Financial Modelling</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">30+</div>
+          <div class="lbl">National Finals &amp; winning PPTs — not the recycled ones floating elsewhere</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">20+</div>
+          <div class="lbl">National winners produced so far</div>
+        </div>
+      </div>
+
+      <div class="case-list">
+        <div class="case-list-item">
+          <span class="ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>Sessions by Unstop Toppers</strong> — mentors who've placed AIR 1, 6, 10 and 15 on the
+            platform</span>
+        </div>
+        <div class="case-list-item">
+          <span class="ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>8 hours of detailed sessions</strong> covering everything from Market Research through to
+            Financial Modelling for future roadmaps</span>
+        </div>
+        <div class="case-list-item">
+          <span class="ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>30+ National Finals &amp; winning PPTs</strong> — not the same recycled decks you'll find on
+            other platforms</span>
+        </div>
+        <div class="case-list-item">
+          <span class="ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>Canva Pro access for 1 year</strong> — build polished, presentation-ready decks</span>
+        </div>
+        <div class="case-list-item">
+          <span class="ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>1:1 mentorship</strong> if you clear the Executive Summary round of any corporate
+            competition</span>
+        </div>
+        <div class="case-list-item">
+          <span class="ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>1 CV point</strong> for the Annual MSME Competition conducted on Unstop</span>
+        </div>
+        <div class="case-list-item">
+          <span class="ck"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span><strong>AI-based platform access</strong> for Profile Assessment, CV Preparation, and Mock PIs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT RUNS ── -->
   <section>
     <div class="wrap">
       <div class="section-head">
@@ -774,14 +1360,47 @@
         <p>From sign-up to CV-ready deliverable</p>
       </div>
       <div class="timeline">
-        <div class="timeline-step"><strong>Day 1 — Onboarding</strong><span>Get matched with a mentor pod and your live
-            project domain.</span></div>
-        <div class="timeline-step"><strong>Week 1–2 — Foundations</strong><span>CV review, first mock PI/GD, and project
-            kickoff session.</span></div>
+        <div class="timeline-step"><strong>Day 1 — Onboarding</strong><span>Get matched with a mentor pod, choose your
+            live project domain, and get access to Case Comp content.</span></div>
+        <div class="timeline-step"><strong>Week 1–2 — Foundations</strong><span>CV review, first mock PI/GD, project
+            kickoff session, and first case mentorship session.</span></div>
         <div class="timeline-step"><strong>Week 3–6 — Build & Practice</strong><span>Weekly live project sessions
-            running alongside case mentorship.</span></div>
-        <div class="timeline-step"><strong>Final Weeks — Interview Sprint</strong><span>Remaining mock rounds, polish,
-            and placement-ready CV.</span></div>
+            running alongside remaining case mentorship sessions and mock PI/GD rounds.</span></div>
+        <div class="timeline-step"><strong>Final Weeks — Interview Sprint</strong><span>Remaining mock rounds, project
+            deliverable finalized, polish, and placement-ready CV — 5 ATS-friendly CV points issued on
+            completion.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GROUP OFFER ── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Group Offer</h2>
+        <p>The more you bring, the more everyone saves — use the separate enrollment link for both tiers</p>
+      </div>
+      <div class="group-offer-tiers">
+        <div class="tier-card">
+          <div class="tier-top">
+            <span class="tier-tag">Group of 2</span>
+            <span class="tier-stamp">20% off</span>
+          </div>
+          <h3>Enroll with a friend</h3>
+          <p>Join as a group of 2 and get 20% off your combined total — enrollment happens through a separate group
+            link, not this page's cart.</p>
+          <a class="cta" href="product-group-offer.html">👥 Enroll as a Group of 2 →</a>
+        </div>
+        <div class="tier-card tier-best">
+          <div class="tier-top">
+            <span class="tier-tag">Group of 3+</span>
+            <span class="tier-stamp">30% off</span>
+          </div>
+          <h3>Bring your whole squad</h3>
+          <p>Enroll in a group of 3 or more and get 30% off your combined total — also through a separate enrollment
+            link.</p>
+          <a class="cta" href="product-group-offer.html">👥 Enroll as a Group of 3+ →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -807,7 +1426,30 @@
       </div>
     </div>
   </footer>
+
   <script src="cart.js"></script>
+  <script>
+    (function () {
+      var siteNav = document.querySelector('nav.nav');
+      var navToggle = document.getElementById('nav-toggle');
+      var navLinks = siteNav ? siteNav.querySelector('.nav-links') : null;
+      if (!siteNav || !navToggle || !navLinks) return;
+      navToggle.addEventListener('click', function () {
+        var isOpen = siteNav.classList.toggle('menu-open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          siteNav.classList.remove('menu-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.setAttribute('aria-label', 'Open menu');
+        });
+      });
+    })();
+  </script>
+  <script src="Navbar_cat.js"></script>
+  <script src="chatbot-loader.js" data-track="mba"></script>
 </body>
 
 </html>

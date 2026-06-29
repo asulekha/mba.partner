@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free CAT Mock Test Series — MBA Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="Navbar_cat.css">
+  <style>
+    :root {
+      --ink: #0F1419;
+      --ink-soft: #1a202c;
+      --paper: #F8F6F3;
+      --paper-card: #FFFFFF;
+      --primary: #6366F1;
+      --primary-dark: #4F46E5;
+      --primary-light: #818CF8;
+      --accent: #EC4899;
+      --accent-soft: #F472B6;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --surface: #F3F4F6;
+      --rule: #E5E7EB;
+      --ink-faint: #6B7280;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Fraunces', serif;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--ink);
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-text span {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .brand-text small {
+      font-size: 10.5px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #A0AEC0;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+      color: #fff;
+      padding: 64px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 82% 12%, rgba(99, 102, 241, .15), transparent 55%);
+    }
+
+    .hero .wrap {
+      position: relative;
+    }
+
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 4.5vw, 50px);
+      font-weight: 700;
+      line-height: 1.08;
+      max-width: 20ch;
+    }
+
+    .hero-sub {
+      margin-top: 18px;
+      max-width: 52ch;
+      font-size: 17px;
+      line-height: 1.55;
+      color: #D0D5DD;
+    }
+
+    .hero-ticker {
+      margin-top: 38px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      padding-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      color: #A0AEC0;
+    }
+
+    .ticker-track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ticker-track span {
+      background: rgba(99, 102, 241, .1);
+      border: 1px solid rgba(99, 102, 241, .3);
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      color: #E8E9F3;
+    }
+
+    .hero-stat-row {
+      margin-top: 30px;
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat .num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 34px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-stat .lab {
+      font-size: 12px;
+      color: #A0AEC0;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* FILTER CHIPS */
+    .filters {
+      position: sticky;
+      top: 65px;
+      z-index: 40;
+      background: var(--paper);
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .filters .wrap {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filters .wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      flex-shrink: 0;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1.4px solid var(--rule);
+      background: var(--paper-card);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+      color: var(--ink);
+    }
+
+    .chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--surface);
+    }
+
+    .chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* SECTION COMMON */
+    section {
+      padding: 48px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--ink-faint);
+      font-size: 14px;
+    }
+
+    .count-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: rgba(99, 102, 241, .1);
+      border: 1px solid rgba(99, 102, 241, .25);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    /* TIER LEGEND */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .legend-item {
+      flex: 1;
+      min-width: 220px;
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .legend-item.tier1 .legend-dot {
+      background: var(--success);
+    }
+
+    .legend-item.tier2 .legend-dot {
+      background: var(--warning);
+    }
+
+    .legend-item.tier3 .legend-dot {
+      background: var(--accent);
+    }
+
+    .legend-name {
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+
+    .legend-desc {
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* PRODUCT GRID */
+    .pgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .pgrid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .pgrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pcard {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all .3s;
+    }
+
+    .pcard:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, .08);
+      transform: translateY(-2px);
+    }
+
+    .pcard-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .pcard h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    .pcard-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+      font-size: 19px;
+    }
+
+    .pcard p.desc {
+      font-size: 13.5px;
+      color: var(--ink-faint);
+      margin: 12px 0 0;
+      line-height: 1.6;
+    }
+
+    .tier-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 6px;
+      color: white;
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .tier-badge.t1 {
+      background: var(--success);
+    }
+
+    .tier-badge.t2 {
+      background: var(--warning);
+    }
+
+    .tier-badge.t3 {
+      background: var(--accent);
+    }
+
+    .pcard-bottom {
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .pcard a.cta,
+    button.cta {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 11px 18px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      transition: all .3s;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .pcard a.cta:hover,
+    button.cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+    }
+
+    /* MATERIALS STRIP */
+    .mgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 680px) {
+      .mgrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mcard {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .mcard .mtag {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      background: rgba(99, 102, 241, .1);
+      border: 1px solid rgba(99, 102, 241, .25);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .mcard .mtag.green {
+      color: var(--success);
+      background: rgba(16, 185, 129, .1);
+      border-color: rgba(16, 185, 129, .25);
+    }
+
+    .mcard .mtag.orange {
+      color: var(--warning);
+      background: rgba(245, 158, 11, .1);
+      border-color: rgba(245, 158, 11, .25);
+    }
+
+    .mcard .mtag.pink {
+      color: var(--accent);
+      background: rgba(236, 72, 153, .1);
+      border-color: rgba(236, 72, 153, .25);
+    }
+
+    .mcard h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+
+    .mcard p {
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 28px 0;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="navbar-mount" data-track="cat"></div>
+
+  <section class="hero" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="eyebrow">FREE · CAT 2026 MOCK SERIES</div>
+      <h1>Free Sectional Mocks for CAT Aspirants</h1>
+      <p class="hero-sub">50 free sectional mocks across VARC, LRDI and QA — built to the real CAT pattern, timed to the
+        real CAT clock. Pick a section, pick a tier, start attempting.</p>
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <div class="num">50</div>
+          <div class="lab">Free Mocks</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">3</div>
+          <div class="lab">Sections</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">₹0</div>
+          <div class="lab">Cost</div>
+        </div>
+      </div>
+      <div class="hero-ticker">
+        <span>Includes:</span>
+        <div class="ticker-track">
+          <span>VARC</span>
+          <span>LRDI</span>
+          <span>QA</span>
+          <span>Foundation → Speed → Simulation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="filters">
+    <div class="wrap">
+      <div class="chip active" data-filter="all">All Mocks</div>
+      <div class="chip" data-filter="varc">VARC</div>
+      <div class="chip" data-filter="lrdi">LRDI</div>
+      <div class="chip" data-filter="qa">QA</div>
+      <div class="chip" data-filter="materials">Free Materials</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How the tiers work</h2>
+        <p>Every section below follows the same three-tier progression.</p>
+      </div>
+      <div class="legend reveal">
+        <div class="legend-item tier1">
+          <div class="legend-dot"></div>
+          <div>
+            <div class="legend-name">Foundation</div>
+            <div class="legend-desc">Untimed warm-up sets to learn the question types.</div>
+          </div>
+        </div>
+        <div class="legend-item tier2">
+          <div class="legend-dot"></div>
+          <div>
+            <div class="legend-name">Speed Building</div>
+            <div class="legend-desc">Sectional timers kick in — train your pacing.</div>
+          </div>
+        </div>
+        <div class="legend-item tier3">
+          <div class="legend-dot"></div>
+          <div>
+            <div class="legend-name">Exam Simulation</div>
+            <div class="legend-desc">Full-length sections at actual CAT difficulty.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-cat="varc lrdi qa">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Free Sectional Mocks</h2>
+        <span class="count-pill">50 MOCKS</span>
+      </div>
+      <p style="color:var(--ink-faint); font-size:14px; max-width:680px; margin:-12px 0 26px;">50 free sectional mocks
+        across VARC, LRDI and QA — built to the real CAT pattern, sequenced from foundation to full exam simulation.</p>
+
+      <div style="display:flex; flex-direction:column; gap:18px;">
+
+        <!-- VARC — dark accent card, horizontal progress-style layout -->
+        <div class="reveal"
+          style="background:linear-gradient(120deg,#0f1419 60%,#1e1b4b); border-radius:16px; padding:28px 32px; color:#fff; display:flex; flex-wrap:wrap; gap:24px; align-items:stretch;">
+          <div style="display:flex; flex-direction:column; justify-content:space-between; min-width:180px; gap:12px;">
+            <div>
+              <div
+                style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#818cf8; font-family:'IBM Plex Mono',monospace; margin-bottom:8px;">
+                VARC · 17 mocks</div>
+              <div style="font-size:26px; font-family:'Fraunces',serif; font-weight:700; line-height:1.1;">Reading
+                &amp;<br>Verbal</div>
+              <div style="font-size:12px; color:#a5b4fc; margin-top:8px;">RC · Para Jumbles · Odd Sentence</div>
+            </div>
+            <button
+              style="background:#6366f1; color:#fff; border:none; border-radius:8px; padding:10px 18px; font-weight:700; font-size:12.5px; cursor:pointer; font-family:'Inter',sans-serif; align-self:flex-start; transition:all .2s;"
+              onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'">Attempt Free
+              →</button>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; gap:10px; min-width:260px;">
+            <div
+              style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.06); border-radius:10px; padding:14px 16px;">
+              <div
+                style="width:32px; height:32px; border-radius:8px; background:var(--success); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">
+                🌱</div>
+              <div style="flex:1;">
+                <div
+                  style="font-size:11px; color:#86efac; font-weight:700; letter-spacing:.06em; font-family:'IBM Plex Mono',monospace;">
+                  FOUNDATION</div>
+                <div style="font-size:13px; font-weight:600; margin-top:2px;">Mocks 1–6 <span
+                    style="font-weight:400; color:#94a3b8; font-size:12px;">· Untimed, RC-heavy</span></div>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:700; color:#86efac;">6
+              </div>
+            </div>
+            <div
+              style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.06); border-radius:10px; padding:14px 16px;">
+              <div
+                style="width:32px; height:32px; border-radius:8px; background:var(--warning); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">
+                ⏱️</div>
+              <div style="flex:1;">
+                <div
+                  style="font-size:11px; color:#fde68a; font-weight:700; letter-spacing:.06em; font-family:'IBM Plex Mono',monospace;">
+                  SPEED BUILDING</div>
+                <div style="font-size:13px; font-weight:600; margin-top:2px;">Mocks 7–12 <span
+                    style="font-weight:400; color:#94a3b8; font-size:12px;">· 40-min timed</span></div>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:700; color:#fde68a;">6
+              </div>
+            </div>
+            <div
+              style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.06); border-radius:10px; padding:14px 16px;">
+              <div
+                style="width:32px; height:32px; border-radius:8px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">
+                🎯</div>
+              <div style="flex:1;">
+                <div
+                  style="font-size:11px; color:#f9a8d4; font-weight:700; letter-spacing:.06em; font-family:'IBM Plex Mono',monospace;">
+                  EXAM SIMULATION</div>
+                <div style="font-size:13px; font-weight:600; margin-top:2px;">Mocks 13–17 <span
+                    style="font-weight:400; color:#94a3b8; font-size:12px;">· Full CAT difficulty</span></div>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:700; color:#f9a8d4;">5
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LRDI — light card, 3-column grid layout -->
+        <div class="reveal"
+          style="background:var(--paper-card); border:1px solid var(--rule); border-radius:16px; padding:28px 32px;">
+          <div
+            style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+            <div>
+              <div
+                style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--primary); font-family:'IBM Plex Mono',monospace; margin-bottom:6px;">
+                LRDI · 17 mocks</div>
+              <h3 style="font-size:22px; font-family:'Fraunces',serif; font-weight:700; margin:0; color:var(--ink);">
+                Logic &amp; Data<br>Interpretation</h3>
+              <div style="font-size:12px; color:var(--ink-faint); margin-top:6px;">Tables · Caselets · Arrangements ·
+                Puzzles</div>
+            </div>
+            <button class="cta" style="width:auto; white-space:nowrap; padding:10px 20px; font-size:13px;">Attempt Free
+              →</button>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+            <div
+              style="border-radius:12px; border:1.5px solid rgba(16,185,129,.3); background:rgba(16,185,129,.04); padding:16px 18px;">
+              <div
+                style="font-size:28px; font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--success); line-height:1;">
+                6</div>
+              <div
+                style="font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--success); margin:6px 0 4px; font-family:'IBM Plex Mono',monospace;">
+                Foundation</div>
+              <div style="font-size:12px; color:var(--ink-faint); line-height:1.4;">Mocks 1–6<br>No timer, build
+                intuition</div>
+            </div>
+            <div
+              style="border-radius:12px; border:1.5px solid rgba(245,158,11,.3); background:rgba(245,158,11,.04); padding:16px 18px;">
+              <div
+                style="font-size:28px; font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--warning); line-height:1;">
+                6</div>
+              <div
+                style="font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--warning); margin:6px 0 4px; font-family:'IBM Plex Mono',monospace;">
+                Speed Building</div>
+              <div style="font-size:12px; color:var(--ink-faint); line-height:1.4;">Mocks 7–12<br>Timed DI caselets
+              </div>
+            </div>
+            <div
+              style="border-radius:12px; border:1.5px solid rgba(236,72,153,.3); background:rgba(236,72,153,.04); padding:16px 18px;">
+              <div
+                style="font-size:28px; font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--accent); line-height:1;">
+                5</div>
+              <div
+                style="font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--accent); margin:6px 0 4px; font-family:'IBM Plex Mono',monospace;">
+                Exam Sim</div>
+              <div style="font-size:12px; color:var(--ink-faint); line-height:1.4;">Mocks 13–17<br>8 sets · 40 min</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QA — split layout: left big stat + right stacked list -->
+        <div class="reveal"
+          style="background:linear-gradient(135deg,#faf5ff,#f0fdf4); border:1px solid #e9d5ff; border-radius:16px; padding:28px 32px; display:flex; flex-wrap:wrap; gap:28px; align-items:stretch;">
+          <div style="min-width:180px; display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+            <div>
+              <div
+                style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#7c3aed; font-family:'IBM Plex Mono',monospace; margin-bottom:8px;">
+                QA · 16 mocks</div>
+              <div
+                style="font-size:26px; font-family:'Fraunces',serif; font-weight:700; color:#1e1b4b; line-height:1.15;">
+                Quantitative<br>Ability</div>
+              <div style="font-size:12px; color:#6b7280; margin-top:8px;">Arithmetic · Algebra · Geometry · Numbers
+              </div>
+            </div>
+            <div
+              style="font-family:'IBM Plex Mono',monospace; font-size:52px; font-weight:700; color:#7c3aed; line-height:1; opacity:.15; margin-top:-8px; align-self:flex-start;">
+              16</div>
+          </div>
+          <div
+            style="flex:1; display:flex; flex-direction:column; gap:0; min-width:260px; background:rgba(255,255,255,.7); border-radius:12px; border:1px solid rgba(124,58,237,.15); overflow:hidden;">
+            <div
+              style="display:flex; align-items:center; gap:14px; padding:16px 20px; border-bottom:1px solid rgba(124,58,237,.1);">
+              <span style="font-size:18px;">🌱</span>
+              <div style="flex:1;">
+                <div
+                  style="font-size:11px; color:var(--success); font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-family:'IBM Plex Mono',monospace;">
+                  Foundation</div>
+                <div style="font-size:13px; font-weight:600; color:#1e1b4b;">Mocks 1–5 · Arithmetic &amp; Number Systems
+                </div>
+              </div>
+              <div
+                style="font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:15px; color:var(--success);">5
+                mocks</div>
+            </div>
+            <div
+              style="display:flex; align-items:center; gap:14px; padding:16px 20px; border-bottom:1px solid rgba(124,58,237,.1);">
+              <span style="font-size:18px;">⏱️</span>
+              <div style="flex:1;">
+                <div
+                  style="font-size:11px; color:var(--warning); font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-family:'IBM Plex Mono',monospace;">
+                  Speed Building</div>
+                <div style="font-size:13px; font-weight:600; color:#1e1b4b;">Mocks 6–11 · Algebra &amp; Geometry</div>
+              </div>
+              <div
+                style="font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:15px; color:var(--warning);">6
+                mocks</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:14px; padding:16px 20px;">
+              <span style="font-size:18px;">🎯</span>
+              <div style="flex:1;">
+                <div
+                  style="font-size:11px; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-family:'IBM Plex Mono',monospace;">
+                  Exam Simulation</div>
+                <div style="font-size:13px; font-weight:600; color:#1e1b4b;">Mocks 12–16 · Full CAT, TITA+MCQ mix</div>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:15px; color:var(--accent);">
+                5 mocks</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; width:100%; justify-content:flex-end;">
+            <button class="cta"
+              style="width:auto; white-space:nowrap; padding:10px 20px; font-size:13px; background:linear-gradient(135deg,#7c3aed,#ec4899);">Attempt
+              Free →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section data-cat="materials">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Pair your mocks with free material</h2>
+        <p>Curated resources to complement your prep</p>
+      </div>
+      <div class="mgrid" style="grid-template-columns: repeat(3,1fr);">
+        <div class="mcard reveal" style="display:flex; flex-direction:column; gap:0;">
+          <span class="mtag green">MUST READ</span>
+          <h4>Aristotle RC Series — Volume 1</h4>
+          <p style="flex:1;">400+ RC passages graded by difficulty. The single best RC practice book for CAT VARC.</p>
+          <button class="cta"
+            style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px;">🔽
+            Download Free</button>
+        </div>
+        <div class="mcard reveal" style="display:flex; flex-direction:column; gap:0;">
+          <span class="mtag orange">ADVANCED</span>
+          <h4>Aristotle RC Series — Volume 2</h4>
+          <p style="flex:1;">Advanced passages including dense academic and scientific texts — mirrors actual CAT RC
+            difficulty.</p>
+          <button class="cta"
+            style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px;">🔽
+            Download Free</button>
+        </div>
+        <div class="mcard reveal" style="display:flex; flex-direction:column; gap:0;">
+          <span class="mtag">EXCLUSIVE</span>
+          <h4>RC Tricks & Tips by IIM Alumni</h4>
+          <p style="flex:1;">MBA Partner's curated 20-page guide: elimination strategy, inference vs. direct, passage
+            mapping, and time hacks.</p>
+          <button class="cta"
+            style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px;">🔽
+            Download Free</button>
+        </div>
+        <div class="mcard reveal" style="display:flex; flex-direction:column; gap:0;">
+          <span class="mtag orange">PRACTICE</span>
+          <h4>CAT Past RC Passages (2015–2023)</h4>
+          <p style="flex:1;">Every Reading Comprehension passage from the last 8 years of CAT, with answers and detailed
+            explanations.</p>
+          <button class="cta"
+            style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px;">🔽
+            Download Free</button>
+        </div>
+        <div class="mcard reveal" style="display:flex; flex-direction:column; gap:0;">
+          <span class="mtag green">DAILY HABIT</span>
+          <h4>Editorial Archive — The Hindu (2024)</h4>
+          <p style="flex:1;">12 months of curated editorials — the same kind of texts CAT examiners use. Builds both
+            reading habit and vocabulary.</p>
+          <button class="cta"
+            style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px;">🔽
+            Download Free</button>
+        </div>
+        <div class="mcard reveal" style="display:flex; flex-direction:column; gap:0;">
+          <span class="mtag pink">TITA FOCUS</span>
+          <h4>Para Jumbles & Summary — 200 Qs</h4>
+          <p style="flex:1;">TITA question practice set for Para Jumbles, Para Summary, and Odd Sentence — the trickiest
+            VARC question types.</p>
+          <button class="cta"
+            style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px;">🔽
+            Download Free</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>MBA Partner · Free CAT 2026 Mock Series · Updated for the latest CAT pattern</p>
+  </footer>
+
+  <script>
+    // ---- Filter chips ----
+    const chips = document.querySelectorAll('.chip');
+    const catSections = document.querySelectorAll('[data-cat]');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const f = chip.dataset.filter;
+        catSections.forEach(sec => {
+          const cats = sec.dataset.cat ? sec.dataset.cat.split(' ') : [];
+          sec.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
+        });
+      });
+    });
+
+    // ---- Scroll reveal ----
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => obs.observe(r));
+  </script>
+  <script src="Navbar_cat.js"></script>
+  <script src="cat-score-calculator.js"></script>
+</body>
+
+</html>

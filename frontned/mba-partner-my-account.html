@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        /* ---------- NAV (shared with the rest of the site) ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--ink);
+            color: #FFF;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-text span {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .brand-text small {
+            font-size: 10.5px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #A0AEC0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login) {
+            color: #D0D5DD;
+            opacity: .85;
+            transition: opacity .2s;
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-login):hover {
+            opacity: 1;
+        }
+
+        .nav-login {
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+
+        .nav-login:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-cart {
+            position: relative;
+        }
+
+        .cart-badge {
+            display: none;
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2px 6px;
+            border-radius: 999px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #F4EFE3;
+            border-radius: 2px;
+            position: relative;
+            transition: transform .2s ease, opacity .2s ease;
+        }
+
+        .nav-toggle span::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+        }
+
+        .nav-toggle span::after {
+            content: "";
+            position: absolute;
+            top: 6px;
+        }
+
+        .nav.menu-open .nav-toggle span {
+            background: transparent;
+        }
+
+        .nav.menu-open .nav-toggle span::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .nav.menu-open .nav-toggle span::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* ---- Profile dropdown ---- */
+        .nav-profile {
+            position: relative;
+        }
+
+        .nav-profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1.4px solid rgba(255, 255, 255, .25);
+            color: #F4EFE3;
+            padding: 5px 14px 5px 5px;
+            border-radius: 999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .nav-profile-trigger:hover {
+            border-color: var(--primary);
+            color: var(--primary-light);
+        }
+
+        .nav-profile-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .nav-user-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #F4EFE3;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .nav-profile-caret {
+            font-size: 9px;
+            opacity: .7;
+            transition: transform .2s;
+        }
+
+        .nav-profile.open .nav-profile-caret {
+            transform: rotate(180deg);
+        }
+
+        .nav-profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background: #fff;
+            min-width: 190px;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .nav-profile.open .nav-profile-menu {
+            display: block;
+        }
+
+        .nav-profile-menu a,
+        .nav-profile-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 14px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink) !important;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-profile-menu a:hover,
+        .nav-profile-menu button:hover {
+            background: var(--surface);
+        }
+
+        .nav-profile-menu .nav-profile-logout {
+            color: var(--accent) !important;
+            border-top: 1px solid var(--rule);
+        }
+
+        .nav-profile-menu .nav-profile-active {
+            background: var(--surface);
+        }
+
+        @media (max-width:760px) {
+            .nav-inner {
+                flex-wrap: wrap;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-basis: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                max-height: 0;
+                overflow: auto;
+                opacity: 0;
+                transition: max-height .25s ease, opacity .2s ease;
+            }
+
+            .nav.menu-open .nav-links {
+                max-height: 560px;
+                opacity: 1;
+                padding-top: 10px;
+                border-top: 1px solid rgba(255, 255, 255, .1);
+                margin-top: 12px;
+            }
+
+            .nav-links a:not(.nav-cta):not(.nav-login) {
+                padding: 10px 4px;
+                opacity: 1;
+                border-bottom: 1px solid rgba(255, 255, 255, .06);
+            }
+
+            .nav-login {
+                text-align: center;
+                margin-top: 8px;
+            }
+
+            .nav-profile {
+                margin-top: 8px;
+            }
+
+            .nav-profile-trigger {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 14px;
+            }
+
+            .nav-user-name {
+                max-width: none;
+            }
+
+            .nav-profile-menu {
+                position: static;
+                box-shadow: none;
+                border: 1px solid rgba(255, 255, 255, .12);
+                background: rgba(255, 255, 255, .04);
+                margin-top: 6px;
+                width: 100%;
+            }
+
+            .nav-profile-menu a,
+            .nav-profile-menu button {
+                color: #F4EFE3 !important;
+                background: transparent;
+            }
+
+            .nav-profile-menu a:hover,
+            .nav-profile-menu button:hover {
+                background: rgba(255, 255, 255, .08);
+            }
+
+            .nav-profile-menu .nav-profile-logout {
+                color: #FCA5B7 !important;
+                border-top: 1px solid rgba(255, 255, 255, .12);
+            }
+        }
+
+        /* ---------- PAGE CONTENT ---------- */
+        .page-head {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #fff;
+            padding: 44px 0;
+        }
+
+        .page-head .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .page-head h1 {
+            font-size: clamp(26px, 3.4vw, 36px);
+            font-weight: 700;
+        }
+
+        main {
+            padding: 48px 0 72px;
+        }
+
+        .account-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 560px;
+            box-shadow: 0 8px 24px rgba(15, 20, 25, .06);
+        }
+
+        .account-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .account-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .account-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .account-row .label {
+            font-size: 12.5px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: var(--ink-faint);
+            font-weight: 600;
+        }
+
+        .account-row .value {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .account-actions {
+            margin-top: 26px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .btn-ghost {
+            border: 1.5px solid var(--rule);
+            color: var(--ink);
+            background: #fff;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .state-msg {
+            font-size: 14px;
+            color: var(--ink-faint);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 32px 0;
+            text-align: center;
+            font-size: 13px;
+            color: #8B92A0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav" id="site-nav">
+        <div class="nav-inner">
+            <a class="brand" href="mba-partner-home.html">
+                <span class="brand-mark">MP</span>
+                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-links">
+                <span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="mba-partner-home.html">Home</a>
+                <a href="mba-partner-courses-redesign.html">Courses</a>
+                <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
+                <a href="cart-page.html" id="navCartLink" class="nav-cart">Cart<span class="cart-badge"
+                        id="cartBadge">0</span></a>
+
+                <a class="nav-login" href="mba-partner-login.html" id="navLogin">Login</a>
+
+                <div class="nav-profile" id="navProfileBox" style="display:none;">
+                    <button class="nav-profile-trigger" id="navProfileTrigger" type="button" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="nav-profile-avatar" id="navProfileAvatar">A</span>
+                        <span class="nav-user-name" id="navUserName">Account</span>
+                        <span class="nav-profile-caret">▾</span>
+                    </button>
+                    <div class="nav-profile-menu" id="navProfileMenu" role="menu">
+                        <a href="mba-partner-my-account.html" role="menuitem" class="nav-profile-active">My Account</a>
+                        <a href="mba-partner-my-courses.html" role="menuitem">My Courses</a>
+                        <button type="button" id="logoutBtn" class="nav-profile-logout" role="menuitem">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-head">
+        <div class="wrap">
+            <p class="eyebrow">Your Profile</p>
+            <h1>My Account</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <div id="accountLoading" class="state-msg">Loading your account…</div>
+
+            <div id="accountCard" class="account-card" style="display:none;">
+                <div class="account-avatar" id="accountAvatar">A</div>
+                <div class="account-row">
+                    <span class="label">Name</span>
+                    <span class="value" id="accountName">—</span>
+                </div>
+                <div class="account-row">
+                    <span class="label">Email</span>
+                    <span class="value" id="accountEmail">—</span>
+                </div>
+                <div class="account-actions">
+                    <a class="btn btn-primary" href="mba-partner-my-courses.html">🎓 My Courses</a>
+                    <button class="btn btn-ghost" id="accountLogoutBtn" type="button">Logout</button>
+                </div>
+            </div>
+
+            <div id="accountSignedOut" class="state-msg" style="display:none;">
+                You're not logged in. <a href="mba-partner-login.html" style="color:var(--primary);font-weight:700;">Log
+                    in</a> to see your account.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">MBA Partner — Initiative by Alumni of Old IIM</div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        // --- Mobile hamburger menu ---
+        const siteNav = document.getElementById('site-nav');
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = siteNav.classList.toggle('menu-open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => siteNav.classList.remove('menu-open'));
+        });
+
+        // ---------- Auth-aware nav ----------
+        const API_BASE = 'http://localhost:5000/api/auth';
+
+        const navLogin = document.getElementById('navLogin');
+        const navProfileBox = document.getElementById('navProfileBox');
+        const navProfileTrigger = document.getElementById('navProfileTrigger');
+        const navProfileAvatar = document.getElementById('navProfileAvatar');
+        const navUserName = document.getElementById('navUserName');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const navCartLink = document.getElementById('navCartLink');
+
+        const accountLoading = document.getElementById('accountLoading');
+        const accountCard = document.getElementById('accountCard');
+        const accountSignedOut = document.getElementById('accountSignedOut');
+        const accountAvatar = document.getElementById('accountAvatar');
+        const accountName = document.getElementById('accountName');
+        const accountEmail = document.getElementById('accountEmail');
+        const accountLogoutBtn = document.getElementById('accountLogoutBtn');
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            if (!badge || !window.MBACart) return;
+            const loggedIn = MBACart.isLoggedIn();
+            const count = loggedIn ? MBACart.cartCount() : 0;
+            badge.style.display = count > 0 ? 'inline-block' : 'none';
+            if (count > 0) badge.textContent = count > 99 ? '99+' : count;
+        }
+
+        function showLoggedOut() {
+            navLogin.style.display = '';
+            navProfileBox.style.display = 'none';
+            navProfileBox.classList.remove('open');
+            accountLoading.style.display = 'none';
+            accountCard.style.display = 'none';
+            accountSignedOut.style.display = '';
+            updateCartBadge();
+        }
+
+        function showLoggedIn(user) {
+            navLogin.style.display = 'none';
+            navProfileBox.style.display = '';
+
+            const label = (user && (user.name || user.email)) || 'My Account';
+            const initial = label.trim().charAt(0).toUpperCase();
+
+            // Sirf initial dikhega
+            navUserName.style.display = "none";
+            navProfileAvatar.textContent = initial;
+
+            accountLoading.style.display = 'none';
+            accountSignedOut.style.display = 'none';
+            accountCard.style.display = '';
+
+            accountAvatar.textContent = initial;
+            accountName.textContent = (user && user.name) || '—';
+            accountEmail.textContent = (user && user.email) || '—';
+
+            updateCartBadge();
+        }
+
+        async function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                showLoggedOut();
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE}/me`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                    credentials: 'include',
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showLoggedIn(data.user);
+                } else {
+                    localStorage.removeItem('token');
+                    showLoggedOut();
+                }
+            } catch (err) {
+                accountLoading.textContent = "Couldn't reach the server — check that the backend is running.";
+            }
+        }
+
+        async function doLogout() {
+            try {
+                await fetch(`${API_BASE}/logout`, { method: 'POST', credentials: 'include' });
+            } catch (err) {
+                // ignore — clear local state regardless
+            }
+            localStorage.removeItem('token');
+            showLoggedOut();
+            siteNav.classList.remove('menu-open');
+            navProfileBox.classList.remove('open');
+        }
+
+        if (logoutBtn) logoutBtn.addEventListener('click', doLogout);
+        if (accountLogoutBtn) accountLogoutBtn.addEventListener('click', doLogout);
+
+        if (navProfileTrigger) {
+            navProfileTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = navProfileBox.classList.toggle('open');
+                navProfileTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+            document.addEventListener('click', (e) => {
+                if (!navProfileBox.contains(e.target)) navProfileBox.classList.remove('open');
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') navProfileBox.classList.remove('open');
+            });
+        }
+
+        if (navCartLink) {
+            navCartLink.addEventListener('click', (e) => {
+                if (window.MBACart && !MBACart.isLoggedIn()) {
+                    e.preventDefault();
+                    MBACart.goToLogin('cart-page.html');
+                }
+            });
+        }
+
+        checkAuth();
+    </script>
+    <script src="chatbot-loader.js" data-track="mba"></script>
+</body>
+
+</html>

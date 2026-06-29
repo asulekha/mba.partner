@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Generator — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; letter-spacing: -0.01em; }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+        :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+        /* ---------- NAV ---------- */
+        .nav {
+            position: sticky; top: 0; z-index: 50;
+            background: var(--ink); color: #FFF;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        }
+        .nav-inner {
+            max-width: 1120px; margin: 0 auto; padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand-mark {
+            width: 36px; height: 36px; border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff; font-family: 'Fraunces', serif; font-weight: 800;
+            display: flex; align-items: center; justify-content: center; font-size: 15px;
+        }
+        .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+        .brand-text span { font-weight: 700; font-size: 15px; }
+        .brand-text small { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #A0AEC0; }
+        .nav-links { display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 500; }
+        .nav-links a { color: #D0D5DD; opacity: .85; transition: opacity .2s; }
+        .nav-links a:hover { opacity: 1; }
+        .nav-links a.active { color: #fff; opacity: 1; }
+
+        /* ---------- PAGE HEAD ---------- */
+        .page-head { padding: 56px 0 36px; border-bottom: 1px solid var(--rule); }
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
+            letter-spacing: .12em; text-transform: uppercase; color: var(--primary);
+            margin: 0 0 10px;
+        }
+        .page-head h1 { font-size: 40px; font-weight: 700; }
+        .page-head p.sub { margin: 10px 0 0; color: var(--ink-faint); font-size: 16px; max-width: 560px; }
+
+        /* ---------- LAYOUT ---------- */
+        main { padding: 40px 0 100px; }
+        .builder {
+            display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            gap: 28px; align-items: start;
+        }
+        @media (max-width: 900px) {
+            .builder { grid-template-columns: 1fr; }
+        }
+
+        /* ---------- FORM PANEL ---------- */
+        .panel {
+            background: var(--paper-card); border: 1px solid var(--rule);
+            border-radius: 16px; overflow: hidden;
+        }
+        .section {
+            padding: 26px 28px; border-bottom: 1px solid var(--rule);
+        }
+        .section:last-child { border-bottom: none; }
+        .section-head {
+            display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px;
+        }
+        .section-num {
+            font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600;
+            color: var(--primary); flex-shrink: 0;
+        }
+        .section-head h2 { font-size: 18px; font-weight: 600; }
+        .section-hint { font-size: 12.5px; color: var(--ink-faint); margin: -10px 0 16px; }
+
+        .field { margin-bottom: 14px; }
+        .field:last-child { margin-bottom: 0; }
+        .field label {
+            display: block; font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
+            margin-bottom: 6px;
+        }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%; font-family: 'Inter', sans-serif; font-size: 14px;
+            padding: 10px 12px; border: 1.4px solid var(--rule); border-radius: 9px;
+            background: var(--surface); color: var(--ink); transition: border-color .15s, background .15s;
+        }
+        textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
+        input:focus, select:focus, textarea:focus { border-color: var(--primary); background: #fff; }
+        input::placeholder, textarea::placeholder { color: #9CA3AF; }
+
+        .char-count {
+            font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint);
+            text-align: right; margin-top: 4px;
+        }
+
+        /* ---------- GENERATE BAR ---------- */
+        .generate-bar {
+            padding: 22px 28px; background: var(--surface);
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .generate-note { font-size: 12.5px; color: var(--ink-faint); }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+            font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px;
+            padding: 12px 22px; border-radius: 999px; border: none; cursor: pointer;
+            transition: transform .15s, box-shadow .15s, opacity .15s; white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff; box-shadow: 0 6px 16px rgba(99,102,241,.3);
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(99,102,241,.4); }
+        .btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-ghost {
+            background: transparent; border: 1.4px solid var(--rule); color: var(--ink-soft);
+        }
+        .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-sm { padding: 8px 16px; font-size: 13px; }
+
+        /* ---------- MANUSCRIPT PANEL ---------- */
+        .manuscript-shell {
+            position: sticky; top: 88px;
+            background: var(--paper-card); border: 1px solid var(--rule); border-radius: 16px;
+            display: flex; flex-direction: column; min-height: 520px; max-height: calc(100vh - 120px);
+        }
+        .manuscript-head {
+            padding: 18px 24px; border-bottom: 1px solid var(--rule);
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        }
+        .manuscript-head h3 { font-size: 14px; font-weight: 700; }
+        .word-badge {
+            font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700;
+            background: var(--ink); color: #fff; padding: 4px 10px; border-radius: 999px;
+            letter-spacing: .02em;
+        }
+        .word-badge.ok { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); }
+        .manuscript-body {
+            flex: 1; overflow-y: auto; padding: 28px 30px;
+            font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.75; color: var(--ink-soft);
+        }
+        .manuscript-body p { margin: 0 0 16px; }
+        .manuscript-body p:first-of-type::first-letter {
+            font-size: 42px; font-weight: 700; line-height: .8;
+            float: left; padding: 4px 8px 0 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .manuscript-empty {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 40px; color: var(--ink-faint); gap: 10px;
+        }
+        .manuscript-empty .glyph {
+            width: 52px; height: 52px; border-radius: 14px;
+            background: var(--surface); display: flex; align-items: center; justify-content: center;
+            font-size: 22px; margin-bottom: 6px;
+        }
+        .manuscript-empty p { font-size: 13.5px; max-width: 260px; margin: 0; }
+        .manuscript-footer {
+            padding: 16px 24px; border-top: 1px solid var(--rule);
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        }
+        .colophon { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint); }
+        .footer-actions { display: flex; gap: 8px; }
+
+        .cursor-blink {
+            display: inline-block; width: 2px; height: 1em; background: var(--primary);
+            vertical-align: text-bottom; animation: blink 1s step-end infinite; margin-left: 2px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .error-banner {
+            background: #FEF2F2; border: 1px solid #FECACA; color: #B91C1C;
+            border-radius: 10px; padding: 12px 16px; font-size: 13px; margin: 0 28px 20px;
+        }
+
+        footer { padding: 28px 0; border-top: 1px solid var(--rule); text-align: center; color: var(--ink-faint); font-size: 13px; }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="brand">
+                <div class="brand-mark">M</div>
+                <div class="brand-text">
+                    <span>MBA Partner</span>
+                    <small>Initiative by Alumni of Old IIM</small>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="mba-partner-home.html">Home</a>
+                <a href="mba-partner-courses-redesign.html">Courses</a>
+                <a href="#" class="active">SOP Generator</a>
+                <a href="mba-partner-my-courses.html">My Courses</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-head">
+        <div class="wrap">
+            <p class="eyebrow">Admissions Toolkit</p>
+            <h1>SOP Generator</h1>
+            <p class="sub">Fill in your story once. We'll draft a structured, admission-ready Statement of Purpose — built around your background, your reasons, and the school you're applying to.</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <div class="builder">
+
+                <!-- FORM PANEL -->
+                <div class="panel" id="formPanel">
+
+                    <div class="section">
+                        <div class="section-head">
+                            <span class="section-num">01</span>
+                            <h2>About you</h2>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="f-name">Full name</label>
+                                <input type="text" id="f-name" placeholder="e.g. Ananya Sharma">
+                            </div>
+                            <div class="field">
+                                <label for="f-target">Target B-school &amp; program</label>
+                                <input type="text" id="f-target" placeholder="e.g. FMS Delhi, MBA">
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="f-degree">Undergraduate degree</label>
+                                <input type="text" id="f-degree" placeholder="e.g. B.Tech Electrical Engineering">
+                            </div>
+                            <div class="field">
+                                <label for="f-college">College / university</label>
+                                <input type="text" id="f-college" placeholder="e.g. NIT Trichy">
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="f-score">UG score / CGPA</label>
+                                <input type="text" id="f-score" placeholder="e.g. 8.2 CGPA, top 5%">
+                            </div>
+                            <div class="field">
+                                <label for="f-gradyear">Graduation year</label>
+                                <input type="text" id="f-gradyear" placeholder="e.g. 2022">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-head">
+                            <span class="section-num">02</span>
+                            <h2>Background &amp; story</h2>
+                        </div>
+                        <p class="section-hint">Where you come from, and the moment or influence that shaped how you think about work and ambition.</p>
+                        <div class="field">
+                            <label for="f-background">Family background / personal story</label>
+                            <textarea id="f-background" placeholder="e.g. Grew up in a small business family in Jaipur; learned negotiation and resilience by helping run the family shop through school..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-head">
+                            <span class="section-num">03</span>
+                            <h2>Professional experience</h2>
+                        </div>
+                        <p class="section-hint">Roles, responsibilities, and the accomplishment you're proudest of. Leave blank if you're a fresher.</p>
+                        <div class="field">
+                            <label for="f-work">Work experience &amp; key achievements</label>
+                            <textarea id="f-work" placeholder="e.g. 3 years at a fintech startup as a Product Analyst; led a pricing model redesign that improved margins by 12%..."></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="f-years">Years of experience</label>
+                            <input type="text" id="f-years" placeholder="e.g. 3 years, or Fresher">
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-head">
+                            <span class="section-num">04</span>
+                            <h2>Strengths, weaknesses &amp; activities</h2>
+                        </div>
+                        <div class="field">
+                            <label for="f-strengths">Strengths &amp; notable achievements</label>
+                            <textarea id="f-strengths" placeholder="e.g. Strong quantitative skills, NTSE scholar, led a 6-person team under pressure..."></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="f-weakness">A genuine weakness &amp; how you've worked on it</label>
+                            <textarea id="f-weakness" placeholder="e.g. Used to over-prepare and delay decisions; learned to timebox analysis after a missed deadline..."></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="f-extracurricular">Extracurriculars &amp; unique skills</label>
+                            <textarea id="f-extracurricular" placeholder="e.g. State-level basketball player, organised college fest, amateur sketch artist..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-head">
+                            <span class="section-num">05</span>
+                            <h2>Motivation &amp; goals</h2>
+                        </div>
+                        <div class="field">
+                            <label for="f-why-mba">Why an MBA, and why now</label>
+                            <textarea id="f-why-mba" placeholder="e.g. Hit a ceiling moving from execution to strategy; need structured exposure to finance and leadership..."></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="f-goals">Short-term &amp; long-term career goals</label>
+                            <textarea id="f-goals" placeholder="e.g. Short-term: strategy role at a consulting firm. Long-term: build my own venture in sustainable retail..."></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="f-fit">Why this college (programs, clubs, faculty, alumni you connect with)</label>
+                            <textarea id="f-fit" placeholder="e.g. FMS's low fee-to-ROI ratio, strong consulting placement record, and its student-run consulting club..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-head">
+                            <span class="section-num">06</span>
+                            <h2>Tone &amp; length</h2>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="f-tone">Tone</label>
+                                <select id="f-tone">
+                                    <option value="professional and reflective">Professional &amp; reflective</option>
+                                    <option value="warm and personal">Warm &amp; personal</option>
+                                    <option value="confident and direct">Confident &amp; direct</option>
+                                    <option value="quietly ambitious">Quietly ambitious</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="f-length">Target length</label>
+                                <select id="f-length">
+                                    <option value="600-700">600–700 words</option>
+                                    <option value="700-800" selected>700–800 words</option>
+                                    <option value="800-1000">800–1000 words</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="errorBanner" class="error-banner" style="display:none;"></div>
+
+                    <div class="generate-bar">
+                        <p class="generate-note">Drafted live — edit any field and regenerate anytime.</p>
+                        <button class="btn btn-primary" id="generateBtn">✦ Draft my SOP</button>
+                    </div>
+                </div>
+
+                <!-- MANUSCRIPT PANEL -->
+                <div class="manuscript-shell">
+                    <div class="manuscript-head">
+                        <h3>Your draft</h3>
+                        <span class="word-badge" id="wordBadge">0 words</span>
+                    </div>
+
+                    <div class="manuscript-empty" id="manuscriptEmpty">
+                        <div class="glyph">📝</div>
+                        <p>Your Statement of Purpose will appear here as a typed manuscript once you draft it.</p>
+                    </div>
+
+                    <div class="manuscript-body" id="manuscriptBody" style="display:none;"></div>
+
+                    <div class="manuscript-footer" id="manuscriptFooter" style="display:none;">
+                        <span class="colophon" id="colophon"></span>
+                        <div class="footer-actions">
+                            <button class="btn btn-ghost btn-sm" id="copyBtn">Copy</button>
+                            <button class="btn btn-ghost btn-sm" id="downloadBtn">Download .txt</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">MBA Partner — Initiative by Alumni of Old IIM</div>
+    </footer>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const errorBanner = document.getElementById('errorBanner');
+        const manuscriptEmpty = document.getElementById('manuscriptEmpty');
+        const manuscriptBody = document.getElementById('manuscriptBody');
+        const manuscriptFooter = document.getElementById('manuscriptFooter');
+        const wordBadge = document.getElementById('wordBadge');
+        const colophon = document.getElementById('colophon');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        let currentSOPText = '';
+
+        function val(id) { return document.getElementById(id).value.trim(); }
+
+        function wordCount(str) {
+            return str.trim().split(/\s+/).filter(Boolean).length;
+        }
+
+        function buildPrompt() {
+            const name = val('f-name') || 'the applicant';
+            const target = val('f-target') || 'a top business school';
+            const degree = val('f-degree');
+            const college = val('f-college');
+            const score = val('f-score');
+            const gradyear = val('f-gradyear');
+            const background = val('f-background');
+            const work = val('f-work');
+            const years = val('f-years');
+            const strengths = val('f-strengths');
+            const weakness = val('f-weakness');
+            const extracurricular = val('f-extracurricular');
+            const whyMba = val('f-why-mba');
+            const goals = val('f-goals');
+            const fit = val('f-fit');
+            const tone = document.getElementById('f-tone').value;
+            const length = document.getElementById('f-length').value;
+
+            return `You are an expert MBA admissions consultant. Write a Statement of Purpose (SOP) for an MBA application, in first person, as if written by the applicant.
+
+APPLICANT DETAILS:
+- Name: ${name}
+- Applying to: ${target}
+- Undergraduate degree: ${degree || 'Not specified'}
+- College/University: ${college || 'Not specified'}
+- Academic score: ${score || 'Not specified'}
+- Graduation year: ${gradyear || 'Not specified'}
+- Years of work experience: ${years || 'Not specified'}
+
+FAMILY BACKGROUND / PERSONAL STORY:
+${background || 'Not provided — infer minimally and tastefully, do not invent specific facts.'}
+
+PROFESSIONAL EXPERIENCE & ACHIEVEMENTS:
+${work || 'Not provided.'}
+
+STRENGTHS & NOTABLE ACHIEVEMENTS:
+${strengths || 'Not provided.'}
+
+A GENUINE WEAKNESS & HOW THEY'VE WORKED ON IT:
+${weakness || 'Not provided.'}
+
+EXTRACURRICULARS & UNIQUE SKILLS:
+${extracurricular || 'Not provided.'}
+
+WHY AN MBA, AND WHY NOW:
+${whyMba || 'Not provided.'}
+
+CAREER GOALS (SHORT & LONG TERM):
+${goals || 'Not provided.'}
+
+WHY THIS SPECIFIC SCHOOL (FIT):
+${fit || 'Not provided.'}
+
+INSTRUCTIONS:
+- Tone: ${tone}.
+- Target length: ${length} words. Stay within this range.
+- Structure: an engaging introduction that hints at personality and motivation, a body covering academic/professional background and achievements woven with personal story, a section on why an MBA and why this specific school (referencing the fit details given), and a confident closing tying back to career goals.
+- Write only in flowing prose paragraphs — no headers, no bullet points, no markdown formatting.
+- Do not invent specific facts, numbers, company names, or achievements that were not provided. If a section has little input, keep that portion brief and generic rather than fabricating details.
+- Do not use clichés like "since childhood" or generic filler. Make it specific to the details given.
+- Output ONLY the SOP text itself, with no preamble, no title, no word count note, and no closing remarks.`;
+        }
+
+        function renderManuscript(text) {
+            currentSOPText = text;
+            const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim());
+            manuscriptBody.innerHTML = paragraphs.map(p => `<p>${escapeHtml(p.trim())}</p>`).join('');
+            manuscriptEmpty.style.display = 'none';
+            manuscriptBody.style.display = 'block';
+            manuscriptFooter.style.display = 'flex';
+
+            const wc = wordCount(text);
+            wordBadge.textContent = `${wc} words`;
+            wordBadge.classList.add('ok');
+
+            const now = new Date();
+            colophon.textContent = `Drafted ${now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`;
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function showError(msg) {
+            errorBanner.textContent = msg;
+            errorBanner.style.display = 'block';
+        }
+
+        function hideError() {
+            errorBanner.style.display = 'none';
+        }
+
+        async function generateSOP() {
+            hideError();
+
+            const hasAnyContent = ['f-background','f-work','f-why-mba','f-goals'].some(id => val(id).length > 0);
+            if (!hasAnyContent) {
+                showError('Add at least your background, work experience, or motivation for the MBA before drafting — the more detail, the better the SOP.');
+                return;
+            }
+
+            generateBtn.disabled = true;
+            generateBtn.textContent = '✦ Drafting…';
+            manuscriptEmpty.style.display = 'none';
+            manuscriptBody.style.display = 'block';
+            manuscriptFooter.style.display = 'none';
+            manuscriptBody.innerHTML = '<p style="color:var(--ink-faint); font-family:\'IBM Plex Mono\', monospace; font-size: 13px;">Drafting your statement of purpose<span class="cursor-blink"></span></p>';
+            wordBadge.textContent = '…';
+            wordBadge.classList.remove('ok');
+
+            try {
+                const prompt = buildPrompt();
+                const response = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-6",
+                        max_tokens: 1500,
+                        messages: [{ role: "user", content: prompt }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Request failed (${response.status})`);
+                }
+
+                const data = await response.json();
+                const text = (data.content || [])
+                    .map(block => block.type === 'text' ? block.text : '')
+                    .join('\n')
+                    .trim();
+
+                if (!text) throw new Error('No content returned.');
+
+                renderManuscript(text);
+            } catch (err) {
+                console.error(err);
+                manuscriptBody.style.display = 'none';
+                manuscriptEmpty.style.display = 'flex';
+                showError("Couldn't draft the SOP right now. Please try again in a moment.");
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = '✦ Draft my SOP';
+            }
+        }
+
+        generateBtn.addEventListener('click', generateSOP);
+
+        copyBtn.addEventListener('click', async () => {
+            if (!currentSOPText) return;
+            try {
+                await navigator.clipboard.writeText(currentSOPText);
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => copyBtn.textContent = 'Copy', 1500);
+            } catch (err) {
+                showError('Could not copy automatically — please select and copy the text manually.');
+            }
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (!currentSOPText) return;
+            const blob = new Blob([currentSOPText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const name = (document.getElementById('f-name').value.trim() || 'sop').replace(/\s+/g, '_');
+            a.download = `${name}_SOP.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+
+</body>
+
+</html>

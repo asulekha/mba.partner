@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="Navbar_cat.css">
     <style>
         :root {
             --ink: #0F1419;
@@ -75,263 +76,53 @@
             outline-offset: 3px;
         }
 
-        /* ---------- NAV ---------- */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--ink);
-            color: #FFF;
-            border-bottom: 1px solid rgba(255, 255, 255, .1);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
-        }
-
-        .nav-inner {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 14px 24px;
+        /* AUDIENCE TOGGLE PILL */
+        .audience-toggle-wrap {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand-mark {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: #fff;
-            font-family: 'Fraunces', serif;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 15px;
+            margin-bottom: 32px;
         }
 
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.15;
-        }
-
-        .brand-text span {
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .brand-text small {
-            font-size: 10.5px;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            color: #A0AEC0;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .nav-links a:not(.nav-cta):not(.nav-login) {
-            color: #D0D5DD;
-            opacity: .85;
-            transition: opacity .2s;
-        }
-
-        .nav-links a:not(.nav-cta):not(.nav-login):hover {
-            opacity: 1;
-        }
-
-        .nav-login {
-            border: 1.4px solid rgba(255, 255, 255, .25);
-            color: #F4EFE3;
-            padding: 8px 16px;
+        .audience-toggle {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(99, 102, 241, 0.45);
             border-radius: 999px;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all .2s;
+            padding: 4px;
+            gap: 0;
         }
 
-        .nav-login:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .nav-cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: #fff;
-            padding: 9px 18px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 13.5px;
-            transition: all .3s;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: 1.4px solid rgba(255, 255, 255, .25);
-            border-radius: 8px;
-            width: 38px;
-            height: 38px;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .nav-toggle span,
-        .nav-toggle span::before,
-        .nav-toggle span::after {
-            display: block;
-            width: 18px;
-            height: 2px;
-            background: #F4EFE3;
-            border-radius: 2px;
+        .audience-toggle-btn {
             position: relative;
-            transition: transform .2s ease, opacity .2s ease;
-        }
-
-        .nav-toggle span::before {
-            content: "";
-            position: absolute;
-            top: -6px;
-        }
-
-        .nav-toggle span::after {
-            content: "";
-            position: absolute;
-            top: 6px;
-        }
-
-        .nav.menu-open .nav-toggle span {
+            z-index: 1;
+            padding: 10px 26px;
+            border-radius: 999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
             background: transparent;
+            color: rgba(255, 255, 255, 0.55);
+            transition: color .22s ease, background .22s ease;
+            white-space: nowrap;
+            letter-spacing: -0.01em;
         }
 
-        .nav.menu-open .nav-toggle span::before {
-            top: 0;
-            transform: rotate(45deg);
+        .audience-toggle-btn.active {
+            color: var(--primary-dark);
+            background: #fff;
         }
 
-        .nav.menu-open .nav-toggle span::after {
-            top: 0;
-            transform: rotate(-45deg);
+        .audience-toggle-btn:not(.active):hover {
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        @media (max-width:760px) {
-            .nav-inner {
-                flex-wrap: wrap;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                flex-basis: 100%;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 4px;
-                max-height: 0;
-                overflow: auto;
-                opacity: 0;
-                transition: max-height .25s ease, opacity .2s ease;
-            }
-
-            .nav.menu-open .nav-links {
-                max-height: 560px;
-                opacity: 1;
-                padding-top: 10px;
-                border-top: 1px solid rgba(255, 255, 255, .1);
-                margin-top: 12px;
-            }
-
-            .nav-links a:not(.nav-cta):not(.nav-login) {
-                padding: 10px 4px;
-                opacity: 1;
-                border-bottom: 1px solid rgba(255, 255, 255, .06);
-            }
-
-            .nav-login,
-            .nav-cta {
-                text-align: center;
-                margin-top: 8px;
-            }
-        }
-
-        /* ---- Mobile audience switcher (shown only in hamburger menu) ---- */
-        .nav-mobile-audience {
-            display: none;
-        }
-
-        @media (max-width: 760px) {
-            .nav-dropdown-desktop {
-                display: none !important;
-            }
-
-            .nav-mobile-audience {
-                display: flex;
-                flex-direction: column;
-                gap: 6px;
-                padding: 10px 0 4px;
-                border-top: 1px solid rgba(255, 255, 255, .1);
-                margin-top: 4px;
-            }
-
-            .nav-mobile-label {
-                font-size: 10.5px;
-                text-transform: uppercase;
-                letter-spacing: .08em;
-                color: #8B92A0;
-                font-weight: 600;
-                padding: 0 4px;
-            }
-
-            .nav-mobile-pill {
-                display: block;
-                padding: 11px 14px;
-                border-radius: 9px;
-                font-size: 14px;
-                font-weight: 700;
-                color: #D0D5DD;
-                border: 1.4px solid rgba(255, 255, 255, .12);
-                text-align: center;
-                transition: all .2s;
-            }
-
-            .nav-mobile-pill:hover {
-                border-color: var(--primary);
-                color: #fff;
-            }
-
-            .nav-mobile-pill--active {
-                background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-                color: #fff;
-                border-color: transparent;
-            }
-        }
-
-        /* ---------- HERO ---------- */
+        /* HERO */
         .hero {
             background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
             color: #FFF;
-            padding: 72px 0 60px;
+            padding: 68px 0 56px;
             position: relative;
             overflow: hidden;
         }
@@ -388,13 +179,6 @@
             font-size: 16.5px;
             line-height: 1.6;
             color: #D0D5DD;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: 12px;
-            margin-top: 30px;
-            flex-wrap: wrap;
         }
 
         .btn {
@@ -459,7 +243,7 @@
             color: #E8E9F3;
         }
 
-        /* ---------- STATS STRIP ---------- */
+        /* STATS */
         .stats {
             padding: 0;
             margin-top: -34px;
@@ -534,7 +318,7 @@
             line-height: 1.6;
         }
 
-        /* ---------- HALL OF FAME ---------- */
+        /* HALL OF FAME */
         .fame-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -611,14 +395,7 @@
             flex-grow: 1;
         }
 
-        .fame-link {
-            margin-top: 16px;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        /* ---------- BENEFITS / WHAT'S COVERED ---------- */
+        /* BENEFITS */
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -675,13 +452,13 @@
             line-height: 1.6;
         }
 
-        /* ---------- EXAM PILLS ---------- */
+        /* EXAM PILLS */
         .exam-pills {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
-            margin-bottom: 40px;
+            margin-top: 28px;
         }
 
         .exam-pill {
@@ -701,7 +478,54 @@
             transform: translateY(-2px);
         }
 
-        /* ---------- TESTIMONIAL WALL ---------- */
+        /* PROCESS */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:860px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .process-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            padding: 22px 20px;
+        }
+
+        .process-step {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: .06em;
+        }
+
+        .process-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .process-card p {
+            margin: 8px 0 0;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            line-height: 1.6;
+        }
+
+        /* TESTIMONIAL WALL */
         .wall-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -771,56 +595,7 @@
             line-height: 1.55;
         }
 
-        /* ---------- PROCESS / TIMELINE ---------- */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            counter-reset: step;
-        }
-
-        @media (max-width:860px) {
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width:560px) {
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .process-card {
-            background: var(--paper-card);
-            border: 1px solid var(--rule);
-            border-radius: 14px;
-            padding: 22px 20px;
-            position: relative;
-        }
-
-        .process-step {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-            letter-spacing: .06em;
-        }
-
-        .process-card h3 {
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .process-card p {
-            margin: 8px 0 0;
-            font-size: 12.5px;
-            color: var(--ink-faint);
-            line-height: 1.6;
-        }
-
-        /* ---------- FINAL CTA ---------- */
+        /* FINAL CTA */
         .final-cta {
             background: var(--ink);
             border-radius: 20px;
@@ -864,7 +639,175 @@
             flex-wrap: wrap;
         }
 
-        /* ---------- FOOTER ---------- */
+        /* ========== USP POPUP MODAL (Doc 1 se liya) ========== */
+        .usp-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 20, 25, .72);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .25s ease;
+        }
+
+        .usp-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .usp-modal {
+            position: relative;
+            background: var(--paper-card);
+            border-radius: 20px;
+            max-width: 440px;
+            width: 100%;
+            padding: 36px 32px 30px;
+            text-align: center;
+            transform: translateY(14px) scale(.97);
+            transition: transform .3s ease;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+            overflow: hidden;
+        }
+
+        .usp-overlay.show .usp-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .usp-modal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .usp-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: var(--surface);
+            color: var(--ink-faint);
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+        }
+
+        .usp-close:hover {
+            background: var(--rule);
+            color: var(--ink);
+        }
+
+        .usp-eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .usp-modal h2 {
+            font-size: 23px;
+            line-height: 1.25;
+            color: var(--ink);
+        }
+
+        .usp-modal h2 em {
+            font-style: italic;
+            color: var(--primary-dark);
+        }
+
+        .usp-list {
+            list-style: none;
+            margin: 18px 0 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            text-align: left;
+        }
+
+        .usp-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.45;
+        }
+
+        .usp-list li .tick {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--success);
+            color: #fff;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        .usp-placed {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--rule);
+            font-size: 11.5px;
+            color: var(--ink-faint);
+        }
+
+        .usp-placed strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .usp-cta {
+            margin-top: 20px;
+            width: 100%;
+            justify-content: center;
+            font-size: 14.5px;
+        }
+
+        .usp-skip {
+            display: block;
+            margin: 12px auto 0;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .usp-skip:hover {
+            color: var(--ink);
+        }
+
+        @media (max-width:480px) {
+            .usp-modal {
+                padding: 30px 22px 24px;
+            }
+        }
+
+        /* FOOTER */
         footer {
             background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
             color: #FFF;
@@ -965,90 +908,55 @@
                 scroll-behavior: auto;
             }
         }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: calc(100% + 8px);
-            background: #fff;
-            min-width: 180px;
-            border: 1px solid #E5E7EB;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 14px;
-            color: #111 !important;
-            background: #fff;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
     </style>
 </head>
 
 <body>
 
-    <nav class="nav" id="site-nav">
-        <div class="nav-inner">
-            <a class="brand" href="index.html">
-                <span class="brand-mark">MP</span>
-                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
-            </a>
-            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
-                aria-controls="nav-links">
-                <span></span>
-            </button>
-            <div class="nav-links" id="nav-links">
-                <a href="mba-partner-cat-omet-home.html">Home</a>
-                <a href="mba-partner-cat-omet-courses.html">Courses</a>
-                <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
-                <a href="cart-page.html">Cart</a>
-                <a class="nav-login" href="mba-partner-login.html">Login</a>
-                <div class="dropdown nav-dropdown-desktop">
-                    <a class="nav-cta" href="#">CAT / OMETs Aspirant ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="index.html">MBA Student</a>
-                    </div>
-                </div>
-                <div class="nav-mobile-audience">
-                    <span class="nav-mobile-label">I am a —</span>
-                    <a class="nav-mobile-pill" href="index.html">MBA Student</a>
-                    <a class="nav-mobile-pill nav-mobile-pill--active" href="#">CAT / OMETs Aspirant</a>
-                </div>
-            </div>
+    <!-- ========== USP POPUP (Doc 1 se liya) ========== -->
+    <div class="usp-overlay" id="uspOverlay">
+        <div class="usp-modal">
+            <button class="usp-close" id="uspClose" aria-label="Close">✕</button>
+            <p class="usp-eyebrow">Before you scroll any further</p>
+            <h2>A good percentile gets the call. <em>It won't convert it.</em></h2>
+            <ul class="usp-list">
+                <li><span class="tick">✓</span> Structured CAT &amp; OMETs prep — Quant, VARC, DILR and every exam
+                    pattern</li>
+                <li><span class="tick">✓</span> Mock GDPI panels run by mentors who've actually sat on the other side
+                </li>
+                <li><span class="tick">✓</span> Honest, scored feedback that fixes weak answers before the real
+                    interview</li>
+                <li><span class="tick">✓</span> Profile polishing &amp; WAT practice that ties your whole story together
+                </li>
+            </ul>
+            <p class="usp-placed">Our mentors have converted calls to <strong>IIM A/B/C, XLRI, FMS</strong> and more.
+            </p>
+            <a class="btn btn-primary usp-cta" href="mba-partner-cat-omet-courses.html">🚀 Explore CAT/OMETs Prep</a>
+            <button class="usp-skip" id="uspSkip">Maybe later</button>
         </div>
-    </nav>
+    </div>
+
+    <div id="navbar-mount" data-track="cat"></div>
 
     <header class="hero">
         <div class="wrap">
+            <!-- AUDIENCE TOGGLE PILL -->
+            <div class="audience-toggle-wrap">
+                <div class="audience-toggle" role="group" aria-label="Switch audience view">
+                    <button class="audience-toggle-btn" type="button" id="toMbaBtn">MBA Student</button>
+                    <button class="audience-toggle-btn active" type="button">CAT / OMETs Aspirant</button>
+                </div>
+            </div>
+
             <span class="hero-flag">
-                <a href="tel:+917042732092" style="display:flex;align-items:center;gap:6px;">
-                    <span>📞</span>
-                    <span>+91 70427 32092</span>
-                </a>
+                <a href="tel:+917042732092" style="display:flex;align-items:center;gap:6px;"><span>📞</span><span>+91
+                        70427 32092</span></a>
                 <span>— talk to a mentor</span>
             </span>
             <p class="eyebrow">Initiative by Alumni of Old IIM</p>
             <h1>Crack CAT &amp; OMETs. <em>Convert the call.</em></h1>
-            <p class="hero-sub">A good percentile gets you the call — the GDPI round is what actually converts it.
-                Get structured prep, mock GDPIs and mentor feedback from alumni who've sat on both sides of the
-                table.</p>
+            <p class="hero-sub">A good percentile gets you the call — the GDPI round is what actually converts it. Get
+                structured prep, mock GDPIs and mentor feedback from alumni who've sat on both sides of the table.</p>
             <div class="hero-ticker">
                 <span>Our mentors converted calls from</span>
                 <div class="ticker-track">
@@ -1087,8 +995,8 @@
             <div class="section-head reveal">
                 <p class="eyebrow-light">Hall of Fame</p>
                 <h2>From aspirant to admit</h2>
-                <p>Congratulations to our Hall of Famers for converting their calls into seats at the schools they
-                    aimed for.</p>
+                <p>Congratulations to our Hall of Famers for converting their calls into seats at the schools they aimed
+                    for.</p>
             </div>
             <div class="fame-grid reveal">
                 <div class="fame-card">
@@ -1099,9 +1007,9 @@
                             <div class="fame-school">IIM Ahmedabad</div>
                         </div>
                     </div>
-                    <p class="fame-quote">CAT was always the dream, but the GDPI stage felt like the real
-                        bottleneck. Mentors who'd been through the same process helped shape a clear, convincing
-                        story — and made the conversion feel within reach.</p>
+                    <p class="fame-quote">CAT was always the dream, but the GDPI stage felt like the real bottleneck.
+                        Mentors who'd been through the same process helped shape a clear, convincing story — and made
+                        the conversion feel within reach.</p>
                 </div>
                 <div class="fame-card">
                     <div class="fame-top">
@@ -1150,8 +1058,8 @@
                             <path d="M7 13h4M9 11v2" stroke="white" stroke-width="1.3" />
                         </svg></div>
                     <h3>OMETs Prep</h3>
-                    <p>XAT, SNAP, NMAT, CMAT and IIFT-specific prep — each exam has its own pattern and cutoff
-                        logic.</p>
+                    <p>XAT, SNAP, NMAT, CMAT and IIFT-specific prep — each exam has its own pattern and cutoff logic.
+                    </p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1167,17 +1075,13 @@
                             <path d="M1 16c0-3 2.5-5 5-5s5 2 5 5" stroke="white" stroke-width="1.4" fill="none" />
                         </svg></div>
                     <h3>Profile &amp; WAT</h3>
-                    <p>How to present your profile convincingly, plus structured WAT practice for the essay round.
-                    </p>
+                    <p>How to present your profile convincingly, plus structured WAT practice for the essay round.</p>
                 </div>
             </div>
-            <div class="exam-pills reveal" style="margin-top:28px;">
-                <span class="exam-pill">CAT</span>
-                <span class="exam-pill">XAT</span>
-                <span class="exam-pill">SNAP</span>
-                <span class="exam-pill">NMAT</span>
-                <span class="exam-pill">CMAT</span>
-                <span class="exam-pill">IIFT</span>
+            <div class="exam-pills reveal">
+                <span class="exam-pill">CAT</span><span class="exam-pill">XAT</span><span
+                    class="exam-pill">SNAP</span><span class="exam-pill">NMAT</span><span
+                    class="exam-pill">CMAT</span><span class="exam-pill">IIFT</span>
             </div>
         </div>
     </section>
@@ -1192,8 +1096,7 @@
                 <div class="process-card">
                     <div class="process-step">STEP 01</div>
                     <h3>Diagnose</h3>
-                    <p>A diagnostic mock pinpoints sectional gaps across Quant, VARC and DILR — or your chosen
-                        OMET.</p>
+                    <p>A diagnostic mock pinpoints sectional gaps across Quant, VARC and DILR — or your chosen OMET.</p>
                 </div>
                 <div class="process-card">
                     <div class="process-step">STEP 02</div>
@@ -1230,8 +1133,8 @@
                             <div class="wall-meta">CAT 99.1%ile · IIM Calls</div>
                         </div>
                     </div>
-                    <p class="wall-quote">The mock GDPI panels exposed exactly where my answers fell apart — fixed
-                        well before the real interview.</p>
+                    <p class="wall-quote">The mock GDPI panels exposed exactly where my answers fell apart — fixed well
+                        before the real interview.</p>
                 </div>
                 <div class="wall-card">
                     <div class="wall-top">
@@ -1263,8 +1166,8 @@
                             <div class="wall-meta">CAT 96.4%ile · IIM Kozhikode Call</div>
                         </div>
                     </div>
-                    <p class="wall-quote">Mentor feedback after every mock GD was blunt and specific — exactly what
-                        I needed instead of generic tips.</p>
+                    <p class="wall-quote">Mentor feedback after every mock GD was blunt and specific — exactly what I
+                        needed instead of generic tips.</p>
                 </div>
                 <div class="wall-card">
                     <div class="wall-top">
@@ -1274,8 +1177,8 @@
                             <div class="wall-meta">NMAT 97.2%ile · NMIMS Call</div>
                         </div>
                     </div>
-                    <p class="wall-quote">Going from engineering to a management story for my PI felt impossible
-                        until the profile-building sessions.</p>
+                    <p class="wall-quote">Going from engineering to a management story for my PI felt impossible until
+                        the profile-building sessions.</p>
                 </div>
                 <div class="wall-card">
                     <div class="wall-top">
@@ -1296,8 +1199,8 @@
                             <div class="wall-meta">IIFT Entrance · IIFT Delhi Call</div>
                         </div>
                     </div>
-                    <p class="wall-quote">IIFT's pattern is unlike CAT — having mentors who'd actually cracked it
-                        made all the difference in prep direction.</p>
+                    <p class="wall-quote">IIFT's pattern is unlike CAT — having mentors who'd actually cracked it made
+                        all the difference in prep direction.</p>
                 </div>
                 <div class="wall-card">
                     <div class="wall-top">
@@ -1307,8 +1210,8 @@
                             <div class="wall-meta">CAT 98.9%ile · FMS Delhi Call</div>
                         </div>
                     </div>
-                    <p class="wall-quote">Three back-to-back mock PIs the week before my interview turned nerves
-                        into confidence.</p>
+                    <p class="wall-quote">Three back-to-back mock PIs the week before my interview turned nerves into
+                        confidence.</p>
                 </div>
             </div>
         </div>
@@ -1318,11 +1221,10 @@
         <div class="wrap">
             <div class="final-cta reveal">
                 <h2>A good score gets you the call. Preparation gets you the convert.</h2>
-                <p>Structured CAT/OMETs prep and mock GDPI rounds, guided by mentors who've already converted their
-                    own calls.</p>
+                <p>Structured CAT/OMETs prep and mock GDPI rounds, guided by mentors who've already converted their own
+                    calls.</p>
                 <div class="final-ctas">
-                    <a class="btn btn-primary" href="mba-partner-cat-omet-courses.html">🚀 Explore CAT/OMETs
-                        Prep</a>
+                    <a class="btn btn-primary" href="mba-partner-cat-omet-courses.html">🚀 Explore CAT/OMETs Prep</a>
                     <a class="btn btn-ghost-dark" href="tel:+917042732092">📞 Talk to a Mentor</a>
                 </div>
             </div>
@@ -1334,15 +1236,14 @@
             <div class="foot-grid">
                 <div class="foot-col">
                     <h4>MBA Partner</h4>
-                    <p style="font-size:13.5px;color:#A0AEC0;line-height:1.6;max-width:34ch;margin:0;">An initiative
-                        by alumni of old IIM, helping CAT &amp; OMETs aspirants convert calls into seats.</p>
+                    <p style="font-size:13.5px;color:#A0AEC0;line-height:1.6;max-width:34ch;margin:0;">An initiative by
+                        alumni of old IIM, helping CAT &amp; OMETs aspirants convert calls into seats.</p>
                 </div>
                 <div class="foot-col">
                     <h4>Explore</h4>
                     <a href="mba-partner-cat-omet-home.html">Home</a>
                     <a href="mba-partner-cat-omet-courses.html">Courses</a>
-                    <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
-                    <a href="mba-partner-login.html">Login</a>
+                    <a href="mba-partner-login.html" id="footLogin">Login</a>
                 </div>
                 <div class="foot-col">
                     <h4>Resources</h4>
@@ -1368,32 +1269,80 @@
         </div>
     </footer>
 
+    <!-- ========== SCRIPTS ========== -->
+
+    <!-- Doc 2 se: cart functionality -->
+    <script src="cart.js"></script>
+
+    <!-- Shared: Navbar -->
+    <script src="Navbar_cat.js"></script>
+
     <script>
+        // --- Scroll reveal ---
         const reveals = document.querySelectorAll('.reveal');
         const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+            });
         }, { threshold: 0.12 });
         reveals.forEach(r => obs.observe(r));
 
-        // --- Mobile hamburger menu ---
-        const siteNav = document.getElementById('site-nav');
-        const navToggle = document.getElementById('nav-toggle');
-        const navLinks = document.getElementById('nav-links');
-
-        navToggle.addEventListener('click', () => {
-            const isOpen = siteNav.classList.toggle('menu-open');
-            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-        });
-
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                siteNav.classList.remove('menu-open');
-                navToggle.setAttribute('aria-expanded', 'false');
-                navToggle.setAttribute('aria-label', 'Open menu');
+        // --- Audience toggle: MBA page pe redirect ---
+        const TRACK_KEY = 'mbaPartnerTrack';
+        const toMbaBtn = document.getElementById('toMbaBtn');
+        if (toMbaBtn) {
+            toMbaBtn.addEventListener('click', () => {
+                try { localStorage.setItem(TRACK_KEY, 'mba'); } catch (e) { /* ignore */ }
+                window.location.href = 'mba-partner-home.html';
             });
-        });
+        }
+
+        // --- Footer login link: authenticated hone par chupaao ---
+        const API_BASE = 'http://localhost:5000/api/auth';
+        const footLogin = document.getElementById('footLogin');
+        async function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token || !footLogin) return;
+            try {
+                const res = await fetch(`${API_BASE}/me`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                    credentials: 'include'
+                });
+                const data = await res.json();
+                if (data.success) footLogin.style.display = 'none';
+                else localStorage.removeItem('token');
+            } catch { /* backend unreachable — link as-is */ }
+        }
+        checkAuth();
+
+        // --- USP Popup: session mein ek baar dikhao (Doc 1 se) ---
+        (function () {
+            const SEEN_KEY = 'uspPopupSeenCat';
+            const overlay = document.getElementById('uspOverlay');
+            if (!overlay) return;
+            if (sessionStorage.getItem(SEEN_KEY)) return;
+
+            const closeBtn = document.getElementById('uspClose');
+            const skipBtn = document.getElementById('uspSkip');
+
+            function openPopup() {
+                overlay.classList.add('show');
+                sessionStorage.setItem(SEEN_KEY, '1');
+            }
+            function closePopup() {
+                overlay.classList.remove('show');
+            }
+
+            setTimeout(openPopup, 600);
+            closeBtn.addEventListener('click', closePopup);
+            skipBtn.addEventListener('click', closePopup);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closePopup(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
+        })();
     </script>
+
+    <!-- Doc 2 se: Chatbot loader -->
+    <script src="chatbot-loader.js" data-track="cat"></script>
 
 </body>
 

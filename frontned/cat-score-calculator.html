@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAT Score Calculator 2026 — MBA Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="Navbar_cat.css">
+  <link rel="stylesheet" href="cat-score-calculator.css">
+</head>
+
+<body>
+
+  <!-- NAV: rendered by Navbar_cat.js -->
+  <div id="navbar-mount" data-track="cat"></div>
+
+  <!-- HERO -->
+  <section class="calc-hero">
+    <div class="calc-wrap">
+      <p class="calc-eyebrow">MBA Partner — Free Tool</p>
+      <h1>CAT Score Calculator <span class="yr-badge">2026</span></h1>
+      <p class="calc-hero-sub">Enter your attempts section-wise → get your Raw Score, Scaled Score estimate & Percentile
+        prediction instantly.</p>
+      <div class="hero-pills">
+        <span class="hpill">⚡ Instant Results</span>
+        <span class="hpill">📊 Section-wise Breakdown</span>
+        <span class="hpill">🎯 Percentile Prediction</span>
+        <span class="hpill">🏫 College Shortlist</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <div class="calc-wrap how-strip">
+    <div class="how-step"><span class="how-num">1</span><span>Enter correct, incorrect &amp; skipped for each
+        section</span></div>
+    <div class="how-arrow">→</div>
+    <div class="how-step"><span class="how-num">2</span><span>Select your CAT slot (1, 2 or 3)</span></div>
+    <div class="how-arrow">→</div>
+    <div class="how-step"><span class="how-num">3</span><span>Hit Calculate &amp; get score + percentile</span></div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="calc-wrap calc-main-grid">
+
+    <!-- LEFT: INPUT FORM -->
+    <div class="calc-input-panel">
+
+      <!-- SLOT SELECTOR -->
+      <div class="panel-block">
+        <div class="panel-block-header">
+          <span class="pbi">📋</span>
+          <div>
+            <div class="pbt">Exam Details</div>
+            <div class="pbs">Select your CAT 2026 slot</div>
+          </div>
+        </div>
+        <div class="slot-row">
+          <button class="slot-btn active" data-slot="1">Slot 1<small>Morning</small></button>
+          <button class="slot-btn" data-slot="2">Slot 2<small>Afternoon</small></button>
+          <button class="slot-btn" data-slot="3">Slot 3<small>Evening</small></button>
+        </div>
+      </div>
+
+      <!-- VARC -->
+      <div class="panel-block section-block" data-section="varc">
+        <div class="panel-block-header">
+          <span class="pbi sec-icon varc-icon">V</span>
+          <div>
+            <div class="pbt">VARC <span class="sec-qs">(24 Questions · 40 min)</span></div>
+            <div class="pbs">Verbal Ability &amp; Reading Comprehension</div>
+          </div>
+        </div>
+        <div class="attempt-grid">
+          <div class="attempt-box correct-box">
+            <label>✅ Correct</label>
+            <input type="number" id="varc_correct" min="0" max="24" value="0" class="attempt-input">
+          </div>
+          <div class="attempt-box wrong-box">
+            <label>❌ Incorrect</label>
+            <input type="number" id="varc_incorrect" min="0" max="24" value="0" class="attempt-input">
+          </div>
+          <div class="attempt-box skip-box">
+            <label>⏭ Skipped</label>
+            <input type="number" id="varc_skipped" min="0" max="24" value="24" class="attempt-input" readonly>
+          </div>
+        </div>
+        <div class="live-score-row">
+          <span class="ls-label">Raw Score</span>
+          <span class="ls-val" id="varc_raw">0.00</span>
+        </div>
+      </div>
+
+      <!-- LRDI -->
+      <div class="panel-block section-block" data-section="lrdi">
+        <div class="panel-block-header">
+          <span class="pbi sec-icon lrdi-icon">L</span>
+          <div>
+            <div class="pbt">LRDI <span class="sec-qs">(20 Questions · 40 min)</span></div>
+            <div class="pbs">Logical Reasoning &amp; Data Interpretation</div>
+          </div>
+        </div>
+        <div class="attempt-grid">
+          <div class="attempt-box correct-box">
+            <label>✅ Correct</label>
+            <input type="number" id="lrdi_correct" min="0" max="20" value="0" class="attempt-input">
+          </div>
+          <div class="attempt-box wrong-box">
+            <label>❌ Incorrect</label>
+            <input type="number" id="lrdi_incorrect" min="0" max="20" value="0" class="attempt-input">
+          </div>
+          <div class="attempt-box skip-box">
+            <label>⏭ Skipped</label>
+            <input type="number" id="lrdi_skipped" min="0" max="20" value="20" class="attempt-input" readonly>
+          </div>
+        </div>
+        <div class="live-score-row">
+          <span class="ls-label">Raw Score</span>
+          <span class="ls-val" id="lrdi_raw">0.00</span>
+        </div>
+      </div>
+
+      <!-- QUANT -->
+      <div class="panel-block section-block" data-section="quant">
+        <div class="panel-block-header">
+          <span class="pbi sec-icon quant-icon">Q</span>
+          <div>
+            <div class="pbt">Quantitative Aptitude <span class="sec-qs">(22 Questions · 40 min)</span></div>
+            <div class="pbs">QA — Arithmetic, Algebra, Geometry &amp; more</div>
+          </div>
+        </div>
+        <div class="attempt-grid">
+          <div class="attempt-box correct-box">
+            <label>✅ Correct</label>
+            <input type="number" id="quant_correct" min="0" max="22" value="0" class="attempt-input">
+          </div>
+          <div class="attempt-box wrong-box">
+            <label>❌ Incorrect</label>
+            <input type="number" id="quant_incorrect" min="0" max="22" value="0" class="attempt-input">
+          </div>
+          <div class="attempt-box skip-box">
+            <label>⏭ Skipped</label>
+            <input type="number" id="quant_skipped" min="0" max="22" value="22" class="attempt-input" readonly>
+          </div>
+        </div>
+        <div class="live-score-row">
+          <span class="ls-label">Raw Score</span>
+          <span class="ls-val" id="quant_raw">0.00</span>
+        </div>
+      </div>
+
+      <button class="calc-btn" id="calcBtn">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="2" y="2" width="14" height="14" rx="3" stroke="white" stroke-width="1.8" />
+          <path d="M5 9h8M9 5v8" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        Calculate My Score
+      </button>
+      <button class="reset-btn" id="resetBtn">↺ Reset</button>
+
+    </div>
+
+    <!-- RIGHT: RESULTS -->
+    <div class="calc-results-panel" id="resultsPanel">
+
+      <!-- PLACEHOLDER -->
+      <div class="results-placeholder" id="placeholder">
+        <div class="ph-icon">🧮</div>
+        <h3>Your Score Appears Here</h3>
+        <p>Enter your attempts on the left and click "Calculate My Score"</p>
+        <div class="ph-tip">
+          <strong>Scoring Pattern:</strong><br>
+          +3 for correct &nbsp;|&nbsp; −1 for wrong MCQ &nbsp;|&nbsp; 0 for TITA / skipped
+        </div>
+      </div>
+
+      <!-- RESULT CONTENT -->
+      <div class="results-content" id="resultsContent" style="display:none;">
+
+        <!-- OVERALL SCORE CARD -->
+        <div class="overall-card" id="overallCard">
+          <div class="oc-header">
+            <span class="oc-label">Overall CAT 2026 Score</span>
+            <span class="oc-slot" id="oc_slot">Slot 1</span>
+          </div>
+          <div class="oc-score-row">
+            <div class="oc-score-block">
+              <span class="oc-num" id="oc_raw">—</span>
+              <span class="oc-desc">Raw Score</span>
+            </div>
+            <div class="oc-divider"></div>
+            <div class="oc-score-block">
+              <span class="oc-num scaled" id="oc_scaled">—</span>
+              <span class="oc-desc">Scaled Score</span>
+            </div>
+            <div class="oc-divider"></div>
+            <div class="oc-score-block">
+              <span class="oc-num pct" id="oc_percentile">—</span>
+              <span class="oc-desc">Est. Percentile</span>
+            </div>
+          </div>
+          <div class="percentile-bar-wrap">
+            <div class="percentile-bar-track">
+              <div class="percentile-bar-fill" id="percentileBarFill"></div>
+            </div>
+            <div class="percentile-bar-labels">
+              <span>0</span><span>50%ile</span><span>99.9%ile</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION BREAKDOWN -->
+        <div class="section-breakdown">
+          <div class="sb-title">Section-wise Breakdown</div>
+          <div class="sb-grid">
+            <div class="sb-card varc-card">
+              <div class="sb-sec-name">VARC</div>
+              <div class="sb-raw" id="sb_varc_raw">—</div>
+              <div class="sb-desc">Raw Score</div>
+              <div class="sb-mini-bar">
+                <div class="sb-mini-fill varc-fill" id="varc_bar"></div>
+              </div>
+              <div class="sb-stats">
+                <span id="sb_varc_c">0 correct</span>
+                <span id="sb_varc_w">0 wrong</span>
+              </div>
+            </div>
+            <div class="sb-card lrdi-card">
+              <div class="sb-sec-name">LRDI</div>
+              <div class="sb-raw" id="sb_lrdi_raw">—</div>
+              <div class="sb-desc">Raw Score</div>
+              <div class="sb-mini-bar">
+                <div class="sb-mini-fill lrdi-fill" id="lrdi_bar"></div>
+              </div>
+              <div class="sb-stats">
+                <span id="sb_lrdi_c">0 correct</span>
+                <span id="sb_lrdi_w">0 wrong</span>
+              </div>
+            </div>
+            <div class="sb-card quant-card">
+              <div class="sb-sec-name">QA</div>
+              <div class="sb-raw" id="sb_quant_raw">—</div>
+              <div class="sb-desc">Raw Score</div>
+              <div class="sb-mini-bar">
+                <div class="sb-mini-fill quant-fill" id="quant_bar"></div>
+              </div>
+              <div class="sb-stats">
+                <span id="sb_quant_c">0 correct</span>
+                <span id="sb_quant_w">0 wrong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PERCENTILE BANDS TABLE -->
+        <div class="pct-table-wrap">
+          <div class="sb-title">Score vs Percentile Reference (CAT 2025–26 Trends)</div>
+          <table class="pct-table" id="pctTable">
+            <thead>
+              <tr>
+                <th>Score Range</th>
+                <th>Est. Percentile</th>
+                <th>Chances</th>
+              </tr>
+            </thead>
+            <tbody id="pctTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- COLLEGE SHORTLIST -->
+        <div class="college-shortlist-wrap">
+          <div class="sb-title">Colleges You Can Target 🎯</div>
+          <div class="college-shortlist" id="collegeShortlist"></div>
+        </div>
+
+        <!-- WHAT NEXT -->
+        <div class="what-next-card">
+          <div class="wn-icon">🚀</div>
+          <div class="wn-body">
+            <div class="wn-title">Convert That Call into an Offer!</div>
+            <div class="wn-sub">MBA Partner's Placements Bootcamp & GDPI prep — built by Old IIM alumni to help you ace
+              the final round.</div>
+          </div>
+          <a href="mba-partner-cat-omet-courses.html" class="wn-btn">View Programs →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORE VS PERCENTILE REFERENCE TABLE -->
+  <div class="calc-wrap ref-section">
+    <h2 class="ref-heading">CAT Score vs Percentile — Historical Reference (2026)</h2>
+    <p class="ref-sub">Based on CAT 2023–2025 trends. Actual percentile depends on normalisation &amp; difficulty.</p>
+    <div class="ref-table-scroll">
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Raw Score</th>
+            <th>VARC Percentile</th>
+            <th>LRDI Percentile</th>
+            <th>QA Percentile</th>
+            <th>Overall Percentile</th>
+          </tr>
+        </thead>
+        <tbody id="refTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="calc-wrap faq-section">
+    <h2 class="ref-heading">Frequently Asked Questions</h2>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="calc-footer-cta">
+    <div class="calc-wrap">
+      <h2>Know your B-Schools now</h2>
+      <p>Use our free B-School Predictor to see which colleges you can realistically target with your estimated
+        percentile.</p>
+      <div class="footer-cta-btns">
+        <a href="bschool-predictor.html" class="fcta-primary">🏫 B-School Predictor →</a>
+        <a href="mba-partner-cat-omet-courses.html" class="fcta-secondary">View GDPI Programs</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="cart.js"></script>
+  <script src="Navbar_cat.js"></script>
+  <script src="cat-score-calculator.js"></script>
+</body>
+
+</html>

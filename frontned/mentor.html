@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentors — MBA Partner</title>
+
+    <!-- Same Google Fonts as the main site -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link rel="stylesheet" href="Navbar_cat.css">
+
+    <!-- ── Design tokens (copy-paste from your main site's :root) ── -->
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4338CA;
+            --accent: #818CF8;
+            --ink: #0F1419;
+            --ink-soft: #374151;
+            --ink-faint: #9CA3AF;
+            --paper: #F9FAFB;
+            --paper-card: #FFFFFF;
+            --rule: #E5E7EB;
+            --success: #10B981;
+        }
+    </style>
+
+    <link rel="stylesheet" href="mentor.css" />
+</head>
+
+<body>
+
+
+    <div id="navbar-mount" data-track="cat"></div>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-eyebrow">Learn from those who cracked it</div>
+        <h1>Meet our Mentors.<br><em>Learn from the best.</em></h1>
+        <p class="hero-sub">IIM alumni who've sat on both sides of the GDPI table — guiding you to convert the call.</p>
+        <div class="hero-tags">
+            <span class="hero-tag">IIM Ahmedabad</span>
+            <span class="hero-tag">IIM Bangalore</span>
+            <span class="hero-tag">IIM Calcutta</span>
+            <span class="hero-tag">XLRI Jamshedpur</span>
+            <span class="hero-tag">FMS Delhi</span>
+            <span class="hero-tag">SPJIMR</span>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-num">250+</div>
+                <div class="hero-stat-label">Students voted</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">25+</div>
+                <div class="hero-stat-label">Mentors across B-Schools</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">94%</div>
+                <div class="hero-stat-label">Conversion rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENTORS SECTION -->
+    <div class="section" id="mentors">
+        <div class="section-header">
+            <div class="section-eyebrow">Top Ranked by Students</div>
+            <div class="section-title">Our Star Mentors</div>
+            <div class="section-sub">Voted by 250+ students — the best per domain, from the best B-Schools.</div>
+        </div>
+
+        <div class="filter-tabs">
+            <div class="filter-tab active" data-filter="All">All</div>
+            <div class="filter-tab" data-filter="Consulting">Consulting</div>
+            <div class="filter-tab" data-filter="Finance">Finance</div>
+            <div class="filter-tab" data-filter="Marketing">Marketing</div>
+            <div class="filter-tab" data-filter="HR">HR</div>
+            <div class="filter-tab" data-filter="Operations">Operations</div>
+            <div class="filter-tab" data-filter="Product Management">Product</div>
+        </div>
+
+        <div class="mentor-grid" id="mentorGrid"></div>
+
+        <div class="more-banner">
+            <p>These are <strong>Top Ranked Mentors per Domain</strong> voted by 250+ students.</p>
+            <p class="more-sub">+ <strong>25+ mentors more</strong> from across B-Schools waiting to guide you.</p>
+            <button class="btn-outline">Explore all mentors &rarr;</button>
+        </div>
+    </div>
+
+    <!-- BECOME A MENTOR -->
+    <div class="become-section" id="become-mentor">
+        <div class="become-inner">
+
+            <div class="become-left">
+                <h2>Shape the next<br>generation.<br><em>Become a mentor.</em></h2>
+                <p>You've cracked it. Now help others do the same. Share your GDPI experience, mock interview skills,
+                    and insider perspective with serious aspirants.</p>
+                <div class="perks">
+                    <div class="perk">
+                        <i class="ti ti-users perk-icon"></i>
+                        <div>
+                            <strong>Impact 1000s of aspirants</strong>
+                            <p>Your experience and clarity can change someone's career trajectory.</p>
+                        </div>
+                    </div>
+                    <div class="perk">
+                        <i class="ti ti-certificate perk-icon"></i>
+                        <div>
+                            <strong>Build your personal brand</strong>
+                            <p>Get featured on the MBA Partner platform, trusted by 10,000+ students.</p>
+                        </div>
+                    </div>
+                    <div class="perk">
+                        <i class="ti ti-cash perk-icon"></i>
+                        <div>
+                            <strong>Earn on your schedule</strong>
+                            <p>Flexible sessions, fair compensation — mentor at your own pace.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mentor-form">
+                <div class="form-title">Apply to become a mentor</div>
+                <div class="form-sub">Takes 5 minutes — we review every application personally.</div>
+
+                <div class="form-two">
+                    <div class="form-row">
+                        <label for="f-name">Full name</label>
+                        <input type="text" id="f-name" placeholder="Rahul Sharma" />
+                    </div>
+                    <div class="form-row">
+                        <label for="f-email">Email address</label>
+                        <input type="email" id="f-email" placeholder="rahul@gmail.com" />
+                    </div>
+                </div>
+
+                <div class="form-two">
+                    <div class="form-row">
+                        <label for="f-school">B-School</label>
+                        <select id="f-school">
+                            <option value="">Select B-School</option>
+                            <option>IIM Ahmedabad</option>
+                            <option>IIM Bangalore</option>
+                            <option>IIM Calcutta</option>
+                            <option>IIM Lucknow</option>
+                            <option>IIM Mumbai</option>
+                            <option>XLRI Jamshedpur</option>
+                            <option>FMS Delhi</option>
+                            <option>SPJIMR</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="f-domain">Domain / Expertise</label>
+                        <select id="f-domain">
+                            <option value="">Select domain</option>
+                            <option>Consulting</option>
+                            <option>Finance</option>
+                            <option>Marketing</option>
+                            <option>Product Management</option>
+                            <option>Operations</option>
+                            <option>HR</option>
+                            <option>General Management</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="f-company">Current company &amp; role</label>
+                    <input type="text" id="f-company" placeholder="Accenture — Strategy Consultant" />
+                </div>
+
+                <div class="form-row">
+                    <label for="f-why">Why do you want to be a mentor?</label>
+                    <textarea id="f-why"
+                        placeholder="Share your motivation — what you'll bring to aspirants, your GDPI experience, etc."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <label>1-minute intro video <span class="label-hint">(required)</span></label>
+                    <div class="video-upload" id="videoDropZone">
+                        <i class="ti ti-video"></i>
+                        <strong>Upload your 1-min intro video</strong>
+                        <p>Tell us who you are, your B-School journey,<br>and why you want to mentor.</p>
+                    </div>
+                    <input type="file" id="videoInput" accept="video/*" />
+                    <div class="video-hint" id="videoName">MP4, MOV or WebM &nbsp;·&nbsp; max 100 MB &nbsp;·&nbsp; max
+                        90 seconds</div>
+                </div>
+
+                <button class="submit-btn" id="submitBtn">Submit application &rarr;</button>
+                <div class="form-footer">By applying, you agree to our mentor terms. We'll get back within 3–5 working
+                    days.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="cart.js"></script>
+    <script src="mentor.js"></script>
+    <script src="Navbar_cat.js"></script>
+    <script src="chatbot-loader.js" data-track="cat"></script>
+</body>
+
+</html>

@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDPI Mock Interview Practice — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Navbar_cat.css">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --info: #0EA5E9;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFF;
+            padding: 56px 0 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 85% 10%, rgba(99, 102, 241, .2), transparent 55%);
+        }
+
+        .hero .wrap {
+            position: relative;
+            text-align: center;
+        }
+
+        .bot-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, .15);
+            border: 1px solid rgba(99, 102, 241, .35);
+            padding: 7px 16px;
+            border-radius: 999px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 4.2vw, 42px);
+            font-weight: 700;
+            line-height: 1.12;
+            max-width: 22ch;
+            margin: 0 auto;
+        }
+
+        .hero p {
+            margin: 16px auto 0;
+            max-width: 52ch;
+            color: #D0D5DD;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ---------- MAIN PANEL ---------- */
+        .panel-section {
+            padding: 40px 0 70px;
+        }
+
+        .panel {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: 0 10px 30px rgba(15, 20, 25, .06);
+        }
+
+        @media (max-width: 600px) {
+            .panel {
+                padding: 24px 18px;
+            }
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* ---------- SETUP SCREEN ---------- */
+        .setup-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .setup-block {
+            margin-bottom: 28px;
+        }
+
+        .cat-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cat-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1.5px solid var(--rule);
+            background: var(--paper-card);
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-soft);
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .cat-chip .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .cat-chip:hover {
+            border-color: var(--primary);
+        }
+
+        .cat-chip.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: #fff;
+        }
+
+        .count-grid {
+            display: flex;
+            gap: 10px;
+        }
+
+        .count-chip {
+            flex: 1;
+            text-align: center;
+            padding: 14px 10px;
+            border-radius: 12px;
+            border: 1.5px solid var(--rule);
+            background: var(--paper-card);
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .count-chip .n {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--ink);
+        }
+
+        .count-chip .lbl {
+            font-size: 11.5px;
+            color: var(--ink-faint);
+            margin-top: 2px;
+        }
+
+        .count-chip.active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, .06);
+        }
+
+        .count-chip.active .n {
+            color: var(--primary-dark);
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, .3);
+            transition: all .3s;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(99, 102, 241, .4);
+        }
+
+        .start-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .setup-note {
+            text-align: center;
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            margin-top: 14px;
+        }
+
+        /* ---------- INTERVIEW SCREEN ---------- */
+        .progress-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            gap: 12px;
+        }
+
+        .progress-bar-track {
+            flex: 1;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--surface);
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 999px;
+            transition: width .35s ease;
+        }
+
+        .progress-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--ink-faint);
+            white-space: nowrap;
+        }
+
+        .qa-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 11.5px;
+            font-weight: 700;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .timer {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ink-faint);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timer.warn {
+            color: var(--warning);
+        }
+
+        .timer.over {
+            color: var(--accent);
+        }
+
+        .bot-row {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .bot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .question-bubble {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 18px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--ink);
+        }
+
+        .answer-area textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 14px 16px;
+            border: 1.5px solid var(--rule);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color .2s;
+        }
+
+        .answer-area textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .answer-hint {
+            font-size: 12px;
+            color: var(--ink-faint);
+            margin-top: 6px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            padding: 13px 22px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all .25s;
+        }
+
+        .btn-primary-fill {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+        }
+
+        .btn-primary-fill:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: var(--paper-card);
+            border: 1.5px solid var(--rule);
+            color: var(--ink);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tips-card {
+            display: none;
+            margin-top: 22px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, .06), rgba(236, 72, 153, .06));
+            border: 1px solid rgba(99, 102, 241, .18);
+            border-radius: 16px;
+            padding: 20px 22px;
+        }
+
+        .tips-card.show {
+            display: block;
+        }
+
+        .tips-card h4 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .tips-card ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13.8px;
+            line-height: 1.7;
+            color: var(--ink-soft);
+        }
+
+        .tips-card li {
+            margin-bottom: 6px;
+        }
+
+        .rating-row {
+            display: none;
+            margin-top: 20px;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .rating-row.show {
+            display: flex;
+        }
+
+        .rating-row .lbl {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+
+        .stars {
+            display: flex;
+            gap: 4px;
+        }
+
+        .star-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1.5px solid var(--rule);
+            background: var(--paper-card);
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .15s;
+        }
+
+        .star-btn.active {
+            background: var(--warning);
+            border-color: var(--warning);
+        }
+
+        /* ---------- SUMMARY SCREEN ---------- */
+        .summary-head {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .summary-head h2 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .summary-head p {
+            margin-top: 8px;
+            color: var(--ink-faint);
+            font-size: 14px;
+        }
+
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            text-align: center;
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 16px 10px;
+        }
+
+        .stat-box .num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat-box .lbl {
+            font-size: 11px;
+            color: var(--ink-faint);
+            margin-top: 4px;
+        }
+
+        .review-item {
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+
+        .review-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .review-q {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        .review-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+
+        .review-stars {
+            color: var(--warning);
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        .review-tips {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--rule);
+            font-size: 12.8px;
+            line-height: 1.65;
+            color: var(--ink-soft);
+        }
+
+        .review-tips.show {
+            display: block;
+        }
+
+        .review-tips ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .summary-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 26px;
+            flex-wrap: wrap;
+        }
+
+        .summary-actions a,
+        .summary-actions button {
+            flex: 1;
+            text-align: center;
+            min-width: 160px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar-mount" data-track="cat"></div>
+
+    <header class="hero">
+        <div class="wrap">
+            <span class="bot-badge">🤖 GDPI Interview Coach</span>
+            <h1>Practice your B-school interview before the real one does</h1>
+            <p>Real GDPI-style questions across HR, Why-MBA, academics, current affairs and case-based rounds — with
+                a timer and panel-style tips after every answer.</p>
+        </div>
+    </header>
+
+    <section class="panel-section">
+        <div class="wrap">
+            <div class="panel">
+
+                <!-- ===================== SETUP SCREEN ===================== -->
+                <div class="screen active" id="setupScreen">
+
+                    <div class="setup-block">
+                        <div class="setup-label">Step 1 — Pick categories</div>
+                        <div class="cat-grid" id="catGrid"></div>
+                    </div>
+
+                    <div class="setup-block">
+                        <div class="setup-label">Step 2 — How many questions?</div>
+                        <div class="count-grid" id="countGrid">
+                            <div class="count-chip" data-count="5">
+                                <div class="n">5</div>
+                                <div class="lbl">Quick</div>
+                            </div>
+                            <div class="count-chip active" data-count="8">
+                                <div class="n">8</div>
+                                <div class="lbl">Standard</div>
+                            </div>
+                            <div class="count-chip" data-count="12">
+                                <div class="n">12</div>
+                                <div class="lbl">Full mock</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="start-btn" id="startBtn">Start Mock Interview →</button>
+                    <p class="setup-note">No login needed. Nothing you type is saved or sent anywhere.</p>
+                </div>
+
+                <!-- ===================== INTERVIEW SCREEN ===================== -->
+                <div class="screen" id="interviewScreen">
+
+                    <div class="progress-row">
+                        <div class="progress-bar-track">
+                            <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">Q1 / 8</div>
+                    </div>
+
+                    <div class="qa-meta">
+                        <span class="cat-badge" id="catBadge"></span>
+                        <span class="timer" id="timerEl">⏱ 0:00</span>
+                    </div>
+
+                    <div class="bot-row">
+                        <div class="bot-avatar">🤖</div>
+                        <div class="question-bubble" id="questionText"></div>
+                    </div>
+
+                    <div class="answer-area">
+                        <textarea id="answerInput"
+                            placeholder="Type your answer here, or just speak it out loud and click 'Show Tips' once you're done…"></textarea>
+                        <div class="answer-hint">This is just for your own practice — it isn't graded or stored.</div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="btn-main btn-primary-fill" id="showTipsBtn">I'm done — Show Tips</button>
+                        <button class="btn-main btn-ghost" id="nextBtn" style="display:none;">Next Question →</button>
+                    </div>
+
+                    <div class="tips-card" id="tipsCard">
+                        <h4>What a strong answer covers</h4>
+                        <ul id="tipsList"></ul>
+                    </div>
+
+                    <div class="rating-row" id="ratingRow">
+                        <span class="lbl">How confident did you feel?</span>
+                        <div class="stars" id="starsRow"></div>
+                    </div>
+                </div>
+
+                <!-- ===================== SUMMARY SCREEN ===================== -->
+                <div class="screen" id="summaryScreen">
+                    <div class="summary-head">
+                        <h2>Mock interview complete 🎉</h2>
+                        <p>Here's how this round went. Review the tips again, then run another round whenever you want.
+                        </p>
+                    </div>
+
+                    <div class="stat-strip">
+                        <div class="stat-box">
+                            <div class="num" id="statCount">0</div>
+                            <div class="lbl">Questions practiced</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="num" id="statTime">0:00</div>
+                            <div class="lbl">Total time</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="num" id="statRating">—</div>
+                            <div class="lbl">Avg. confidence</div>
+                        </div>
+                    </div>
+
+                    <div id="reviewList"></div>
+
+                    <div class="summary-actions">
+                        <button class="btn-main btn-primary-fill" id="restartBtn">Practice again</button>
+                        <a class="btn-main btn-ghost" href="mba-partner-courses-redesign.html">Explore GDPI Course</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* ===================== QUESTION BANK ===================== */
+        const CATEGORIES = [
+            { id: 'hr', label: 'HR & Personal', color: '#6366F1' },
+            { id: 'whymba', label: 'Why MBA & Goals', color: '#EC4899' },
+            { id: 'academic', label: 'Academic & Work-ex', color: '#10B981' },
+            { id: 'current', label: 'Current Affairs & GK', color: '#F59E0B' },
+            { id: 'case', label: 'Case-based & Situational', color: '#0EA5E9' },
+        ];
+
+        const QUESTION_BANK = [
+            // ---------- HR & PERSONAL ----------
+            {
+                cat: 'hr', q: "Tell us about yourself in under a minute.", tips: [
+                    "Lead with a one-line identity statement, not a CV recap — panels already have your CV.",
+                    "Pick 2–3 details that set up the rest of the interview (the angle you want them to ask about).",
+                    "End on something forward-looking, not just biographical, so it invites a follow-up question."
+                ]
+            },
+            {
+                cat: 'hr', q: "Walk us through one decision in your life you'd make differently if given a chance again.", tips: [
+                    "Choose a real decision with real stakes — generic answers ('I'd have studied more') feel evasive.",
+                    "Be specific about what you'd change and why, not just that you regret it.",
+                    "Connect it to a concrete change in how you decide things now."
+                ]
+            },
+            {
+                cat: 'hr', q: "What are your top three strengths, and give an example of each?", tips: [
+                    "Pick strengths a panel can verify against your CV or earlier answers — don't introduce new, unconnected traits.",
+                    "One sharp example beats three vague ones; depth over breadth.",
+                    "Avoid strengths that sound like interview clichés ('hard worker', 'team player') without a story attached."
+                ]
+            },
+            {
+                cat: 'hr', q: "What is one weakness you're actively working on, and how?", tips: [
+                    "Pick something real and slightly uncomfortable — fake weaknesses ('I'm too much of a perfectionist') are an instant red flag to panels.",
+                    "Show a concrete action you've taken, not just awareness of the flaw.",
+                    "Keep it proportionate — don't pick something that would worry an admissions panel about your fit."
+                ]
+            },
+            {
+                cat: 'hr', q: "How do your friends or family describe you in three words?", tips: [
+                    "Pick words you can back with a quick anecdote if asked — don't just list adjectives.",
+                    "It's fine if one word is mildly critical; total positivity can sound rehearsed.",
+                    "Keep the tone light — this question is partly testing self-awareness, not perfection."
+                ]
+            },
+            {
+                cat: 'hr', q: "Describe a time you failed at something important. What did you learn?", tips: [
+                    "Own the failure clearly — don't shift blame onto circumstances or other people.",
+                    "Spend more time on the lesson and behavior change than on the failure itself.",
+                    "Show evidence the lesson stuck — a later situation where you applied it differently."
+                ]
+            },
+            {
+                cat: 'hr', q: "What does leadership mean to you, based on something you've actually done?", tips: [
+                    "Anchor the definition in a specific incident, not a textbook quote.",
+                    "Leadership doesn't require a formal title — a peer-influence story works just as well.",
+                    "Mention the outcome for the team or group, not just your own role."
+                ]
+            },
+            {
+                cat: 'hr', q: "Tell us about a conflict you had with a teammate or colleague and how you resolved it.", tips: [
+                    "Describe both perspectives fairly before explaining how it was resolved.",
+                    "Focus on the specific action that broke the deadlock, not just 'we talked it out'.",
+                    "Show what changed in the relationship or process afterward."
+                ]
+            },
+            {
+                cat: 'hr', q: "What's a piece of feedback you received that changed how you work?", tips: [
+                    "Choose feedback that actually stung a little — overly comfortable feedback reads as scripted.",
+                    "Be specific about the behavior change, with a before/after contrast.",
+                    "Credit the person who gave it, briefly — it shows you take feedback well."
+                ]
+            },
+            {
+                cat: 'hr', q: "If you could relive one year of your life, which would it be and why?", tips: [
+                    "Pick a year tied to genuine growth or a turning point, not just nostalgia.",
+                    "Explain what you'd do differently or appreciate more, not just 'it was fun'.",
+                    "Keep it concise — this is a reflective question, not a storytelling marathon."
+                ]
+            },
+            {
+                cat: 'hr', q: "How do you handle stress or pressure — give a specific example.", tips: [
+                    "Use one real high-pressure situation with a clear timeline, not a general philosophy.",
+                    "Name the specific coping mechanism (prioritizing, delegating, taking breaks) rather than 'I stay calm'.",
+                    "Mention the outcome to show the approach actually worked."
+                ]
+            },
+            {
+                cat: 'hr', q: "What's something you're proud of that isn't on your CV?", tips: [
+                    "Pick something personal — a habit built, a relationship repaired, a skill picked up for its own sake.",
+                    "Explain why it matters to you, not just what it is.",
+                    "This is a chance to show personality beyond the professional profile — use it."
+                ]
+            },
+            {
+                cat: 'hr', q: "Describe your ideal work environment.", tips: [
+                    "Ground it in past experience — 'I thrive when X because Y happened at my last job/college'.",
+                    "Avoid sounding high-maintenance; balance preferences with adaptability.",
+                    "Connect it loosely to why a cohort-based MBA environment appeals to you."
+                ]
+            },
+            {
+                cat: 'hr', q: "What's a recent book, podcast, or article that influenced your thinking?", tips: [
+                    "Pick something you can actually discuss in depth — panels sometimes probe further.",
+                    "Explain the specific idea that changed your thinking, not just a summary of the content.",
+                    "It's fine if it's not business-related — genuine intellectual curiosity matters more than relevance."
+                ]
+            },
+            {
+                cat: 'hr', q: "Tell us about a time you had to convince someone to see things your way.", tips: [
+                    "Describe the other person's starting position fairly, not as a strawman.",
+                    "Focus on the specific argument or approach that shifted their view.",
+                    "Acknowledge if you also adjusted your position slightly — total one-sidedness feels less credible."
+                ]
+            },
+
+            // ---------- WHY MBA & GOALS ----------
+            {
+                cat: 'whymba', q: "Why do you want to do an MBA right now, at this point in your career?", tips: [
+                    "Anchor the timing in something concrete — a skill gap, a stalled growth path, a specific realization at work.",
+                    "Avoid 'everyone in my field does an MBA' as the core reason; panels want a personal trigger.",
+                    "Connect the timing to your goals, not just to age or peer pressure."
+                ]
+            },
+            {
+                cat: 'whymba', q: "Why this specific B-school, and not its peer institutes?", tips: [
+                    "Mention specific electives, clubs, faculty, or culture — generic praise ('great brand', 'good ROI') is weak.",
+                    "Show you've actually researched, e.g. talked to alumni or attended an info session.",
+                    "Tie the choice back to your stated career goal, not just rankings."
+                ]
+            },
+            {
+                cat: 'whymba', q: "Where do you see yourself five years after this MBA?", tips: [
+                    "Be specific about role and industry, while acknowledging some flexibility — total rigidity can seem unrealistic.",
+                    "Show a logical path from your background → MBA → this goal, not a random leap.",
+                    "Avoid answers that sound copy-pasted across every applicant ('start my own startup', 'become a CEO')."
+                ]
+            },
+            {
+                cat: 'whymba', q: "What specific gap in your skillset are you hoping the MBA fills?", tips: [
+                    "Name 1–2 concrete skills (e.g. financial modeling, strategic frameworks), not 'overall knowledge'.",
+                    "Give a real incident where the lack of this skill held you back.",
+                    "Show you've tried to self-learn it already — it signals genuine motivation, not dependency on the degree."
+                ]
+            },
+            {
+                cat: 'whymba', q: "If you don't get into any B-school this year, what's your plan B?", tips: [
+                    "Have an honest, specific answer — vague deflection ('I'll just reapply') sounds unprepared.",
+                    "Show the plan B still moves you toward the same long-term goal.",
+                    "It's fine to admit disappointment, but pair it with a constructive next step."
+                ]
+            },
+            {
+                cat: 'whymba', q: "How does your past work experience (or academic background) connect to your MBA goals?", tips: [
+                    "Draw an explicit line: 'X experience showed me Y gap, which the MBA addresses by Z'.",
+                    "If your background seems unrelated to your goal (e.g. engineer → marketing), address that directly rather than hoping it's not noticed.",
+                    "Use one specific project or task as proof, not a general description of your role."
+                ]
+            },
+            {
+                cat: 'whymba', q: "What role do you want to work in immediately after the MBA, and why?", tips: [
+                    "Name the function and industry specifically — 'something in business' is too vague.",
+                    "Explain why this role specifically needs an MBA, not just work experience.",
+                    "Show some awareness of what the role actually involves day-to-day."
+                ]
+            },
+            {
+                cat: 'whymba', q: "What would you do differently in your career if MBA wasn't an option?", tips: [
+                    "This tests whether the MBA is a genuine accelerant or your only plan — have a real alternative path.",
+                    "Explain why that alternative path would be slower or harder without the MBA.",
+                    "Avoid sounding like the MBA is an escape from your current path rather than a deliberate step."
+                ]
+            },
+            {
+                cat: 'whymba', q: "Many candidates have similar profiles to yours — why should we pick you?", tips: [
+                    "Avoid generic confidence statements; cite 1–2 specific things that are harder to find in a typical applicant.",
+                    "It's fine to acknowledge competition exists — over-claiming uniqueness can sound naive.",
+                    "Tie your differentiator to what you'll contribute to the cohort, not just to your own ambition."
+                ]
+            },
+            {
+                cat: 'whymba', q: "What's one thing about the corporate/business world you find frustrating, and how would an MBA help you address it?", tips: [
+                    "Pick something specific you've witnessed firsthand, not a textbook critique of capitalism.",
+                    "Explain the mechanism by which an MBA (frameworks, network, exposure) actually helps — not just 'awareness'.",
+                    "Keep the tone constructive, not cynical."
+                ]
+            },
+            {
+                cat: 'whymba', q: "Some say MBA is overrated today, given free resources online. What's your view?", tips: [
+                    "Acknowledge the argument has some truth — dismissing it outright looks defensive.",
+                    "Counter with what an MBA uniquely provides: structured peer learning, recruiter access, accountability, network.",
+                    "Bring in your own reasoning, not just received wisdom from forums or YouTube."
+                ]
+            },
+            {
+                cat: 'whymba', q: "How do you plan to fund this MBA, and have you thought about the ROI?", tips: [
+                    "Have a real number in mind — loan, savings, scholarship — vague answers suggest you haven't planned seriously.",
+                    "Show you've roughly calculated payback period using realistic placement data, not best-case assumptions.",
+                    "Mention contingency thinking — what if placement doesn't go as expected."
+                ]
+            },
+
+            // ---------- ACADEMIC & WORK-EX ----------
+            {
+                cat: 'academic', q: "Explain a project from your degree/job in simple terms a 10-year-old could understand.", tips: [
+                    "Use an everyday analogy instead of jargon — this is testing communication, not technical depth.",
+                    "Keep it under 60 seconds; rambling defeats the purpose of 'simple'.",
+                    "End with why the project mattered, in plain terms."
+                ]
+            },
+            {
+                cat: 'academic', q: "What was the most challenging course or task in your background, and how did you handle it?", tips: [
+                    "Be specific about what made it hard — content difficulty, time pressure, ambiguity, etc.",
+                    "Describe the actual strategy you used, not just 'I worked hard'.",
+                    "Mention the outcome, even if it wasn't a perfect result — honesty here builds credibility."
+                ]
+            },
+            {
+                cat: 'academic', q: "If you had to switch your undergrad stream today, what would you pick and why?", tips: [
+                    "Give a genuine reason tied to interest or a gap you've noticed in your current field.",
+                    "It's fine to say you wouldn't switch — just justify it instead of dodging the question.",
+                    "Avoid picking something that contradicts your stated MBA goals without explanation."
+                ]
+            },
+            {
+                cat: 'academic', q: "Walk us through your current/most recent job role and one tangible impact you made.", tips: [
+                    "Use a number or measurable outcome if possible (time saved, revenue, efficiency) rather than vague impact claims.",
+                    "Briefly set context before the impact, so the panel understands the baseline.",
+                    "Be ready for a follow-up — know the details behind any number you quote."
+                ]
+            },
+            {
+                cat: 'academic', q: "What's a technical or domain concept from your field that you think is widely misunderstood?", tips: [
+                    "Choose something you can explain clearly and confidently if challenged.",
+                    "Briefly state the common misconception, then the more accurate view.",
+                    "Avoid being condescending about the misconception — frame it as common, not 'stupid'."
+                ]
+            },
+            {
+                cat: 'academic', q: "How do you stay updated in your field outside of work/college?", tips: [
+                    "Name actual sources (specific newsletters, communities, people you follow), not 'I read the news'.",
+                    "Mention one recent thing you learned this way, to prove it's a real habit.",
+                    "Keep it relevant to the field you'll discuss in other answers, for consistency."
+                ]
+            },
+            {
+                cat: 'academic', q: "Describe a time your academic/professional plan failed and you had to pivot.", tips: [
+                    "Be clear about what the original plan was, so the pivot makes sense.",
+                    "Focus on the decision-making process during the pivot, not just the eventual success.",
+                    "If the new path turned out better, say so — but don't oversell it as a fairy tale."
+                ]
+            },
+            {
+                cat: 'academic', q: "What's one skill from your current background that you think will transfer well to business?", tips: [
+                    "Pick a skill that's genuinely transferable (analytical thinking, stakeholder management), not domain-specific jargon.",
+                    "Give one quick example from your background where this skill was visible.",
+                    "Briefly note how you expect to apply it in a business/MBA context."
+                ]
+            },
+            {
+                cat: 'academic', q: "If a fresher joined your old role tomorrow, what's the one thing you'd tell them to focus on?", tips: [
+                    "Pick advice that reflects something you learned the hard way, not generic onboarding tips.",
+                    "Be specific to the role, not something that could apply to any job anywhere.",
+                    "This is also a subtle leadership/mentoring question — show you think about others, not just yourself."
+                ]
+            },
+            {
+                cat: 'academic', q: "What metrics or KPIs mattered most in your last role/project, and why?", tips: [
+                    "Name actual metrics you tracked, not generic ones you assume mattered.",
+                    "Explain briefly why that metric mattered to the business, not just that you were measured on it.",
+                    "If you disagreed with a metric's importance, that's a good, thoughtful answer too — just explain why."
+                ]
+            },
+            {
+                cat: 'academic', q: "Tell us about a time data or evidence changed your initial opinion on something.", tips: [
+                    "Be honest that you had a wrong initial assumption — admitting bias is the point of this question.",
+                    "Describe the specific data or evidence that shifted your view.",
+                    "Show the action you took differently afterward, not just a change in opinion."
+                ]
+            },
+
+            // ---------- CURRENT AFFAIRS & GK ----------
+            {
+                cat: 'current', q: "Pick a recent economic policy or government scheme you've followed, and share your view on its impact.", tips: [
+                    "Pick a topic you genuinely follow — panels can tell when an answer is memorized last-minute.",
+                    "State the policy's intended goal before giving your opinion on its actual impact.",
+                    "Acknowledge both a positive and a limiting factor — one-sided takes feel under-researched."
+                ]
+            },
+            {
+                cat: 'current', q: "Discuss one global event from the past few months and its likely effect on Indian businesses.", tips: [
+                    "Be specific about the mechanism of impact (trade, currency, supply chains), not just 'it will affect the economy'.",
+                    "It's fine to express uncertainty about long-term effects — overconfidence on unfolding events looks naive.",
+                    "Mention which sector(s) specifically, rather than speaking about 'the economy' broadly."
+                ]
+            },
+            {
+                cat: 'current', q: "What's your take on the increasing role of AI in white-collar jobs?", tips: [
+                    "Go beyond 'AI will replace jobs' or 'AI will create jobs' — both are common, shallow takes.",
+                    "Bring in a specific example from a field you know (your own industry works well).",
+                    "Mention the human skills you think remain hard to automate, and why."
+                ]
+            },
+            {
+                cat: 'current', q: "Discuss a recent merger, acquisition, or corporate development you've read about.", tips: [
+                    "Briefly state the strategic logic behind the deal as you understand it.",
+                    "Share a view on whether it's likely to succeed, with reasoning — not just reporting the news.",
+                    "It's okay to say you're unsure of the outcome, as long as your reasoning is sound."
+                ]
+            },
+            {
+                cat: 'current', q: "How do you think rising interest rates or inflation trends affect everyday consumers?", tips: [
+                    "Connect macro trends to concrete consumer behavior (spending, saving, loans) rather than textbook definitions.",
+                    "Use a relatable example — EMIs, household budgets, hiring slowdowns.",
+                    "If you're unsure of exact current figures, focus on direction and reasoning rather than guessing numbers."
+                ]
+            },
+            {
+                cat: 'current', q: "Share your opinion on a recent debate around startup layoffs or hiring trends in India.", tips: [
+                    "Distinguish between cyclical (funding winter) and structural (automation, overhiring correction) causes.",
+                    "Avoid blanket statements like 'startups are failing' — be specific about which segment you mean.",
+                    "A balanced view (acknowledging both founder and employee perspectives) reads as more mature."
+                ]
+            },
+            {
+                cat: 'current', q: "What's one sector you believe will see major disruption in the next five years, and why?", tips: [
+                    "Pick a sector you can speak about with some specificity, ideally connected to your own background.",
+                    "Name the actual driver of disruption (technology, regulation, consumer behavior shift).",
+                    "Briefly mention who stands to win or lose from this disruption."
+                ]
+            },
+            {
+                cat: 'current', q: "Discuss the pros and cons of India's push toward renewable energy targets.", tips: [
+                    "Mention at least one real trade-off (cost, land use, grid infrastructure) rather than only listing benefits.",
+                    "Keep the tone analytical, not purely environmental-activism or purely skeptical.",
+                    "If you know a relevant statistic, use it — but only if you're confident it's accurate."
+                ]
+            },
+            {
+                cat: 'current', q: "What's your view on remote work versus return-to-office mandates that companies are enforcing?", tips: [
+                    "Acknowledge it differs by role and industry rather than giving one universal answer.",
+                    "Bring in a real example you've seen or read about, not just personal preference.",
+                    "Mention the underlying tension (productivity perception vs. flexibility/talent retention)."
+                ]
+            },
+            {
+                cat: 'current', q: "Pick any current affairs topic you're well-read on and be ready to defend an opinion on it.", tips: [
+                    "Choose something you can sustain a 2-3 minute conversation on, including likely counter-questions.",
+                    "State your opinion clearly early on — panels probe vague, fence-sitting answers harder.",
+                    "Be ready to concede a fair counterpoint if pushed; total rigidity looks worse than a measured view."
+                ]
+            },
+
+            // ---------- CASE-BASED & SITUATIONAL ----------
+            {
+                cat: 'case', q: "Your team disagrees with a decision you, as the lead, must make under a tight deadline. How do you proceed?", tips: [
+                    "Show you'd hear the disagreement briefly, not ignore it entirely — even under time pressure.",
+                    "Be decisive about the final call once you've made it — indecision under a deadline is a bigger flaw than disagreement.",
+                    "Mention how you'd close the loop with the team afterward, win or lose."
+                ]
+            },
+            {
+                cat: 'case', q: "You discover a colleague is taking credit for your idea in front of senior management. What do you do?", tips: [
+                    "Avoid an aggressive public confrontation as the first move — show measured judgment.",
+                    "Describe a specific, professional way to correct the record (private conversation, follow-up email, timed clarification).",
+                    "Mention what you'd do if it kept happening — escalation paths, not just one-time fixes."
+                ]
+            },
+            {
+                cat: 'case', q: "A close friend in your cohort is struggling academically and considering dropping out. How would you help?", tips: [
+                    "Show empathy first, not just problem-solving mode immediately.",
+                    "Suggest concrete support (study help, connecting to resources) rather than vague encouragement.",
+                    "Acknowledge the decision is ultimately theirs — respect their agency in your answer."
+                ]
+            },
+            {
+                cat: 'case', q: "You're asked to do something at work that conflicts with your personal ethics, but isn't illegal. How do you respond?", tips: [
+                    "Avoid a flat refusal without explanation — show you'd seek to understand the full context first.",
+                    "Articulate where exactly your discomfort lies, specifically.",
+                    "Mention escalation or alternative options you'd explore before outright refusing."
+                ]
+            },
+            {
+                cat: 'case', q: "Your group project teammate isn't contributing, and the deadline is in two days. What's your move?", tips: [
+                    "Start with a direct, non-accusatory conversation rather than going straight to faculty/manager.",
+                    "Have a backup plan for redistributing work if the conversation doesn't fix things in time.",
+                    "Mention you'd flag it transparently if it remains unresolved, rather than quietly covering for them forever."
+                ]
+            },
+            {
+                cat: 'case', q: "You get two great internship offers on the same day with overlapping start dates. How do you decide?", tips: [
+                    "Name actual decision criteria (learning, brand, role fit, team) rather than 'I'd just pick the better one'.",
+                    "Mention how you'd handle the conversation with the offer you decline, professionally.",
+                    "It's fine to admit it would be a hard choice — forced certainty can sound unrealistic."
+                ]
+            },
+            {
+                cat: 'case', q: "A senior gives you incorrect instructions that you suspect are wrong, but you're new. What do you do?", tips: [
+                    "Show you'd raise it respectfully and with evidence, not silently comply or silently override them.",
+                    "Acknowledge you might be wrong too, given you're new — humility matters here.",
+                    "Mention you'd still document or flag the concern even if overruled, for accountability."
+                ]
+            },
+            {
+                cat: 'case', q: "You're leading a project that's about to fail due to factors outside your control. How do you communicate this upward?", tips: [
+                    "Emphasize early, transparent communication rather than waiting until the failure is undeniable.",
+                    "Separate facts (what's actually happening) from blame — avoid sounding defensive.",
+                    "Bring a recovery plan or mitigation options, not just bad news."
+                ]
+            },
+            {
+                cat: 'case', q: "You realize mid-presentation that a key slide has a factual error. How do you handle it live?", tips: [
+                    "Address it calmly and briefly rather than panicking or trying to hide it.",
+                    "Correct the specific fact and move on — don't derail the whole presentation apologizing.",
+                    "If it's not catchable mid-flow, mention you'd note it and follow up immediately after."
+                ]
+            },
+            {
+                cat: 'case', q: "Your manager takes a stance you strongly disagree with in a client meeting. How do you react in the moment?", tips: [
+                    "Show you'd support a unified front in front of the client, even while disagreeing internally.",
+                    "Mention raising your concern privately and promptly afterward, not in the meeting itself.",
+                    "Avoid extremes — neither silent total agreement nor visible pushback in front of the client."
+                ]
+            },
+        ];
+
+        /* ===================== STATE ===================== */
+        let selectedCats = new Set(CATEGORIES.map(c => c.id));
+        let selectedCount = 8;
+        let queue = [];
+        let current = 0;
+        let timerInterval = null;
+        let elapsedSec = 0;
+        let sessionAnswers = []; // {q, cat, tips, rating, time}
+        let currentRating = 0;
+
+        function catMeta(id) { return CATEGORIES.find(c => c.id === id); }
+
+        /* ===================== SETUP SCREEN ===================== */
+        const catGrid = document.getElementById('catGrid');
+        CATEGORIES.forEach(c => {
+            const chip = document.createElement('div');
+            chip.className = 'cat-chip active';
+            chip.dataset.cat = c.id;
+            chip.innerHTML = `<span class="dot" style="background:${c.color}"></span>${c.label}`;
+            chip.addEventListener('click', () => {
+                if (selectedCats.has(c.id)) {
+                    if (selectedCats.size === 1) return; // keep at least one category selected
+                    selectedCats.delete(c.id);
+                    chip.classList.remove('active');
+                } else {
+                    selectedCats.add(c.id);
+                    chip.classList.add('active');
+                }
+            });
+            catGrid.appendChild(chip);
+        });
+
+        document.querySelectorAll('.count-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.count-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                selectedCount = parseInt(chip.dataset.count, 10);
+            });
+        });
+
+        function shuffle(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        document.getElementById('startBtn').addEventListener('click', () => {
+            const pool = QUESTION_BANK.filter(q => selectedCats.has(q.cat));
+            queue = shuffle(pool).slice(0, Math.min(selectedCount, pool.length));
+            current = 0;
+            sessionAnswers = [];
+            showScreen('interviewScreen');
+            renderQuestion();
+        });
+
+        /* ===================== SCREEN SWITCHING ===================== */
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        /* ===================== INTERVIEW FLOW ===================== */
+        function renderQuestion() {
+            const item = queue[current];
+            const meta = catMeta(item.cat);
+
+            document.getElementById('progressText').textContent = `Q${current + 1} / ${queue.length}`;
+            document.getElementById('progressFill').style.width = `${((current) / queue.length) * 100}%`;
+
+            const badge = document.getElementById('catBadge');
+            badge.textContent = meta.label;
+            badge.style.background = meta.color + '1A';
+            badge.style.color = meta.color;
+
+            document.getElementById('questionText').textContent = item.q;
+            document.getElementById('answerInput').value = '';
+
+            document.getElementById('tipsCard').classList.remove('show');
+            document.getElementById('ratingRow').classList.remove('show');
+            document.getElementById('showTipsBtn').style.display = '';
+            document.getElementById('nextBtn').style.display = 'none';
+
+            const tipsList = document.getElementById('tipsList');
+            tipsList.innerHTML = item.tips.map(t => `<li>${t}</li>`).join('');
+
+            currentRating = 0;
+            renderStars();
+
+            elapsedSec = 0;
+            updateTimerDisplay();
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                elapsedSec++;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(elapsedSec / 60);
+            const s = elapsedSec % 60;
+            const el = document.getElementById('timerEl');
+            el.textContent = `⏱ ${m}:${String(s).padStart(2, '0')}`;
+            el.classList.remove('warn', 'over');
+            if (elapsedSec >= 90 && elapsedSec < 150) el.classList.add('warn');
+            if (elapsedSec >= 150) el.classList.add('over');
+        }
+
+        function renderStars() {
+            const row = document.getElementById('starsRow');
+            row.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'star-btn' + (i <= currentRating ? ' active' : '');
+                btn.textContent = '★';
+                btn.type = 'button';
+                btn.addEventListener('click', () => {
+                    currentRating = i;
+                    renderStars();
+                });
+                row.appendChild(btn);
+            }
+        }
+
+        document.getElementById('showTipsBtn').addEventListener('click', () => {
+            clearInterval(timerInterval);
+            document.getElementById('tipsCard').classList.add('show');
+            document.getElementById('ratingRow').classList.add('show');
+            document.getElementById('showTipsBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = '';
+            document.getElementById('nextBtn').textContent =
+                current === queue.length - 1 ? 'Finish & see summary →' : 'Next question →';
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            const item = queue[current];
+            sessionAnswers.push({
+                q: item.q,
+                cat: item.cat,
+                tips: item.tips,
+                rating: currentRating,
+                time: elapsedSec
+            });
+
+            if (current === queue.length - 1) {
+                document.getElementById('progressFill').style.width = '100%';
+                renderSummary();
+                showScreen('summaryScreen');
+            } else {
+                current++;
+                renderQuestion();
+            }
+        });
+
+        /* ===================== SUMMARY ===================== */
+        function renderSummary() {
+            const totalTime = sessionAnswers.reduce((s, a) => s + a.time, 0);
+            const ratedAnswers = sessionAnswers.filter(a => a.rating > 0);
+            const avgRating = ratedAnswers.length
+                ? (ratedAnswers.reduce((s, a) => s + a.rating, 0) / ratedAnswers.length).toFixed(1)
+                : '—';
+
+            document.getElementById('statCount').textContent = sessionAnswers.length;
+            const m = Math.floor(totalTime / 60), s = totalTime % 60;
+            document.getElementById('statTime').textContent = `${m}:${String(s).padStart(2, '0')}`;
+            document.getElementById('statRating').textContent = avgRating === '—' ? '—' : `${avgRating}/5`;
+
+            const list = document.getElementById('reviewList');
+            list.innerHTML = '';
+            sessionAnswers.forEach((a, i) => {
+                const meta = catMeta(a.cat);
+                const wrap = document.createElement('div');
+                wrap.className = 'review-item';
+                wrap.innerHTML = `
+                    <div class="review-top" data-idx="${i}">
+                        <div class="review-q">${i + 1}. ${a.q}</div>
+                        <div class="review-meta">
+                            ${a.rating ? `<span class="review-stars">${'★'.repeat(a.rating)}${'☆'.repeat(5 - a.rating)}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="review-tips" id="reviewTips${i}">
+                        <ul>${a.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+                    </div>
+                `;
+                wrap.querySelector('.review-top').addEventListener('click', () => {
+                    document.getElementById(`reviewTips${i}`).classList.toggle('show');
+                });
+                list.appendChild(wrap);
+            });
+        }
+
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            showScreen('setupScreen');
+        });
+    </script>
+
+    <script>
+        // --- Mobile hamburger menu (in case Navbar_cat.js doesn't already wire this) ---
+        (function () {
+            var siteNav = document.querySelector('nav.nav');
+            var navToggle = document.getElementById('nav-toggle');
+            var navLinks = siteNav ? siteNav.querySelector('.nav-links') : null;
+            if (!siteNav || !navToggle || !navLinks) return;
+            navToggle.addEventListener('click', function () {
+                var isOpen = siteNav.classList.toggle('menu-open');
+                navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+        })();
+    </script>
+    <script src="Navbar_cat.js"></script>
+    <script src="chatbot-loader.js" data-track="cat"></script>
+</body>
+
+</html>

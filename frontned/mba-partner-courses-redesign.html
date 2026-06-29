@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="Navbar_cat.css">
     <style>
         :root {
             --ink: #0F1419;
@@ -73,107 +74,8 @@
         }
 
         :focus-visible {
-            outline: 2px solid var(--amber);
+            outline: 2px solid var(--primary);
             outline-offset: 3px;
-        }
-
-        /* ---------- NAV ---------- */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--ink);
-            color: #FFFFFF;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-inner {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand-mark {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            font-family: 'Fraunces', serif;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.15;
-        }
-
-        .brand-text span {
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .brand-text small {
-            font-size: 10.5px;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            color: #A0AEC0;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .nav-links a:not(.nav-cta) {
-            color: #D0D5DD;
-            opacity: .85;
-            transition: opacity .2s;
-        }
-
-        .nav-links a:not(.nav-cta):hover {
-            opacity: 1;
-        }
-
-        .nav-cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            padding: 9px 18px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 13.5px;
-            transition: all .3s;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-        }
-
-        @media (max-width:680px) {
-            .nav-links a:not(.nav-cta) {
-                display: none;
-            }
         }
 
         /* ---------- HERO ---------- */
@@ -519,7 +421,6 @@
         .receipt-cta a:active {
             transform: translateY(0);
         }
-
 
         /* ---------- FILTER CHIPS ---------- */
         .filters {
@@ -875,7 +776,7 @@
             font-size: 14px;
         }
 
-        /* ---------- PRODUCT GRID (live projects / case comp / cert) ---------- */
+        /* ---------- PRODUCT GRID ---------- */
         .pgrid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -999,6 +900,128 @@
             text-transform: uppercase;
         }
 
+        /* ---------- GROUP OFFER BANNER ---------- */
+        .group-offer {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 24px;
+            background: var(--paper-card);
+            border: 1.5px dashed var(--success);
+            border-radius: 14px;
+            padding: 22px 26px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .group-offer::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .group-offer-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .group-offer-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .group-offer-copy .tag-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .group-offer-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--success);
+        }
+
+        .group-offer-stamp {
+            display: inline-flex;
+            align-items: center;
+            background: var(--success);
+            color: white;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: .03em;
+            padding: 4px 11px;
+            border-radius: 999px;
+        }
+
+        .group-offer-copy h3 {
+            font-size: 18.5px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .group-offer-copy p {
+            margin: 2px 0 0;
+            font-size: 13.5px;
+            color: var(--ink-faint);
+            line-height: 1.5;
+        }
+
+        .group-offer a.cta {
+            flex-shrink: 0;
+            white-space: nowrap;
+            padding: 13px 22px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 13.5px;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .group-offer a.cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        @media (max-width:680px) {
+            .group-offer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 14px;
+            }
+
+            .group-offer-icon {
+                margin: 0 auto;
+            }
+
+            .group-offer-copy .tag-row {
+                justify-content: center;
+            }
+
+            .group-offer a.cta {
+                text-align: center;
+            }
+        }
+
         /* ---------- FOOTER ---------- */
         footer {
             background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
@@ -1120,24 +1143,507 @@
                 scroll-behavior: auto;
             }
         }
+
+        /* ================================================================
+       NEW: LIVE PROJECT DOMAIN COVERAGE
+    ================================================================ */
+        .domain-notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .domain-note {
+            flex: 1;
+            min-width: 240px;
+            background: var(--paper-card);
+            border: 1.5px dashed var(--success);
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+
+        .domain-note strong {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .domain-note span {
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            line-height: 1.55;
+        }
+
+        .domain-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .dtab {
+            flex-shrink: 0;
+            padding: 9px 18px;
+            border-radius: 999px;
+            border: 1.4px solid var(--rule);
+            background: var(--paper-card);
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap;
+            color: var(--ink);
+        }
+
+        .dtab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--surface);
+        }
+
+        .dtab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .domain-panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        @media (max-width:780px) {
+            .domain-panels {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .domain-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .domain-card .dc-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            color: var(--primary);
+        }
+
+        .domain-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+        }
+
+        .domain-card ul li {
+            display: flex;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .domain-card ul li::before {
+            content: "→";
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .domain-special {
+            background: #F0F4FF;
+            border: 1px solid #DDE3FB;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+
+        .domain-special b {
+            color: var(--primary-dark);
+        }
+
+        .domain-cert-row {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px dashed var(--rule);
+            font-size: 12px;
+            color: var(--ink-faint);
+            font-weight: 600;
+            display: flex;
+            gap: 6px;
+        }
+
+        /* ================================================================
+       NEW: DYNAMIC COURSE COMPARE TOOL
+    ================================================================ */
+        .compare-tool-section {
+            padding: 56px 0;
+            background: linear-gradient(180deg, var(--paper) 0%, #EEF0FF 100%);
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .compare-tool-head {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .compare-tool-head .eyebrow {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .compare-tool-head h2 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .compare-tool-head p {
+            margin: 10px auto 0;
+            max-width: 50ch;
+            color: var(--ink-faint);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .compare-picker {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: start;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width:700px) {
+            .compare-picker {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-vs {
+                display: none;
+            }
+        }
+
+        .picker-side {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .picker-side label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--ink-faint);
+        }
+
+        .course-select {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--rule);
+            border-radius: 10px;
+            background: var(--paper-card);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            transition: border-color .2s;
+        }
+
+        .course-select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, .12);
+        }
+
+        .compare-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+        }
+
+        .vs-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: white;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compare-result {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+        }
+
+        @media (max-width:640px) {
+            .compare-result {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cmp-col {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: background .3s;
+        }
+
+        .cmp-col+.cmp-col {
+            border-left: 1px solid var(--rule);
+        }
+
+        @media (max-width:640px) {
+            .cmp-col+.cmp-col {
+                border-left: none;
+                border-top: 1px solid var(--rule);
+            }
+        }
+
+        .cmp-col.highlight {
+            background: #F5F3FF;
+        }
+
+        .cmp-name {
+            font-family: 'Fraunces', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .cmp-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .cmp-price-og {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--ink-faint);
+            text-decoration: line-through;
+        }
+
+        .cmp-price-sale {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .cmp-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 11px 0;
+            border-top: 1px solid var(--rule);
+            font-size: 13.5px;
+            line-height: 1.4;
+        }
+
+        .cmp-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .cmp-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .cmp-icon.yes {
+            background: #D1FAE5;
+        }
+
+        .cmp-icon.no {
+            background: #F3F4F6;
+        }
+
+        .cmp-icon.yes svg path {
+            stroke: var(--success);
+        }
+
+        .cmp-icon.no svg path {
+            stroke: #B0B9C6;
+        }
+
+        .cmp-label {
+            color: var(--ink-soft);
+            font-weight: 500;
+        }
+
+        .cmp-label.muted {
+            color: #B0B9C6;
+        }
+
+        .cmp-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .cmp-enroll {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13.5px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
+            transition: all .3s;
+        }
+
+        .cmp-enroll:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, .4);
+        }
+
+        .combo-benefit-bar {
+            margin-top: 16px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #0F1419 0%, #1e2533 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .35s ease, transform .35s ease;
+            pointer-events: none;
+        }
+
+        .combo-benefit-bar.visible {
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+        }
+
+        .combo-benefit-bar .cb-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cb-text {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .cb-text strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .cb-text span {
+            font-size: 13px;
+            color: #A0AEC0;
+            line-height: 1.5;
+        }
+
+        .cb-saving {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--success);
+            white-space: nowrap;
+        }
+
+        .cb-action {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            transition: background .2s;
+            white-space: nowrap;
+        }
+
+        .cb-action:hover {
+            background: var(--primary-dark);
+        }
+
+        .compare-empty {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--ink-faint);
+            font-size: 15px;
+            background: var(--paper-card);
+            border: 1px dashed var(--rule);
+            border-radius: 14px;
+        }
+
+        .compare-empty svg {
+            margin-bottom: 16px;
+            opacity: .4;
+        }
+
+        .compare-empty p {
+            margin: 0;
+        }
     </style>
 </head>
 
 <body>
 
-    <nav class="nav">
-        <div class="nav-inner">
-            <a class="brand" href="index.html">
-                <span class="brand-mark">MP</span>
-                <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
-                <a class="nav-cta" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp</a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-mount" data-track="mba"></div>
 
     <header class="hero" id="top">
         <div class="wrap">
@@ -1155,10 +1661,6 @@
         </div>
     </header>
 
-
-
-
-
     <nav class="filters" id="filters">
         <div class="wrap">
             <div class="chip active" data-filter="all">All</div>
@@ -1167,6 +1669,8 @@
             <div class="chip" data-filter="live">Live Projects</div>
             <div class="chip" data-filter="case">Case Comp</div>
             <div class="chip" data-filter="cert">Certifications</div>
+            <div class="chip" data-filter="domains">🧭 Domains</div>
+            <div class="chip" data-filter="compare-tool">⚖ Compare</div>
         </div>
     </nav>
 
@@ -1311,6 +1815,64 @@
         </div>
     </section>
 
+    <section data-cat="live domains" id="domains">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <h2>What's covered in every Live Project domain</h2>
+                <p>Two months of deliverables, mapped out below — pick a domain to see exactly what you'll build</p>
+            </div>
+
+            <div class="domain-notes reveal">
+                <div class="domain-note">
+                    <strong>🎓 Need the certificate but couldn't finish every area?</strong>
+                    <span>That's fine — we still roll out your Certificate of Completion for your CV, as long as the
+                        project is submitted within 3 months of enrollment.</span>
+                </div>
+                <div class="domain-note">
+                    <strong>🗓️ Flexible certificate dates</strong>
+                    <span>The date printed on your certificate is flexible too — it can show a slightly earlier date
+                        if that works better for your CV timeline.</span>
+                </div>
+            </div>
+
+            <div class="domain-tabs reveal" id="domain-tabs">
+                <div class="dtab active" data-domain="finance">Finance</div>
+                <div class="dtab" data-domain="consulting">Consulting</div>
+                <div class="dtab" data-domain="hr">HR</div>
+                <div class="dtab" data-domain="product">Product Management</div>
+                <div class="dtab" data-domain="marketing">Marketing</div>
+                <div class="dtab" data-domain="operations">Operations</div>
+            </div>
+
+            <div class="domain-panels reveal" id="domain-panels"></div>
+        </div>
+    </section>
+
+    <section data-cat="case combo live">
+        <div class="wrap">
+            <div class="group-offer reveal">
+                <div class="group-offer-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="8.5" cy="8.5" r="3.2" stroke="white" stroke-width="1.8" />
+                        <circle cx="16" cy="9.5" r="2.6" stroke="white" stroke-width="1.8" />
+                        <path d="M3 19c0-2.9 2.5-5.2 5.5-5.2S14 16.1 14 19" stroke="white" stroke-width="1.8"
+                            stroke-linecap="round" />
+                        <path d="M15.2 14.3c2.4.3 4.3 2.3 4.3 4.7" stroke="white" stroke-width="1.8"
+                            stroke-linecap="round" />
+                    </svg></div>
+                <div class="group-offer-copy">
+                    <div class="tag-row">
+                        <span class="group-offer-tag">Group Offer</span>
+                        <span class="group-offer-stamp">30% off</span>
+                    </div>
+                    <h3>Enroll with a friend on Case Comps &amp; Live Projects</h3>
+                    <p>Join as a group of 2 and both get 30% off — enrollment happens through a separate group
+                        link. Refer a friend, sharpen your case-solving together.</p>
+                </div>
+                <a class="cta" href="product-group-offer.html">👥 Enroll as a Group →</a>
+            </div>
+        </div>
+    </section>
+
     <section data-cat="case combo">
         <div class="wrap">
             <div class="section-head reveal">
@@ -1395,6 +1957,104 @@
         </div>
     </section>
 
+    <!-- ================================================================
+       NEW: DYNAMIC COURSE COMPARE TOOL
+  ================================================================ -->
+    <section class="compare-tool-section" data-cat="compare-tool" id="compare-tool">
+        <div class="wrap">
+            <div class="compare-tool-head reveal">
+                <span class="eyebrow">⚖ Side-by-side</span>
+                <h2>Compare any two courses</h2>
+                <p>Not sure which to pick? Choose two products below and see exactly what you gain — or save — by
+                    going with a combo.</p>
+            </div>
+
+            <div class="compare-picker reveal">
+                <div class="picker-side">
+                    <label for="course-a">Course A</label>
+                    <select class="course-select" id="course-a">
+                        <option value="">— Pick a course —</option>
+                        <optgroup label="Bootcamp &amp; Combos">
+                            <option value="course">Placements Bootcamp — ₹7,499</option>
+                            <option value="bootcamp-case">Bootcamp + Case Competition — ₹9,499</option>
+                            <option value="bootcamp-live">Bootcamp + 1 Live Project — ₹11,499</option>
+                            <option value="all-in-one">All-in-One Combo — ₹13,999</option>
+                        </optgroup>
+                        <optgroup label="Live Projects">
+                            <option value="domain1">Any 1 Domain — ₹4,000</option>
+                            <option value="domain2">Any 2 Domains — ₹7,500</option>
+                        </optgroup>
+                        <optgroup label="Case Competition">
+                            <option value="case-comp">Case Competition — ₹3,499</option>
+                            <option value="case-live">Case Comp + 1 Live Project — ₹8,499</option>
+                        </optgroup>
+                        <optgroup label="Certifications">
+                            <option value="excel">Advanced Excel Certificate — ₹1,199</option>
+                            <option value="powerbi">Power BI Certificate — ₹1,499</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="compare-vs">
+                    <div class="vs-badge">VS</div>
+                </div>
+
+                <div class="picker-side">
+                    <label for="course-b">Course B</label>
+                    <select class="course-select" id="course-b">
+                        <option value="">— Pick a course —</option>
+                        <optgroup label="Bootcamp &amp; Combos">
+                            <option value="course">Placements Bootcamp — ₹7,499</option>
+                            <option value="bootcamp-case">Bootcamp + Case Competition — ₹9,499</option>
+                            <option value="bootcamp-live">Bootcamp + 1 Live Project — ₹11,499</option>
+                            <option value="all-in-one">All-in-One Combo — ₹13,999</option>
+                        </optgroup>
+                        <optgroup label="Live Projects">
+                            <option value="domain1">Any 1 Domain — ₹4,000</option>
+                            <option value="domain2">Any 2 Domains — ₹7,500</option>
+                        </optgroup>
+                        <optgroup label="Case Competition">
+                            <option value="case-comp">Case Competition — ₹3,499</option>
+                            <option value="case-live">Case Comp + 1 Live Project — ₹8,499</option>
+                        </optgroup>
+                        <optgroup label="Certifications">
+                            <option value="excel">Advanced Excel Certificate — ₹1,199</option>
+                            <option value="powerbi">Power BI Certificate — ₹1,499</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Combo benefit banner (shows when relevant) -->
+            <div class="combo-benefit-bar" id="combo-bar">
+                <div class="cb-icon">
+                    <svg width="22" height="22" fill="none" viewBox="0 0 22 22">
+                        <path d="M11 2l2.4 6.5H20l-5.4 4 2 6.5L11 15l-5.6 4 2-6.5L2 8.5h6.6L11 2z" fill="white" />
+                    </svg>
+                </div>
+                <div class="cb-text">
+                    <strong id="cb-title">Combo saves you money</strong>
+                    <span id="cb-desc">There's a bundle that covers both — at a lower price.</span>
+                </div>
+                <div class="cb-saving" id="cb-saving"></div>
+                <a class="cb-action" id="cb-link" href="#">See combo →</a>
+            </div>
+
+            <!-- Result panel -->
+            <div id="compare-output">
+                <div class="compare-empty">
+                    <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
+                        <rect x="6" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2" />
+                        <rect x="26" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2" />
+                        <path d="M10 16h8M10 22h8M10 28h5M30 16h8M30 22h8M30 28h5" stroke="#6B7280" stroke-width="1.5"
+                            stroke-linecap="round" />
+                    </svg>
+                    <p>Select two courses above to see a side-by-side breakdown.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="wrap">
             <div class="foot-cta reveal">
@@ -1417,9 +2077,12 @@
         </div>
     </footer>
 
+    <script src="cart.js"></script>
+    <script src="Navbar_cat.js"></script>
+    <script src="chatbot-loader.js" data-track="mba"></script>
     <script>
         // ---- Filter chips ----
-        const chips = document.querySelectorAll('.chip');
+        const chips = document.querySelectorAll('#filters .chip');
         const catSections = document.querySelectorAll('[data-cat]');
         chips.forEach(chip => {
             chip.addEventListener('click', () => {
@@ -1430,6 +2093,12 @@
                     const cats = sec.dataset.cat.split(' ');
                     sec.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
                 });
+                if (f === 'domains') {
+                    setTimeout(() => document.getElementById('domains').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                }
+                if (f === 'compare-tool') {
+                    setTimeout(() => document.getElementById('compare-tool').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                }
             });
         });
 
@@ -1440,136 +2109,318 @@
         }, { threshold: 0.12 });
         reveals.forEach(r => obs.observe(r));
 
-        // ---- Stack builder ----
-        const PRICES = { bootcamp: 7499, casecomp: 3499, excel: 1199, powerbi: 1499, live1: 4000, live2: 7500 };
-        const LABELS = { bootcamp: 'Placements Bootcamp', casecomp: 'Case Competition', excel: 'Advanced Excel Certificate', powerbi: 'Power BI Certificate' };
-        const COMBO_URLS = {
-            allinone: 'product-all-in-one-combo.html',
-            bc: 'product-bootcamp-case-comp.html',
-            bl: 'product-bootcamp-live-project.html'
+        // ================================================================
+        // NEW: LIVE PROJECT DOMAIN COVERAGE
+        // ================================================================
+        const DOMAIN_DATA = {
+            finance: {
+                month1: {
+                    label: 'Month 1 · Foundation',
+                    items: ['Annual Reports: COGS Analysis & Operating Cycle', 'EBITDA Drivers + Secondary Market Research', 'Balance Sheet Analysis', 'Project Financial Analysis'],
+                    special: 'Special session by an Investment Banker from JP Morgan'
+                },
+                month2: {
+                    label: 'Month 2 · Valuation',
+                    items: ['M&A Synergy Analysis', 'Financial Modeling'],
+                    special: null
+                }
+            },
+            consulting: {
+                month1: {
+                    label: 'Month 1 · Foundation',
+                    items: ['Profitability Breakdown & Analysis', 'Strategy Implementation for P&L Management', 'Market Sizing Guesstimates', 'Market Entry Strategy with Macro Economic Analysis'],
+                    special: 'Special session by an experienced Consultant from IIM Ahmedabad'
+                },
+                month2: {
+                    label: 'Month 2 · Advanced Track',
+                    items: ['M&A Analysis and PMI Strategies', 'MBA-Level Case Solution'],
+                    special: null
+                }
+            },
+            hr: {
+                month1: {
+                    label: 'Month 1 · Foundation',
+                    items: ['Workforce Planning Matrix', 'Org Structure & Grade Qualification Matrix', 'Org Functions with JDs & JSs', 'Pay Parity Range for Compensation & Recruitment Metrics'],
+                    special: 'Special session by the Asia Talent Manager from Nestlé'
+                },
+                month2: {
+                    label: 'Month 2 · Advanced Track',
+                    items: ['L&D Calendar and Succession Planning', 'Employee Engagement Strategies & PMS Tools', 'People Management in M&A'],
+                    special: null
+                }
+            },
+            product: {
+                month1: {
+                    label: 'Month 1 · Foundation',
+                    items: ['Need-Gap Analysis for an Application', 'Application Development Prototype & BRD', 'Key Metric Analysis vis-à-vis Competitors', 'Wireframe Design & Development for End-Users'],
+                    special: 'Special session by a Product Manager from IIM Bangalore'
+                },
+                month2: {
+                    label: 'Month 2 · Advanced Track',
+                    items: ['Marketing Integration for a Website', 'KPI Analysis & Improvement', 'Cost Simulation & Guesstimates (Gen AI Case)'],
+                    special: null
+                }
+            },
+            marketing: {
+                month1: {
+                    label: 'Month 1 · Foundation',
+                    items: ['Brand Analysis', 'Brand Enhancement', 'GTM Strategy', 'Ansoff & BCG Matrix'],
+                    special: 'Special session by an FMCG Marketer from IIM Bangalore'
+                },
+                month2: {
+                    label: 'Month 2 · Advanced Track',
+                    items: ['Digital Marketing Expansion Plan', 'Marketing Funnel & L2S Models', 'Comparative Ad Analysis'],
+                    special: null
+                }
+            },
+            operations: {
+                month1: {
+                    label: 'Month 1 · Foundation',
+                    items: ['EOQ Analysis & Inventory Management', 'Horizontal & Vertical Integration', 'Productivity Improvement', 'Capacity Planning & Layout Strategies'],
+                    special: 'Special session by an Operations Consultant & Six Sigma Black Belt holder'
+                },
+                month2: {
+                    label: 'Month 2 · Advanced Track',
+                    items: ['TQM & Six Sigma', 'Logistics Optimization & Network Problem', 'SCM Optimization (Case Development)'],
+                    special: null
+                }
+            }
         };
 
-        // Individual product page URLs on the live mbapartner.in site
-        const INDIVIDUAL_URLS = {
-            bootcamp: 'product-placements-bootcamp.html',
-            casecomp: 'product-case-competition.html',
-            excel: 'product-advanced-excel-certificate.html',
-            powerbi: 'product-power-bi-certificate.html',
-            live1: 'product-any-1-domain.html',
-            live2: 'product-any-2-domains.html'
-        };
-
-        const state = { bootcamp: false, casecomp: false, excel: false, powerbi: false, live: 0 };
-
-        document.querySelectorAll('.toggle').forEach(t => {
-            t.addEventListener('click', () => {
-                const item = t.dataset.item;
-                state[item] = !state[item];
-                t.classList.toggle('active', state[item]);
-                render();
-            });
-        });
-        document.querySelectorAll('#liveSeg .seg-btn').forEach(b => {
-            b.addEventListener('click', () => {
-                document.querySelectorAll('#liveSeg .seg-btn').forEach(x => x.classList.remove('active'));
-                b.classList.add('active');
-                state.live = parseInt(b.dataset.live, 10);
-                render();
-            });
-        });
-
-        function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
-
-        function getCheckoutUrl(comboUsed) {
-            // Store selected items in localStorage for checkout page
-            const selections = {
-                items: state,
-                live: state.live,
-                timestamp: Date.now()
-            };
-            localStorage.setItem('mbaPartnerCart', JSON.stringify(selections));
-
-            // Always redirect to checkout page
-            return 'checkout-page.html';
+        function renderDomainCard(part, certText) {
+            const specialHtml = part.special
+                ? `<div class="domain-special">🎓 <span><b>Bonus:</b> ${part.special}</span></div>`
+                : '';
+            const items = part.items.map(i => `<li>${i}</li>`).join('');
+            return `<div class="domain-card">
+        <span class="dc-tag">${part.label}</span>
+        <ul>${items}</ul>
+        ${specialHtml}
+        <div class="domain-cert-row">🏆 ${certText}</div>
+      </div>`;
         }
 
-        function render() {
-            const linesEl = document.getElementById('receiptLines');
-            const totalEl = document.getElementById('receiptTotal');
-            const savingsEl = document.getElementById('savingsHolder');
-            const ctaEl = document.getElementById('receiptCta');
+        function renderDomain(key) {
+            const d = DOMAIN_DATA[key];
+            if (!d) return;
+            const panel = document.getElementById('domain-panels');
+            panel.innerHTML =
+                renderDomainCard(d.month1, 'Presentation &amp; roll-out of certificates at 1-month enrollment') +
+                renderDomainCard(d.month2, 'Presentation &amp; closure of internship with certificates roll-out');
+        }
 
-            const B = state.bootcamp, C = state.casecomp, L1 = state.live === 1, L2 = state.live === 2;
-            const anySelected = B || C || state.excel || state.powerbi || state.live > 0;
+        document.querySelectorAll('#domain-tabs .dtab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('#domain-tabs .dtab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                renderDomain(tab.dataset.domain);
+            });
+        });
+        renderDomain('finance');
 
-            if (!anySelected) {
-                linesEl.innerHTML = '<div class="receipt-empty">Nothing selected yet — tick a few items on the left.</div>';
-                totalEl.textContent = '₹0';
-                savingsEl.innerHTML = '';
-                ctaEl.href = '#';
-                ctaEl.textContent = '💳 Proceed to Payment';
-                ctaEl.style.pointerEvents = 'none';
-                ctaEl.style.opacity = '0.6';
-                ctaEl.style.cursor = 'not-allowed';
+        // ================================================================
+        // NEW: DYNAMIC COURSE COMPARE TOOL
+        // ================================================================
+        const COURSES = {
+            'course': {
+                name: 'Placements Bootcamp',
+                price: 7499,
+                og: 7999,
+                url: 'product-placements-bootcamp.html',
+                features: { mock_pi: true, cv_review: true, case_mentor: false, winning_ppts: false, live_project_1: false, live_project_2: false, certificate: false, domain_session: false, skill_cert: false, group_offer: false }
+            },
+            'bootcamp-case': {
+                name: 'Bootcamp + Case Competition',
+                price: 9499,
+                og: 9999,
+                url: 'product-bootcamp-case-comp.html',
+                features: { mock_pi: true, cv_review: true, case_mentor: true, winning_ppts: false, live_project_1: false, live_project_2: false, certificate: false, domain_session: true, skill_cert: false, group_offer: false }
+            },
+            'bootcamp-live': {
+                name: 'Bootcamp + 1 Live Project',
+                price: 11499,
+                og: 11999,
+                url: 'product-bootcamp-live-project.html',
+                features: { mock_pi: true, cv_review: true, case_mentor: false, winning_ppts: false, live_project_1: true, live_project_2: false, certificate: true, domain_session: false, skill_cert: false, group_offer: false }
+            },
+            'all-in-one': {
+                name: 'All-in-One Combo',
+                price: 13999,
+                og: 14500,
+                url: 'product-all-in-one-combo.html',
+                features: { mock_pi: true, cv_review: true, case_mentor: true, winning_ppts: false, live_project_1: true, live_project_2: false, certificate: true, domain_session: false, skill_cert: false, group_offer: false }
+            },
+            'domain1': {
+                name: 'Any 1 Domain',
+                price: 4000,
+                og: 4500,
+                url: 'product-any-1-domain.html',
+                features: { mock_pi: false, cv_review: false, case_mentor: false, winning_ppts: false, live_project_1: true, live_project_2: false, certificate: true, domain_session: false, skill_cert: false, group_offer: true }
+            },
+            'domain2': {
+                name: 'Any 2 Domains',
+                price: 7500,
+                og: 7999,
+                url: 'product-any-2-domains.html',
+                features: { mock_pi: false, cv_review: false, case_mentor: false, winning_ppts: false, live_project_1: true, live_project_2: true, certificate: true, domain_session: false, skill_cert: false, group_offer: true }
+            },
+            'case-comp': {
+                name: 'Case Competition',
+                price: 3499,
+                og: 3999,
+                url: 'product-case-competition.html',
+                features: { mock_pi: false, cv_review: false, case_mentor: true, winning_ppts: true, live_project_1: false, live_project_2: false, certificate: false, domain_session: false, skill_cert: false, group_offer: true }
+            },
+            'case-live': {
+                name: 'Case Comp + 1 Live Project',
+                price: 8499,
+                og: 8999,
+                url: 'product-case-comp-live-project.html',
+                features: { mock_pi: false, cv_review: false, case_mentor: true, winning_ppts: true, live_project_1: true, live_project_2: false, certificate: true, domain_session: false, skill_cert: false, group_offer: true }
+            },
+            'excel': {
+                name: 'Advanced Excel Certificate',
+                price: 1199,
+                og: 1499,
+                url: 'product-advanced-excel-certificate.html',
+                features: { mock_pi: false, cv_review: false, case_mentor: false, winning_ppts: false, live_project_1: false, live_project_2: false, certificate: false, domain_session: false, skill_cert: true, group_offer: false }
+            },
+            'powerbi': {
+                name: 'Power BI Certificate',
+                price: 1499,
+                og: null,
+                url: 'product-power-bi-certificate.html',
+                features: { mock_pi: false, cv_review: false, case_mentor: false, winning_ppts: false, live_project_1: false, live_project_2: false, certificate: false, domain_session: false, skill_cert: true, group_offer: false }
+            },
+        };
+
+        const FEATURE_LABELS = {
+            'cv_review': 'CV review slots',
+            'mock_pi': 'Mock PIs & group discussions',
+            'case_mentor': 'Case mentoring by past-year winners',
+            'winning_ppts': '30+ winning case PPTs to study',
+            'live_project_1': '1 Live Project domain (CV-ready deliverable)',
+            'live_project_2': '2nd Live Project domain',
+            'certificate': 'Certificate of Completion (CV-ready)',
+            'domain_session': '2 complimentary live-project domain sessions',
+            'skill_cert': 'Self-paced skill certification',
+            'group_offer': 'Eligible for the Group Offer (30% off with a friend)',
+        };
+
+        // Validated combo hints — only pairs where the bundle genuinely matches or beats
+        // the sum of buying the parts separately, per the pricing shown on this page.
+        const COMBO_HINTS = {
+            'case-comp+course': { id: 'bootcamp-case', saving: 1499 },
+            'course+domain1': { id: 'bootcamp-live', saving: 0, sameTotal: true },
+            'case-live+course': { id: 'all-in-one', saving: 1999 },
+            'bootcamp-live+case-comp': { id: 'all-in-one', saving: 999 },
+        };
+
+        const COMBO_IDS = ['bootcamp-case', 'bootcamp-live', 'all-in-one', 'case-live'];
+
+        function checkIcon(yes) {
+            if (yes) return `<div class="cmp-icon yes"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M1 6l3.5 3.5L11 2" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+            return `<div class="cmp-icon no"><svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M2 2l8 8M10 2L2 10" stroke="#B0B9C6" stroke-width="1.5" stroke-linecap="round"/></svg></div>`;
+        }
+
+        function renderCmpCol(id, highlight) {
+            const c = COURSES[id];
+            const priceRow = c.og
+                ? `<span class="cmp-price-og">₹${c.og.toLocaleString('en-IN')}</span> <span class="cmp-price-sale">₹${c.price.toLocaleString('en-IN')}</span>`
+                : `<span class="cmp-price-sale">₹${c.price.toLocaleString('en-IN')}</span>`;
+
+            const rows = Object.entries(FEATURE_LABELS).map(([key, label]) => {
+                const has = c.features[key];
+                return `<div class="cmp-row">${checkIcon(has)}<span class="cmp-label${has ? '' : ' muted'}">${label}</span></div>`;
+            }).join('');
+
+            return `
+      <div class="cmp-col${highlight ? ' highlight' : ''}">
+        <div class="cmp-name">${c.name}</div>
+        <div class="cmp-price-row">${priceRow}</div>
+        ${rows}
+        <div class="cmp-footer">
+          <a class="cmp-enroll" href="${c.url}">💳 Enroll in this →</a>
+        </div>
+      </div>`;
+        }
+
+        function updateComboBar(idA, idB) {
+            const bar = document.getElementById('combo-bar');
+            const pairKey = [idA, idB].sort().join('+');
+            const hint = COMBO_HINTS[pairKey];
+            const cA = COURSES[idA], cB = COURSES[idB];
+            const combo = hint && COURSES[hint.id];
+
+            const eitherIsCombo = COMBO_IDS.includes(idA) || COMBO_IDS.includes(idB);
+
+            if (hint && combo && !eitherIsCombo) {
+                const separateTotal = cA.price + cB.price;
+                document.getElementById('cb-title').textContent = `${combo.name} covers both`;
+                document.getElementById('cb-desc').textContent = hint.sameTotal
+                    ? `Buying these separately also costs ₹${separateTotal.toLocaleString('en-IN')} — the combo just bundles them into one checkout.`
+                    : `Buying these separately costs ₹${separateTotal.toLocaleString('en-IN')}. The combo bundles them for less.`;
+                document.getElementById('cb-saving').textContent = hint.saving > 0 ? `Save ₹${hint.saving.toLocaleString('en-IN')}` : 'One checkout';
+                document.getElementById('cb-link').href = combo.url;
+                document.getElementById('cb-link').textContent = 'See combo →';
+                bar.classList.add('visible');
+            } else if (eitherIsCombo) {
+                const comboId = COMBO_IDS.find(c => c === idA || c === idB);
+                const singleId = comboId === idA ? idB : idA;
+                const comboObj = COURSES[comboId];
+                const singleObj = COURSES[singleId];
+                const singleFeatureKeys = Object.entries(singleObj.features).filter(([, v]) => v).map(([k]) => k);
+                const comboAlreadyCovers = singleFeatureKeys.length > 0 && singleFeatureKeys.every(k => comboObj.features[k]);
+                if (comboAlreadyCovers) {
+                    document.getElementById('cb-title').textContent = `${comboObj.name} already includes everything in ${singleObj.name}`;
+                    document.getElementById('cb-desc').textContent = `No need to buy both. The combo you picked already covers every feature of the standalone product.`;
+                    document.getElementById('cb-saving').textContent = `₹${singleObj.price.toLocaleString('en-IN')} saved`;
+                    document.getElementById('cb-link').href = comboObj.url;
+                    document.getElementById('cb-link').textContent = 'Enroll in combo →';
+                    bar.classList.add('visible');
+                } else {
+                    bar.classList.remove('visible');
+                }
+            } else {
+                bar.classList.remove('visible');
+            }
+        }
+
+        function renderCompare() {
+            const idA = document.getElementById('course-a').value;
+            const idB = document.getElementById('course-b').value;
+            const output = document.getElementById('compare-output');
+
+            if (!idA || !idB) {
+                output.innerHTML = `<div class="compare-empty">
+        <svg width="48" height="48" fill="none" viewBox="0 0 48 48"><rect x="6" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2"/><rect x="26" y="6" width="16" height="36" rx="3" stroke="#6B7280" stroke-width="2"/><path d="M10 16h8M10 22h8M10 28h5M30 16h8M30 22h8M30 28h5" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <p>Select two courses above to see a side-by-side breakdown.</p>
+      </div>`;
+                document.getElementById('combo-bar').classList.remove('visible');
                 return;
             }
 
-            ctaEl.style.pointerEvents = 'auto';
-            ctaEl.style.opacity = '1';
-            ctaEl.style.cursor = 'pointer';
-
-            let total = 0, comboUsed = null, lines = [];
-            const separateSum = (B ? PRICES.bootcamp : 0) + (C ? PRICES.casecomp : 0) + (L1 ? PRICES.live1 : 0) + (L2 ? PRICES.live2 : 0) + (state.excel ? PRICES.excel : 0) + (state.powerbi ? PRICES.powerbi : 0);
-
-            if (B && C && L1) {
-                comboUsed = 'allinone';
-                total += 13999;
-                lines.push(['All-in-One Combo (Bootcamp + Case Comp + 1 Live Project)', 13999, true]);
-            } else if (B && C) {
-                comboUsed = 'bc';
-                total += 9499;
-                lines.push(['Bootcamp + Case Competition combo', 9499, true]);
-                if (L2) { total += PRICES.live2; lines.push(['Live Project — 2 Domains', PRICES.live2, false]); }
-            } else if (B && L1) {
-                comboUsed = 'bl';
-                total += 11499;
-                lines.push(['Bootcamp + 1 Live Project combo', 11499, true]);
-            } else if (C && L1) {
-                // combo costs more than separate — don't suggest it
-                total += PRICES.casecomp + PRICES.live1;
-                lines.push([LABELS.casecomp, PRICES.casecomp, false]);
-                lines.push(['Live Project — 1 Domain', PRICES.live1, false]);
-            } else {
-                if (B) { total += PRICES.bootcamp; lines.push([LABELS.bootcamp, PRICES.bootcamp, false]); }
-                if (C) { total += PRICES.casecomp; lines.push([LABELS.casecomp, PRICES.casecomp, false]); }
-                if (L1) { total += PRICES.live1; lines.push(['Live Project — 1 Domain', PRICES.live1, false]); }
-                if (L2) { total += PRICES.live2; lines.push(['Live Project — 2 Domains', PRICES.live2, false]); }
-            }
-            if (state.excel) { total += PRICES.excel; lines.push([LABELS.excel, PRICES.excel, false]); }
-            if (state.powerbi) { total += PRICES.powerbi; lines.push([LABELS.powerbi, PRICES.powerbi, false]); }
-
-            linesEl.innerHTML = lines.map(([label, price, isCombo]) =>
-                `<div class="receipt-line${isCombo ? ' combo-applied' : ''}"><span>${label}</span><span class="mono">${fmt(price)}</span></div>`
-            ).join('');
-
-            totalEl.textContent = fmt(total);
-
-            const savings = separateSum - total;
-            if (savings > 0) {
-                savingsEl.innerHTML = `<div class="savings-stamp">Combo applied — saving ${fmt(savings)}</div>`;
-            } else if (comboUsed) {
-                savingsEl.innerHTML = `<div class="savings-stamp" style="border-color:#D0D5DD;color:#8B92A0;">Same total, bundled in one checkout</div>`;
-            } else {
-                savingsEl.innerHTML = '';
+            if (idA === idB) {
+                output.innerHTML = `<div class="compare-empty">
+        <p>Pick two different courses to compare them.</p>
+      </div>`;
+                document.getElementById('combo-bar').classList.remove('visible');
+                return;
             }
 
-            const checkoutUrl = getCheckoutUrl(comboUsed);
-            ctaEl.href = 'checkout-page.html';
-            ctaEl.textContent = '💳 Proceed to Payment';
+            const countA = Object.values(COURSES[idA].features).filter(Boolean).length;
+            const countB = Object.values(COURSES[idB].features).filter(Boolean).length;
+
+            output.innerHTML = `<div class="compare-result">
+      ${renderCmpCol(idA, countA > countB)}
+      ${renderCmpCol(idB, countB > countA)}
+    </div>`;
+
+            updateComboBar(idA, idB);
         }
 
-        // Initial render
-        render();
+        document.getElementById('course-a').addEventListener('change', renderCompare);
+        document.getElementById('course-b').addEventListener('change', renderCompare);
     </script>
 
 </body>

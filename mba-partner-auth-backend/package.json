@@ -1,14 +1,15 @@
 {
   "name": "mba-partner-auth-backend",
   "version": "1.0.0",
-  "description": "Authentication + checkout backend (register, login, forgot/reset password, orders, promo codes) for the MBA Partner site",
+  "description": "Authentication + checkout + dashboard backend (register, login, forgot/reset password, orders, promo codes, prep dashboard) for the MBA Partner site",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
     "seed:products": "node scripts/seedProducts.js",
-    "seed:promo": "node scripts/seedPromoCodes.js"
+    "seed:promo": "node scripts/seedPromoCodes.js",
+    "seed:dashboard": "node scripts/seedDashboard.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

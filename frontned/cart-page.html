@@ -796,15 +796,7 @@
     </div>
   </section>
 
-  <section class="crosssell-section" id="crosssellSection" style="display:none;">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>You might also like</h2>
-        <p>Popular add-ons students pair with their cart</p>
-      </div>
-      <div class="crosssell" id="crosssellList"></div>
-    </div>
-  </section>
+
 
   <footer>
     <div class="wrap">
@@ -831,18 +823,7 @@
   <script src="cart.js"></script>
   <script>
     // ---------- Cross-sell catalogue ----------
-    const CROSSSELL_CATALOGUE = [
-      { productId: 'Placements Bootcamp + Case Comp + 1 Live Project', name: 'Placements Bootcamp + Case Comp + 1 Live Project', price: 13999, originalPrice: 14500 },
-      { productId: 'All-in-One Combo', name: 'All-in-One Combo', price: 14999, originalPrice: 17999 },
-      { productId: 'Any 1 Domain', name: 'Any 1 Domain', price: 4999, originalPrice: 5999 },
-      { productId: 'Any 2 Domains', name: 'Any 2 Domains', price: 8499, originalPrice: 9999 },
-      { productId: 'Bootcamp + Case Comp', name: 'Bootcamp + Case Comp', price: 10499, originalPrice: 11500 },
-      { productId: 'Bootcamp + Live Project', name: 'Bootcamp + Live Project', price: 10999, originalPrice: 12500 },
-      { productId: 'Case Comp + Live Project', name: 'Case Comp + Live Project', price: 9999, originalPrice: 11200 },
-      { productId: 'Case Competition', name: 'Case Competition', price: 6499, originalPrice: 7499 },
-      { productId: 'Placements Bootcamp + Case Comp', name: 'Placements Bootcamp + Case Comp', price: 10499, originalPrice: 11500 },
-      { productId: 'Power BI Certificate', name: 'Power BI Certificate', price: 2999, originalPrice: 3999 },
-    ];
+
 
     const { getCart, setCart, cartTotals, fmtINR, genOrderId, saveOrder, clearCart } = window.MBACart;
 
@@ -882,7 +863,7 @@
     function updateNavLinks() {
       const ctx = detectContext();
 
-      const homeUrl = ctx === 'cat' ? 'mba-partner-cat-omet-home.html' : 'index.html';
+      const homeUrl = ctx === 'cat' ? 'mba-partner-cat-omet-home.html' : 'mba-partner-courses-redesign.html';
       const coursesUrl = ctx === 'cat' ? 'mba-partner-cat-omet-courses.html' : 'mba-partner-courses-redesign.html';
 
       // Brand logo
@@ -1069,6 +1050,8 @@
 
     render();
   </script>
+  <script src="Navbar_cat.js"></script>
+  <script src="chatbot-loader.js" data-track="mba"></script>
 </body>
 
 </html>

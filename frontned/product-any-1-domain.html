@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="Navbar_cat.css">
   <style>
     :root {
       --ink: #0F1419;
@@ -167,11 +168,7 @@
       box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
     }
 
-    @media (max-width:680px) {
-      .nav-links a:not(.nav-cta) {
-        display: none
-      }
-    }
+
 
     .breadcrumb {
       padding: 16px 0;
@@ -670,25 +667,106 @@
       border-color: var(--primary);
       color: var(--primary)
     }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1.4px solid rgba(255, 255, 255, .25);
+      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #F4EFE3;
+      border-radius: 2px;
+      position: relative;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .nav-toggle span::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+    }
+
+    .nav.menu-open .nav-toggle span {
+      background: transparent;
+    }
+
+    .nav.menu-open .nav-toggle span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav.menu-open .nav-toggle span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    @media (max-width:760px) {
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        flex-basis: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        max-height: 0;
+        overflow: auto;
+        opacity: 0;
+        transition: max-height .25s ease, opacity .2s ease;
+      }
+
+      .nav.menu-open .nav-links {
+        max-height: 560px;
+        opacity: 1;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        margin-top: 12px;
+      }
+
+      .nav-links a:not(.nav-cta):not(.nav-login) {
+        display: block;
+        padding: 10px 4px;
+        opacity: 1;
+        border-bottom: 1px solid rgba(255, 255, 255, .06);
+      }
+
+      .nav-login,
+      .nav-cta {
+        display: block;
+        text-align: center;
+        margin-top: 8px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">MP</span>
-        <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
-      </a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="mba-partner-courses-redesign.html">Courses</a>
-        <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
-        <a class="nav-cta" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp</a>
-      </div>
-    </div>
-  </nav>
+  <div id="navbar-mount" data-track="mba"></div>
 
   <div class="wrap">
     <div class="breadcrumb">
@@ -883,6 +961,34 @@
       document.getElementById('navCartCount').textContent = window.MBACart.cartCount();
     }
   </script>
+
+  <script>
+    // --- Mobile hamburger menu ---
+    (function () {
+      var siteNav = document.querySelector('nav.nav');
+      var navToggle = document.getElementById('nav-toggle');
+      var navLinks = siteNav ? siteNav.querySelector('.nav-links') : null;
+      if (!siteNav || !navToggle || !navLinks) return;
+
+      navToggle.addEventListener('click', function () {
+        var isOpen = siteNav.classList.toggle('menu-open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+
+      // Close the menu after tapping a link, so it doesn't stay open
+      // when the next page loads.
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          siteNav.classList.remove('menu-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.setAttribute('aria-label', 'Open menu');
+        });
+      });
+    })();
+  </script>
+  <script src="Navbar_cat.js"></script>
+  <script src="chatbot-loader.js" data-track="mba"></script>
 </body>
 
 </html>

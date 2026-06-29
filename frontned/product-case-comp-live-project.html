@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="Navbar_cat.css">
   <style>
     :root {
       --ink: #0F1419;
@@ -73,104 +74,6 @@
     :focus-visible {
       outline: 2px solid var(--primary);
       outline-offset: 3px
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--ink);
-      color: #FFF;
-      border-bottom: 1px solid rgba(255, 255, 255, .1);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
-    }
-
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px
-    }
-
-    .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #fff;
-      font-family: 'Fraunces', serif;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15
-    }
-
-    .brand-text span {
-      font-weight: 700;
-      font-size: 15px
-    }
-
-    .brand-text small {
-      font-size: 10.5px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: #A0AEC0
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-size: 14px;
-      font-weight: 500
-    }
-
-    .nav-links a:not(.nav-cta) {
-      color: #D0D5DD;
-      opacity: .85;
-      transition: opacity .2s
-    }
-
-    .nav-links a:not(.nav-cta):hover {
-      opacity: 1
-    }
-
-    .nav-cta {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #fff;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13.5px;
-      transition: all .3s;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
-    }
-
-    @media (max-width:680px) {
-      .nav-links a:not(.nav-cta) {
-        display: none
-      }
     }
 
     .breadcrumb {
@@ -264,6 +167,44 @@
       margin-bottom: 14px
     }
 
+    .duration-toggle {
+      display: inline-flex;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 18px
+    }
+
+    .duration-toggle button {
+      border: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-faint);
+      padding: 9px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all .25s;
+      white-space: nowrap
+    }
+
+    .duration-toggle button.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
+    }
+
+    .duration-toggle button:not(.active):hover {
+      color: var(--ink)
+    }
+
+    [data-plan-only] {
+      display: none
+    }
+
     .pill {
       font-size: 11.5px;
       font-weight: 700;
@@ -328,6 +269,51 @@
       border: 1px solid #D1FAE5;
       padding: 5px 10px;
       border-radius: 8px
+    }
+
+    .price-tbd {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink-faint)
+    }
+
+    .price-tbd-note {
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      padding: 5px 10px;
+      border-radius: 8px
+    }
+
+    .distinction-callout {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: 12px;
+      padding: 14px 16px
+    }
+
+    .distinction-callout .ico {
+      flex-shrink: 0;
+      font-size: 17px;
+      line-height: 1
+    }
+
+    .distinction-callout p {
+      margin: 0;
+      font-size: 13px;
+      color: #9A3412;
+      line-height: 1.55
+    }
+
+    .distinction-callout strong {
+      color: #7C2D12
     }
 
     .cta-row {
@@ -502,6 +488,333 @@
       color: var(--ink-faint)
     }
 
+    .flex-note {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px dashed var(--rule);
+      border-radius: 12px;
+      padding: 14px 16px
+    }
+
+    .flex-note .ico {
+      flex-shrink: 0;
+      font-size: 16px;
+      line-height: 1
+    }
+
+    .flex-note p {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      line-height: 1.6
+    }
+
+    .flex-note strong {
+      color: var(--ink-soft)
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 22px 0
+    }
+
+    @media (max-width:780px) {
+      .stat-strip {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    .stat-card {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center
+    }
+
+    .stat-card .num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary)
+    }
+
+    .stat-card .label {
+      margin-top: 4px;
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      line-height: 1.4
+    }
+
+    .brochure-cta {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border: 1px dashed var(--rule);
+      border-radius: 12px;
+      padding: 16px 18px
+    }
+
+    .brochure-cta p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .brochure-cta a {
+      flex-shrink: 0;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 13px;
+      transition: all .25s
+    }
+
+    .brochure-cta a:hover {
+      background: var(--primary);
+      color: #fff
+    }
+
+    .group-offer {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      background: var(--paper-card);
+      border: 1.5px dashed var(--success);
+      border-radius: 14px;
+      padding: 22px 26px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .group-offer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(16, 185, 129, .08), transparent 60%);
+      pointer-events: none
+    }
+
+    .group-offer-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, .3)
+    }
+
+    .group-offer-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0
+    }
+
+    .group-offer-copy .tag-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .group-offer-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--success)
+    }
+
+    .group-offer-stamp {
+      display: inline-flex;
+      align-items: center;
+      background: var(--success);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      padding: 4px 11px;
+      border-radius: 999px
+    }
+
+    .group-offer-copy h3 {
+      font-size: 18.5px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .group-offer-copy p {
+      margin: 2px 0 0;
+      font-size: 13.5px;
+      color: var(--ink-faint);
+      line-height: 1.5
+    }
+
+    .group-offer a.cta {
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 13px 22px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, .3)
+    }
+
+    .group-offer a.cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, .4)
+    }
+
+    .group-offer-tiers {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px
+    }
+
+    @media (max-width:680px) {
+      .group-offer-tiers {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .tier-card {
+      background: var(--paper-card);
+      border: 1.5px dashed var(--success);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .tier-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(16, 185, 129, .08), transparent 60%);
+      pointer-events: none
+    }
+
+    .tier-card.tier-best {
+      border-color: var(--accent)
+    }
+
+    .tier-card.tier-best::before {
+      background: radial-gradient(circle at 0% 0%, rgba(236, 72, 153, .1), transparent 60%)
+    }
+
+    .tier-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px
+    }
+
+    .tier-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--success)
+    }
+
+    .tier-card.tier-best .tier-tag {
+      color: var(--accent)
+    }
+
+    .tier-stamp {
+      display: inline-flex;
+      align-items: center;
+      background: var(--success);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px
+    }
+
+    .tier-card.tier-best .tier-stamp {
+      background: var(--accent)
+    }
+
+    .tier-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .tier-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-faint);
+      line-height: 1.55
+    }
+
+    .tier-card a.cta {
+      margin-top: auto;
+      text-align: center;
+      padding: 12px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--success) 0%, #34D399 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s
+    }
+
+    .tier-card.tier-best a.cta {
+      background: linear-gradient(135deg, var(--accent) 0%, #F472B6 100%)
+    }
+
+    .tier-card a.cta:hover {
+      transform: translateY(-2px)
+    }
+
+    @media (max-width:680px) {
+      .group-offer {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 14px
+      }
+
+      .group-offer-icon {
+        margin: 0 auto
+      }
+
+      .group-offer-copy .tag-row {
+        justify-content: center
+      }
+    }
+
     footer {
       background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
       color: #fff;
@@ -604,20 +917,7 @@
 
 <body>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">MP</span>
-        <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
-      </a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="mba-partner-courses-redesign.html">Courses</a>
-        <a href="mba-partner-testimonials-redesign_.html">Testimonials</a>
-        <a class="nav-cta" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp</a>
-      </div>
-    </div>
-  </nav>
+  <div id="navbar-mount" data-track="mba"></div>
 
   <div class="wrap">
     <div class="breadcrumb">
@@ -649,19 +949,30 @@
         <div class="product-info">
           <div class="badge-row">
             <span class="pill pill-cat">Case Comp + Live Project</span>
-
+            <span class="pill pill-hot">Under Prodmark Business Consultants Pvt Ltd</span>
           </div>
           <h1>Case Comp + 1 Live Project</h1>
           <p class="product-sub">Sharpen your case-solving instincts and walk away with a real, CV-ready project
             deliverable — in one enrollment.</p>
-          <div class="price-block">
+
+          <div class="duration-toggle" id="durationToggle" role="group" aria-label="Choose plan duration">
+            <button type="button" class="active" data-plan="2month" aria-pressed="true">2 Months</button>
+            <button type="button" data-plan="1month" aria-pressed="false">1 Month</button>
+          </div>
+
+          <div class="price-block" data-plan-only="2month" data-display="flex">
             <span class="price-old mono">₹8,999.00</span>
             <span class="price-now mono">₹8,499</span>
             <span class="price-save mono">SAVE ₹500</span>
           </div>
+          <div class="price-block" data-plan-only="1month" data-display="flex" style="display:none;">
+            <span class="price-tbd mono">Price coming soon</span>
+            <span class="price-tbd-note">TBD — message us for early pricing</span>
+          </div>
+
           <div class="cta-row">
-            <a class="btn btn-primary" href="javascript:void(0)"
-              onclick="addToCartAndGo({id:'Case Comp + 1 Live Project', name:'Case Comp + 1 Live Project', price:8499, originalPrice:8999})">💳
+            <a class="btn btn-primary" href="javascript:void(0)" id="addToCartBtn"
+              onclick="addToCartAndGo({id:'Case Comp + 1 Live Project (2 Months)', name:'Case Comp + 1 Live Project (2 Months)', price:8499, originalPrice:8999})">💳
               Add to Cart / Buy Now</a>
             <a class="btn btn-ghost" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" target="_blank"
               rel="noopener">💬 Ask a Mentor First</a>
@@ -670,6 +981,12 @@
             <span class="item">✅ Mentored by MBA Partner Alumni</span>
             <span class="item">🔒 Secure Checkout</span>
             <span class="item">📩 Instant Confirmation</span>
+          </div>
+
+          <div class="distinction-callout">
+            <span class="ico">🏢</span>
+            <p><strong>This is not a course.</strong> You work directly under Prodmark Business Consultants Pvt
+              Ltd, on a real project basis — different from sitting through a coaching-institute syllabus.</p>
           </div>
         </div>
       </div>
@@ -684,28 +1001,182 @@
       </div>
       <div
         style="background:var(--paper-card);border:1px solid var(--rule);border-radius:14px;padding:26px;max-width:680px;">
+
+        <div data-plan-only="2month" data-display="block" style="display:block;">
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Case
+                Comp:</strong> Sessions by Unstop Toppers (AIR 1, 6, 10 &amp; 15), 30+ winning PPTs, and 1:1
+              mentorship — full breakdown below</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Live
+                Project:</strong> Any 1 Domain, over 2 months — 8 hours of sessions covering the ins &amp; outs of
+              the domain, followed by a project assigned based on that discussion</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>5
+                ATS-friendly CV points</strong> on completion, plus a Certificate of Completion</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>AI-based
+                platform access</strong> for Profile Assessment, CV Preparation, and Mock PIs</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Online,
+                flexible pace:</strong> max 2 hours a day commitment to finish within 2 months</span></div>
+        </div>
+
+        <div data-plan-only="1month" data-display="block" style="display:none;">
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Case
+                Comp:</strong> Sessions by Unstop Toppers (AIR 1, 6, 10 &amp; 15), 30+ winning PPTs, and 1:1
+              mentorship — full breakdown below</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Live
+                Project:</strong> Any 1 of the Top 4 Domains, over 1 month — 4 hours of sessions covering the ins
+              &amp; outs of the domain, followed by a project assigned based on that discussion</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>2
+                ATS-friendly CV points</strong> on completion, plus a Certificate of Completion</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+              style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+                width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Online,
+                flexible pace:</strong> max 2 hours a day commitment to finish within 1 month</span></div>
+        </div>
+
         <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
             style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
               width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Case
-              Comp:</strong> Access to 30+ case-winning PPTs + mentorship on case-solving approach (recorded if already
-            conducted)</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;">Two distinct CV
+            stories from one enrollment: a competition skill and a delivered project</span></div>
+      </div>
+
+      <div class="flex-note">
+        <span class="ico">🗓️</span>
+        <p><strong>Flexible on both durations:</strong> dates can move to fit your schedule. Even if every
+          project isn't finished, your certificate won't be withheld if you need it for your CV — as long as you
+          submit within 3 months of starting.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Inside the Case Competition track</h2>
+        <p>Same case-comp mentorship across both durations — taught by students who've actually won</p>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="num">AIR 1, 6, 10, 15</div>
+          <div class="label">Unstop ranks held by your session mentors</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">8 hrs</div>
+          <div class="label">Detailed sessions: Market Research to Financial Modelling</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">30+</div>
+          <div class="label">National Finals &amp; winning PPTs — not the common ones floating elsewhere</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">20+</div>
+          <div class="label">National winners we've produced so far</div>
+        </div>
+      </div>
+
+      <div
+        style="background:var(--paper-card);border:1px solid var(--rule);border-radius:14px;padding:26px;max-width:680px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;"><span
             style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
               width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Live
-              Project:</strong> Any 1 Domain for 2 months — 8 weekly sessions</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;"><span
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Sessions
+              by Unstop Toppers</strong> — mentors who've placed AIR 1, 6, 10 and 15 on the platform</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;"><span
             style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
               width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;">Two distinct CV stories
-            from one enrollment: a competition skill and a delivered project</span></div>
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>8 hours
+              of detailed sessions</strong> on how to crack case comps — covering everything from Market Research
+            through to Financial Modelling for future roadmaps</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;"><span
+            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+              width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>30+
+              National Finals &amp; winning PPTs</strong> — not the same recycled decks you'll find floating
+            around other platforms</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;"><span
+            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+              width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>Canva Pro
+              access for 1 year</strong> — build polished, presentation-ready decks</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;"><span
+            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+              width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>1:1
+              mentorship</strong> if you clear the Executive Summary round of any corporate competition</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;"><span
+            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+              width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>1 CV
+              point</strong> for the Annual MSME Competition we conduct on Unstop</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;"><span
+            style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-top:1px;"><svg
+              width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7l4 4 8-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span><span style="font-size:14.5px;color:var(--ink-soft);line-height:1.55;"><strong>AI-based
+              platform access</strong> for Profile Assessment, CV Preparation, and even Mock PIs</span></div>
+      </div>
+
+      <div class="brochure-cta">
+        <p>📄 Want the full breakdown on paper? Grab the Case Competition brochure.</p>
+        <a href="#" id="caseCompBrochureLink">Download Brochure →</a>
       </div>
     </div>
   </section>
@@ -734,8 +1205,12 @@
               <path d="M9 5v4l3 2" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round" />
             </svg></div>
           <div>
-            <h3>2-Month Live Project</h3>
-            <p>8 weekly sessions producing a genuine, presentable deliverable.</p>
+            <h3 data-plan-only="2month" data-display="block" style="display:block;">2-Month Live Project</h3>
+            <h3 data-plan-only="1month" data-display="block" style="display:none;">1-Month Live Project</h3>
+            <p data-plan-only="2month" data-display="block" style="display:block;">8 hours of sessions over 2
+              months, producing a genuine, presentable deliverable.</p>
+            <p data-plan-only="1month" data-display="block" style="display:none;">4 hours of sessions over 1
+              month, producing a genuine, presentable deliverable.</p>
           </div>
         </div>
         <div class="include-card">
@@ -745,7 +1220,10 @@
             </svg></div>
           <div>
             <h3>Domain of Your Choice</h3>
-            <p>Pick the function that best complements your case-comp story.</p>
+            <p data-plan-only="2month" data-display="block" style="display:block;">Pick the function that best
+              complements your case-comp story.</p>
+            <p data-plan-only="1month" data-display="block" style="display:none;">Choose from the Top 4 domains
+              for the 1-month track.</p>
           </div>
         </div>
         <div class="include-card">
@@ -766,15 +1244,55 @@
     <div class="wrap">
       <div class="section-head">
         <h2>How it runs</h2>
-        <p>From sign-up to CV-ready deliverable</p>
+        <p>From sign-up to CV-ready deliverable · dates are flexible</p>
       </div>
-      <div class="timeline">
-        <div class="timeline-step"><strong>Week 1 — Kickoff</strong><span>Domain match for the live project + access to
-            case mentorship content.</span></div>
-        <div class="timeline-step"><strong>Week 2–7 — Parallel Build</strong><span>Weekly project sessions while working
-            through case frameworks.</span></div>
-        <div class="timeline-step"><strong>Week 8 — Wrap-up</strong><span>Project deliverable finalized, case approach
-            internalized.</span></div>
+      <div class="timeline" data-plan-only="2month" data-display="flex" style="display:flex;">
+        <div class="timeline-step"><strong>Weeks 1–2 — Kickoff</strong><span>Domain ins &amp; outs covered, project
+            assigned based on the discussion, plus access to case mentorship content.</span></div>
+        <div class="timeline-step"><strong>Weeks 3–7 — Parallel Build</strong><span>Project sessions continue
+            (8 hours total across the program) while working through case frameworks.</span></div>
+        <div class="timeline-step"><strong>Week 8 — Wrap-up</strong><span>Project deliverable finalized, 5
+            ATS-friendly CV points and Certificate of Completion issued.</span></div>
+      </div>
+      <div class="timeline" data-plan-only="1month" data-display="flex" style="display:none;">
+        <div class="timeline-step"><strong>Week 1 — Kickoff</strong><span>Domain ins &amp; outs covered (one of the
+            Top 4 domains), project assigned based on the discussion, plus access to case mentorship content.</span>
+        </div>
+        <div class="timeline-step"><strong>Weeks 2–3 — Build</strong><span>Project sessions continue (4 hours
+            total across the program) while working through case frameworks.</span></div>
+        <div class="timeline-step"><strong>Week 4 — Wrap-up</strong><span>Project deliverable finalized, 2
+            ATS-friendly CV points and Certificate of Completion issued.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Group Offer</h2>
+        <p>The more you bring, the more everyone saves — separate enrollment link for both tiers</p>
+      </div>
+      <div class="group-offer-tiers">
+        <div class="tier-card">
+          <div class="tier-top">
+            <span class="tier-tag">Group of 2</span>
+            <span class="tier-stamp">30% off</span>
+          </div>
+          <h3>Enroll with a friend</h3>
+          <p>Join as a group of 2 and the 30% discount applies to your combined total — enrollment happens
+            through a separate group link, not this page's cart.</p>
+          <a class="cta" href="product-group-offer.html">👥 Enroll as a Group of 2 →</a>
+        </div>
+        <div class="tier-card tier-best">
+          <div class="tier-top">
+            <span class="tier-tag">Group of 3+</span>
+            <span class="tier-stamp">40% off</span>
+          </div>
+          <h3>Bring your whole squad</h3>
+          <p>Enroll in a group of 3 or more and get 40% off your combined total — also through a separate
+            enrollment link.</p>
+          <a class="cta" href="product-group-offer.html">👥 Enroll as a Group of 3+ →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -800,7 +1318,73 @@
       </div>
     </div>
   </footer>
-  <script src="cart.js"></script>
+
+  <script src="Navbar_cat.js"></script>
+  <script>
+    (function () {
+      var toggle = document.getElementById('durationToggle');
+      var addBtn = document.getElementById('addToCartBtn');
+      if (!toggle) return;
+
+      var buttons = toggle.querySelectorAll('button');
+      var planEls = document.querySelectorAll('[data-plan-only]');
+
+      var plans = {
+        '2month': {
+          label: 'Case Comp + 1 Live Project (2 Months)',
+          price: 8499,
+          originalPrice: 8999,
+          ctaEnabled: true,
+          ctaText: '💳 Add to Cart / Buy Now'
+        },
+        '1month': {
+          label: 'Case Comp + 1 Live Project (1 Month)',
+          price: null,
+          originalPrice: null,
+          ctaEnabled: false,
+          ctaText: '💬 Ask About 1-Month Pricing'
+        }
+      };
+
+      function setPlan(plan) {
+        buttons.forEach(function (b) {
+          var isActive = b.dataset.plan === plan;
+          b.classList.toggle('active', isActive);
+          b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        planEls.forEach(function (el) {
+          var show = el.dataset.planOnly === plan;
+          el.style.display = show ? (el.dataset.display || 'block') : 'none';
+        });
+
+        if (addBtn) {
+          var cfg = plans[plan];
+          if (cfg.ctaEnabled) {
+            addBtn.setAttribute('href', 'javascript:void(0)');
+            addBtn.onclick = function () {
+              addToCartAndGo({ id: cfg.label, name: cfg.label, price: cfg.price, originalPrice: cfg.originalPrice });
+            };
+            addBtn.innerHTML = cfg.ctaText;
+            addBtn.classList.remove('btn-ghost');
+            addBtn.classList.add('btn-primary');
+          } else {
+            addBtn.onclick = null;
+            addBtn.setAttribute('href', 'https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD');
+            addBtn.setAttribute('target', '_blank');
+            addBtn.setAttribute('rel', 'noopener');
+            addBtn.innerHTML = cfg.ctaText;
+          }
+        }
+      }
+
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () { setPlan(b.dataset.plan); });
+      });
+
+      setPlan('2month');
+    })();
+  </script>
 </body>
 
 </html>
