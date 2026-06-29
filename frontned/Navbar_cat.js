@@ -1,6 +1,6 @@
 (function () {
     // Point this at your running backend (see the auth backend README).
-    const API_BASE =  'https://mba-partner1.onrender.com/api';
+    const API_BASE = 'https://mba-partner1.onrender.com/api/auth';
 
     const NAV_CONFIG = {
         cat: {
