@@ -1487,7 +1487,7 @@
                 return;
             }
             try {
-                const res = await fetch('http://localhost:5000/api/auth/me', {
+                const res = await fetch('https://mba-partner1.onrender.com/api/auth/me', {
                     headers: { Authorization: `Bearer ${token}` },
                     credentials: 'include',
                 });
