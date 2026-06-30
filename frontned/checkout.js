@@ -122,8 +122,8 @@ function detectCategory(item) {
 }
 
 const DASHBOARD_BY_CATEGORY = {
-  mba: 'mba-student-dashboard.html',
-  cat: 'cat-dashboard.html'
+  mba: 'mba-partner-mba-dashboard.html',
+  cat: 'mba-partner-dashboard.html'
 };
 
 // Per-user namespaced storage key, mirrors the pattern used by cart.js
