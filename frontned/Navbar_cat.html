@@ -14,7 +14,11 @@
 </head>
 
 <body>
-
+    <div id="navbar-mount"></div>
+    <script>
+        document.getElementById('navbar-mount').dataset.track =
+            new URLSearchParams(location.search).get('track') === 'mba' ? 'mba' : 'cat';
+    </script>
     <nav class="nav" id="site-nav">
         <div class="nav-inner">
             <a class="brand" href="mba-partner-cat-omet-home.html">
