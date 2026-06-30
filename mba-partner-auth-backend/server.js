@@ -15,12 +15,28 @@ connectDB();
 const app = express();
 
 app.use(helmet());
+
+// Allow both the live Netlify site and local dev servers to call this API.
+const allowedOrigins = [
+  'https://astaaa.netlify.app',
+  'http://127.0.0.1:5500',
+  'http://localhost:5500',
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || 'https://astaaa.netlify.app',
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like curl, mobile apps, Postman)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS: ' + origin));
+      }
+    },
     credentials: true, // allow the auth_token cookie to be sent/received
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
