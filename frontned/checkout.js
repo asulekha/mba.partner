@@ -1,5 +1,4 @@
 const API_BASE = window.MBA_API_BASE || 'https://mba-partner1.onrender.com';
-const RAZORPAY_KEY_ID = window.MBA_RAZORPAY_KEY_ID || 'rzp_test_XXXXXXXXXXXX'; // public Key ID only — safe for frontend
 const COMPANY_NAME = 'MBA Partner';
 const COMPANY_THEME_COLOR = '#6366F1';
 
@@ -76,8 +75,9 @@ async function applyPromoCode() {
       msg.classList.add('ok');
     }
   } catch (err) {
+    // Backend promo endpoint not live yet — fail quietly instead of blocking checkout.
     appliedPromo = null;
-    msg.textContent = 'Could not reach the server. Try again.';
+    msg.textContent = 'Could not reach the server. Try again later.';
     msg.classList.add('err');
   }
 
@@ -111,10 +111,120 @@ function renderSummaryTotals() {
   }
 }
 
-/* ---------------- Payment ---------------- */
+/* ---------------- Category detection ---------------- */
+// Backend doesn't send a "category" field on cart items yet, so we infer it
+// from the course name/id. Default bucket is "mba" when nothing matches "CAT".
+
+function detectCategory(item) {
+  const haystack = `${item.id || ''} ${item.name || ''}`.toUpperCase();
+  if (/\bCAT\b|OMET|CAT[\s-]?PREP/.test(haystack)) return 'cat';
+  return 'mba';
+}
+
+const DASHBOARD_BY_CATEGORY = {
+  mba: 'mba-student-dashboard.html',
+  cat: 'cat-dashboard.html'
+};
+
+// Per-user namespaced storage key, mirrors the pattern used by cart.js
+function currentUserKey() {
+  const token = localStorage.getItem('token');
+  if (!token) return 'guest';
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.id || payload._id || payload.email || 'guest';
+  } catch (e) {
+    return 'guest';
+  }
+}
+
+function savePurchasedCourses(cart) {
+  const userKey = currentUserKey();
+  const grouped = { mba: [], cat: [] };
+
+  cart.forEach(item => {
+    const category = detectCategory(item);
+    grouped[category].push({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      qty: item.qty || 1,
+      purchasedAt: new Date().toISOString()
+    });
+  });
+
+  Object.keys(grouped).forEach(category => {
+    if (!grouped[category].length) return;
+    const storageKey = `myCourses_${category}_${userKey}`;
+    let existing = [];
+    try {
+      existing = JSON.parse(localStorage.getItem(storageKey)) || [];
+    } catch (e) {
+      existing = [];
+    }
+    const merged = existing.concat(grouped[category]);
+    localStorage.setItem(storageKey, JSON.stringify(merged));
+  });
+
+  // Whichever category has more items decides which dashboard the
+  // "Go to Dashboard" button opens. Ties go to mba.
+  const targetCategory = grouped.cat.length > grouped.mba.length ? 'cat' : 'mba';
+  return targetCategory;
+}
+
+/* ---------------- Success modal ---------------- */
+
+function showSuccessModal(targetCategory) {
+  const dashboardUrl = DASHBOARD_BY_CATEGORY[targetCategory] || DASHBOARD_BY_CATEGORY.mba;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'paymentSuccessOverlay';
+  overlay.style.cssText = `
+    position:fixed; inset:0; background:rgba(15,20,25,.55);
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999; padding:20px;
+  `;
+
+  overlay.innerHTML = `
+    <div style="background:#fff; border-radius:18px; max-width:380px; width:100%;
+                padding:32px 28px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.3);
+                font-family:'Inter', system-ui, sans-serif;">
+      <div style="width:64px; height:64px; margin:0 auto 18px; border-radius:50%;
+                  background:#D1FAE5; display:flex; align-items:center; justify-content:center;
+                  font-size:32px;">✅</div>
+      <h2 style="font-family:'Fraunces', serif; font-size:22px; margin:0 0 8px; color:#0F1419;">
+        Payment Successful!
+      </h2>
+      <p style="font-size:14px; color:#6B7280; margin:0 0 24px; line-height:1.5;">
+        Your enrollment is confirmed. Your course${targetCategory ? '' : 's'} has been added to your dashboard.
+      </p>
+      <button id="goToDashboardBtn" style="
+        width:100%; padding:13px 18px; border:none; border-radius:10px;
+        background:linear-gradient(135deg,#6366F1 0%,#EC4899 100%); color:#fff;
+        font-weight:700; font-size:14.5px; cursor:pointer; margin-bottom:10px;">
+        Go to Dashboard →
+      </button>
+      <button id="closeSuccessModalBtn" style="
+        width:100%; padding:11px 18px; border:1.4px solid #E5E7EB; border-radius:10px;
+        background:#fff; color:#374151; font-weight:600; font-size:13.5px; cursor:pointer;">
+        Stay on this page
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  document.getElementById('goToDashboardBtn').onclick = () => {
+    window.location.href = dashboardUrl;
+  };
+  document.getElementById('closeSuccessModalBtn').onclick = () => {
+    overlay.remove();
+  };
+}
+
+/* ---------------- Payment (MOCKED — no backend order/payment yet) ---------------- */
 
 async function startPayment() {
-  const token = localStorage.getItem('token');
   if (!validateForm()) return;
 
   const cart = getCart();
@@ -122,124 +232,37 @@ async function startPayment() {
 
   const payBtn = document.getElementById('payBtn');
   payBtn.disabled = true;
-  payBtn.textContent = 'Preparing payment…';
+  payBtn.textContent = 'Processing…';
 
   const name = document.getElementById('fullName').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
+  const totals = cartTotals(cart);
 
-  let orderId = null;
-  let amountInPaise = null;
+  // ---- MOCK PAYMENT ----
+  // Backend order-creation / Razorpay verification isn't live yet.
+  // Simulate a short "processing" delay, then treat payment as successful.
+  setTimeout(() => {
+    const order = {
+      id: 'MOCK-' + Date.now(),
+      paymentId: 'MOCK-PAY-' + Date.now(),
+      items: cart,
+      totals: appliedPromo
+        ? { subtotal: appliedPromo.finalAmount, savings: totals.savings + appliedPromo.discountAmount }
+        : totals,
+      customer: { name, email, phone },
+      createdAt: new Date().toISOString()
+    };
 
-  // ---- Step 1: ask the backend to create a Razorpay order ----
-  // The backend recomputes price + re-validates the promo code itself.
-  // It does NOT trust any amount sent from this page.
-  try {
-    const token = localStorage.getItem('token');
+    saveOrder(order);
+    const targetCategory = savePurchasedCourses(cart);
+    clearCart();
 
-    const res = await fetch(`${API_BASE}/api/orders/create-order`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        cart,
-        name,
-        email,
-        phone,
-        promoCode: appliedPromo ? appliedPromo.code : null
-      })
-    });
-    if (!res.ok) {
-      const errData = await res.json().catch(() => ({}));
-      throw new Error(errData.message || 'Could not create order.');
-    }
-
-    const data = await res.json();
-    orderId = data.orderId;
-    amountInPaise = data.amount; // backend-confirmed amount, in paise
-  } catch (err) {
-    alert(err.message || 'Could not start payment. Please try again in a moment.');
     payBtn.disabled = false;
     payBtn.textContent = '💳 Complete Payment';
-    return;
-  }
 
-  payBtn.disabled = false;
-  payBtn.textContent = '💳 Complete Payment';
-
-  const options = {
-    key: RAZORPAY_KEY_ID,
-    amount: amountInPaise,
-    currency: 'INR',
-    name: COMPANY_NAME,
-    description: `Order for ${cart.length} program${cart.length > 1 ? 's' : ''}`,
-    image: '',
-    order_id: orderId,
-    prefill: { name, email, contact: phone },
-    theme: { color: COMPANY_THEME_COLOR },
-    method: {
-      card: activeMethod === 'card',
-      upi: activeMethod === 'upi',
-      netbanking: activeMethod === 'netbanking',
-      wallet: false,
-      emi: false
-    },
-    handler: async function (response) {
-      // ---- Step 2: send payment details to the backend for verification ----
-      try {
-        const verifyRes = await fetch(`${API_BASE}/api/orders/verify-payment`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature
-          })
-        });
-
-        if (!verifyRes.ok) {
-          const errData = await verifyRes.json().catch(() => ({}));
-          alert(errData.message || 'Payment verification failed. If money was deducted, contact support with your payment ID: ' + response.razorpay_payment_id);
-          return;
-        }
-
-        const verified = await verifyRes.json();
-
-        const order = {
-          id: response.razorpay_order_id,
-          paymentId: response.razorpay_payment_id,
-          items: cart,
-          totals: verified.totals,
-          customer: { name, email, phone },
-          createdAt: new Date().toISOString()
-        };
-        saveOrder(order);
-        clearCart();
-        window.location.href = 'order-success.html';
-      } catch (err) {
-        alert('Could not confirm payment with the server. If money was deducted, contact support with your payment ID: ' + response.razorpay_payment_id);
-      }
-    },
-    modal: {
-      ondismiss: function () {
-        payBtn.disabled = false;
-        payBtn.textContent = '💳 Complete Payment';
-      }
-    }
-  };
-
-  if (typeof Razorpay === 'undefined') {
-    alert('Razorpay script failed to load. Check your internet connection and that checkout.razorpay.com is reachable.');
-    return;
-  }
-
-  const rzp = new Razorpay(options);
-  rzp.on('payment.failed', function (response) {
-    alert('Payment failed: ' + (response.error && response.error.description ? response.error.description : 'Please try again.'));
-  });
-  rzp.open();
+    showSuccessModal(targetCategory);
+  }, 900);
 }
 
 /* ---------------- Rendering ---------------- */
