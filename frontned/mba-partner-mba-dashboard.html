@@ -792,6 +792,18 @@
       flex-shrink: 0
     }
 
+    .courses-empty {
+      font-size: 13.5px;
+      color: var(--ink-faint);
+      padding: 18px 0;
+      text-align: center;
+    }
+
+    .courses-empty a {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
     /* table */
     table.log-table {
       width: 100%;
@@ -921,6 +933,27 @@
       box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
     }
 
+    /* Loading skeleton shimmer */
+    .skeleton {
+      display: inline-block;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 4px;
+      color: transparent;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0
+      }
+
+      100% {
+        background-position: -200% 0
+      }
+    }
+
     footer {
       background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
       color: #8B92A0;
@@ -953,15 +986,15 @@
         <div class="nav-profile" id="navProfileBox">
           <button class="nav-profile-trigger" id="navProfileTrigger" type="button" aria-haspopup="true"
             aria-expanded="false">
-            <span class="nav-profile-avatar">R</span>
-            <span class="nav-user-name">Riya</span>
+            <span class="nav-profile-avatar" id="navAvatarInitial">…</span>
+            <span class="nav-user-name" id="navUserName">…</span>
             <span class="nav-profile-caret">▾</span>
           </button>
           <div class="nav-profile-menu" role="menu">
             <a href="mba-partner-my-account.html" role="menuitem">My Account</a>
             <a href="mba-partner-my-courses.html" role="menuitem">My Courses</a>
             <a href="mba-student-dashboard.html" role="menuitem" class="nav-profile-active">Dashboard</a>
-            <button type="button" class="nav-profile-logout" role="menuitem">Logout</button>
+            <button type="button" class="nav-profile-logout" id="logoutBtn" role="menuitem">Logout</button>
           </div>
         </div>
       </div>
@@ -972,13 +1005,13 @@
     <div class="wrap">
       <div>
         <p class="eyebrow">Placement Prep Dashboard</p>
-        <h1>Welcome back, Riya</h1>
-        <p class="sub">Here's where your placement prep stands today — IIM Indore, PGP'27.</p>
+        <h1 id="welcomeHeading">Welcome back…</h1>
+        <p class="sub" id="welcomeSub">Loading your profile…</p>
       </div>
       <div class="head-chips">
-        <div class="head-chip"><span class="flame">🔥</span> <b>0-day</b> streak</div>
-        <div class="head-chip">Cohort rank <b>—</b></div>
-        <div class="head-chip">CV score <b>0/100</b></div>
+        <div class="head-chip"><span class="flame">🔥</span> <b id="streakChip">0-day</b> streak</div>
+        <div class="head-chip">Cohort rank <b id="rankChip">—</b></div>
+        <div class="head-chip">CV score <b id="cvScoreChip">0/100</b></div>
       </div>
     </div>
   </header>
@@ -997,7 +1030,7 @@
               <svg width="168" height="168" viewBox="0 0 168 168">
                 <circle cx="84" cy="84" r="72" fill="none" stroke="var(--surface)" stroke-width="14" />
                 <circle cx="84" cy="84" r="72" fill="none" stroke="url(#ringGrad)" stroke-width="14"
-                  stroke-linecap="round" stroke-dasharray="452.4" stroke-dashoffset="452.4" />
+                  stroke-linecap="round" stroke-dasharray="452.4" stroke-dashoffset="452.4" id="ringCircle" />
                 <defs>
                   <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#6366F1" />
@@ -1006,11 +1039,12 @@
                 </defs>
               </svg>
               <div class="ring-center">
-                <span class="pct">0%</span>
+                <span class="pct" id="ringPct">0%</span>
                 <span class="pct-label">Ready</span>
               </div>
             </div>
-            <span class="rank-pill" style="background:var(--surface);color:var(--ink-faint);">Let's get started</span>
+            <span class="rank-pill" id="rankPill" style="background:var(--surface);color:var(--ink-faint);">Let's get
+              started</span>
 
             <div class="divider"></div>
 
@@ -1070,7 +1104,7 @@
               <div>
                 <div class="streak-headline">
                   <span class="flame-icon">🔥</span>
-                  <span class="flame-num">0</span>
+                  <span class="flame-num" id="streakNum">0</span>
                   <span class="streak-sub">day prep streak</span>
                 </div>
               </div>
@@ -1125,9 +1159,9 @@
               </div>
               <div class="lb-row lb-you">
                 <span class="lb-rank">—</span>
-                <span class="lb-avatar">R</span>
+                <span class="lb-avatar" id="lbYouAvatar">…</span>
                 <div class="lb-name-wrap">
-                  <div class="lb-name">Riya <span class="lb-you-tag">You</span></div>
+                  <div class="lb-name" id="lbYouName">— <span class="lb-you-tag">You</span></div>
                   <div class="lb-meta">0 live projects · 0 mock PIs</div>
                 </div>
                 <div class="lb-score">
@@ -1143,49 +1177,15 @@
               <h3>My Courses</h3>
               <a class="pill-link" href="mba-partner-courses-redesign.html">Browse more →</a>
             </div>
-            <div class="course-row">
-              <div class="course-icon">🎤</div>
-              <div style="flex:1;">
-                <div class="course-name">Placements Bootcamp</div>
-                <div class="course-meta">Mock PIs, GDs &amp; CV reviews</div>
-                <div class="course-bar-track">
-                  <div class="course-bar-fill" style="width:0%;"></div>
+            <!-- Dynamically rendered by JS from purchased courses (see renderMyCourses) -->
+            <div id="myCoursesList">
+              <div class="course-row">
+                <div class="course-icon skeleton" style="width:42px;height:42px;"></div>
+                <div style="flex:1;">
+                  <div class="skeleton" style="width:160px;height:14px;margin-bottom:8px;">Loading</div>
+                  <div class="skeleton" style="width:100px;height:11px;">Loading</div>
                 </div>
               </div>
-              <div class="course-pct">0%</div>
-            </div>
-            <div class="course-row">
-              <div class="course-icon">📊</div>
-              <div style="flex:1;">
-                <div class="course-name">Live Project — Marketing Strategy</div>
-                <div class="course-meta">Not started</div>
-                <div class="course-bar-track">
-                  <div class="course-bar-fill" style="width:0%;"></div>
-                </div>
-              </div>
-              <div class="course-pct">0%</div>
-            </div>
-            <div class="course-row">
-              <div class="course-icon">🏆</div>
-              <div style="flex:1;">
-                <div class="course-name">Case Competition — Strategy Track</div>
-                <div class="course-meta">Not started</div>
-                <div class="course-bar-track">
-                  <div class="course-bar-fill" style="width:0%;"></div>
-                </div>
-              </div>
-              <div class="course-pct">0%</div>
-            </div>
-            <div class="course-row">
-              <div class="course-icon">📈</div>
-              <div style="flex:1;">
-                <div class="course-name">Advanced Excel Certificate</div>
-                <div class="course-meta">Not started</div>
-                <div class="course-bar-track">
-                  <div class="course-bar-fill" style="width:0%;"></div>
-                </div>
-              </div>
-              <div class="course-pct">0%</div>
             </div>
           </div>
 
@@ -1230,7 +1230,7 @@
       <div class="card" style="margin-top:20px;">
         <div class="card-head">
           <h3>Placement Readiness Checklist</h3>
-          <div class="checklist-progress">0 / 8 <span>done</span></div>
+          <div class="checklist-progress" id="checklistProgress">0 / 8 <span>done</span></div>
         </div>
         <div class="gdpi-progress-bar-track">
           <div class="gdpi-progress-bar-fill" id="checklistBar" style="width:0%;"></div>
@@ -1266,7 +1266,221 @@
   </footer>
 
   <script>
-    // Build a 365-day activity heatmap (empty / zero state)
+    const API_BASE = 'https://mba-partner1.onrender.com/api/auth';
+
+    // ─────────────────────────────────────────────
+    // Per-user storage key — MUST match the key checkout.js
+    // uses when it saves purchased courses (mirrors cart.js logic).
+    // Falls back to 'guest' only if there's no token at all,
+    // but loadCurrentUser() redirects to login before that matters.
+    // ─────────────────────────────────────────────
+    function currentUserKey() {
+      const token = localStorage.getItem('token');
+      if (!token) return 'guest';
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        // Prefer email so the same human always maps to the same key
+        // even if their backend user id ever changes.
+        return payload.email || payload.id || payload._id || 'guest';
+      } catch (e) {
+        return 'guest';
+      }
+    }
+
+    // ─────────────────────────────────────────────
+    // Render "My Courses" from localStorage (written by checkout.js
+    // -> savePurchasedCourses() under key `myCourses_mba_<userKey>`).
+    // This persists permanently in the browser for that email/account,
+    // and re-renders every time the dashboard loads — including right
+    // after a payment completes and the user lands here.
+    // ─────────────────────────────────────────────
+    const COURSE_ICONS = ['🎓', '📊', '🏆', '📈', '🎤', '💼', '📚', '🧮'];
+
+    function renderMyCourses() {
+      const userKey = currentUserKey();
+      const storageKey = `myCourses_mba_${userKey}`;
+      const container = document.getElementById('myCoursesList');
+
+      let courses = [];
+      try {
+        courses = JSON.parse(localStorage.getItem(storageKey)) || [];
+      } catch (e) {
+        courses = [];
+      }
+
+      if (!courses.length) {
+        container.innerHTML = `
+          <div class="courses-empty">
+            You haven't purchased any course yet.
+            <a href="mba-partner-courses-redesign.html">Browse courses →</a>
+          </div>`;
+        return;
+      }
+
+      // Most recently purchased first
+      const sorted = [...courses].sort(
+        (a, b) => new Date(b.purchasedAt) - new Date(a.purchasedAt)
+      );
+
+      container.innerHTML = sorted.map((c, i) => `
+        <div class="course-row">
+          <div class="course-icon">${COURSE_ICONS[i % COURSE_ICONS.length]}</div>
+          <div style="flex:1;">
+            <div class="course-name">${escapeHtml(c.name || 'Untitled course')}</div>
+            <div class="course-meta">Purchased on ${formatDate(c.purchasedAt)}${c.qty > 1 ? ` · Qty ${c.qty}` : ''}</div>
+            <div class="course-bar-track">
+              <div class="course-bar-fill" style="width:0%;"></div>
+            </div>
+          </div>
+          <div class="course-pct">0%</div>
+        </div>
+      `).join('');
+    }
+
+    function formatDate(iso) {
+      try {
+        return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch (e) {
+        return '—';
+      }
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str ?? '';
+      return div.innerHTML;
+    }
+
+    // ─────────────────────────────────────────────
+    // Auth guard + load user from backend
+    // ─────────────────────────────────────────────
+    async function loadCurrentUser() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.href = 'mba-partner-login.html';
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/me`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          credentials: 'include'
+        });
+
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          window.location.href = 'mba-partner-login.html';
+          return;
+        }
+
+        if (!response.ok) {
+          console.error('Server error:', response.status);
+          setFallbackUI();
+          renderMyCourses();
+          return;
+        }
+
+        const data = await response.json();
+
+        if (data && data.success && data.user) {
+          const user = data.user;
+          const name = user.name || 'Student';
+          const firstName = name.trim().split(' ')[0];
+          const initial = firstName.charAt(0).toUpperCase();
+
+          document.getElementById('navUserName').textContent = firstName;
+          document.getElementById('navAvatarInitial').textContent = initial;
+
+          document.getElementById('welcomeHeading').textContent = `Welcome back, ${firstName}`;
+
+          if (user.college || user.program) {
+            document.getElementById('welcomeSub').textContent =
+              `Here's where your placement prep stands today — ${user.college || ''}${user.program ? ', ' + user.program : ''}.`;
+          } else {
+            document.getElementById('welcomeSub').textContent =
+              `Here's where your placement prep stands today.`;
+          }
+
+          document.getElementById('lbYouName').innerHTML =
+            `${firstName} <span class="lb-you-tag">You</span>`;
+          document.getElementById('lbYouAvatar').textContent = initial;
+
+          if (typeof user.streak !== 'undefined') {
+            document.getElementById('streakChip').textContent = `${user.streak}-day`;
+            document.getElementById('streakNum').textContent = user.streak;
+          }
+          if (typeof user.cohortRank !== 'undefined') {
+            document.getElementById('rankChip').textContent = user.cohortRank;
+          }
+          if (typeof user.cvScore !== 'undefined') {
+            document.getElementById('cvScoreChip').textContent = `${user.cvScore}/100`;
+          }
+        } else {
+          setFallbackUI();
+        }
+
+      } catch (error) {
+        console.error('Failed to load user:', error);
+        setFallbackUI();
+      }
+
+      // Render courses AFTER we know who's logged in, so the storage
+      // key (based on the JWT payload) is correct.
+      renderMyCourses();
+    }
+
+    function setFallbackUI() {
+      document.getElementById('navUserName').textContent = 'Student';
+      document.getElementById('navAvatarInitial').textContent = 'S';
+      document.getElementById('welcomeHeading').textContent = 'Welcome back';
+      document.getElementById('welcomeSub').textContent = "Here's where your placement prep stands today.";
+      document.getElementById('lbYouName').innerHTML = `Student <span class="lb-you-tag">You</span>`;
+      document.getElementById('lbYouAvatar').textContent = 'S';
+    }
+
+    loadCurrentUser();
+
+    // ─────────────────────────────────────────────
+    // Logout
+    // ─────────────────────────────────────────────
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        logoutBtn.disabled = true;
+        logoutBtn.textContent = 'Logging out…';
+
+        const token = localStorage.getItem('token');
+
+        try {
+          await fetch(`${API_BASE}/logout`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+            },
+            credentials: 'include'
+          });
+        } catch (error) {
+          console.error('Logout request failed:', error);
+        } finally {
+          localStorage.removeItem('token');
+          sessionStorage.clear();
+          window.location.href = 'mba-partner-login.html';
+        }
+      });
+    } else {
+      console.error('logoutBtn element not found in DOM!');
+    }
+
+    // ─────────────────────────────────────────────
+    // Heatmap — 365 din ka empty grid
+    // ─────────────────────────────────────────────
     const grid = document.getElementById('heatmapGrid');
     const weeks = 53, days = 7;
     let html = '';
@@ -1277,16 +1491,20 @@
     }
     grid.innerHTML = html;
 
-    // Checklist toggle
+    // ─────────────────────────────────────────────
+    // Checklist toggle — click pe done/undone
+    // ─────────────────────────────────────────────
     const list = document.getElementById('checklistList');
     const bar = document.getElementById('checklistBar');
-    const progressLabel = document.querySelector('.checklist-progress');
+    const progressLabel = document.getElementById('checklistProgress');
+
     function updateProgress() {
       const all = list.querySelectorAll('.check-item');
       const done = list.querySelectorAll('.check-item.done');
       progressLabel.innerHTML = `${done.length} / ${all.length} <span>done</span>`;
       bar.style.width = `${Math.round((done.length / all.length) * 100)}%`;
     }
+
     list.querySelectorAll('.check-item').forEach(item => {
       item.addEventListener('click', () => {
         item.classList.toggle('done');
@@ -1294,15 +1512,31 @@
       });
     });
 
-    // Profile menu toggle
+    // ─────────────────────────────────────────────
+    // Profile dropdown toggle
+    // ─────────────────────────────────────────────
     const profileBox = document.getElementById('navProfileBox');
     const profileTrigger = document.getElementById('navProfileTrigger');
+
     profileTrigger.addEventListener('click', (e) => {
       e.stopPropagation();
-      profileBox.classList.toggle('open');
+      const isOpen = profileBox.classList.toggle('open');
+      profileTrigger.setAttribute('aria-expanded', isOpen);
     });
+
     document.addEventListener('click', (e) => {
-      if (!profileBox.contains(e.target)) profileBox.classList.remove('open');
+      if (!profileBox.contains(e.target)) {
+        profileBox.classList.remove('open');
+        profileTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && profileBox.classList.contains('open')) {
+        profileBox.classList.remove('open');
+        profileTrigger.setAttribute('aria-expanded', 'false');
+        profileTrigger.focus();
+      }
     });
   </script>
 
