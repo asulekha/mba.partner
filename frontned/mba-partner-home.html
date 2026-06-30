@@ -1197,6 +1197,118 @@
             font-family: 'Fraunces', serif;
         }
 
+        /* ---------- SAMPLE CVS ---------- */
+        .cv-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .cv-tab-btn {
+            padding: 10px 22px;
+            border-radius: 999px;
+            border: 1.5px solid var(--rule);
+            background: var(--paper-card);
+            color: var(--ink-faint);
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .cv-tab-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, .25);
+        }
+
+        .cv-tab-btn:not(.active):hover {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .cv-panel {
+            display: none;
+        }
+
+        .cv-panel.active {
+            display: block;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width:860px) {
+            .cv-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:480px) {
+            .cv-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cv-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 14px 16px;
+            transition: all .25s;
+        }
+
+        .cv-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, .1);
+            transform: translateY(-2px);
+        }
+
+        .cv-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: #FEE2E2;
+            color: #DC2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10.5px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .cv-card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .cv-card-name {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ink);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cv-card-sub {
+            font-size: 11px;
+            color: var(--ink-faint);
+        }
+
         /* ---------- TESTIMONIAL WALL ---------- */
         .wall-grid {
             display: grid;
@@ -1711,6 +1823,257 @@
         </div>
     </section>
 
+    <!-- ========== SAMPLE CVS ========== -->
+    <section id="sample-cvs">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow-light">Sample CVs</p>
+                <h2>See what a shortlist-ready CV looks like</h2>
+                <p>Browse real sample CVs sorted by domain or by background — pick the one closest to your story.</p>
+            </div>
+
+            <div class="cv-tabs reveal">
+                <button class="cv-tab-btn active" type="button" data-cv-tab="domain">Domain Wise</button>
+                <button class="cv-tab-btn" type="button" data-cv-tab="background">Background Wise</button>
+                <button class="cv-tab-btn" type="button" data-cv-tab="compendiums">Compendiums</button>
+            </div>
+
+            <!-- Domain Wise -->
+            <div class="cv-panel active reveal" id="cv-panel-domain">
+                <div class="cv-grid">
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Prodman_1.pdf</div>
+                            <div class="cv-card-sub">Product Management</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Prodman_2.pdf</div>
+                            <div class="cv-card-sub">Product Management</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Operations_1.pdf</div>
+                            <div class="cv-card-sub">Operations</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Operations_2.pdf</div>
+                            <div class="cv-card-sub">Operations</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Marketing_1.pdf</div>
+                            <div class="cv-card-sub">Marketing</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Marketing_2.pdf</div>
+                            <div class="cv-card-sub">Marketing</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Marketing_3.pdf</div>
+                            <div class="cv-card-sub">Marketing</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Marketing_4.pdf</div>
+                            <div class="cv-card-sub">Marketing</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">HR_1.pdf</div>
+                            <div class="cv-card-sub">Human Resources</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">HR_2.pdf</div>
+                            <div class="cv-card-sub">Human Resources</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Finance_1.pdf</div>
+                            <div class="cv-card-sub">Finance</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Finance_2.pdf</div>
+                            <div class="cv-card-sub">Finance</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Consulting_1.pdf</div>
+                            <div class="cv-card-sub">Consulting</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Consulting_2.pdf</div>
+                            <div class="cv-card-sub">Consulting</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Background Wise -->
+            <div class="cv-panel" id="cv-panel-background">
+                <div class="cv-grid">
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Startup Workex.pdf</div>
+                            <div class="cv-card-sub">Startup Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Software engg Workex.pdf</div>
+                            <div class="cv-card-sub">Software Engineering Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Prodman Workex.pdf</div>
+                            <div class="cv-card-sub">Product Management Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">HR Workex.pdf</div>
+                            <div class="cv-card-sub">HR Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Finance Workex.pdf</div>
+                            <div class="cv-card-sub">Finance Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Engineer Workex.pdf</div>
+                            <div class="cv-card-sub">Engineering Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Engineer Fresher.pdf</div>
+                            <div class="cv-card-sub">Engineering Fresher</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Consulting Workex.pdf</div>
+                            <div class="cv-card-sub">Consulting Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Commerce Workex.pdf</div>
+                            <div class="cv-card-sub">Commerce Background, Experience</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="#" target="_blank" rel="noopener">
+                        <div class="cv-card-icon">PDF</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Commerce Fresher.pdf</div>
+                            <div class="cv-card-sub">Commerce Background, Fresher</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Compendiums -->
+            <div class="cv-panel" id="cv-panel-compendiums">
+                <div class="cv-grid">
+                    <a class="cv-card" href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H"
+                        target="_blank" rel="noopener">
+                        <div class="cv-card-icon" style="background:#FEF3C7;color:#B45309;">📁</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Consulting</div>
+                            <div class="cv-card-sub">Compendium Folder</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H"
+                        target="_blank" rel="noopener">
+                        <div class="cv-card-icon" style="background:#FEF3C7;color:#B45309;">📁</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Finance</div>
+                            <div class="cv-card-sub">Compendium Folder</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H"
+                        target="_blank" rel="noopener">
+                        <div class="cv-card-icon" style="background:#FEF3C7;color:#B45309;">📁</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">HR</div>
+                            <div class="cv-card-sub">Compendium Folder</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H"
+                        target="_blank" rel="noopener">
+                        <div class="cv-card-icon" style="background:#FEF3C7;color:#620640;">📁</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Marketing</div>
+                            <div class="cv-card-sub">Compendium Folder</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H"
+                        target="_blank" rel="noopener">
+                        <div class="cv-card-icon" style="background:#FEF3C7;color:#B45309;">📁</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">Operations</div>
+                            <div class="cv-card-sub">Compendium Folder</div>
+                        </div>
+                    </a>
+                    <a class="cv-card" href="https://drive.google.com/drive/folders/1Ir9BWGjYgYsLJwneq9WoTI6dbDezXS_H"
+                        target="_blank" rel="noopener">
+                        <div class="cv-card-icon" style="background:#FEF3C7;color:#B45309;">📁</div>
+                        <div class="cv-card-text">
+                            <div class="cv-card-name">ProdMan</div>
+                            <div class="cv-card-sub">Compendium Folder</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== VIDEO POPUP MODAL (File 2) ========== -->
     <div class="video-modal" id="videoModal" onclick="closeVideoOnBackdrop(event)">
         <div class="video-modal-inner">
@@ -1925,6 +2288,20 @@
             document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
         })();
 
+        // ===== SAMPLE CV TABS =====
+        (function () {
+            const tabBtns = document.querySelectorAll('.cv-tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelectorAll('.cv-panel').forEach(p => p.classList.remove('active'));
+                    const target = document.getElementById('cv-panel-' + btn.dataset.cvTab);
+                    if (target) target.classList.add('active');
+                });
+            });
+        })();
+
         // ===== VIDEO POPUP (File 2) =====
         function openVideo(videoId, title) {
             const modal = document.getElementById('videoModal');
@@ -1947,6 +2324,13 @@
         }
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeVideo();
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <div id="social-widget"></div>
+    <script>
+        fetch('social.html').then(r => r.text()).then(html => {
+            document.getElementById('social-widget').innerHTML = html;
         });
     </script>
 

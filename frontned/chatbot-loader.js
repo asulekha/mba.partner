@@ -3,17 +3,18 @@
    ------------------------------------------------------------
    Add ONLY this to any page (right before </body>):
 
-     <script src="chatbot-loader.js" data-track="mba"></script>
+     <script src="chatbot-loader.js"></script>
 
-   data-track="mba"  -> for MBA / live projects / placements pages
-   data-track="cat"  -> for CAT / OMETs prep pages
-   (if you omit data-track, it defaults to "cat")
+   (No data-track needed anymore — the chatbot now uses a single
+   unified knowledge base covering both CAT/OMET prep AND MBA /
+   live projects / placements topics. Same bot, same answers,
+   everywhere.)
 
    This file automatically:
      1. Loads React + ReactDOM + Babel Standalone (only once,
         even if the page already loads them elsewhere)
      2. Loads chatbot.css
-     3. Creates the #chatbot-mount div with the correct data-track
+     3. Creates the #chatbot-mount div
      4. Loads chatbot.js (the widget itself)
 
    Adjust BASE_PATH below if your files live in a subfolder
@@ -21,17 +22,7 @@
    ============================================================ */
 
 (function () {
-    // ---- 1. Figure out which track this page wants ----------------
-    // Reads data-track from the <script> tag that loaded this file.
-    var thisScript = document.currentScript ||
-        (function () {
-            var scripts = document.getElementsByTagName('script');
-            return scripts[scripts.length - 1];
-        })();
-
-    var track = (thisScript && thisScript.getAttribute('data-track')) || 'cat';
-
-    // ---- 2. Set this if chatbot.js / chatbot.css live in a subfolder ----
+    // ---- 1. Set this if chatbot.js / chatbot.css live in a subfolder ----
     // Example: '/assets/chatbot/'  (must end with a slash, or leave as '')
     var BASE_PATH = '';
 
@@ -106,19 +97,18 @@
             });
     }
 
-    // ---- 3. Load CSS immediately (no dependency order needed) -------
+    // ---- 2. Load CSS immediately (no dependency order needed) -------
     loadCss(BASE_PATH + 'chatbot.css');
 
-    // ---- 4. Create the mount point if it doesn't already exist ------
+    // ---- 3. Create the mount point if it doesn't already exist ------
     function ensureMountPoint() {
         if (document.getElementById('chatbot-mount')) return;
         var mount = document.createElement('div');
         mount.id = 'chatbot-mount';
-        mount.setAttribute('data-track', track);
         document.body.appendChild(mount);
     }
 
-    // ---- 5. Load core libs in order, then the widget itself ---------
+    // ---- 4. Load core libs in order, then the widget itself ---------
     function init() {
         ensureMountPoint();
 
@@ -157,7 +147,7 @@
             });
     }
 
-    // ---- 6. Run once the DOM is ready --------------------------------
+    // ---- 5. Run once the DOM is ready --------------------------------
     if (document.body) {
         init();
     } else {

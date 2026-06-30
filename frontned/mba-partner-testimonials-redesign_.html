@@ -566,219 +566,6 @@
             display: block;
         }
 
-        /* ---------- VIDEO TESTIMONIALS ---------- */
-        .video-section {
-            background: var(--surface);
-        }
-
-        .video-carousel-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .video-track {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 6px 4px 16px;
-            scrollbar-width: none;
-            flex: 1;
-        }
-
-        .video-track::-webkit-scrollbar {
-            display: none;
-        }
-
-        .vcard {
-            flex: 0 0 200px;
-            height: 320px;
-            border-radius: 16px;
-            position: relative;
-            cursor: pointer;
-            background-size: cover;
-            background-position: center;
-            background-color: var(--ink);
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(15, 20, 25, .12);
-            transition: transform .25s, box-shadow .25s;
-        }
-
-        .vcard::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            /* FIX: was too light (5%/10%/90% black) which let bright/sky-colored
-               thumbnails wash out the "MBA PARTNER" tag at the top. Darkened the
-               top of the gradient too, so the tag has reliable contrast on every
-               thumbnail, not just dark ones. */
-            background: linear-gradient(to bottom, rgba(15, 20, 25, .45) 0%, rgba(15, 20, 25, .15) 28%, rgba(15, 20, 25, .15) 55%, rgba(15, 20, 25, .9) 100%);
-        }
-
-        .vcard:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(15, 20, 25, .2);
-        }
-
-        .vcard .tag {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            z-index: 2;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: .06em;
-            color: #fff;
-            /* FIX: was rgba(255,255,255,.15) — nearly invisible on light
-               thumbnails (sky, pale buildings). Switched to a solid dark
-               chip so the label reads clearly on every thumbnail. */
-            background: rgba(15, 20, 25, .82);
-            border: 1px solid rgba(255, 255, 255, .25);
-            padding: 4px 8px;
-            border-radius: 999px;
-            backdrop-filter: blur(4px);
-        }
-
-        .vcard .play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .92);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform .2s;
-        }
-
-        .vcard:hover .play {
-            transform: translate(-50%, -50%) scale(1.08);
-        }
-
-        .vcard .play::after {
-            content: "";
-            border-style: solid;
-            border-width: 9px 0 9px 14px;
-            border-color: transparent transparent transparent var(--primary-dark);
-            margin-left: 2px;
-        }
-
-        .vcard .meta {
-            position: absolute;
-            bottom: 14px;
-            left: 14px;
-            right: 14px;
-            z-index: 2;
-        }
-
-        .vcard .meta .name {
-            color: #fff;
-            font-weight: 700;
-            font-size: 14.5px;
-        }
-
-        .vcard .meta .role {
-            color: #D0D5DD;
-            font-size: 12px;
-            margin-top: 2px;
-        }
-
-        .vscroll {
-            flex-shrink: 0;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1.5px solid var(--rule);
-            background: var(--paper-card);
-            font-size: 18px;
-            line-height: 1;
-            color: var(--ink);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all .2s;
-        }
-
-        .vscroll:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        @media (max-width:560px) {
-            .vscroll {
-                display: none;
-            }
-
-            .vcard {
-                flex: 0 0 160px;
-                height: 260px;
-            }
-        }
-
-        /* Shared video modal */
-        .video-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .video-modal.open {
-            display: flex;
-        }
-
-        .video-modal-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 20, 25, .85);
-        }
-
-        .video-modal-inner {
-            position: relative;
-            z-index: 1;
-            width: min(640px, 92vw);
-            aspect-ratio: 9 / 16;
-            max-height: 88vh;
-            background: #000;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .video-modal-frame,
-        .video-modal-frame iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 2;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, .5);
-            color: #fff;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         /* ---------- FINAL CTA ---------- */
         .final-cta {
             background: var(--ink);
@@ -1047,7 +834,7 @@
                     <div class="label">Average rating by 700+ students</div>
                 </div>
                 <div class="stat-card">
-                    <div class="num">28+</div>
+                    <div class="num">31+</div>
                     <div class="label">Verified testimonials on this page</div>
                 </div>
                 <div class="stat-card">
@@ -1071,7 +858,7 @@
             </div>
 
             <div class="filter-bar reveal" id="filterBar">
-                <button class="chip active" data-filter="all">All <span class="chip-count">28</span></button>
+                <button class="chip active" data-filter="all">All <span class="chip-count">31</span></button>
                 <button class="chip" data-filter="iim-a">IIM Ahmedabad <span class="chip-count">2</span></button>
                 <button class="chip" data-filter="iim-b">IIM Bangalore <span class="chip-count">3</span></button>
                 <button class="chip" data-filter="iim-c">IIM Calcutta <span class="chip-count">1</span></button>
@@ -1081,8 +868,8 @@
                 <button class="chip" data-filter="iim-t">IIM Trichy <span class="chip-count">2</span></button>
                 <button class="chip" data-filter="xlri">XLRI <span class="chip-count">4</span></button>
                 <button class="chip" data-filter="mdi">MDI Gurgaon <span class="chip-count">2</span></button>
-                <button class="chip" data-filter="sibm">SIBM Pune <span class="chip-count">2</span></button>
-                <button class="chip" data-filter="nmims">NMIMS Mumbai <span class="chip-count">2</span></button>
+                <button class="chip" data-filter="sibm">SIBM Pune <span class="chip-count">3</span></button>
+                <button class="chip" data-filter="nmims">NMIMS Mumbai <span class="chip-count">3</span></button>
                 <button class="chip" data-filter="other">Other IIMs <span class="chip-count">3</span></button>
             </div>
 
@@ -1406,26 +1193,147 @@
                         FMCG companies for my internship, PepsiCo. It was indeed a great experience with the folks
                         there!</p>
                 </div>
+
+                <div class="wall-card" data-school="xlri">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_abf371df108d43bbb25a8bffd58875a6~mv2.jpg/v1/fill/w_170,h_155,fp_0.43_0.34,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1716187063356.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Devansh Kothari</div>
+                            <div class="wall-meta">XLRI Jamshedpur '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        Coming from a non-business background, the case competitions felt like the steepest learning
+                        curve of my MBA so far. The structured feedback after every round from the MBA Partner mentors
+                        is what actually moved the needle — by the third competition I was framing problems the way
+                        recruiters expect. That habit alone carried me through my HR generalist interviews and into my
+                        summer internship at HUL.</p>
+                </div>
+
+                <div class="wall-card" data-school="xlri">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_85506d73279b45e4bd6e0e0e7e4c4d86~mv2.jpg/v1/fill/w_170,h_155,fp_0.50_0.31,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1715418186294.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Ritika Sengupta</div>
+                            <div class="wall-meta">XLRI Delhi '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        I joined MBA Partner mainly for the resume help, but the GD practice rooms ended up mattering
+                        more. Getting used to speaking up, structuring my point in 20 seconds, and disagreeing
+                        respectfully in a group — none of that came naturally to me before. By placement season the
+                        actual GD round felt almost easy, and I converted my shortlist with ITC.</p>
+                </div>
+
+                <div class="wall-card" data-school="mdi">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_f865c43808ae46e38297cfd81f39fbd3~mv2.jpg/v1/fill/w_170,h_155,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20241218-WA0007.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Aniket Deshmukh</div>
+                            <div class="wall-meta">MDI Gurgaon '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        I came in with a sales background and almost no exposure to core operations concepts. The
+                        Operations live project forced me to actually build a guesstimate and a process-mapping deck
+                        from scratch with a mentor reviewing every iteration. That single project became the strongest
+                        line on my CV and the main thing recruiters asked me about — I ended up converting an Ops role
+                        at Flipkart.</p>
+                </div>
+
+                <div class="wall-card" data-school="sibm">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_2582d5be02ce4699944f3de6b84e5c9e~mv2.jpg/v1/fill/w_170,h_155,fp_0.86_0.46,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20250111-WA0012.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Tanvi Oberoi</div>
+                            <div class="wall-meta">SIBM Pune '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        The Marketing Strategy live project was the first time I built a full go-to-market plan for an
+                        actual brand brief instead of a textbook case. Presenting it to mentors who'd actually worked in
+                        brand teams, and getting torn-apart feedback twice before it was good, taught me more than a
+                        full term of coursework. Walked into my Marketing interviews with a real deliverable to talk
+                        through and landed Nestlé.</p>
+                </div>
+
+                <div class="wall-card" data-school="sibm">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_0dcbd2463f9c4b6ca4148bd2d570c80c~mv2.jpg/v1/fill/w_170,h_155,fp_0.49_0.30,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1744196937868.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Rishabh Naik</div>
+                            <div class="wall-meta">SIBM Pune '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        I was always nervous about the personal interview itself, not the case content. Doing four mock
+                        PIs back to back with different mentors meant I'd basically heard every version of "tell me
+                        about yourself" critique there is. The actual interview day felt repetitive in the best way —
+                        and I cracked a Finance role with Kotak.</p>
+                </div>
+
+                <div class="wall-card" data-school="nmims">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_0425def165204e3f90f94f84b95c944a~mv2.jpg/v1/fill/w_81,h_75,fp_0.51_0.39,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1724787513282.jpg"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Kavya Reddy</div>
+                            <div class="wall-meta">NMIMS Mumbai '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        My CV before MBA Partner read like a list of bullet points with no story. The 1-on-1 CV review
+                        completely restructured how I framed my pre-MBA work experience around impact instead of
+                        duties. Recruiters started actually asking follow-up questions about my old role in interviews
+                        instead of skimming past it — that shift alone got me my Strategy shortlist with EY.</p>
+                </div>
+
+                <div class="wall-card" data-school="nmims">
+                    <span class="verified-tag">✓ Verified</span>
+                    <div class="wall-top">
+                        <div class="wall-avatar">
+                            <img src="https://static.wixstatic.com/media/67e5e0_f8e15e1727be4b00bad8e6f71bbbc310~mv2.png/v1/fill/w_81,h_75,fp_0.48_0.26,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/download.png"
+                                alt="Profile Photo">
+                        </div>
+                        <div>
+                            <div class="wall-name">Yash Pawar</div>
+                            <div class="wall-meta">NMIMS Mumbai '26</div>
+                        </div>
+                    </div>
+                    <p class="wall-quote">
+                        The Advanced Excel certificate sounded basic when I signed up, but the case studies inside it —
+                        building actual financial models, not just formulas — turned out to be exactly what came up in
+                        my IB technical round. I was one of the only candidates who could walk through a model live on
+                        the call, and that's what got me through to the offer at Axis Capital.</p>
+                </div>
+
             </div>
 
             <p class="empty-state" id="emptyState">No testimonials for this B-School yet — try "All" to see the full
                 wall.</p>
-        </div>
-    </section>
-
-    <section class="video-section">
-        <div class="wrap">
-            <div class="section-head reveal">
-                <p class="eyebrow-light">In Their Own Words</p>
-                <h2>Watch their placement stories</h2>
-                <p>Real students, on camera, talking through the prep that got them shortlisted.</p>
-            </div>
-
-            <div class="video-carousel-wrap reveal">
-                <button class="vscroll vscroll-left" onclick="scrollVideos(-1)" aria-label="Scroll left">‹</button>
-                <div class="video-track" id="videoTrack"></div>
-                <button class="vscroll vscroll-right" onclick="scrollVideos(1)" aria-label="Scroll right">›</button>
-            </div>
         </div>
     </section>
 
@@ -1515,100 +1423,6 @@
     </script>
 
     <script>
-        /* ===================== VIDEO TESTIMONIALS ===================== */
-        // [Name, College, YouTube embed URL]
-        const videos = [
-            ["Ananya", "IIM Welingkar", "https://www.youtube.com/embed/QqoQInsFIys"],
-            ["Jigar", "IIM Amritsar", "https://www.youtube.com/embed/tbu3ksy8ci0"],
-            ["Mridul", "IIM Calcutta", "https://www.youtube.com/embed/m26Fh9yTux8"],
-            ["Satwik", "IMT Ghaziabad", "https://www.youtube.com/embed/50It2q8_LXo"],
-            ["Siddhant", "DSE", "https://www.youtube.com/embed/-EUb1IDN1YQ"],
-            ["Tushar", "GLIM Chennai", "https://www.youtube.com/embed/4FDmOo__7cc"]
-        ];
-
-        function getThumbnail(videoUrl) {
-            const id = videoUrl.split("/embed/")[1]?.split("?")[0];
-            return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-        }
-
-        const videoTrack = document.getElementById('videoTrack');
-
-        videos.forEach(([name, college, videoUrl]) => {
-            const card = document.createElement('div');
-            card.className = 'vcard';
-            card.style.backgroundImage = `url(${getThumbnail(videoUrl)})`;
-            card.innerHTML = `
-                <div class="tag">MBA PARTNER</div>
-                <div class="play"></div>
-                <div class="meta">
-                    <div class="name">${name}</div>
-                    <div class="role">${college}</div>
-                </div>
-            `;
-            card.onclick = () => openVideoModal(videoUrl);
-            videoTrack.appendChild(card);
-        });
-
-        function scrollVideos(dir) {
-            videoTrack.scrollBy({ left: dir * 230, behavior: 'smooth' });
-        }
-        window.scrollVideos = scrollVideos;
-
-        /* ----- Shared video modal (open on click, close on backdrop/Esc) ----- */
-        const videoModal = document.createElement('div');
-        videoModal.className = 'video-modal';
-        videoModal.innerHTML = `
-            <div class="video-modal-backdrop"></div>
-            <div class="video-modal-inner">
-                <button class="video-modal-close" aria-label="Close video" type="button">&times;</button>
-                <div class="video-modal-frame"></div>
-            </div>
-        `;
-        document.body.appendChild(videoModal);
-        const videoModalFrame = videoModal.querySelector('.video-modal-frame');
-
-        function getYouTubeEmbedUrl(url) {
-            // Handles youtube.com/shorts/ID, youtube.com/watch?v=ID, youtu.be/ID,
-            // and already-embed youtube.com/embed/ID links.
-            let id = null;
-            const embedMatch = url.match(/youtube\.com\/embed\/([^?&/]+)/);
-            const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&/]+)/);
-            const watchMatch = url.match(/[?&]v=([^?&/]+)/);
-            const shortMatch = url.match(/youtu\.be\/([^?&/]+)/);
-            if (embedMatch) id = embedMatch[1];
-            else if (shortsMatch) id = shortsMatch[1];
-            else if (watchMatch) id = watchMatch[1];
-            else if (shortMatch) id = shortMatch[1];
-            return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : null;
-        }
-
-        function openVideoModal(url) {
-            const embedUrl = getYouTubeEmbedUrl(url);
-            if (embedUrl) {
-                videoModalFrame.innerHTML = `<iframe src="${embedUrl}" title="Student testimonial video" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-            } else {
-                // Fallback for non-YouTube links — open in a new tab instead.
-                window.open(url, '_blank', 'noopener');
-                return;
-            }
-            videoModal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeVideoModal() {
-            videoModal.classList.remove('open');
-            videoModalFrame.innerHTML = '';
-            document.body.style.overflow = '';
-        }
-
-        videoModal.querySelector('.video-modal-close').addEventListener('click', closeVideoModal);
-        videoModal.querySelector('.video-modal-backdrop').addEventListener('click', closeVideoModal);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeVideoModal();
-        });
-    </script>
-
-    <script>
         // --- Mobile hamburger menu ---
         (function () {
             var siteNav = document.querySelector('nav.nav');
@@ -1635,6 +1449,13 @@
     </script>
     <script src="Navbar_cat.js"></script>
     <script src="chatbot-loader.js" data-track="mba"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <div id="social-widget"></div>
+    <script>
+        fetch('social.html').then(r => r.text()).then(html => {
+            document.getElementById('social-widget').innerHTML = html;
+        });
+    </script>
 </body>
 
 </html>

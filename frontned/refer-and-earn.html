@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer & Earn — MBA Partner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Navbar.css">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --ink-soft: #1a202c;
+            --paper: #F8F6F3;
+            --paper-card: #FFFFFF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --primary-light: #818CF8;
+            --accent: #EC4899;
+            --accent-soft: #F472B6;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --surface: #F3F4F6;
+            --rule: #E5E7EB;
+            --ink-faint: #6B7280;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fraunces', serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .mono { font-family: 'IBM Plex Mono', monospace; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+            color: #FFFFFF;
+            padding: 64px 0 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 82% 12%, rgba(99, 102, 241, 0.15), transparent 55%);
+        }
+
+        .hero .wrap { position: relative; }
+
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 54px);
+            font-weight: 700;
+            line-height: 1.06;
+            max-width: 16ch;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent-soft);
+        }
+
+        .hero-sub {
+            margin-top: 18px;
+            max-width: 50ch;
+            font-size: 17px;
+            line-height: 1.55;
+            color: #D0D5DD;
+        }
+
+        /* ---------- THE SPLIT: signature element ---------- */
+        /* A literal ledger — two columns, "they pay less" / "you earn" — */
+        /* because a referral is a two-sided transaction, and a ledger is */
+        /* the honest way to show both sides settling at once. */
+        .split {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: stretch;
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .split-side {
+            padding: 22px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .split-side .who {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #8B92A0;
+        }
+
+        .split-side .amount {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .split-side.friend .amount { color: var(--success); }
+        .split-side.you .amount { color: var(--primary-light); }
+
+        .split-side .desc {
+            font-size: 13px;
+            color: #A0AEC0;
+        }
+
+        .split-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 18px;
+            border-left: 1px dashed rgba(255,255,255,0.15);
+            border-right: 1px dashed rgba(255,255,255,0.15);
+            background: rgba(99,102,241,0.08);
+        }
+
+        .split-divider svg { opacity: .8; }
+
+        @media (max-width:640px) {
+            .split { grid-template-columns: 1fr; }
+            .split-divider {
+                border-left: none;
+                border-right: none;
+                border-top: 1px dashed rgba(255,255,255,0.15);
+                border-bottom: 1px dashed rgba(255,255,255,0.15);
+                padding: 10px 0;
+            }
+            .split-divider svg { transform: rotate(90deg); }
+        }
+
+        /* ---------- CODE PANEL ---------- */
+        .codepanel {
+            padding: 54px 0 18px;
+        }
+
+        .codepanel-grid {
+            margin-top: 28px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 22px;
+        }
+
+        @media (max-width:840px) {
+            .codepanel-grid { grid-template-columns: 1fr; }
+        }
+
+        .section-head h2 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .section-head p {
+            margin: 8px 0 0;
+            color: var(--ink-faint);
+            font-size: 15px;
+            max-width: 54ch;
+        }
+
+        .code-card {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: var(--radius);
+            padding: 26px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .code-card label {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--ink-faint);
+            margin-bottom: 8px;
+        }
+
+        .code-field {
+            display: flex;
+            gap: 10px;
+        }
+
+        .code-field input {
+            flex: 1;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: .03em;
+            padding: 14px 16px;
+            border: 1.5px solid var(--rule);
+            border-radius: 10px;
+            background: var(--surface);
+            color: var(--ink);
+        }
+
+        .code-field input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+        }
+
+        .copy-btn {
+            flex-shrink: 0;
+            padding: 0 18px;
+            border-radius: 10px;
+            border: none;
+            background: var(--ink);
+            color: #fff;
+            font-weight: 600;
+            font-size: 13.5px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .copy-btn:hover { background: var(--ink-soft); }
+        .copy-btn.copied { background: var(--success); }
+
+        .share-row {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            flex: 1;
+            min-width: 130px;
+            text-align: center;
+            padding: 11px;
+            border-radius: 9px;
+            border: 1.5px solid var(--rule);
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            background: var(--surface);
+            transition: all .2s;
+        }
+
+        .share-btn:hover {
+            border-color: var(--primary);
+            background: #F0F4FF;
+            color: var(--primary);
+        }
+
+        .code-rule {
+            border-top: 1px dashed var(--rule);
+            margin: 22px 0;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 18px;
+        }
+
+        .stat {
+            flex: 1;
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .stat .num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat .lbl {
+            font-size: 12px;
+            color: var(--ink-faint);
+            margin-top: 2px;
+        }
+
+        /* ---------- STEPS ---------- */
+        .steps-card {
+            background: var(--ink);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .steps-card h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #8B92A0;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-list {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .step-row {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(99,102,241,0.18);
+            border: 1px solid rgba(99,102,241,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .step-row strong {
+            display: block;
+            font-size: 14.5px;
+            font-weight: 600;
+        }
+
+        .step-row span {
+            display: block;
+            font-size: 13px;
+            color: #A0AEC0;
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+
+        .wallet-note {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+            font-size: 13px;
+            color: #A0AEC0;
+            line-height: 1.6;
+        }
+
+        .wallet-note strong { color: #fff; }
+
+        /* ---------- FAQ ---------- */
+        .faq {
+            padding: 54px 0;
+        }
+
+        .faq-list {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-q {
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 14.5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-q svg {
+            flex-shrink: 0;
+            transition: transform .25s;
+        }
+
+        .faq-item.open .faq-q svg { transform: rotate(45deg); }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .25s ease;
+            font-size: 13.5px;
+            color: var(--ink-faint);
+            line-height: 1.6;
+        }
+
+        .faq-item.open .faq-a { max-height: 200px; }
+
+        .faq-a p {
+            padding: 0 20px 18px;
+            margin: 0;
+        }
+
+        /* ---------- COURSES STRIP ---------- */
+        .courses {
+            padding: 10px 0 60px;
+        }
+
+        .cgrid {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .ccard {
+            background: var(--paper-card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 18px;
+            transition: all .25s;
+        }
+
+        .ccard:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(99,102,241,0.1);
+            transform: translateY(-2px);
+        }
+
+        .ccard h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 15.5px;
+            font-weight: 700;
+            margin: 0 0 8px;
+            line-height: 1.3;
+        }
+
+        .ccard .pricing {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .ccard .was {
+            font-size: 12px;
+            color: var(--ink-faint);
+            text-decoration: line-through;
+        }
+
+        .ccard .now {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .ccard .after-ref {
+            margin-top: 6px;
+            font-size: 12px;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* ---------- FOOTER CTA ---------- */
+        footer {
+            background: var(--ink);
+            color: #fff;
+            padding: 56px 0 28px;
+        }
+
+        .foot-cta { text-align: center; }
+        .foot-cta h2 { font-size: 28px; color: #fff; }
+        .foot-cta p {
+            margin: 12px auto 0;
+            max-width: 48ch;
+            color: #A0AEC0;
+            font-size: 15px;
+        }
+
+        .foot-buttons {
+            margin-top: 26px;
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .foot-buttons .primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .foot-buttons .secondary {
+            border: 1.5px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .foot-bottom {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .foot-socials { display: flex; gap: 14px; }
+        .foot-socials a {
+            color: #A0AEC0;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .foot-socials a:hover { color: #fff; }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="wrap">
+            <div class="eyebrow">Refer &amp; Earn</div>
+            <h1>Bring a friend in.<br>Send <em>both</em> of you home richer.</h1>
+            <p class="hero-sub">Every MBA Partner student gets a unique referral code after their first
+                enrollment. Share it — your friend gets 10% off, and ₹750 lands in your wallet the moment
+                they enroll.</p>
+
+            <div class="split">
+                <div class="split-side friend">
+                    <span class="who">Your friend gets</span>
+                    <span class="amount">10% OFF</span>
+                    <span class="desc">Applied automatically at checkout when they enter your code.</span>
+                </div>
+                <div class="split-divider">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 10h14M11 4l6 6-6 6" stroke="#818CF8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="split-side you">
+                    <span class="who">You get</span>
+                    <span class="amount">₹750</span>
+                    <span class="desc">Credited straight to your wallet — no waiting, no catch.</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="codepanel">
+        <div class="wrap">
+            <div class="codepanel-grid">
+
+                <div class="code-card">
+                    <div class="section-head">
+                        <h2>Your referral code</h2>
+                        <p>Log in to generate your code after your first paid course — then share it anywhere.</p>
+                    </div>
+
+                    <div style="margin-top:22px;">
+                        <label for="refCode">Your unique code</label>
+                        <div class="code-field">
+                            <input type="text" id="refCode" value="Log in to view your code" readonly>
+                            <button class="copy-btn" id="copyBtn">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="share-row">
+                        <a class="share-btn" id="shareWA" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
+                        <a class="share-btn" id="shareTG" href="#" target="_blank" rel="noopener">Share on Telegram</a>
+                        <button class="share-btn" id="shareCopy">Copy link</button>
+                    </div>
+
+                    <div class="code-rule"></div>
+
+                    <div class="stat-row">
+                        <div class="stat">
+                            <div class="num" id="statReferrals">0</div>
+                            <div class="lbl">Friends referred</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num" id="statEarned">₹0</div>
+                            <div class="lbl">Total earned</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num" id="statWallet">₹0</div>
+                            <div class="lbl">Wallet balance</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="steps-card">
+                    <h3>How it works</h3>
+                    <div class="step-list">
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <div>
+                                <strong>Enroll in any course</strong>
+                                <span>Your referral code unlocks right after your first paid enrollment.</span>
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <div>
+                                <strong>Share your code</strong>
+                                <span>Send it to a friend via WhatsApp, Telegram, or a direct link.</span>
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <div>
+                                <strong>They enroll with it</strong>
+                                <span>They enter your code at checkout and get 10% off instantly.</span>
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">4</div>
+                            <div>
+                                <strong>You get paid</strong>
+                                <span>₹750 is credited to your wallet the moment their payment clears.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wallet-note">
+                        <strong>No limit on referrals.</strong> Refer as many friends as you like — every
+                        successful enrollment adds another ₹750 to your wallet.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="courses">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Where your friend can use it</h2>
+                <p>Your code stacks with the current sale price across any of these.</p>
+            </div>
+            <div class="cgrid">
+                <div class="ccard">
+                    <h4>Placements Bootcamp + Case Comp + 1 Live Project</h4>
+                    <div class="pricing"><span class="now">Bundle pricing</span></div>
+                    <div class="after-ref">10% off applies at checkout</div>
+                </div>
+                <div class="ccard">
+                    <h4>Placements Bootcamp</h4>
+                    <div class="pricing"><span class="now">See course page</span></div>
+                    <div class="after-ref">10% off applies at checkout</div>
+                </div>
+                <div class="ccard">
+                    <h4>Any 1 Domain — Live Project</h4>
+                    <div class="pricing"><span class="was mono">₹4,500</span><span class="now mono">₹4,000</span></div>
+                    <div class="after-ref">→ ₹3,600 with your code</div>
+                </div>
+                <div class="ccard">
+                    <h4>Any 2 Domains — Live Project</h4>
+                    <div class="pricing"><span class="was mono">₹7,999</span><span class="now mono">₹7,500</span></div>
+                    <div class="after-ref">→ ₹6,750 with your code</div>
+                </div>
+                <div class="ccard">
+                    <h4>Case Competition</h4>
+                    <div class="pricing"><span class="was mono">₹3,999</span><span class="now mono">₹3,499</span></div>
+                    <div class="after-ref">→ ₹3,149 with your code</div>
+                </div>
+                <div class="ccard">
+                    <h4>Case Comp + 1 Live Project</h4>
+                    <div class="pricing"><span class="was mono">₹8,999</span><span class="now mono">₹8,499</span></div>
+                    <div class="after-ref">→ ₹7,649 with your code</div>
+                </div>
+                <div class="ccard">
+                    <h4>Advanced Excel Certificate</h4>
+                    <div class="pricing"><span class="was mono">₹1,499</span><span class="now mono">₹1,199</span></div>
+                    <div class="after-ref">→ ₹1,079 with your code</div>
+                </div>
+                <div class="ccard">
+                    <h4>Power BI Certificate</h4>
+                    <div class="pricing"><span class="now mono">₹1,499</span></div>
+                    <div class="after-ref">→ ₹1,349 with your code</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Good to know</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">When do I get my code?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="#0F1419" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                    <div class="faq-a"><p>Right after your first paid enrollment, a unique code is generated for your account automatically — log in and check this page.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Can I use my own code?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="#0F1419" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                    <div class="faq-a"><p>No — codes only work for new students enrolling for the first time, and a code can't be applied to your own account.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">How fast is the ₹750 credited?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="#0F1419" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                    <div class="faq-a"><p>Instantly — the moment your friend's payment is confirmed, your wallet balance updates.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Can I withdraw my wallet balance?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="#0F1419" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                    <div class="faq-a"><p>Your wallet balance can be used toward future MBA Partner courses, or redeemed — reach out on WhatsApp for payout requests.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-cta">
+                <h2>Your first ₹750 is one share away</h2>
+                <p>Log in, grab your code, and send it to the one friend who keeps asking what course to take.</p>
+                <div class="foot-buttons">
+                    <a class="primary" href="mba-partner-login.html">Log in to get my code</a>
+                    <a class="secondary" href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD">Join WhatsApp Group</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>MBA Partner — Initiative by Alumni of Old IIM</span>
+                <div class="foot-socials">
+                    <a href="https://www.instagram.com/mba_partner/" aria-label="Instagram">IG</a>
+                    <a href="https://www.linkedin.com/in/prodmarkconsulting-mba-partner/" aria-label="LinkedIn">in</a>
+                    <a href="https://chat.whatsapp.com/G5CfHTBrJ4cDcik7xd5hdD" aria-label="WhatsApp">WA</a>
+                    <a href="https://t.me/+eV1FROkJppFlYmU1" aria-label="Telegram">TG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ---- FAQ accordion ----
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-q').addEventListener('click', () => {
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+
+        // ---- Fetch referral code + stats from backend (if logged in) ----
+        const API_BASE = window.location.origin.includes('localhost')
+            ? 'http://localhost:5000/api'
+            : '/api'; // adjust to your deployed backend URL
+
+        async function loadReferralData() {
+            try {
+                const res = await fetch(`${API_BASE}/referral/stats`, {
+                    credentials: 'include',
+                });
+                const data = await res.json();
+
+                if (data.success && data.referralCode) {
+                    document.getElementById('refCode').value = data.referralCode;
+                    document.getElementById('statReferrals').textContent = data.totalReferrals;
+                    document.getElementById('statEarned').textContent = `₹${data.totalBonusEarned}`;
+                    document.getElementById('statWallet').textContent = `₹${data.walletBalance}`;
+
+                    const link = `${window.location.origin}/mba-partner-courses-redesign.html?ref=${data.referralCode}`;
+                    document.getElementById('shareWA').href =
+                        `https://wa.me/?text=${encodeURIComponent('Use my code ' + data.referralCode + ' for 10% off at MBA Partner: ' + link)}`;
+                    document.getElementById('shareTG').href =
+                        `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent('Use my code ' + data.referralCode + ' for 10% off at MBA Partner')}`;
+                } else {
+                    document.getElementById('refCode').value = 'Log in to view your code';
+                }
+            } catch (err) {
+                document.getElementById('refCode').value = 'Log in to view your code';
+            }
+        }
+        loadReferralData();
+
+        // ---- Copy code ----
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const input = document.getElementById('refCode');
+            navigator.clipboard.writeText(input.value).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+            });
+        });
+
+        document.getElementById('shareCopy').addEventListener('click', () => {
+            const code = document.getElementById('refCode').value;
+            const link = `${window.location.origin}/mba-partner-courses-redesign.html?ref=${code}`;
+            navigator.clipboard.writeText(link);
+            const btn = document.getElementById('shareCopy');
+            const original = btn.textContent;
+            btn.textContent = 'Link copied!';
+            setTimeout(() => { btn.textContent = original; }, 1800);
+        });
+    </script>
+
+</body>
+</html>

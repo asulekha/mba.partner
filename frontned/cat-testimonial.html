@@ -46,23 +46,6 @@
         </div>
     </section>
 
-    <section class="video-section" id="videos">
-        <div class="wrap">
-            <div class="section-head">
-                <h2>Listen From MBA Partner Students</h2>
-                <p>All of them cracked the GDPI Flagship Course and our free Sectionals on the website.</p>
-            </div>
-            <div class="video-track-wrap">
-                <button class="nav-btn left" onclick="scrollVideos(-1)" aria-label="Scroll left">‹</button>
-                <div class="video-track" id="videoTrack"></div>
-                <button class="nav-btn right" onclick="scrollVideos(1)" aria-label="Scroll right">›</button>
-            </div>
-            <div class="scroll-hint">← Swipe to see more stories →</div>
-            <p class="video-note">Real video clips live on the Drive folder shared in the navbar above — drop each
-                student's video URL into the <code>video</code> field in cat-testimonial.js to wire it up.</p>
-        </div>
-    </section>
-
     <footer>
         <div class="wrap">
             <div class="foot-cta">
@@ -86,6 +69,14 @@
 
     <script src="Navbar_cat.js"></script>
     <script src="cat-testimonial.js"></script>
+    <script src="chatbot-loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <div id="social-widget"></div>
+    <script>
+        fetch('social.html').then(r => r.text()).then(html => {
+            document.getElementById('social-widget').innerHTML = html;
+        });
+    </script>
 </body>
 
 </html>

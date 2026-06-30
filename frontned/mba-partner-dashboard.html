@@ -1514,6 +1514,14 @@
         }
     </script>
     <script src="Navbar_cat.js"></script>
+    <script src="chatbot-loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <div id="social-widget"></div>
+    <script>
+        fetch('social.html').then(r => r.text()).then(html => {
+            document.getElementById('social-widget').innerHTML = html;
+        });
+    </script>
 
 </body>
 

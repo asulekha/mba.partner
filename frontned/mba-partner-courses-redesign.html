@@ -424,12 +424,9 @@
 
         /* ---------- FILTER CHIPS ---------- */
         .filters {
-            position: sticky;
-            top: 65px;
-            z-index: 40;
+            position: static;
             background: var(--paper);
             padding: 18px 0;
-            margin-top: 30px;
             border-bottom: 1px solid var(--rule);
         }
 
@@ -2421,6 +2418,13 @@
 
         document.getElementById('course-a').addEventListener('change', renderCompare);
         document.getElementById('course-b').addEventListener('change', renderCompare);
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <div id="social-widget"></div>
+    <script>
+        fetch('social.html').then(r => r.text()).then(html => {
+            document.getElementById('social-widget').innerHTML = html;
+        });
     </script>
 
 </body>

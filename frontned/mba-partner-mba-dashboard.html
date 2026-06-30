@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — MBA Student | MBA Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0F1419;
+      --ink-soft: #1a202c;
+      --paper: #F8F6F3;
+      --paper-card: #FFFFFF;
+      --primary: #6366F1;
+      --primary-dark: #4F46E5;
+      --primary-light: #818CF8;
+      --accent: #EC4899;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --danger-light: #FEE2E2;
+      --danger: #B91C1C;
+      --surface: #F3F4F6;
+      --rule: #E5E7EB;
+      --ink-faint: #6B7280;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Fraunces', serif;
+      margin: 0;
+      letter-spacing: -0.01em
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px
+    }
+
+    /* nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--ink);
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15
+    }
+
+    .brand-text span {
+      font-weight: 700;
+      font-size: 15px
+    }
+
+    .brand-text small {
+      font-size: 10.5px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #A0AEC0
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      flex-wrap: wrap
+    }
+
+    .nav-links a:not(.nav-cta):not(.nav-login) {
+      color: #D0D5DD;
+      opacity: .85;
+      transition: opacity .2s
+    }
+
+    .nav-links a:not(.nav-cta):not(.nav-login):hover {
+      opacity: 1
+    }
+
+    .nav-links a.active {
+      opacity: 1;
+      color: #fff
+    }
+
+    .nav-profile {
+      position: relative
+    }
+
+    .nav-profile-trigger {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .06);
+      border: 1.4px solid rgba(255, 255, 255, .18);
+      border-radius: 999px;
+      padding: 5px 12px 5px 5px;
+      cursor: pointer;
+      color: #F4EFE3
+    }
+
+    .nav-profile-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .nav-profile-caret {
+      font-size: 10px;
+      opacity: .7
+    }
+
+    .nav-profile-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .18);
+      min-width: 180px;
+      padding: 6px;
+      flex-direction: column
+    }
+
+    .nav-profile.open .nav-profile-menu {
+      display: flex
+    }
+
+    .nav-profile-menu a,
+    .nav-profile-menu button {
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--ink)
+    }
+
+    .nav-profile-menu a:hover,
+    .nav-profile-menu button:hover {
+      background: var(--surface)
+    }
+
+    .nav-profile-active {
+      color: var(--primary) !important
+    }
+
+    .nav-profile-logout {
+      color: var(--danger) !important
+    }
+
+    /* page head */
+    .page-head {
+      padding: 36px 0 28px;
+      border-bottom: 1px solid var(--rule);
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--paper) 100%)
+    }
+
+    .page-head .wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 6px
+    }
+
+    .page-head h1 {
+      font-size: 32px
+    }
+
+    .page-head .sub {
+      margin: 6px 0 0;
+      color: var(--ink-faint);
+      font-size: 14.5px
+    }
+
+    .head-chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .head-chip {
+      background: #fff;
+      border: 1.4px solid var(--rule);
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 13px;
+      color: var(--ink-faint);
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .head-chip b {
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    .flame {
+      font-size: 14px
+    }
+
+    main {
+      padding: 28px 0 64px
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 20px;
+      align-items: start
+    }
+
+    @media (max-width:920px) {
+      .dash-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .dash-col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px
+    }
+
+    .card {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .03)
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px
+    }
+
+    .card-head h3 {
+      font-size: 16px
+    }
+
+    .card-head .pill-link {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--primary)
+    }
+
+    /* ring */
+    .ring-card {
+      text-align: center
+    }
+
+    .ring-wrap {
+      position: relative;
+      width: 168px;
+      height: 168px;
+      margin: 6px auto 4px
+    }
+
+    .ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center
+    }
+
+    .ring-center .pct {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 30px
+    }
+
+    .ring-center .pct-label {
+      font-size: 11px;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-top: 2px
+    }
+
+    .rank-pill {
+      display: inline-block;
+      margin-top: 8px;
+      background: var(--success-light);
+      color: #065F46;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--rule);
+      margin: 16px 0
+    }
+
+    .mini-stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 0;
+      font-size: 13.5px
+    }
+
+    .mini-stat-row .k {
+      color: var(--ink-faint)
+    }
+
+    .mini-stat-row .v {
+      font-weight: 700
+    }
+
+    .mini-stat-row .v.warn {
+      color: var(--warning)
+    }
+
+    .mini-stat-row .v.up {
+      color: var(--success)
+    }
+
+    /* skill domains */
+    .domain-row {
+      margin-bottom: 14px
+    }
+
+    .domain-row:last-child {
+      margin-bottom: 0
+    }
+
+    .domain-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px
+    }
+
+    .domain-top .name {
+      font-weight: 600
+    }
+
+    .domain-top .score {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      color: var(--ink-faint)
+    }
+
+    .domain-bar {
+      height: 7px;
+      border-radius: 999px;
+      background: var(--surface);
+      overflow: hidden
+    }
+
+    .domain-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%)
+    }
+
+    /* streak / heatmap */
+    .streak-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap
+    }
+
+    .streak-headline {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .flame-icon {
+      font-size: 22px
+    }
+
+    .flame-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 26px
+    }
+
+    .streak-sub {
+      font-size: 12.5px;
+      color: var(--ink-faint)
+    }
+
+    .heatmap-scroll {
+      overflow-x: auto;
+      padding-bottom: 4px
+    }
+
+    .heatmap {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(7, 11px);
+      gap: 3px
+    }
+
+    .hm-cell {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      background: var(--surface)
+    }
+
+    .hm-cell.l1 {
+      background: #C7D2FE
+    }
+
+    .hm-cell.l2 {
+      background: #A5B4FC
+    }
+
+    .hm-cell.l3 {
+      background: #818CF8
+    }
+
+    .hm-cell.l4 {
+      background: #6366F1
+    }
+
+    /* leaderboard */
+    .lb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .lb-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--surface)
+    }
+
+    .lb-row.lb-you {
+      background: #EEF2FF;
+      border: 1.4px solid var(--primary-light)
+    }
+
+    .lb-rank {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      background: #fff;
+      color: var(--ink-faint);
+      border: 1px solid var(--rule)
+    }
+
+    .lb-rank.gold {
+      background: #FEF3C7;
+      color: #92400E;
+      border-color: #FDE68A
+    }
+
+    .lb-rank.silver {
+      background: #F1F5F9;
+      color: #475569;
+      border-color: #E2E8F0
+    }
+
+    .lb-rank.bronze {
+      background: #FFEDD5;
+      color: #9A3412;
+      border-color: #FED7AA
+    }
+
+    .lb-avatar {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .lb-name-wrap {
+      flex: 1;
+      min-width: 0
+    }
+
+    .lb-name {
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 7px
+    }
+
+    .lb-you-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--primary);
+      color: #fff;
+      padding: 2px 7px;
+      border-radius: 999px
+    }
+
+    .lb-meta {
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      margin-top: 2px
+    }
+
+    .lb-score {
+      text-align: right;
+      flex-shrink: 0
+    }
+
+    .lb-score .pct {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 15px
+    }
+
+    .lb-score .lbl {
+      font-size: 10px;
+      color: var(--ink-faint);
+      text-transform: uppercase
+    }
+
+    @media (max-width:540px) {
+      .lb-meta {
+        display: none
+      }
+    }
+
+    /* checklist */
+    .checklist-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--ink-faint)
+    }
+
+    .checklist-progress b {
+      color: var(--ink)
+    }
+
+    .gdpi-progress-bar-track {
+      height: 5px;
+      background: var(--surface);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 16px
+    }
+
+    .gdpi-progress-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--success) 100%);
+      transition: width .5s ease
+    }
+
+    .check-list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 15px 16px;
+      border: 1.5px solid var(--rule);
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+      background: #fff
+    }
+
+    .check-item:hover {
+      border-color: #C7D2FE;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, .08)
+    }
+
+    .check-item.done {
+      background: linear-gradient(135deg, #F0FDF9 0%, #ECFDF5 100%);
+      border-color: #A7F3D0
+    }
+
+    .check-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 2px solid #D1D5DB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: transparent;
+      background: #fff;
+      transition: all .2s
+    }
+
+    .check-item.done .check-circle {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+      box-shadow: 0 0 0 3px #D1FAE5
+    }
+
+    .check-text {
+      font-size: 14px;
+      font-weight: 600;
+      flex-grow: 1;
+      line-height: 1.4
+    }
+
+    .check-item.done .check-text {
+      color: var(--ink-faint);
+      text-decoration: line-through
+    }
+
+    /* courses */
+    .course-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .course-row:last-child {
+      border-bottom: none
+    }
+
+    .course-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0
+    }
+
+    .course-name {
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .course-meta {
+      font-size: 12px;
+      color: var(--ink-faint);
+      margin-top: 2px
+    }
+
+    .course-bar-track {
+      height: 6px;
+      background: var(--surface);
+      border-radius: 999px;
+      margin-top: 7px;
+      overflow: hidden;
+      max-width: 220px
+    }
+
+    .course-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%)
+    }
+
+    .course-pct {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0
+    }
+
+    /* table */
+    table.log-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px
+    }
+
+    .log-table th {
+      text-align: left;
+      color: var(--ink-faint);
+      font-weight: 600;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      padding: 0 10px 10px;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .log-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .log-table tr:last-child td {
+      border-bottom: none
+    }
+
+    .badge-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      text-transform: uppercase
+    }
+
+    .badge-tag.pi {
+      background: #EEF2FF;
+      color: var(--primary-dark)
+    }
+
+    .badge-tag.gd {
+      background: #FCE7F3;
+      color: #9D174D
+    }
+
+    .feedback-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px
+    }
+
+    .feedback-tag.strong {
+      background: var(--success-light);
+      color: #065F46
+    }
+
+    .feedback-tag.improving {
+      background: #FEF3C7;
+      color: #92400E
+    }
+
+    /* activity */
+    .feed-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .feed-item:last-child {
+      border-bottom: none
+    }
+
+    .feed-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      background: var(--surface)
+    }
+
+    .feed-text {
+      font-size: 13px;
+      line-height: 1.5
+    }
+
+    .feed-text b {
+      font-weight: 700
+    }
+
+    .feed-time {
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      margin-top: 2px
+    }
+
+    .btn {
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      border: none
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
+    }
+
+    footer {
+      background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
+      color: #8B92A0;
+      padding: 32px 0;
+      text-align: center;
+      font-size: 13px
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      * {
+        transition: none !important;
+        animation: none !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="mba-partner-home.html">
+        <span class="brand-mark">MP</span>
+        <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="mba-partner-home.html">Home</a>
+        <a href="mba-partner-courses-redesign.html">Courses</a>
+        <a href="cart-page.html">Cart</a>
+        <div class="nav-profile" id="navProfileBox">
+          <button class="nav-profile-trigger" id="navProfileTrigger" type="button" aria-haspopup="true"
+            aria-expanded="false">
+            <span class="nav-profile-avatar">R</span>
+            <span class="nav-user-name">Riya</span>
+            <span class="nav-profile-caret">▾</span>
+          </button>
+          <div class="nav-profile-menu" role="menu">
+            <a href="mba-partner-my-account.html" role="menuitem">My Account</a>
+            <a href="mba-partner-my-courses.html" role="menuitem">My Courses</a>
+            <a href="mba-student-dashboard.html" role="menuitem" class="nav-profile-active">Dashboard</a>
+            <button type="button" class="nav-profile-logout" role="menuitem">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-head">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Placement Prep Dashboard</p>
+        <h1>Welcome back, Riya</h1>
+        <p class="sub">Here's where your placement prep stands today — IIM Indore, PGP'27.</p>
+      </div>
+      <div class="head-chips">
+        <div class="head-chip"><span class="flame">🔥</span> <b>0-day</b> streak</div>
+        <div class="head-chip">Cohort rank <b>—</b></div>
+        <div class="head-chip">CV score <b>0/100</b></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="dash-grid">
+
+        <div class="dash-col-left">
+
+          <div class="card ring-card">
+            <div class="card-head" style="justify-content:center;">
+              <h3>Placement Readiness</h3>
+            </div>
+            <div class="ring-wrap">
+              <svg width="168" height="168" viewBox="0 0 168 168">
+                <circle cx="84" cy="84" r="72" fill="none" stroke="var(--surface)" stroke-width="14" />
+                <circle cx="84" cy="84" r="72" fill="none" stroke="url(#ringGrad)" stroke-width="14"
+                  stroke-linecap="round" stroke-dasharray="452.4" stroke-dashoffset="452.4" />
+                <defs>
+                  <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366F1" />
+                    <stop offset="100%" stop-color="#EC4899" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="ring-center">
+                <span class="pct">0%</span>
+                <span class="pct-label">Ready</span>
+              </div>
+            </div>
+            <span class="rank-pill" style="background:var(--surface);color:var(--ink-faint);">Let's get started</span>
+
+            <div class="divider"></div>
+
+            <div class="mini-stat-row"><span class="k">Live projects completed</span><span class="v">0 / 2</span></div>
+            <div class="mini-stat-row"><span class="k">Case comps entered</span><span class="v">0</span></div>
+            <div class="mini-stat-row"><span class="k">Mock PIs / GDs done</span><span class="v">0</span></div>
+            <div class="mini-stat-row"><span class="k">Weakest area</span><span class="v">—</span></div>
+            <div class="mini-stat-row"><span class="k">Strongest area</span><span class="v">—</span></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>Skill Domain Strength</h3>
+            </div>
+            <div class="domain-row">
+              <div class="domain-top"><span class="name">Consulting / Case Frameworks</span><span
+                  class="score">0%</span></div>
+              <div class="domain-bar">
+                <div class="domain-fill" style="width:0%;"></div>
+              </div>
+            </div>
+            <div class="domain-row">
+              <div class="domain-top"><span class="name">Finance &amp; Markets</span><span class="score">0%</span></div>
+              <div class="domain-bar">
+                <div class="domain-fill" style="width:0%;"></div>
+              </div>
+            </div>
+            <div class="domain-row">
+              <div class="domain-top"><span class="name">Marketing &amp; Strategy</span><span class="score">0%</span>
+              </div>
+              <div class="domain-bar">
+                <div class="domain-fill" style="width:0%;"></div>
+              </div>
+            </div>
+            <div class="domain-row">
+              <div class="domain-top"><span class="name">Operations &amp; Guesstimates</span><span
+                  class="score">0%</span></div>
+              <div class="domain-bar">
+                <div class="domain-fill" style="width:0%;"></div>
+              </div>
+            </div>
+            <div class="domain-row">
+              <div class="domain-top"><span class="name">CV &amp; LinkedIn Presence</span><span class="score">0%</span>
+              </div>
+              <div class="domain-bar">
+                <div class="domain-fill" style="width:0%;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px;">
+
+          <div class="card">
+            <div class="streak-top">
+              <div>
+                <div class="streak-headline">
+                  <span class="flame-icon">🔥</span>
+                  <span class="flame-num">0</span>
+                  <span class="streak-sub">day prep streak</span>
+                </div>
+              </div>
+              <div class="streak-sub">Last 365 days</div>
+            </div>
+            <div class="heatmap-scroll">
+              <div class="heatmap" id="heatmapGrid"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>Cohort Leaderboard</h3>
+              <a class="pill-link" href="#">View full cohort →</a>
+            </div>
+            <div class="lb-list">
+              <div class="lb-row">
+                <span class="lb-rank gold">1</span>
+                <span class="lb-avatar">AS</span>
+                <div class="lb-name-wrap">
+                  <div class="lb-name">Aarav Sharma</div>
+                  <div class="lb-meta">3 live projects · 6 mock PIs</div>
+                </div>
+                <div class="lb-score">
+                  <div class="pct">94</div>
+                  <div class="lbl">CV Score</div>
+                </div>
+              </div>
+              <div class="lb-row">
+                <span class="lb-rank silver">2</span>
+                <span class="lb-avatar">MP</span>
+                <div class="lb-name-wrap">
+                  <div class="lb-name">Meera Pillai</div>
+                  <div class="lb-meta">2 live projects · 5 mock PIs</div>
+                </div>
+                <div class="lb-score">
+                  <div class="pct">91</div>
+                  <div class="lbl">CV Score</div>
+                </div>
+              </div>
+              <div class="lb-row">
+                <span class="lb-rank bronze">3</span>
+                <span class="lb-avatar">KV</span>
+                <div class="lb-name-wrap">
+                  <div class="lb-name">Karan Verma</div>
+                  <div class="lb-meta">2 live projects · 4 mock PIs</div>
+                </div>
+                <div class="lb-score">
+                  <div class="pct">89</div>
+                  <div class="lbl">CV Score</div>
+                </div>
+              </div>
+              <div class="lb-row lb-you">
+                <span class="lb-rank">—</span>
+                <span class="lb-avatar">R</span>
+                <div class="lb-name-wrap">
+                  <div class="lb-name">Riya <span class="lb-you-tag">You</span></div>
+                  <div class="lb-meta">0 live projects · 0 mock PIs</div>
+                </div>
+                <div class="lb-score">
+                  <div class="pct">0</div>
+                  <div class="lbl">CV Score</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>My Courses</h3>
+              <a class="pill-link" href="mba-partner-courses-redesign.html">Browse more →</a>
+            </div>
+            <div class="course-row">
+              <div class="course-icon">🎤</div>
+              <div style="flex:1;">
+                <div class="course-name">Placements Bootcamp</div>
+                <div class="course-meta">Mock PIs, GDs &amp; CV reviews</div>
+                <div class="course-bar-track">
+                  <div class="course-bar-fill" style="width:0%;"></div>
+                </div>
+              </div>
+              <div class="course-pct">0%</div>
+            </div>
+            <div class="course-row">
+              <div class="course-icon">📊</div>
+              <div style="flex:1;">
+                <div class="course-name">Live Project — Marketing Strategy</div>
+                <div class="course-meta">Not started</div>
+                <div class="course-bar-track">
+                  <div class="course-bar-fill" style="width:0%;"></div>
+                </div>
+              </div>
+              <div class="course-pct">0%</div>
+            </div>
+            <div class="course-row">
+              <div class="course-icon">🏆</div>
+              <div style="flex:1;">
+                <div class="course-name">Case Competition — Strategy Track</div>
+                <div class="course-meta">Not started</div>
+                <div class="course-bar-track">
+                  <div class="course-bar-fill" style="width:0%;"></div>
+                </div>
+              </div>
+              <div class="course-pct">0%</div>
+            </div>
+            <div class="course-row">
+              <div class="course-icon">📈</div>
+              <div style="flex:1;">
+                <div class="course-name">Advanced Excel Certificate</div>
+                <div class="course-meta">Not started</div>
+                <div class="course-bar-track">
+                  <div class="course-bar-fill" style="width:0%;"></div>
+                </div>
+              </div>
+              <div class="course-pct">0%</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>Mock PI / GD Log</h3>
+            </div>
+            <table class="log-table">
+              <thead>
+                <tr>
+                  <th>Session</th>
+                  <th>Date</th>
+                  <th>Mentor</th>
+                  <th>Feedback</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="4" style="text-align:center;color:var(--ink-faint);padding:24px 0;">No mock sessions
+                    logged yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>Recent Activity</h3>
+            </div>
+            <div class="feed-item">
+              <div class="feed-icon">👋</div>
+              <div>
+                <div class="feed-text">No activity yet — complete a checklist item or enroll in a course to get started.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <div class="card-head">
+          <h3>Placement Readiness Checklist</h3>
+          <div class="checklist-progress">0 / 8 <span>done</span></div>
+        </div>
+        <div class="gdpi-progress-bar-track">
+          <div class="gdpi-progress-bar-fill" id="checklistBar" style="width:0%;"></div>
+        </div>
+        <div class="check-list-grid" id="checklistList">
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">Resume reviewed by a
+              mentor</span></div>
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">LinkedIn profile
+              optimized</span></div>
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">1 live project
+              completed</span></div>
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">Entered a case
+              competition</span></div>
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">Completed a mock PI</span>
+          </div>
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">Completed a mock GD</span>
+          </div>
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">2nd live project
+              enrolled</span></div>
+          <div class="check-item"><span class="check-circle">✓</span><span class="check-text">Reached out to 10 alumni
+              recruiters</span></div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:28px;">
+        <a class="btn btn-primary" href="mba-partner-courses-redesign.html">🚀 Explore More Courses</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 MBA Partner — Initiative by Alumni of Old IIM</div>
+  </footer>
+
+  <script>
+    // Build a 365-day activity heatmap (empty / zero state)
+    const grid = document.getElementById('heatmapGrid');
+    const weeks = 53, days = 7;
+    let html = '';
+    for (let w = 0; w < weeks; w++) {
+      for (let d = 0; d < days; d++) {
+        html += `<div class="hm-cell" title="No activity"></div>`;
+      }
+    }
+    grid.innerHTML = html;
+
+    // Checklist toggle
+    const list = document.getElementById('checklistList');
+    const bar = document.getElementById('checklistBar');
+    const progressLabel = document.querySelector('.checklist-progress');
+    function updateProgress() {
+      const all = list.querySelectorAll('.check-item');
+      const done = list.querySelectorAll('.check-item.done');
+      progressLabel.innerHTML = `${done.length} / ${all.length} <span>done</span>`;
+      bar.style.width = `${Math.round((done.length / all.length) * 100)}%`;
+    }
+    list.querySelectorAll('.check-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('done');
+        updateProgress();
+      });
+    });
+
+    // Profile menu toggle
+    const profileBox = document.getElementById('navProfileBox');
+    const profileTrigger = document.getElementById('navProfileTrigger');
+    profileTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      profileBox.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!profileBox.contains(e.target)) profileBox.classList.remove('open');
+    });
+  </script>
+
+</body>
+
+</html>

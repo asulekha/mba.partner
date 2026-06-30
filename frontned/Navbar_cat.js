@@ -10,6 +10,7 @@
                 { label: 'Courses', href: 'mba-partner-cat-omet-courses.html' },
                 { label: 'Mocks', href: 'cat-mocks.html' },
                 { label: 'Testimonials', href: 'cat-testimonial.html' },
+                { label: 'Refer & Earn', href: 'refer-and-earn.html' },
                 { label: 'Mentors', href: 'mentor.html' }
             ],
         },
@@ -20,9 +21,16 @@
                 { label: 'Courses', href: 'mba-partner-courses-redesign.html' },
                 { label: 'Testimonials', href: 'mba-partner-testimonials-redesign_.html' },
                 { label: 'Mentors', href: 'mentor.html' },
-                { label: 'College Collab', href: 'college-collab.html' }
+                { label: 'College Collab', href: 'college-collab.html' },
+                { label: 'Refer & Earn', href: 'refer-and-earn.html' }
             ],
         },
+    };
+
+    // Dashboard page is different per track.
+    const DASHBOARD_HREF = {
+        cat: 'mba-partner-dashboard.html',
+        mba: 'mba-partner-mba-dashboard.html',
     };
 
     // Update the href values below to your real resource pages.
@@ -54,16 +62,26 @@
         },
     ];
 
+    // ---- Track resolution removed: navbar is now always 'cat' ----
+
+    // Append ?track=xxx to every same-site nav/resource link so the next
+    // page's navbar can pick it straight from the URL (works even if the
+    // user opens the link in a new tab, unlike sessionStorage alone).
+    function withTrack(href, track) {
+        const sep = href.includes('?') ? '&' : '?';
+        return `${href}${sep}track=${track}`;
+    }
+
     function navLinksHTML(track) {
         return NAV_CONFIG[track].links
-            .map((l) => `<a href="${l.href}">${l.label}</a>`)
+            .map((l) => `<a href="${withTrack(l.href, track)}">${l.label}</a>`)
             .join('\n                ');
     }
 
-    function resourceCardsHTML() {
+    function resourceCardsHTML(track) {
         return RESOURCE_LINKS.map(
             (r) => `
-            <a class="resource-card" href="${r.href}">
+            <a class="resource-card" href="${withTrack(r.href, track)}">
                 <span class="resource-card-icon"><svg width="16" height="16" viewBox="0 0 18 18" fill="none">${r.icon}</svg></span>
                 <span>${r.label}</span>
             </a>`
@@ -75,7 +93,7 @@
         return `
     <nav class="nav" id="site-nav">
         <div class="nav-inner">
-            <a class="brand" href="${cfg.brandHref}">
+            <a class="brand" href="${withTrack(cfg.brandHref, track)}">
                 <span class="brand-mark">MP</span>
                 <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
             </a>
@@ -83,19 +101,17 @@
                 aria-controls="nav-links"><span></span></button>
             <div class="nav-links" id="nav-links">
                 ${navLinksHTML(track)}
-                <a href="cart-page.html" id="navCartLink" class="nav-cart">Cart<span class="cart-badge"
+                <a href="${withTrack('cart-page.html', track)}" id="navCartLink" class="nav-cart">Cart<span class="cart-badge"
                         id="cartBadge">0</span></a>
-                <a class="nav-login" href="mba-partner-login.html" id="navLogin">Login</a>
+                <a class="nav-login" href="${withTrack('mba-partner-login.html', track)}" id="navLogin">Login</a>
                 <div class="nav-profile" id="navProfileBox" style="display:none;">
                     <button class="nav-profile-trigger" id="navProfileTrigger" type="button" aria-haspopup="true"
-                        aria-expanded="false">
+                        aria-expanded="false" aria-label="Account menu">
                         <span class="nav-profile-avatar" id="navProfileAvatar">A</span>
-                        <span class="nav-user-name" id="navUserName"></span>
                         <span class="nav-profile-caret">▾</span>
                     </button>
                     <div class="nav-profile-menu" id="navProfileMenu" role="menu">
-                        <a href="mba-partner-my-account.html" role="menuitem">My Account</a>${track === 'cat' ? `
-                        <a href="mba-partner-dashboard.html" role="menuitem">Dashboard</a>` : ''}
+                        <a href="${withTrack(DASHBOARD_HREF[track], track)}" role="menuitem">Dashboard</a>
                         <button type="button" id="logoutBtn" class="nav-profile-logout" role="menuitem">Logout</button>
                     </div>
                 </div>
@@ -103,11 +119,11 @@
         </div>
     </nav>
 
-    <!-- RESOURCE BAR: update the href values in navbar.js to your real pages -->
-    <div class="resource-bar">
-        <div class="resource-bar-inner"><span class="resource-bar-label"><span class="dot"></span>Quick links</span>${resourceCardsHTML()}
+    <!-- RESOURCE BAR: only shown on the CAT track, update hrefs in navbar.js -->
+    ${track === 'cat' ? `<div class="resource-bar">
+        <div class="resource-bar-inner"><span class="resource-bar-label"><span class="dot"></span>Quick links</span>${resourceCardsHTML(track)}
         </div>
-    </div>`;
+    </div>` : ''}`;
     }
 
     function wire() {
@@ -118,7 +134,6 @@
         const navProfileBox = document.getElementById('navProfileBox');
         const navProfileTrigger = document.getElementById('navProfileTrigger');
         const navProfileAvatar = document.getElementById('navProfileAvatar');
-        const navUserName = document.getElementById('navUserName');
         const footLogin = document.getElementById('footLogin');
         const logoutBtn = document.getElementById('logoutBtn');
         const navCartLink = document.getElementById('navCartLink');
@@ -158,13 +173,10 @@
             navLogin.style.display = 'none';
             navProfileBox.style.display = '';
 
+            // Avatar-only trigger: just show the initial, no name text.
             const label = (user && (user.name || user.email)) || 'Account';
             const initial = label.trim().charAt(0).toUpperCase();
-            const firstName = (user && user.name) ? user.name.split(' ')[0] : label;
-
             navProfileAvatar.textContent = initial;
-            navUserName.textContent = firstName;
-            navUserName.style.display = '';
 
             if (footLogin) footLogin.style.display = 'none';
             updateCartBadge();

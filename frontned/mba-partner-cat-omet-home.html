@@ -1343,6 +1343,13 @@
 
     <!-- Doc 2 se: Chatbot loader -->
     <script src="chatbot-loader.js" data-track="cat"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <div id="social-widget"></div>
+    <script>
+        fetch('social.html').then(r => r.text()).then(html => {
+            document.getElementById('social-widget').innerHTML = html;
+        });
+    </script>
 
 </body>
 

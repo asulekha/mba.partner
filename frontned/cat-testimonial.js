@@ -114,23 +114,8 @@ const quotesByCourse = {
     ]
 };
 
-const videos = [
-    ["Ananya", "IIM Welingkar", "https://www.youtube.com/embed/QqoQInsFIys"],
-    ["Jigar", "IIM Amritsar", "https://www.youtube.com/embed/tbu3ksy8ci0"],
-    ["Mridul", "IIM Calcutta", "https://www.youtube.com/embed/m26Fh9yTux8"],
-    ["Satwik", "IMT Ghaziabad", "https://www.youtube.com/embed/50It2q8_LXo"],
-    ["Siddhant", "DSE", "https://www.youtube.com/embed/-EUb1IDN1YQ"],
-    ["Tushar", "GLIM Chennai", "https://www.youtube.com/embed/4FDmOo__7cc"]
-];
-
 // avatar colors pulled from the design system (primary / accent family + supporting hues)
 const avatarColors = ["#6366F1", "#EC4899", "#818CF8", "#F472B6", "#4F46E5", "#10B981", "#F59E0B", "#0EA5E9"];
-
-// video thumbnail gradients — dark, photo-like tones consistent with the --ink/--ink-soft palette
-const videoGradients = [
-    ["#2a2540", "#14101f"], ["#241f38", "#100d1c"], ["#352a40", "#16121f"],
-    ["#1f2a3a", "#0e141d"], ["#3a2a30", "#180f13"], ["#26203a", "#110d1c"]
-];
 
 function initials(name) {
     return name.trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
@@ -208,102 +193,6 @@ students.forEach(([name, college], i) => {
   `;
     grid.appendChild(card);
 });
-
-/* ===================== VIDEO MODAL ===================== */
-// Builds a lightweight modal once, reused for every video card click.
-const videoModal = document.createElement('div');
-videoModal.className = 'video-modal';
-videoModal.innerHTML = `
-  <div class="video-modal-backdrop"></div>
-  <div class="video-modal-inner">
-    <button class="video-modal-close" aria-label="Close video" type="button">&times;</button>
-    <div class="video-modal-frame"></div>
-  </div>
-`;
-document.body.appendChild(videoModal);
-
-const videoModalFrame = videoModal.querySelector('.video-modal-frame');
-
-function getYouTubeEmbedUrl(url) {
-    // Handles youtube.com/shorts/ID, youtube.com/watch?v=ID, youtu.be/ID,
-    // aur already-embed youtube.com/embed/ID links bhi.
-    let id = null;
-    const embedMatch = url.match(/youtube\.com\/embed\/([^?&/]+)/);
-    const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&/]+)/);
-    const watchMatch = url.match(/[?&]v=([^?&/]+)/);
-    const shortMatch = url.match(/youtu\.be\/([^?&/]+)/);
-    if (embedMatch) id = embedMatch[1];
-    else if (shortsMatch) id = shortsMatch[1];
-    else if (watchMatch) id = watchMatch[1];
-    else if (shortMatch) id = shortMatch[1];
-    return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : null;
-}
-
-function openVideoModal(url) {
-    const embedUrl = getYouTubeEmbedUrl(url);
-    if (embedUrl) {
-        videoModalFrame.innerHTML = `<iframe src="${embedUrl}" title="Student testimonial video" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-    } else {
-        // Fallback for non-YouTube links (e.g. Vimeo, direct .mp4) — open in a new tab instead.
-        window.open(url, '_blank', 'noopener');
-        return;
-    }
-    videoModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeVideoModal() {
-    videoModal.classList.remove('open');
-    videoModalFrame.innerHTML = '';
-    document.body.style.overflow = '';
-}
-
-videoModal.querySelector('.video-modal-close').addEventListener('click', closeVideoModal);
-videoModal.querySelector('.video-modal-backdrop').addEventListener('click', closeVideoModal);
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeVideoModal();
-});
-
-/* ===================== VIDEO CARDS ===================== */
-// Rendered from the `videos` array (each entry's own video URL),
-// not from the full `students` list. UNCHANGED, as requested.
-function getThumbnail(videoUrl) {
-    const id = videoUrl.split("/embed/")[1]?.split("?")[0];
-    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-}
-
-const videoTrack = document.getElementById("videoTrack");
-
-videos.forEach(([name, college, videoUrl], i) => {
-    const [c1, c2] = videoGradients[i % videoGradients.length];
-
-    const card = document.createElement("div");
-    card.className = "vcard reveal";
-
-    card.style.setProperty("--vc1", c1);
-    card.style.setProperty("--vc2", c2);
-
-    // YouTube thumbnail automatically
-    card.style.backgroundImage = `url(${getThumbnail(videoUrl)})`;
-
-    card.innerHTML = `
-        <div class="tag">MBA PARTNER</div>
-        <div class="play"></div>
-
-        <div class="meta">
-            <div class="name">${name}</div>
-            <div class="role">${college}</div>
-        </div>
-    `;
-
-    card.onclick = () => openVideoModal(videoUrl);
-    videoTrack.appendChild(card);
-});
-
-function scrollVideos(dir) {
-    videoTrack.scrollBy({ left: dir * 260, behavior: 'smooth' });
-}
-window.scrollVideos = scrollVideos;
 
 /* ===================== MOBILE NAV TOGGLE ===================== */
 const navEl = document.querySelector('.nav');
