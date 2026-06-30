@@ -1,4 +1,3 @@
-
 const API_BASE = window.MBA_API_BASE || 'https://mba-partner1.onrender.com';
 const RAZORPAY_KEY_ID = window.MBA_RAZORPAY_KEY_ID || 'rzp_test_XXXXXXXXXXXX'; // public Key ID only — safe for frontend
 const COMPANY_NAME = 'MBA Partner';
