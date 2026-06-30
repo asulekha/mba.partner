@@ -1178,7 +1178,33 @@
     <footer>
         <div class="wrap">MBA Partner — Initiative by Alumni of Old IIM</div>
     </footer>
+   // ============================================================
+// LOGOUT -> redirect fix
+// navbar.js sirf token remove karta hai, dashboard pe hi reh
+// jaate hain. Yeh code login page pe forcefully redirect karega.
+// ============================================================
+function goToLoginPage() {
+    window.location.href = 'mba-partner-login.html';
+}
 
+// Agar navbar.js custom 'logout' event fire karta hai
+window.addEventListener('logout', goToLoginPage);
+
+// Agar logout button par directly click ho (common id/class patterns)
+document.addEventListener('click', function (e) {
+    const target = e.target.closest('#logoutBtn, .logout-btn, [data-action="logout"], .nav-logout, #navLogout');
+    if (target) {
+        localStorage.removeItem('token');
+        goToLoginPage();
+    }
+});
+
+// Fallback — agar token kisi aur tarike se remove ho jaye
+window.addEventListener('storage', function (e) {
+    if (e.key === 'token' && !e.newValue) {
+        goToLoginPage();
+    }
+});
     <script src="cart.js"></script>
     <!-- Shared navbar (handles auth, profile dropdown, cart badge, hamburger) -->
     <script src="navbar.js"></script>
