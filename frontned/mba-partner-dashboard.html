@@ -1179,6 +1179,7 @@
         <div class="wrap">MBA Partner — Initiative by Alumni of Old IIM</div>
     </footer>
    // ============================================================
+<script>// ============================================================
 // LOGOUT -> redirect fix
 // navbar.js sirf token remove karta hai, dashboard pe hi reh
 // jaate hain. Yeh code login page pe forcefully redirect karega.
@@ -1204,7 +1205,7 @@ window.addEventListener('storage', function (e) {
     if (e.key === 'token' && !e.newValue) {
         goToLoginPage();
     }
-});
+});</script>
     <script src="cart.js"></script>
     <!-- Shared navbar (handles auth, profile dropdown, cart badge, hamburger) -->
     <script src="navbar.js"></script>
