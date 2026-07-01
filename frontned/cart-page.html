@@ -28,14 +28,8 @@
       --radius: 12px;
     }
 
-    * {
-      box-sizing: border-box
-    }
-
-    html {
-      scroll-behavior: smooth
-    }
-
+    * { box-sizing: border-box }
+    html { scroll-behavior: smooth }
     body {
       margin: 0;
       background: var(--paper);
@@ -43,714 +37,113 @@
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased
     }
-
-    h1,
-    h2,
-    h3 {
-      font-family: 'Fraunces', serif;
-      margin: 0;
-      letter-spacing: -0.01em
-    }
-
-    .mono {
-      font-family: 'IBM Plex Mono', monospace
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none
-    }
-
-    img {
-      max-width: 100%
-    }
-
-    .wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 3px
-    }
-
-    /* ---------- NAV ---------- */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--ink);
-      color: #FFF;
-      border-bottom: 1px solid rgba(255, 255, 255, .1);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
-    }
-
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px
-    }
-
-    .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #fff;
-      font-family: 'Fraunces', serif;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15
-    }
-
-    .brand-text span {
-      font-weight: 700;
-      font-size: 15px
-    }
-
-    .brand-text small {
-      font-size: 10.5px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: #A0AEC0
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-size: 14px;
-      font-weight: 500
-    }
-
-    .nav-links a:not(.nav-cta) {
-      color: #D0D5DD;
-      opacity: .85;
-      transition: opacity .2s
-    }
-
-    .nav-links a:not(.nav-cta):hover {
-      opacity: 1
-    }
-
-    .nav-cart-link {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 6px
-    }
-
-    .nav-cart-count {
-      background: var(--accent);
-      color: #fff;
-      font-size: 10.5px;
-      font-weight: 700;
-      min-width: 17px;
-      height: 17px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 4px;
-      font-family: 'IBM Plex Mono', monospace;
-    }
-
-    .nav-cta {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #fff;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13.5px;
-      transition: all .3s;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
-    }
-
-    @media (max-width:680px) {
-      .nav-links a:not(.nav-cta):not(.nav-cart-link) {
-        display: none
-      }
-    }
-
-    /* ---------- BREADCRUMB ---------- */
-    .breadcrumb {
-      padding: 16px 0;
-      font-size: 13.5px;
-      color: var(--ink-faint)
-    }
-
-    .breadcrumb a {
-      transition: color .2s
-    }
-
-    .breadcrumb a:hover {
-      color: var(--primary)
-    }
-
-    .breadcrumb span.sep {
-      margin: 0 8px;
-      color: #C7CCD4
-    }
-
-    .breadcrumb span.current {
-      color: var(--ink);
-      font-weight: 600
-    }
-
-    /* ---------- PAGE HEAD ---------- */
-    .cart-head {
-      padding: 8px 0 28px
-    }
-
-    .cart-head h1 {
-      font-size: clamp(26px, 3vw, 36px);
-      font-weight: 700
-    }
-
-    .cart-head p {
-      margin-top: 8px;
-      color: var(--ink-faint);
-      font-size: 14.5px
-    }
-
-    /* ---------- LAYOUT ---------- */
-    .cart-layout {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 28px;
-      align-items: start;
-      padding-bottom: 60px
-    }
-
-    @media (max-width:860px) {
-      .cart-layout {
-        grid-template-columns: 1fr
-      }
-    }
-
-    /* ---------- CART ITEMS ---------- */
-    .cart-items {
-      display: flex;
-      flex-direction: column;
-      gap: 14px
-    }
-
-    .cart-item {
-      background: var(--paper-card);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 20px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      transition: all .25s
-    }
-
-    .cart-item:hover {
-      border-color: var(--primary);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, .08)
-    }
-
-    .cart-item-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 11px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #fff;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Fraunces', serif;
-      font-weight: 800;
-      font-size: 16px;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, .25)
-    }
-
-    .cart-item-info {
-      flex: 1;
-      min-width: 0
-    }
-
-    .cart-item-info h3 {
-      font-size: 15.5px;
-      font-weight: 700;
-      line-height: 1.3
-    }
-
-    .cart-item-info .cart-item-meta {
-      margin-top: 4px;
-      font-size: 12.5px;
-      color: var(--ink-faint)
-    }
-
-    .cart-item-prices {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-top: 8px
-    }
-
-    .cart-item-prices .now {
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--ink)
-    }
-
-    .cart-item-prices .old {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12.5px;
-      color: var(--ink-faint);
-      text-decoration: line-through
-    }
-
-    .cart-item-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
-      flex-shrink: 0
-    }
-
-    .qty-control {
-      display: flex;
-      align-items: center;
-      border: 1.5px solid var(--rule);
-      border-radius: 8px;
-      overflow: hidden
-    }
-
-    .qty-control button {
-      width: 28px;
-      height: 28px;
-      border: none;
-      background: var(--surface);
-      color: var(--ink);
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .2s
-    }
-
-    .qty-control button:hover {
-      background: var(--primary-light);
-      color: #fff
-    }
-
-    .qty-control span {
-      width: 32px;
-      text-align: center;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 13.5px;
-      font-weight: 600
-    }
-
-    .remove-link {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--danger);
-      cursor: pointer;
-      transition: opacity .2s;
-      background: none;
-      border: none;
-      padding: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-
-    .remove-link:hover {
-      opacity: .7
-    }
-
-    /* ---------- EMPTY STATE ---------- */
-    .cart-empty {
-      background: var(--paper-card);
-      border: 1px dashed var(--rule);
-      border-radius: 16px;
-      padding: 56px 24px;
-      text-align: center
-    }
-
-    .cart-empty .empty-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 18px;
-      border-radius: 50%;
-      background: var(--surface);
-      display: flex;
-      align-items: center;
-      justify-content: center
-    }
-
-    .cart-empty h2 {
-      font-size: 20px;
-      font-weight: 700
-    }
-
-    .cart-empty p {
-      margin: 8px 0 22px;
-      color: var(--ink-faint);
-      font-size: 14px
-    }
-
-    /* ---------- SUMMARY ---------- */
-    .summary-card {
-      background: var(--paper-card);
-      border: 1px solid var(--rule);
-      border-radius: 16px;
-      padding: 24px;
-      position: sticky;
-      top: 90px
-    }
-
-    .summary-card h2 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 18px
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      color: var(--ink-soft);
-      padding: 9px 0
-    }
-
-    .summary-row .val {
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 600
-    }
-
-    .summary-row.savings .val {
-      color: var(--success)
-    }
-
-    .summary-divider {
-      border-top: 1px dashed var(--rule);
-      margin: 10px 0
-    }
-
-    .summary-total {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 6px 0 4px
-    }
-
-    .summary-total .label {
-      font-size: 15.5px;
-      font-weight: 700
-    }
-
-    .summary-total .val {
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 700;
-      font-size: 24px;
-      color: var(--ink)
-    }
-
-    .promo-row {
-      display: flex;
-      gap: 8px;
-      margin: 16px 0 4px
-    }
-
-    .promo-row input {
-      flex: 1;
-      border: 1.5px solid var(--rule);
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 13px;
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--surface);
-      color: var(--ink)
-    }
-
-    .promo-row input:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 1px
-    }
-
-    .promo-row button {
-      border: 1.5px solid var(--rule);
-      background: #fff;
-      color: var(--ink);
-      font-weight: 700;
-      font-size: 12.5px;
-      border-radius: 8px;
-      padding: 0 16px;
-      cursor: pointer;
-      transition: all .2s
-    }
-
-    .promo-row button:hover {
-      border-color: var(--primary);
-      color: var(--primary)
-    }
-
-    .promo-msg {
-      font-size: 12px;
-      margin-top: 4px;
-      min-height: 16px
-    }
-
-    .promo-msg.ok {
-      color: var(--success)
-    }
-
-    .promo-msg.err {
-      color: var(--danger)
-    }
-
-    .btn {
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 14.5px;
-      transition: all .3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      border: none;
-      width: 100%;
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
-    }
-
-    .btn-primary:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none
-    }
-
-    .btn-ghost {
-      border: 1.5px solid var(--rule);
-      color: var(--ink);
-      background: #fff;
-      margin-top: 10px
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--primary);
-      color: var(--primary)
-    }
-
-    .trust-row {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 20px;
-      font-size: 12px;
-      color: var(--ink-faint)
-    }
-
-    .trust-row .item {
-      display: flex;
-      align-items: center;
-      gap: 6px
-    }
-
-    /* ---------- CROSS-SELL ---------- */
-    section.crosssell-section {
-      padding: 10px 0 50px
-    }
-
-    .section-head {
-      margin-bottom: 22px
-    }
-
-    .section-head h2 {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--ink)
-    }
-
-    .section-head p {
-      margin: 6px 0 0;
-      color: var(--ink-faint);
-      font-size: 14px
-    }
-
-    .crosssell {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 6px
-    }
-
-    .cs-card {
-      flex: 0 0 240px;
-      background: var(--paper-card);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      padding: 18px;
-      transition: all .25s
-    }
-
-    .cs-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, .08)
-    }
-
-    .cs-card h4 {
-      font-size: 14.5px;
-      font-weight: 700;
-      margin-bottom: 6px
-    }
-
-    .cs-card .cs-price {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--primary-dark)
-    }
-
-    .cs-card a.cs-link {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--primary)
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%);
-      color: #fff;
-      padding: 48px 0 30px;
-      margin-top: 20px
-    }
-
-    .foot-cta {
-      text-align: center;
-      max-width: 560px;
-      margin: 0 auto
-    }
-
-    .foot-cta h2 {
-      font-size: 26px;
-      font-weight: 700;
-      color: #fff
-    }
-
-    .foot-cta p {
-      margin: 10px 0 22px;
-      color: #A0AEC0;
-      font-size: 14px
-    }
-
-    .foot-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap
-    }
-
-    .foot-buttons a {
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13.5px;
-      transition: all .3s
-    }
-
-    .foot-buttons a.primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, .3)
-    }
-
-    .foot-buttons a.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(99, 102, 241, .4)
-    }
-
-    .foot-buttons a.secondary {
-      border: 1.4px solid rgba(255, 255, 255, .3);
-      color: #F4EFE3
-    }
-
-    .foot-buttons a.secondary:hover {
-      border-color: var(--primary);
-      color: var(--primary)
-    }
-
-    .foot-bottom {
-      margin-top: 36px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, .1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      font-size: 12.5px;
-      color: #8B92A0
-    }
-
-    .foot-socials {
-      display: flex;
-      gap: 12px
-    }
-
-    .foot-socials a {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, .2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: #A0AEC0;
-      font-size: 11.5px;
-      transition: all .3s
-    }
-
-    .foot-socials a:hover {
-      border-color: var(--primary);
-      color: var(--primary)
-    }
+    h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; letter-spacing: -0.01em }
+    .mono { font-family: 'IBM Plex Mono', monospace }
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100% }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 50; background: var(--ink); color: #FFF; border-bottom: 1px solid rgba(255,255,255,.1); box-shadow: 0 2px 8px rgba(0,0,0,.08) }
+    .nav-inner { max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px }
+    .brand { display: flex; align-items: center; gap: 10px }
+    .brand-mark { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; font-family: 'Fraunces', serif; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15 }
+    .brand-text span { font-weight: 700; font-size: 15px }
+    .brand-text small { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #A0AEC0 }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; font-weight: 500 }
+    .nav-links a:not(.nav-cta) { color: #D0D5DD; opacity: .85; transition: opacity .2s }
+    .nav-links a:not(.nav-cta):hover { opacity: 1 }
+    .nav-cart-link { position: relative; display: flex; align-items: center; gap: 6px }
+    .nav-cart-count { background: var(--accent); color: #fff; font-size: 10.5px; font-weight: 700; min-width: 17px; height: 17px; border-radius: 999px; display: flex; align-items: center; justify-content: center; padding: 0 4px; font-family: 'IBM Plex Mono', monospace }
+    .nav-cta { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 700; font-size: 13.5px; transition: all .3s; box-shadow: 0 4px 12px rgba(99,102,241,.3) }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,.4) }
+    @media (max-width:680px) { .nav-links a:not(.nav-cta):not(.nav-cart-link) { display: none } }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding: 16px 0; font-size: 13.5px; color: var(--ink-faint) }
+    .breadcrumb a { transition: color .2s }
+    .breadcrumb a:hover { color: var(--primary) }
+    .breadcrumb span.sep { margin: 0 8px; color: #C7CCD4 }
+    .breadcrumb span.current { color: var(--ink); font-weight: 600 }
+
+    /* PAGE HEAD */
+    .cart-head { padding: 8px 0 28px }
+    .cart-head h1 { font-size: clamp(26px, 3vw, 36px); font-weight: 700 }
+    .cart-head p { margin-top: 8px; color: var(--ink-faint); font-size: 14.5px }
+
+    /* LAYOUT */
+    .cart-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; align-items: start; padding-bottom: 60px }
+    @media (max-width:860px) { .cart-layout { grid-template-columns: 1fr } }
+
+    /* CART ITEMS */
+    .cart-items { display: flex; flex-direction: column; gap: 14px }
+    .cart-item { background: var(--paper-card); border: 1px solid var(--rule); border-radius: 14px; padding: 20px; display: flex; gap: 16px; align-items: center; transition: all .25s }
+    .cart-item:hover { border-color: var(--primary); box-shadow: 0 8px 20px rgba(99,102,241,.08) }
+    .cart-item-icon { width: 48px; height: 48px; border-radius: 11px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-weight: 800; font-size: 16px; box-shadow: 0 4px 12px rgba(99,102,241,.25) }
+    .cart-item-info { flex: 1; min-width: 0 }
+    .cart-item-info h3 { font-size: 15.5px; font-weight: 700; line-height: 1.3 }
+    .cart-item-info .cart-item-meta { margin-top: 4px; font-size: 12.5px; color: var(--ink-faint) }
+    .cart-item-prices { display: flex; align-items: baseline; gap: 8px; margin-top: 8px }
+    .cart-item-prices .now { font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 15px; color: var(--ink) }
+    .cart-item-prices .old { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-faint); text-decoration: line-through }
+    .cart-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0 }
+    .qty-control { display: flex; align-items: center; border: 1.5px solid var(--rule); border-radius: 8px; overflow: hidden }
+    .qty-control button { width: 28px; height: 28px; border: none; background: var(--surface); color: var(--ink); font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s }
+    .qty-control button:hover { background: var(--primary-light); color: #fff }
+    .qty-control span { width: 32px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; font-weight: 600 }
+    .remove-link { font-size: 12px; font-weight: 600; color: var(--danger); cursor: pointer; transition: opacity .2s; background: none; border: none; padding: 0; font-family: 'Inter', system-ui, sans-serif }
+    .remove-link:hover { opacity: .7 }
+
+    /* EMPTY STATE */
+    .cart-empty { background: var(--paper-card); border: 1px dashed var(--rule); border-radius: 16px; padding: 56px 24px; text-align: center }
+    .cart-empty .empty-icon { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; background: var(--surface); display: flex; align-items: center; justify-content: center }
+    .cart-empty h2 { font-size: 20px; font-weight: 700 }
+    .cart-empty p { margin: 8px 0 22px; color: var(--ink-faint); font-size: 14px }
+
+    /* SUMMARY */
+    .summary-card { background: var(--paper-card); border: 1px solid var(--rule); border-radius: 16px; padding: 24px; position: sticky; top: 90px }
+    .summary-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 18px }
+    .summary-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: var(--ink-soft); padding: 9px 0 }
+    .summary-row .val { font-family: 'IBM Plex Mono', monospace; font-weight: 600 }
+    .summary-row.savings .val { color: var(--success) }
+    .summary-divider { border-top: 1px dashed var(--rule); margin: 10px 0 }
+    .summary-total { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0 4px }
+    .summary-total .label { font-size: 15.5px; font-weight: 700 }
+    .summary-total .val { font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 24px; color: var(--ink) }
+    .promo-row { display: flex; gap: 8px; margin: 16px 0 4px }
+    .promo-row input { flex: 1; border: 1.5px solid var(--rule); border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', system-ui, sans-serif; background: var(--surface); color: var(--ink) }
+    .promo-row input:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px }
+    .promo-row button { border: 1.5px solid var(--rule); background: #fff; color: var(--ink); font-weight: 700; font-size: 12.5px; border-radius: 8px; padding: 0 16px; cursor: pointer; transition: all .2s }
+    .promo-row button:hover { border-color: var(--primary); color: var(--primary) }
+    .promo-msg { font-size: 12px; margin-top: 4px; min-height: 16px }
+    .promo-msg.ok { color: var(--success) }
+    .promo-msg.err { color: var(--danger) }
+    .btn { padding: 14px 24px; border-radius: 10px; font-weight: 700; font-size: 14.5px; transition: all .3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; border: none; width: 100%; font-family: 'Inter', system-ui, sans-serif }
+    .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,.3) }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,.4) }
+    .btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none }
+    .btn-ghost { border: 1.5px solid var(--rule); color: var(--ink); background: #fff; margin-top: 10px }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--primary) }
+    .trust-row { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; font-size: 12px; color: var(--ink-faint) }
+    .trust-row .item { display: flex; align-items: center; gap: 6px }
+
+    /* FOOTER */
+    footer { background: linear-gradient(135deg, #0F1419 0%, #1a202c 100%); color: #fff; padding: 48px 0 30px; margin-top: 20px }
+    .foot-cta { text-align: center; max-width: 560px; margin: 0 auto }
+    .foot-cta h2 { font-size: 26px; font-weight: 700; color: #fff }
+    .foot-cta p { margin: 10px 0 22px; color: #A0AEC0; font-size: 14px }
+    .foot-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap }
+    .foot-buttons a { padding: 12px 24px; border-radius: 999px; font-weight: 700; font-size: 13.5px; transition: all .3s }
+    .foot-buttons a.primary { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,.3) }
+    .foot-buttons a.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,.4) }
+    .foot-buttons a.secondary { border: 1.4px solid rgba(255,255,255,.3); color: #F4EFE3 }
+    .foot-buttons a.secondary:hover { border-color: var(--primary); color: var(--primary) }
+    .foot-bottom { margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: #8B92A0 }
+    .foot-socials { display: flex; gap: 12px }
+    .foot-socials a { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #A0AEC0; font-size: 11.5px; transition: all .3s }
+    .foot-socials a:hover { border-color: var(--primary); color: var(--primary) }
   </style>
 </head>
 
@@ -758,7 +151,6 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <!-- Brand logo bhi context ke hisaab se update hoga -->
       <a class="brand" id="brandLogoLink" href="#">
         <span class="brand-mark">MP</span>
         <span class="brand-text"><span>MBA Partner</span><small>Initiative by Alumni of Old IIM</small></span>
@@ -766,7 +158,6 @@
       <div class="nav-links">
         <a href="#" id="navHomeLink">Home</a>
         <a href="#" id="navCoursesLink">Courses</a>
-        <!-- <a href="mba-partner-testimonials-redesign_.html">Testimonials</a> -->
         <a class="nav-cart-link" href="cart-page.html">
           🛒 Cart <span class="nav-cart-count" id="navCartCount">0</span>
         </a>
@@ -790,13 +181,9 @@
 
   <section>
     <div class="wrap">
-      <div class="cart-layout" id="cartLayout">
-        <!-- Filled by JS -->
-      </div>
+      <div class="cart-layout" id="cartLayout"></div>
     </div>
   </section>
-
-
 
   <footer>
     <div class="wrap">
@@ -822,14 +209,19 @@
 
   <script src="cart.js"></script>
   <script>
-    // ---------- Cross-sell catalogue ----------
+    const { getCart, setCart, cartTotals, fmtINR, saveOrder, clearCart } = window.MBACart;
 
-
-    const { getCart, setCart, cartTotals, fmtINR, genOrderId, saveOrder, clearCart } = window.MBACart;
-
-    // ---------- Context Detection ----------
-    // Cart items ke naam se detect karo: CAT/OMET wala hai ya MBA wala
+    // =====================================================
+    // CONTEXT DETECTION — CAT ya MBA?
+    // Pehle explicit track field check karo,
+    // phir naam se detect karo (fallback)
+    // =====================================================
     function isCatItem(item) {
+      // ✅ FIX: explicit track/category field sabse pehle check karo
+      if (item.track === 'cat' || item.category === 'cat') return true;
+      if (item.track === 'mba' || item.category === 'mba') return false;
+
+      // Fallback: naam/id se detect karo
       const name = ((item.id || '') + ' ' + (item.name || '')).toLowerCase();
       return (
         name.includes('cat') ||
@@ -850,42 +242,124 @@
 
     function detectContext() {
       const cart = getCart();
-      if (!cart.length) return 'mba'; // empty cart → MBA default
-
+      if (!cart.length) return 'mba';
       const hasCat = cart.some(isCatItem);
       const hasMba = cart.some(item => !isCatItem(item));
-
-      // Sirf CAT items → cat context
-      // Mixed ya sirf MBA items → mba context
       return (hasCat && !hasMba) ? 'cat' : 'mba';
     }
 
+    // =====================================================
+    // POST-PAYMENT: localStorage mein courses save karo
+    // aur sahi dashboard pe redirect karo
+    // =====================================================
+    function currentUserKey() {
+      const token = localStorage.getItem('token');
+      if (!token) return 'guest';
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.id || payload._id || payload.email || 'guest';
+      } catch (e) { return 'guest'; }
+    }
+
+    function savePurchasedCourses(cart) {
+      const userKey = currentUserKey();
+      const grouped = { mba: [], cat: [] };
+
+      cart.forEach(item => {
+        const category = isCatItem(item) ? 'cat' : 'mba';
+        grouped[category].push({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          track: item.track || category,
+          qty: item.qty || 1,
+          purchasedAt: new Date().toISOString()
+        });
+      });
+
+      Object.keys(grouped).forEach(category => {
+        if (!grouped[category].length) return;
+        const storageKey = `myCourses_${category}_${userKey}`;
+        let existing = [];
+        try { existing = JSON.parse(localStorage.getItem(storageKey)) || []; } catch (e) { existing = []; }
+        localStorage.setItem(storageKey, JSON.stringify(existing.concat(grouped[category])));
+      });
+
+      // Jis category ke zyada items hain, wahi dashboard pe redirect
+      return grouped.cat.length >= grouped.mba.length && grouped.cat.length > 0 ? 'cat' : 'mba';
+    }
+
+    const DASHBOARD_BY_CATEGORY = {
+      mba: 'mba-partner-mba-dashboard.html',
+      cat: 'mba-partner-dashboard.html'
+    };
+
+    // =====================================================
+    // SUCCESS MODAL
+    // =====================================================
+    function showSuccessModal(targetCategory) {
+      const dashboardUrl = DASHBOARD_BY_CATEGORY[targetCategory] || DASHBOARD_BY_CATEGORY.mba;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `position:fixed;inset:0;background:rgba(15,20,25,.55);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;`;
+      overlay.innerHTML = `
+        <div style="background:#fff;border-radius:18px;max-width:380px;width:100%;padding:32px 28px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);font-family:'Inter',system-ui,sans-serif;">
+          <div style="width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:#D1FAE5;display:flex;align-items:center;justify-content:center;font-size:32px;">✅</div>
+          <h2 style="font-family:'Fraunces',serif;font-size:22px;margin:0 0 8px;color:#0F1419;">Payment Successful!</h2>
+          <p style="font-size:14px;color:#6B7280;margin:0 0 24px;line-height:1.5;">Your enrollment is confirmed. Your course has been added to your dashboard.</p>
+          <button id="goToDashBtn" style="width:100%;padding:13px;border:none;border-radius:10px;background:linear-gradient(135deg,#6366F1 0%,#EC4899 100%);color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;margin-bottom:10px;">Go to Dashboard →</button>
+          <button id="stayBtn" style="width:100%;padding:11px;border:1.4px solid #E5E7EB;border-radius:10px;background:#fff;color:#374151;font-weight:600;font-size:13.5px;cursor:pointer;">Stay on this page</button>
+        </div>`;
+      document.body.appendChild(overlay);
+      document.getElementById('goToDashBtn').onclick = () => { window.location.href = dashboardUrl; };
+      document.getElementById('stayBtn').onclick = () => overlay.remove();
+    }
+
+    // =====================================================
+    // MOCK PAYMENT (checkout simulation)
+    // =====================================================
+    function checkout() {
+      const cart = getCart();
+      if (!cart.length) return;
+
+      // Agar real checkout page hai to wahan bhejo
+      // window.location.href = 'checkout-page.html';
+
+      // Mock payment simulation
+      const targetCategory = savePurchasedCourses(cart);
+      saveOrder({
+        id: 'MBP-' + Date.now(),
+        items: cart,
+        totals: cartTotals(cart),
+        createdAt: new Date().toISOString()
+      });
+      clearCart();
+      showSuccessModal(targetCategory);
+    }
+
+    // =====================================================
+    // NAV LINKS UPDATE
+    // =====================================================
     function updateNavLinks() {
       const ctx = detectContext();
-
-      const homeUrl = ctx === 'cat' ? 'mba-partner-cat-omet-home.html' : 'mba-partner-courses-redesign.html';
+      const homeUrl    = ctx === 'cat' ? 'mba-partner-cat-omet-home.html'    : 'mba-partner-home.html';
       const coursesUrl = ctx === 'cat' ? 'mba-partner-cat-omet-courses.html' : 'mba-partner-courses-redesign.html';
 
-      // Brand logo
-      const brandLink = document.getElementById('brandLogoLink');
-      if (brandLink) brandLink.href = homeUrl;
-
-      // Nav links
-      const navHome = document.getElementById('navHomeLink');
+      const brandLink  = document.getElementById('brandLogoLink');
+      const navHome    = document.getElementById('navHomeLink');
       const navCourses = document.getElementById('navCoursesLink');
-      if (navHome) navHome.href = homeUrl;
+      const breadHome  = document.getElementById('breadcrumbHomeLink');
+
+      if (brandLink)  brandLink.href  = homeUrl;
+      if (navHome)    navHome.href    = homeUrl;
       if (navCourses) navCourses.href = coursesUrl;
+      if (breadHome)  breadHome.href  = homeUrl;
 
-      // Breadcrumb
-      const breadHome = document.getElementById('breadcrumbHomeLink');
-      if (breadHome) breadHome.href = homeUrl;
-
-      // "Continue Browsing" button (rendered inside summary by render())
-      // usse render() mein directly set karenge — neeche dekho
       return { homeUrl, coursesUrl };
     }
 
-    // ---------- Helpers ----------
+    // =====================================================
+    // HELPERS
+    // =====================================================
     function initials(name) {
       const words = name.trim().split(/\s+/).filter(Boolean);
       if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
@@ -894,7 +368,7 @@
 
     function updateNavCount() {
       const el = document.getElementById('navCartCount');
-      el.textContent = window.MBACart.cartCount();
+      if (el) el.textContent = window.MBACart.cartCount();
     }
 
     function changeQty(id, delta) {
@@ -902,11 +376,8 @@
       const item = cart.find(i => i.id === id);
       if (!item) return;
       item.qty = (item.qty || 1) + delta;
-      if (item.qty <= 0) {
-        setCart(cart.filter(i => i.id !== id));
-      } else {
-        setCart(cart);
-      }
+      if (item.qty <= 0) setCart(cart.filter(i => i.id !== id));
+      else setCart(cart);
       render();
     }
 
@@ -917,11 +388,11 @@
 
     function applyPromo() {
       const input = document.getElementById('promoInput');
-      const msg = document.getElementById('promoMsg');
-      const code = input.value.trim().toUpperCase();
+      const msg   = document.getElementById('promoMsg');
+      const code  = input.value.trim().toUpperCase();
       if (!code) { msg.textContent = ''; return; }
-      const VALID_CODES = { MBAP500: 500, WELCOME10: 0.10 };
-      if (VALID_CODES.hasOwnProperty(code)) {
+      const VALID = { MBAP500: 500, WELCOME10: 0.10 };
+      if (VALID.hasOwnProperty(code)) {
         msg.textContent = 'Promo applied — discount reflected at checkout.';
         msg.className = 'promo-msg ok';
         localStorage.setItem('mbaPartnerPromo', code);
@@ -931,34 +402,14 @@
       }
     }
 
-    function checkout() {
-      const cart = getCart();
-      if (!cart.length) return;
-      window.location.href = 'checkout-page.html';
-    }
-
-    function renderCrosssell(cart) {
-      const section = document.getElementById('crosssellSection');
-      const list = document.getElementById('crosssellList');
-      const inCart = new Set(cart.map(i => i.id));
-      const suggestions = CROSSSELL_CATALOGUE.filter(p => !inCart.has(p.id)).slice(0, 6);
-      if (!suggestions.length) { section.style.display = 'none'; return; }
-      section.style.display = '';
-      list.innerHTML = suggestions.map(p => `
-        <div class="cs-card">
-          <h4>${p.name}</h4>
-          <div class="cs-price mono">${fmtINR(p.price)}<span style="color:var(--ink-faint);font-weight:600;text-decoration:line-through;margin-left:6px;">${fmtINR(p.originalPrice)}</span></div>
-          <a class="cs-link" href="${p.url || '#'}">View program →</a>
-        </div>
-      `).join('');
-    }
-
+    // =====================================================
+    // RENDER
+    // =====================================================
     function render() {
-      // Context-aware nav update sabse pehle
       const { coursesUrl } = updateNavLinks();
       updateNavCount();
 
-      const cart = getCart();
+      const cart   = getCart();
       const layout = document.getElementById('cartLayout');
       const subline = document.getElementById('cartSubline');
 
@@ -974,9 +425,7 @@
             <h2>No programs added yet</h2>
             <p>Browse our courses and add a program to get started.</p>
             <a class="btn btn-primary" style="width:auto;display:inline-flex;" href="${coursesUrl}">Browse Courses</a>
-          </div>
-        `;
-        renderCrosssell([]);
+          </div>`;
         return;
       }
 
@@ -986,7 +435,7 @@
       const itemsHtml = cart.map(item => {
         const qty = item.qty || 1;
         const metaHtml = item.meta ? `<div class="cart-item-meta">${item.meta}</div>` : '';
-        const oldHtml = item.originalPrice && item.originalPrice > item.price
+        const oldHtml  = item.originalPrice && item.originalPrice > item.price
           ? `<span class="old">${fmtINR(item.originalPrice)}</span>` : '';
         return `
           <div class="cart-item" data-id="${item.id}">
@@ -995,15 +444,14 @@
               <h3>${item.name}</h3>
               ${metaHtml}
               <div class="cart-item-prices">
-                <span class="now mono">${fmtINR(item.price)}</span>
-                ${oldHtml}
+                <span class="now mono">${fmtINR(item.price)}</span>${oldHtml}
               </div>
             </div>
             <div class="cart-item-right">
               <div class="qty-control">
-                <button type="button" aria-label="Decrease quantity" onclick="changeQty('${item.id}', -1)">−</button>
+                <button type="button" onclick="changeQty('${item.id}',-1)">−</button>
                 <span>${qty}</span>
-                <button type="button" aria-label="Increase quantity" onclick="changeQty('${item.id}', 1)">+</button>
+                <button type="button" onclick="changeQty('${item.id}',1)">+</button>
               </div>
               <button type="button" class="remove-link" onclick="removeItem('${item.id}')">Remove</button>
             </div>
@@ -1012,7 +460,8 @@
 
       const totals = cartTotals(cart);
 
-      const summaryHtml = `
+      layout.innerHTML = `
+        <div class="cart-items">${itemsHtml}</div>
         <div class="summary-card">
           <h2>Order Summary</h2>
           <div class="summary-row">
@@ -1041,17 +490,13 @@
             <span class="item">🔒 Secure Checkout</span>
             <span class="item">📩 Instant Confirmation</span>
           </div>
-        </div>
-      `;
-
-      layout.innerHTML = `<div class="cart-items">${itemsHtml}</div>${summaryHtml}`;
-      renderCrosssell(cart);
+        </div>`;
     }
 
     render();
   </script>
+
   <script src="Navbar_cat.js"></script>
   <script src="chatbot-loader.js" data-track="mba"></script>
 </body>
-
 </html>
