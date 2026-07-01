@@ -235,6 +235,47 @@
         .badge-tag.cat { background: #EDE9FE; color: #6D28D9; }
         .badge-tag.omet { background: #FCE7F3; color: #BE185D; }
 
+        /* ---- MY COURSES ---- */
+        .my-courses-card { margin-top: 20px; }
+
+        .course-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-top: 1px solid var(--rule);
+            gap: 12px;
+        }
+
+        .course-row:first-child { border-top: none; padding-top: 0; }
+
+        .course-row-left { display: flex; align-items: center; gap: 14px; }
+
+        .course-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .course-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--ink);
+        }
+
+        .course-meta {
+            font-size: 12px;
+            color: var(--ink-faint);
+            margin-top: 2px;
+        }
+
+        /* ---- LEADERBOARD ---- */
         .leaderboard-card { margin-top: 20px; }
         .lb-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
         .lb-card-head .lb-subtitle { font-size: 12.5px; color: var(--ink-faint); margin: 3px 0 0; }
@@ -334,9 +375,7 @@
         .check-item::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
+            left: 0; top: 0; bottom: 0;
             width: 3px;
             background: var(--rule);
             border-radius: 12px 0 0 12px;
@@ -349,16 +388,12 @@
         .check-item.done::before { background: var(--success); }
 
         .check-circle {
-            width: 26px;
-            height: 26px;
+            width: 26px; height: 26px;
             border-radius: 50%;
             flex-shrink: 0;
             border: 2px solid #D1D5DB;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            color: transparent;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; color: transparent;
             background: #fff;
             transition: all .2s;
         }
@@ -369,29 +404,19 @@
         .check-item.done .check-text { color: #059669; text-decoration: line-through; opacity: .75; }
 
         .check-meta {
-            font-size: 11.5px;
-            font-weight: 600;
-            color: var(--ink-faint);
-            background: var(--surface);
-            padding: 4px 10px;
-            border-radius: 999px;
-            white-space: nowrap;
-            flex-shrink: 0;
+            font-size: 11.5px; font-weight: 600; color: var(--ink-faint);
+            background: var(--surface); padding: 4px 10px; border-radius: 999px;
+            white-space: nowrap; flex-shrink: 0;
         }
 
         .feed-item { display: flex; gap: 12px; padding: 11px 0; border-top: 1px solid var(--rule); }
         .feed-item:first-child { border-top: none; padding-top: 0; }
 
         .feed-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            background: var(--surface);
+            width: 30px; height: 30px;
+            border-radius: 8px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; background: var(--surface);
         }
 
         .feed-text { font-size: 13px; line-height: 1.5; }
@@ -445,8 +470,7 @@
                 <p class="sub">Here's where your CAT/OMETs prep stands today.</p>
             </div>
             <div class="head-chips" id="headChips">
-                <div class="head-chip"><span class="flame">🔥</span> <b><span id="chipStreak">—</span>-day</b> streak
-                </div>
+                <div class="head-chip"><span class="flame">🔥</span> <b><span id="chipStreak">—</span>-day</b> streak</div>
                 <div class="head-chip">Cohort rank <b id="chipRank">—</b></div>
                 <div class="head-chip">Mocks logged <b id="chipMocks">—</b></div>
             </div>
@@ -469,8 +493,7 @@
                             </div>
                             <div class="ring-wrap">
                                 <svg width="168" height="168" viewBox="0 0 168 168">
-                                    <circle cx="84" cy="84" r="72" fill="none" stroke="var(--surface)"
-                                        stroke-width="14" />
+                                    <circle cx="84" cy="84" r="72" fill="none" stroke="var(--surface)" stroke-width="14" />
                                     <circle id="ringFill" cx="84" cy="84" r="72" fill="none" stroke="url(#ringGrad)"
                                         stroke-width="14" stroke-linecap="round" stroke-dasharray="452.4"
                                         stroke-dashoffset="452.4" style="transition: stroke-dashoffset .8s ease;" />
@@ -490,14 +513,10 @@
 
                             <div class="divider"></div>
 
-                            <div class="mini-stat-row"><span class="k">Mocks attempted</span><span class="v"
-                                    id="statMocks">—</span></div>
-                            <div class="mini-stat-row"><span class="k">Avg. accuracy</span><span class="v"
-                                    id="statAccuracy">—</span></div>
-                            <div class="mini-stat-row"><span class="k">Weakest section</span><span class="v warn"
-                                    id="statWeakest">—</span></div>
-                            <div class="mini-stat-row"><span class="k">Strongest section</span><span class="v up"
-                                    id="statStrongest">—</span></div>
+                            <div class="mini-stat-row"><span class="k">Mocks attempted</span><span class="v" id="statMocks">—</span></div>
+                            <div class="mini-stat-row"><span class="k">Avg. accuracy</span><span class="v" id="statAccuracy">—</span></div>
+                            <div class="mini-stat-row"><span class="k">Weakest section</span><span class="v warn" id="statWeakest">—</span></div>
+                            <div class="mini-stat-row"><span class="k">Strongest section</span><span class="v up" id="statStrongest">—</span></div>
                         </div>
 
                         <div class="card section-strength-card">
@@ -555,11 +574,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="mocksTableBody">
-                                        <tr>
-                                            <td colspan="4">
-                                                <div class="skel" style="height:18px;"></div>
-                                            </td>
-                                        </tr>
+                                        <tr><td colspan="4"><div class="skel" style="height:18px;"></div></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -577,11 +592,22 @@
                     </div>
                 </div>
 
+                <!-- ===== MY COURSES ===== -->
+                <div class="card my-courses-card">
+                    <div class="card-head">
+                        <h3>My Courses</h3>
+                        <a href="mba-partner-cat-omet-courses.html" class="link">Browse more →</a>
+                    </div>
+                    <div id="myCoursesList">
+                        <div class="skel" style="height:80px;"></div>
+                    </div>
+                </div>
+
+                <!-- ===== LEADERBOARD ===== -->
                 <div class="card leaderboard-card">
                     <div class="lb-card-head">
                         <div>
-                            <h3 style="font-size:15.5px;font-weight:700;font-family:'Inter',sans-serif;">Leaderboard
-                            </h3>
+                            <h3 style="font-size:15.5px;font-weight:700;font-family:'Inter',sans-serif;">Leaderboard</h3>
                             <p class="lb-subtitle">Top performers in your cohort this week</p>
                         </div>
                         <span class="lb-period-pill">This week</span>
@@ -594,8 +620,7 @@
                                 <div class="lb-name">Ananya Sharma</div>
                                 <div class="lb-meta">12 mocks · 96.2 avg percentile</div>
                             </div>
-                            <div class="lb-score"><span class="pct">98.4</span><br><span class="lbl">Percentile</span>
-                            </div>
+                            <div class="lb-score"><span class="pct">98.4</span><br><span class="lbl">Percentile</span></div>
                         </div>
                         <div class="lb-row">
                             <div class="lb-rank silver">2</div>
@@ -604,8 +629,7 @@
                                 <div class="lb-name">Rohan Kapoor</div>
                                 <div class="lb-meta">10 mocks · 94.8 avg percentile</div>
                             </div>
-                            <div class="lb-score"><span class="pct">97.1</span><br><span class="lbl">Percentile</span>
-                            </div>
+                            <div class="lb-score"><span class="pct">97.1</span><br><span class="lbl">Percentile</span></div>
                         </div>
                         <div class="lb-row">
                             <div class="lb-rank bronze">3</div>
@@ -614,8 +638,7 @@
                                 <div class="lb-name">Priya Iyer</div>
                                 <div class="lb-meta">14 mocks · 93.5 avg percentile</div>
                             </div>
-                            <div class="lb-score"><span class="pct">95.9</span><br><span class="lbl">Percentile</span>
-                            </div>
+                            <div class="lb-score"><span class="pct">95.9</span><br><span class="lbl">Percentile</span></div>
                         </div>
                         <div class="lb-row lb-you">
                             <div class="lb-rank">4</div>
@@ -624,8 +647,7 @@
                                 <div class="lb-name">You <span class="lb-you-tag">You</span></div>
                                 <div class="lb-meta">9 mocks · 90.2 avg percentile</div>
                             </div>
-                            <div class="lb-score"><span class="pct">91.3</span><br><span class="lbl">Percentile</span>
-                            </div>
+                            <div class="lb-score"><span class="pct">91.3</span><br><span class="lbl">Percentile</span></div>
                         </div>
                         <div class="lb-row">
                             <div class="lb-rank">5</div>
@@ -634,19 +656,17 @@
                                 <div class="lb-name">Vikram Mehta</div>
                                 <div class="lb-meta">8 mocks · 88.7 avg percentile</div>
                             </div>
-                            <div class="lb-score"><span class="pct">89.6</span><br><span class="lbl">Percentile</span>
-                            </div>
+                            <div class="lb-score"><span class="pct">89.6</span><br><span class="lbl">Percentile</span></div>
                         </div>
                     </div>
                 </div>
 
+                <!-- ===== GDPI READINESS ===== -->
                 <div class="card gdpi-card">
                     <div class="gdpi-card-head">
                         <div>
-                            <h3 style="font-size:15.5px;font-weight:700;font-family:'Inter',sans-serif;">GDPI Readiness
-                            </h3>
-                            <p style="font-size:12.5px;color:var(--ink-faint);margin:3px 0 0;">Track your Group
-                                Discussion &amp; Personal Interview preparation</p>
+                            <h3 style="font-size:15.5px;font-weight:700;font-family:'Inter',sans-serif;">GDPI Readiness</h3>
+                            <p style="font-size:12.5px;color:var(--ink-faint);margin:3px 0 0;">Track your Group Discussion &amp; Personal Interview preparation</p>
                         </div>
                         <span id="gdpiProgress"
                             style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--primary);background:#EEF2FF;padding:4px 12px;border-radius:999px;white-space:nowrap;"></span>
@@ -674,22 +694,18 @@
     <script src="cart.js"></script>
     <script src="Navbar_cat.js"></script>
     <script>
-        // ============================================================
-        // CONFIG — point this at your deployed backend (see backend/README.md)
-        // ============================================================
         const API_BASE = 'https://mba-partner1.onrender.com/api';
 
         const dashLoading = document.getElementById('dashLoading');
-        const dashError = document.getElementById('dashError');
+        const dashError   = document.getElementById('dashError');
         const dashContent = document.getElementById('dashContent');
-        const greetName = document.getElementById('greetName');
+        const greetName   = document.getElementById('greetName');
 
         function authHeaders() {
             const token = localStorage.getItem('token');
             return token ? { Authorization: `Bearer ${token}` } : {};
         }
 
-        // Login na hone par seedha login page par bhej do
         function redirectToLogin() {
             localStorage.removeItem('token');
             window.location.replace('mba-partner-login.html');
@@ -722,13 +738,74 @@
             return data;
         }
 
+        // ---- Helpers ----
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str ?? '';
+            return div.innerHTML;
+        }
+
+        function currentUserKey() {
+            const token = localStorage.getItem('token');
+            if (!token) return 'guest';
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                return payload.id || payload._id || payload.email || 'guest';
+            } catch (e) { return 'guest'; }
+        }
+
+        // ============================================================
+        // MY COURSES
+        // ============================================================
+        function renderMyCourses() {
+            const userKey = currentUserKey();
+            const stored  = localStorage.getItem(`myCourses_cat_${userKey}`);
+            let courses = [];
+            try { courses = JSON.parse(stored) || []; } catch (e) { courses = []; }
+
+            const el = document.getElementById('myCoursesList');
+            if (!el) return;
+
+            if (!courses.length) {
+                el.innerHTML = `
+                    <div class="empty-msg">
+                        No courses purchased yet.
+                        <a href="mba-partner-cat-omet-courses.html"
+                           style="color:var(--primary);font-weight:700;margin-left:4px;">
+                            Browse CAT courses →
+                        </a>
+                    </div>`;
+                return;
+            }
+
+            const icons = ['📚', '🎯', '🧠', '✏️', '🚀'];
+            el.innerHTML = courses.map((c, i) => `
+                <div class="course-row">
+                    <div class="course-row-left">
+                        <div class="course-icon">${icons[i % icons.length]}</div>
+                        <div>
+                            <div class="course-name">${escapeHtml(c.name)}</div>
+                            <div class="course-meta">
+                                Purchased on ${new Date(c.purchasedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                            </div>
+                        </div>
+                    </div>
+                    <span class="badge-tag cat">CAT</span>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================
+        // RENDER FUNCTIONS (unchanged from original)
+        // ============================================================
         function renderSummary(summary) {
             const circumference = 452.4;
             const pct = Math.max(0, Math.min(100, summary.overallPercentile || 0));
             document.getElementById('ringFill').setAttribute(
                 'stroke-dashoffset', String(circumference * (1 - pct / 100))
             );
-            document.getElementById('ringPct').textContent = summary.overallPercentile != null ? summary.overallPercentile.toFixed(1) : '—';
+            document.getElementById('ringPct').textContent =
+                summary.overallPercentile != null ? summary.overallPercentile.toFixed(1) : '—';
 
             const pill = document.getElementById('rankPill');
             if (summary.percentileDelta !== 0 && summary.percentileDelta != null) {
@@ -740,25 +817,20 @@
                 pill.style.display = 'none';
             }
 
-            document.getElementById('statMocks').textContent = summary.mocksAttempted ?? '—';
+            document.getElementById('statMocks').textContent    = summary.mocksAttempted ?? '—';
             document.getElementById('statAccuracy').textContent = summary.avgAccuracy != null ? `${summary.avgAccuracy}%` : '—';
-            document.getElementById('statWeakest').textContent = summary.weakestSection || '—';
-            document.getElementById('statStrongest').textContent = summary.strongestSection || '—';
+            document.getElementById('statWeakest').textContent  = summary.weakestSection  || '—';
+            document.getElementById('statStrongest').textContent= summary.strongestSection|| '—';
 
             document.getElementById('chipStreak').textContent = summary.currentStreak ?? '—';
-            document.getElementById('chipRank').textContent = summary.cohortRank
+            document.getElementById('chipRank').textContent   = summary.cohortRank
                 ? `#${summary.cohortRank} / ${summary.cohortSize != null ? summary.cohortSize.toLocaleString('en-IN') : '—'}`
                 : '—';
-            document.getElementById('chipMocks').textContent = summary.mocksAttempted ?? '—';
+            document.getElementById('chipMocks').textContent  = summary.mocksAttempted ?? '—';
 
-            document.getElementById('streakCurrent').textContent = summary.currentStreak ?? '—';
+            document.getElementById('streakCurrent').textContent   = summary.currentStreak ?? '—';
             document.getElementById('streakLongestSub').textContent =
                 `day prep streak — longest: ${summary.longestStreak ?? '—'} days`;
-
-            const navName = document.getElementById('navUserName');
-            if (navName && navName.textContent) {
-                greetName.textContent = `Welcome back, ${navName.textContent}`;
-            }
         }
 
         const DEFAULT_SECTIONS = ['VARC', 'QA', 'LRDI'];
@@ -774,11 +846,16 @@
                 name,
                 accuracy: byName.has(name) ? byName.get(name) : 0,
             }));
-
             el.innerHTML = merged.map((s, i) => `
                 <div class="skill-row">
-                    <div class="skill-top"><span class="name">${escapeHtml(s.name)}</span><span class="pct">${Math.round(s.accuracy)}%</span></div>
-                    <div class="skill-bar-track"><div class="skill-bar-fill ${sectionBarClass(i)}" style="width:${Math.max(0, Math.min(100, s.accuracy))}%;"></div></div>
+                    <div class="skill-top">
+                        <span class="name">${escapeHtml(s.name)}</span>
+                        <span class="pct">${Math.round(s.accuracy)}%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill ${sectionBarClass(i)}"
+                             style="width:${Math.max(0, Math.min(100, s.accuracy))}%;"></div>
+                    </div>
                 </div>
             `).join('');
         }
@@ -804,26 +881,20 @@
                 document.body.appendChild(heatmapTooltipEl);
             }
             const tip = heatmapTooltipEl;
-
             grid.querySelectorAll('.hm-cell').forEach(cell => {
                 cell.addEventListener('mouseenter', () => {
                     tip.textContent = cell.getAttribute('data-tip');
                     tip.style.display = 'block';
                     const cellRect = cell.getBoundingClientRect();
-                    const tipRect = tip.getBoundingClientRect();
-
+                    const tipRect  = tip.getBoundingClientRect();
                     let left = cellRect.left + cellRect.width / 2 - tipRect.width / 2;
                     left = Math.max(8, Math.min(left, window.innerWidth - tipRect.width - 8));
-
                     let top = cellRect.top - tipRect.height - 8;
                     if (top < 8) top = cellRect.bottom + 8;
-
                     tip.style.left = `${left}px`;
-                    tip.style.top = `${top}px`;
+                    tip.style.top  = `${top}px`;
                 });
-                cell.addEventListener('mouseleave', () => {
-                    tip.style.display = 'none';
-                });
+                cell.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
             });
         }
 
@@ -845,7 +916,8 @@
             }
             tbody.innerHTML = mocks.map(m => `
                 <tr>
-                    <td><span class="badge-tag ${examBadgeClass(m.examTag)}">${escapeHtml(m.examTag)}</span> <span class="test-name">${escapeHtml(m.testName)}</span></td>
+                    <td><span class="badge-tag ${examBadgeClass(m.examTag)}">${escapeHtml(m.examTag)}</span>
+                        <span class="test-name">${escapeHtml(m.testName)}</span></td>
                     <td class="test-date">${new Date(m.testDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
                     <td class="score-cell">${m.scoreRaw} / ${m.scoreMax}</td>
                     <td class="score-cell">${m.percentile}${deltaBadge(m.percentileDelta)}</td>
@@ -864,11 +936,14 @@
             if (progressEl) progressEl.textContent = `${doneCount} / ${items.length}`;
             const barEl = document.getElementById('gdpiProgressBar');
             if (barEl) barEl.style.width = `${Math.round((doneCount / items.length) * 100)}%`;
+
             el.innerHTML = items.map(item => `
-                <div class="check-item ${item.done ? 'done' : ''}" data-id="${item.id}" role="checkbox" aria-checked="${item.done}" tabindex="0">
+                <div class="check-item ${item.done ? 'done' : ''}" data-id="${item.id}"
+                     role="checkbox" aria-checked="${item.done}" tabindex="0">
                     <span class="check-circle">✓</span>
                     <span class="check-text">${escapeHtml(item.text)}</span>
-                    ${!item.done && item.metaLabel ? `<span class="check-meta">${escapeHtml(item.metaLabel)}</span>` : ''}
+                    ${!item.done && item.metaLabel
+                        ? `<span class="check-meta">${escapeHtml(item.metaLabel)}</span>` : ''}
                 </div>
             `).join('');
 
@@ -878,11 +953,9 @@
                     const willBeDone = !node.classList.contains('done');
                     node.classList.toggle('done', willBeDone);
                     node.setAttribute('aria-checked', String(willBeDone));
-                    const allItems = el.querySelectorAll('.check-item');
+                    const allItems  = el.querySelectorAll('.check-item');
                     const doneItems = el.querySelectorAll('.check-item.done');
-                    const progressEl = document.getElementById('gdpiProgress');
                     if (progressEl) progressEl.textContent = `${doneItems.length} / ${allItems.length}`;
-                    const barEl = document.getElementById('gdpiProgressBar');
                     if (barEl) barEl.style.width = `${Math.round((doneItems.length / allItems.length) * 100)}%`;
                     try {
                         await apiPatch(`/dashboard/checklist/${id}`, { done: willBeDone });
@@ -892,17 +965,19 @@
                     }
                 };
                 node.addEventListener('click', toggle);
-                node.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+                node.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+                });
             });
         }
 
         function timeAgo(iso) {
             const diffMs = Date.now() - new Date(iso.replace(' ', 'T') + 'Z').getTime();
             const mins = Math.round(diffMs / 60000);
-            if (mins < 1) return 'just now';
+            if (mins < 1)  return 'just now';
             if (mins < 60) return `${mins} min ago`;
             const hrs = Math.round(mins / 60);
-            if (hrs < 24) return hrs === 1 ? '1 hour ago' : `${hrs} hours ago`;
+            if (hrs < 24)  return hrs === 1 ? '1 hour ago' : `${hrs} hours ago`;
             const days = Math.round(hrs / 24);
             return days === 1 ? '1 day ago' : `${days} days ago`;
         }
@@ -924,16 +999,13 @@
             `).join('');
         }
 
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str ?? '';
-            return div.innerHTML;
-        }
-
+        // ============================================================
+        // LOAD DASHBOARD
+        // ============================================================
         async function loadDashboard() {
             dashLoading.style.display = '';
             dashContent.style.display = 'none';
-            dashError.style.display = 'none';
+            dashError.style.display   = 'none';
 
             try {
                 const [summaryRes, streakRes, sectionsRes, mocksRes, checklistRes, activityRes] = await Promise.all([
@@ -951,6 +1023,7 @@
                 renderMocks(mocksRes.mocks);
                 renderChecklist(checklistRes.checklist);
                 renderActivity(activityRes.activity);
+                renderMyCourses(); // ← My Courses section
 
                 dashLoading.style.display = 'none';
                 dashContent.style.display = '';
@@ -963,16 +1036,15 @@
             }
         }
 
-        // Sabse pehle login check karo — agar token nahi hai ya invalid hai,
-        // to seedha login page par redirect kar do (dashboard render hi nahi hoga)
+        // ============================================================
+        // INIT — auth check first, then load
+        // ============================================================
         async function initDashboard() {
             const token = localStorage.getItem('token');
-            if (!token) {
-                redirectToLogin();
-                return;
-            }
+            if (!token) { redirectToLogin(); return; }
+
             try {
-                const res = await fetch('https://mba-partner1.onrender.com/api/auth/me', {
+                const res  = await fetch('https://mba-partner1.onrender.com/api/auth/me', {
                     headers: { Authorization: `Bearer ${token}` },
                     credentials: 'include',
                 });
@@ -996,6 +1068,7 @@
             initDashboard();
         }
     </script>
+
     <script src="chatbot-loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <div id="social-widget"></div>
@@ -1006,5 +1079,4 @@
     </script>
 
 </body>
-
 </html>
